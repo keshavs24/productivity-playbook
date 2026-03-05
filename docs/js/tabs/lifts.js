@@ -293,9 +293,9 @@ function getProgressArrow(exercise, weight) {
   const last = getLastSessionData(exercise);
   if (!last || last.sets.length === 0) return { icon: '', class: '' };
   const lastWeight = last.sets[last.sets.length - 1].weight;
-  if (weight > lastWeight) return { icon: '\u2191', class: 'arrow-up' };
-  if (weight < lastWeight) return { icon: '\u2193', class: 'arrow-down' };
-  return { icon: '\u2192', class: 'arrow-same' };
+  if (weight > lastWeight) return { icon: '\u2191', class: 'exercise-row__arrow--up' };
+  if (weight < lastWeight) return { icon: '\u2193', class: 'exercise-row__arrow--down' };
+  return { icon: '\u2192', class: 'exercise-row__arrow--same' };
 }
 
 function countTodaySets(exercise) {

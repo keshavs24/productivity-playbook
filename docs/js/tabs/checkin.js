@@ -55,13 +55,21 @@ function buildStarRating(name, group, value, onChange) {
   const wrap = document.createElement('div');
   wrap.className = 'star-rating';
 
-  const label = document.createElement('span');
-  label.className = 'star-rating-label';
-  label.textContent = name;
-  wrap.appendChild(label);
+  const labelEl = document.createElement('span');
+  labelEl.className = 'star-rating-label';
+  labelEl.textContent = name;
+  wrap.appendChild(labelEl);
 
   const starsWrap = document.createElement('div');
   starsWrap.className = 'star-rating-stars';
+
+  const starLabels = [];
+
+  function updateVisuals(v) {
+    starLabels.forEach((lbl, idx) => {
+      lbl.style.color = idx < v ? 'var(--accent-gold)' : 'rgba(250,250,249,0.15)';
+    });
+  }
 
   for (let i = 1; i <= 5; i++) {
     const id = `${group}-${i}`;
@@ -76,12 +84,19 @@ function buildStarRating(name, group, value, onChange) {
     star.htmlFor = id;
     star.textContent = '\u2605';
     star.setAttribute('aria-label', `${i} star${i > 1 ? 's' : ''}`);
+    starLabels.push(star);
 
-    radio.addEventListener('change', () => onChange(i));
+    radio.addEventListener('change', () => {
+      onChange(i);
+      updateVisuals(i);
+    });
 
     starsWrap.appendChild(radio);
     starsWrap.appendChild(star);
   }
+
+  // Set initial visual state
+  updateVisuals(value);
 
   wrap.appendChild(starsWrap);
   return wrap;

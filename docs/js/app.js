@@ -145,7 +145,9 @@ async function switchTab(tabId) {
 
   // Show/hide panels
   document.querySelectorAll('.tab-panel').forEach(panel => {
-    panel.hidden = panel.id !== tabId;
+    const isActive = panel.id === tabId;
+    panel.hidden = !isActive;
+    panel.classList.toggle('active', isActive);
   });
 
   currentTab = tabId;
@@ -206,11 +208,11 @@ export function showToast(message, duration = 3000) {
 
   // Trigger animation
   requestAnimationFrame(() => {
-    toast.classList.add('show');
+    toast.classList.add('toast--visible');
   });
 
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.classList.remove('toast--visible');
     setTimeout(() => toast.remove(), 300);
   }, duration);
 }

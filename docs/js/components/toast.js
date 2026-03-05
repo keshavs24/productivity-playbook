@@ -24,11 +24,11 @@ export function showAchievementToast(icon, name, xp) {
   container.appendChild(toast);
 
   requestAnimationFrame(() => {
-    toast.classList.add('show');
+    toast.classList.add('toast--visible');
   });
 
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.classList.remove('toast--visible');
     setTimeout(() => toast.remove(), 300);
   }, 4000);
 }
@@ -52,11 +52,11 @@ export function showPRToast(exercise, weight, reps) {
   container.appendChild(toast);
 
   requestAnimationFrame(() => {
-    toast.classList.add('show');
+    toast.classList.add('toast--visible');
   });
 
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.classList.remove('toast--visible');
     setTimeout(() => toast.remove(), 300);
   }, 4000);
 }
