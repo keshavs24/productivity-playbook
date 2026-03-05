@@ -3,6 +3,9 @@
    Gamified PWA  |  Mobile-first  |  Warm Charcoal Palette
    ============================================================ */
 
+/* Ensure hidden attribute always works, even when CSS sets display */
+[hidden] { display: none !important; }
+
 /* ----- Design Tokens ----- */
 :root {
   /* Backgrounds */
