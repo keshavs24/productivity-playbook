@@ -1,0 +1,435 @@
+/**
+ * Achievements.js — Badge definitions, condition checking, and unlock logic
+ */
+
+/**
+ * Get all achievement definitions
+ */
+function getAchievementDefinitions() {
+  return [
+    // ============================================================
+    // STREAK BADGES
+    // ============================================================
+    { icon: '🌱', name: 'First Steps', description: 'Complete a 3-day streak', category: 'Streak', xp: 50,
+      check: function(d) { return d.bestStreak >= 3; } },
+    { icon: '⚔️', name: 'Sabr Begins', description: 'Complete a 7-day streak', category: 'Streak', xp: 100,
+      check: function(d) { return d.bestStreak >= 7; } },
+    { icon: '🛡️', name: 'Fortnight of Istiqamah', description: 'Complete a 14-day streak', category: 'Streak', xp: 200,
+      check: function(d) { return d.bestStreak >= 14; } },
+    { icon: '🌙', name: 'Ramadan Warrior', description: 'Complete a 30-day streak', category: 'Streak', xp: 500,
+      check: function(d) { return d.bestStreak >= 30; } },
+    { icon: '🏔️', name: 'Quarterly Mujahid', description: 'Complete a 90-day streak', category: 'Streak', xp: 1000,
+      check: function(d) { return d.bestStreak >= 90; } },
+    { icon: '🔥', name: 'Phoenix Rising', description: 'Returned after a broken streak and logged 3 consecutive days', category: 'Streak', xp: 100,
+      check: function(d) { return d.phoenixCompleted; } },
+
+    // ============================================================
+    // PRAYER / DEEN BADGES
+    // ============================================================
+    { icon: '🕌', name: 'Fajr Fighter x10', description: 'Woke before Fajr 10 times', category: 'Deen', xp: 150,
+      check: function(d) { return d.habitCounts[0] >= 10; } },
+    { icon: '🤲', name: 'Fajr Fighter x30', description: 'Woke before Fajr 30 times', category: 'Deen', xp: 300,
+      check: function(d) { return d.habitCounts[0] >= 30; } },
+    { icon: '☪️', name: 'Salah Guardian', description: 'All 5 prayers for 7 straight days', category: 'Deen', xp: 300,
+      check: function(d) { return d.consecutiveHabit[1] >= 7; } },
+    { icon: '📖', name: 'Dhikr of the Consistent', description: 'Quran reading 30 days straight', category: 'Deen', xp: 500,
+      check: function(d) { return d.consecutiveHabit[5] >= 30; } },
+    { icon: '⭐', name: 'Deen Master', description: 'Deen attribute average 4+ for 14 days', category: 'Deen', xp: 300,
+      check: function(d) { return d.attrStreaks[3] >= 14; } },
+
+    // ============================================================
+    // HABIT BADGES
+    // ============================================================
+    { icon: '💎', name: 'Yawm Kamil (Perfect Day)', description: 'All 7 habits in one day', category: 'Habits', xp: 100,
+      check: function(d) { return d.perfectDays >= 1; } },
+    { icon: '👑', name: 'Perfect Week', description: '100% habits for 7 consecutive days', category: 'Habits', xp: 500,
+      check: function(d) { return d.consecutivePerfectDays >= 7; } },
+    { icon: '⚡', name: 'Iron Discipline x5', description: '5 Perfect Days in a single week', category: 'Habits', xp: 250,
+      check: function(d) { return d.perfectDaysThisWeek >= 5; } },
+    { icon: '🏋️', name: 'Gym Rat x30', description: '30 workouts logged', category: 'Habits', xp: 300,
+      check: function(d) { return d.habitCounts[2] >= 30; } },
+    { icon: '💪', name: 'Gym Rat x60', description: '60 workouts logged', category: 'Habits', xp: 500,
+      check: function(d) { return d.habitCounts[2] >= 60; } },
+    { icon: '🧠', name: 'Deep Worker x20', description: '20 days of 4h+ deep work', category: 'Habits', xp: 200,
+      check: function(d) { return d.habitCounts[3] >= 20; } },
+    { icon: '🚀', name: 'Ship It x10', description: 'Shipped something 10 times', category: 'Habits', xp: 150,
+      check: function(d) { return d.habitCounts[4] >= 10; } },
+    { icon: '📚', name: 'Bookworm x30', description: 'Read 30 min for 30 days', category: 'Habits', xp: 300,
+      check: function(d) { return d.habitCounts[6] >= 30; } },
+
+    // ============================================================
+    // BUSINESS BADGES
+    // ============================================================
+    { icon: '💵', name: '$5K Club', description: 'Hit $5,000 MRR', category: 'Business', xp: 500,
+      check: function(d) { return d.maxMRR >= 5000; } },
+    { icon: '💰', name: '$10K Club', description: 'Hit $10,000 MRR', category: 'Business', xp: 500,
+      check: function(d) { return d.maxMRR >= 10000; } },
+    { icon: '🏦', name: '$15K Club', description: 'Hit $15,000 MRR', category: 'Business', xp: 500,
+      check: function(d) { return d.maxMRR >= 15000; } },
+    { icon: '💎', name: '$20K Club', description: 'Hit $20,000 MRR', category: 'Business', xp: 500,
+      check: function(d) { return d.maxMRR >= 20000; } },
+    { icon: '🏆', name: '$25K Club', description: 'Hit $25,000 MRR', category: 'Business', xp: 500,
+      check: function(d) { return d.maxMRR >= 25000; } },
+    { icon: '🛡️', name: 'Rizq Guardian', description: 'Hit $30,000 MRR — Target achieved!', category: 'Business', xp: 2000,
+      check: function(d) { return d.maxMRR >= 30000; } },
+    { icon: '⚜️', name: '$50K Club', description: 'Hit $50,000 MRR', category: 'Business', xp: 1000,
+      check: function(d) { return d.maxMRR >= 50000; } },
+    { icon: '👑', name: 'Rizq Master', description: 'Hit $100,000 MRR — The ultimate goal!', category: 'Business', xp: 5000,
+      check: function(d) { return d.maxMRR >= 100000; } },
+    { icon: '📈', name: 'Growth Spurt', description: '20%+ MRR growth in a single week', category: 'Business', xp: 300,
+      check: function(d) { return d.maxWeeklyMRRGrowth >= 0.20; } },
+    { icon: '📊', name: 'Consistent Growth', description: 'MRR grew every week for 4 consecutive weeks', category: 'Business', xp: 500,
+      check: function(d) { return d.consecutiveMRRGrowthWeeks >= 4; } },
+
+    // ============================================================
+    // FITNESS BADGES
+    // ============================================================
+    { icon: '⚖️', name: 'Weigh-In Warrior', description: 'Logged weight 30 days in a row', category: 'Fitness', xp: 200,
+      check: function(d) { return d.consecutiveWeighIns >= 30; } },
+    { icon: '🎯', name: 'Lean Machine', description: 'Hit body fat target', category: 'Fitness', xp: 2000,
+      check: function(d) { return d.bodyFatTarget; } },
+    { icon: '🔥', name: 'Beast Mode', description: 'Workout streak of 21 days', category: 'Fitness', xp: 400,
+      check: function(d) { return d.consecutiveHabit[2] >= 21; } },
+    { icon: '🥗', name: 'Clean Eater x7', description: 'Diet score 4+ for 7 consecutive days', category: 'Diet', xp: 200,
+      check: function(d) { return d.dietStreak >= 7; } },
+    { icon: '🥩', name: 'OMAD Warrior', description: 'Diet score 5 for 14 consecutive days', category: 'Diet', xp: 500,
+      check: function(d) { return d.perfectDietStreak >= 14; } },
+    { icon: '🏆', name: 'OMAD Master', description: 'Diet score 5 for 30 consecutive days', category: 'Diet', xp: 1000,
+      check: function(d) { return d.perfectDietStreak >= 30; } },
+    { icon: '📉', name: 'First 5 Down', description: 'Lost 5 lb from starting weight', category: 'Diet', xp: 300,
+      check: function(d) { return d.weightLost >= 5; } },
+    { icon: '⚖️', name: '10 lb Shredded', description: 'Lost 10 lb from starting weight', category: 'Diet', xp: 500,
+      check: function(d) { return d.weightLost >= 10; } },
+    { icon: '🔥', name: 'Sub-16% Club', description: 'Body fat below 16%', category: 'Diet', xp: 500,
+      check: function(d) { return d.lowestBF > 0 && d.lowestBF <= 16; } },
+    { icon: '💪', name: 'Sub-14% Club', description: 'Body fat below 14%', category: 'Diet', xp: 750,
+      check: function(d) { return d.lowestBF > 0 && d.lowestBF <= 14; } },
+    { icon: '⚡', name: 'No Late Night Snack x14', description: 'Diet score 4+ for 14 straight days', category: 'Diet', xp: 400,
+      check: function(d) { return d.dietStreak >= 14; } },
+    { icon: '📊', name: 'Scale Soldier', description: 'Logged weight (AM+PM) for 30 straight days', category: 'Diet', xp: 300,
+      check: function(d) { return d.consecutiveWeighIns >= 30; } },
+
+    // ============================================================
+    // CHARACTER BADGES
+    // ============================================================
+    { icon: '🗿', name: 'Unshakeable', description: 'Mental Toughness avg 4+ for 14 days', category: 'Character', xp: 300,
+      check: function(d) { return d.attrStreaks[4] >= 14; } },
+    { icon: '🤝', name: 'Man of His Word', description: 'Reliability avg 4+ for 14 days', category: 'Character', xp: 300,
+      check: function(d) { return d.attrStreaks[5] >= 14; } },
+    { icon: '🎯', name: 'Laser Focus', description: 'Focus avg 4+ for 14 days', category: 'Character', xp: 300,
+      check: function(d) { return d.attrStreaks[1] >= 14; } },
+    { icon: '🦁', name: 'Iron Will', description: 'Discipline avg 4+ for 14 days', category: 'Character', xp: 300,
+      check: function(d) { return d.attrStreaks[0] >= 14; } },
+    { icon: '✨', name: 'Full Character', description: 'All 6 attributes avg 4+ for 7 days', category: 'Character', xp: 1000,
+      check: function(d) {
+        for (var i = 0; i < ATTRIBUTES.length; i++) {
+          if ((d.attrStreaks[i] || 0) < 7) return false;
+        }
+        return true;
+      }
+    },
+
+    // ============================================================
+    // META / LEVEL BADGES
+    // ============================================================
+    { icon: '🔍', name: 'Mureed (Seeker)', description: 'Reach Level 5', category: 'Meta', xp: 100,
+      check: function(d) { return d.level >= 5; } },
+    { icon: '⚔️', name: 'Mujtahid (Striver)', description: 'Reach Level 10', category: 'Meta', xp: 200,
+      check: function(d) { return d.level >= 10; } },
+    { icon: '🏅', name: 'Mutqin (Excellence)', description: 'Reach Level 20', category: 'Meta', xp: 500,
+      check: function(d) { return d.level >= 20; } },
+    { icon: '🏛️', name: 'Istiqamah (Steadfast)', description: 'Reach Level 30', category: 'Meta', xp: 1000,
+      check: function(d) { return d.level >= 30; } },
+    { icon: '💫', name: 'XP 10K Club', description: 'Earn 10,000 total XP', category: 'Meta', xp: 500,
+      check: function(d) { return d.totalXP >= 10000; } },
+    { icon: '📋', name: 'Reviewer', description: 'Complete 4 weekly reviews', category: 'Meta', xp: 100,
+      check: function(d) { return d.weeklyReviews >= 4; } },
+    { icon: '📝', name: 'Consistent Reviewer', description: 'Complete 12 weekly reviews', category: 'Meta', xp: 300,
+      check: function(d) { return d.weeklyReviews >= 12; } }
+  ];
+}
+
+/**
+ * Gather all data needed for achievement condition checking
+ */
+function gatherAchievementData() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var log = ss.getSheetByName(SHEET_NAMES.DAILY_LOG);
+  var review = ss.getSheetByName(SHEET_NAMES.WEEKLY_REVIEW);
+  var dataSheet = ss.getSheetByName(SHEET_NAMES.DATA);
+
+  if (!log) return null;
+
+  var lastRow = log.getLastRow();
+  if (lastRow < 2) return null;
+
+  var allData = log.getRange(2, 1, lastRow - 1, DL.CALORIES_EST).getValues();
+
+  var data = {
+    bestStreak: 0,
+    totalXP: 0,
+    level: 1,
+    perfectDays: 0,
+    consecutivePerfectDays: 0,
+    perfectDaysThisWeek: 0,
+    habitCounts: [],     // Total count per habit
+    consecutiveHabit: [], // Current consecutive days per habit
+    attrStreaks: [],      // Consecutive days each attribute >= 4
+    maxMRR: 0,
+    maxWeeklyMRRGrowth: 0,
+    consecutiveMRRGrowthWeeks: 0,
+    consecutiveWeighIns: 0,
+    bodyFatTarget: false,
+    phoenixCompleted: false,
+    weeklyReviews: 0,
+    dietStreak: 0,           // Consecutive days diet score >= 4
+    perfectDietStreak: 0,    // Consecutive days diet score == 5
+    weightLost: 0,           // Total weight lost from CUT.START_WEIGHT
+    lowestBF: 0              // Lowest body fat % recorded
+  };
+
+  // Initialize arrays
+  for (var h = 0; h < HABITS.length; h++) {
+    data.habitCounts[h] = 0;
+    data.consecutiveHabit[h] = 0;
+  }
+  for (var a = 0; a < ATTRIBUTES.length; a++) {
+    data.attrStreaks[a] = 0;
+  }
+
+  // Process daily log data
+  var currentPerfectStreak = 0;
+  var currentWeighInStreak = 0;
+  var currentDietStreak = 0;
+  var currentPerfectDietStreak = 0;
+  var monday = getMonday(new Date());
+  var prevDate = null;
+
+  for (var i = 0; i < allData.length; i++) {
+    var row = allData[i];
+    var date = row[DL.DATE - 1];
+    var completed = row[DL.COMPLETED - 1];
+    var streak = row[DL.STREAK - 1] || 0;
+    var totalXP = row[DL.TOTAL_XP - 1] || 0;
+    var mrr = row[DL.MRR - 1] || 0;
+    var weight = row[DL.WEIGHT - 1];
+    var bodyFat = row[DL.BODY_FAT - 1];
+    var habitsScore = row[DL.HABITS_SCORE - 1] || 0;
+
+    // Best streak
+    if (streak > data.bestStreak) data.bestStreak = streak;
+
+    // Total XP (use latest)
+    data.totalXP = totalXP;
+
+    // MRR
+    if (mrr > data.maxMRR) data.maxMRR = mrr;
+
+    // Habit counts
+    for (var hc = 0; hc < HABITS.length; hc++) {
+      if (row[DL.HABIT_START - 1 + hc] === true) {
+        data.habitCounts[hc]++;
+      }
+    }
+
+    // Perfect day
+    if (habitsScore === HABITS.length) {
+      data.perfectDays++;
+      currentPerfectStreak++;
+      if (currentPerfectStreak > data.consecutivePerfectDays) {
+        data.consecutivePerfectDays = currentPerfectStreak;
+      }
+      // Check if this week
+      if (date instanceof Date && stripTime(date) >= monday) {
+        data.perfectDaysThisWeek++;
+      }
+    } else {
+      currentPerfectStreak = 0;
+    }
+
+    // Consecutive habit tracking
+    var isConsecutive = prevDate && date instanceof Date &&
+      daysBetween(prevDate, date) === 1;
+
+    for (var ch = 0; ch < HABITS.length; ch++) {
+      if (row[DL.HABIT_START - 1 + ch] === true) {
+        if (isConsecutive || i === 0) {
+          data.consecutiveHabit[ch]++;
+        } else {
+          data.consecutiveHabit[ch] = 1;
+        }
+      } else {
+        data.consecutiveHabit[ch] = 0;
+      }
+    }
+
+    // Attribute streaks (consecutive days >= 4)
+    for (var ca = 0; ca < ATTRIBUTES.length; ca++) {
+      var attrVal = row[DL.ATTR_START - 1 + ca];
+      if (attrVal && attrVal >= 4) {
+        if (isConsecutive || i === 0) {
+          data.attrStreaks[ca]++;
+        } else {
+          data.attrStreaks[ca] = 1;
+        }
+      } else {
+        data.attrStreaks[ca] = 0;
+      }
+    }
+
+    // Weight tracking
+    if (weight && weight > 0) {
+      if (isConsecutive || i === 0) {
+        currentWeighInStreak++;
+      } else {
+        currentWeighInStreak = 1;
+      }
+      if (currentWeighInStreak > data.consecutiveWeighIns) {
+        data.consecutiveWeighIns = currentWeighInStreak;
+      }
+    } else {
+      currentWeighInStreak = 0;
+    }
+
+    // Body fat target
+    if (bodyFat && bodyFat <= GOALS.sixPack.targetBodyFat) {
+      data.bodyFatTarget = true;
+    }
+
+    // Body fat tracking
+    if (bodyFat && bodyFat > 0) {
+      if (data.lowestBF === 0 || bodyFat < data.lowestBF) {
+        data.lowestBF = bodyFat;
+      }
+    }
+
+    // Weight lost
+    if (weight && weight > 0) {
+      var lost = CUT.START_WEIGHT - weight;
+      if (lost > data.weightLost) data.weightLost = lost;
+    }
+
+    // Diet score tracking
+    var dietScore = row[DL.DIET_SCORE - 1];
+    if (dietScore && dietScore >= 4) {
+      if (isConsecutive || i === 0) {
+        currentDietStreak = (currentDietStreak || 0) + 1;
+      } else {
+        currentDietStreak = 1;
+      }
+      if (currentDietStreak > data.dietStreak) data.dietStreak = currentDietStreak;
+    } else {
+      currentDietStreak = 0;
+    }
+
+    if (dietScore && dietScore === 5) {
+      if (isConsecutive || i === 0) {
+        currentPerfectDietStreak = (currentPerfectDietStreak || 0) + 1;
+      } else {
+        currentPerfectDietStreak = 1;
+      }
+      if (currentPerfectDietStreak > data.perfectDietStreak) data.perfectDietStreak = currentPerfectDietStreak;
+    } else {
+      currentPerfectDietStreak = 0;
+    }
+
+    prevDate = date instanceof Date ? stripTime(date) : prevDate;
+  }
+
+  // Level
+  data.level = getLevelFromXP(data.totalXP);
+
+  // Phoenix check
+  if (dataSheet) {
+    var phoenixActivated = dataSheet.getRange('F4').getValue();
+    if (phoenixActivated && data.bestStreak >= 3) {
+      data.phoenixCompleted = true;
+    }
+  }
+
+  // Weekly reviews count
+  if (review) {
+    var reviewLastRow = review.getLastRow();
+    if (reviewLastRow >= 2) {
+      var reviews = review.getRange(2, 18, reviewLastRow - 1, 1).getValues(); // "What Worked" column
+      for (var wr = 0; wr < reviews.length; wr++) {
+        if (reviews[wr][0] && String(reviews[wr][0]).trim().length > 0) {
+          data.weeklyReviews++;
+        }
+      }
+    }
+  }
+
+  // MRR growth weeks (from weekly review)
+  if (review) {
+    var reviewLastRow2 = review.getLastRow();
+    if (reviewLastRow2 >= 2) {
+      var growthData = review.getRange(2, 7, reviewLastRow2 - 1, 2).getValues(); // MRR Growth, Growth %
+      var consecutiveGrowth = 0;
+      for (var g = 0; g < growthData.length; g++) {
+        var growth = growthData[g][0];
+        var growthPct = growthData[g][1];
+        if (growth > 0) {
+          consecutiveGrowth++;
+          if (consecutiveGrowth > data.consecutiveMRRGrowthWeeks) {
+            data.consecutiveMRRGrowthWeeks = consecutiveGrowth;
+          }
+          if (growthPct > data.maxWeeklyMRRGrowth) {
+            data.maxWeeklyMRRGrowth = growthPct;
+          }
+        } else {
+          consecutiveGrowth = 0;
+        }
+      }
+    }
+  }
+
+  return data;
+}
+
+/**
+ * Check all achievements and unlock any newly earned ones
+ */
+function checkAchievements() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var achieveSheet = ss.getSheetByName(SHEET_NAMES.ACHIEVEMENTS);
+  if (!achieveSheet) return;
+
+  var achievementData = gatherAchievementData();
+  if (!achievementData) return;
+
+  var definitions = getAchievementDefinitions();
+  var lastRow = achieveSheet.getLastRow();
+  if (lastRow < 2) return;
+
+  var earned = achieveSheet.getRange(2, 7, definitions.length, 1).getValues(); // Earned? column
+
+  for (var i = 0; i < definitions.length; i++) {
+    if (i >= earned.length) break;
+    if (earned[i][0] === true) continue; // Already earned
+
+    var badge = definitions[i];
+    try {
+      if (badge.check(achievementData)) {
+        // Unlock!
+        var row = i + 2;
+        achieveSheet.getRange(row, 6).setValue(new Date()); // Date Earned
+        achieveSheet.getRange(row, 7).setValue(true);       // Earned?
+
+        // Show notification
+        try {
+          var wisdom = getContextualWisdom({ trigger: 'level_up' });
+          SpreadsheetApp.getUi().alert(
+            badge.icon + ' ACHIEVEMENT UNLOCKED: ' + badge.name + '!\n\n' +
+            badge.description + '\n+' + badge.xp + ' XP\n\n' +
+            formatWisdom(wisdom)
+          );
+        } catch (err) {
+          // UI not available in trigger context
+        }
+      }
+    } catch (err) {
+      // Skip this badge if check fails
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(clasp --version)",
+      "Bash(npm --version)",
+      "Bash(/tmp/habit_mapping.txt:*)",
+      "Bash(/tmp/attr_mapping.txt:*)",
+      "Bash(/tmp/final_check.txt:*)",
+      "Bash(npm install)",
+      "Bash(npx clasp login --no-localhost)",
+      "Bash(pkill -f \"clasp login\")",
+      "Bash(npx clasp login)",
+      "Bash(npx clasp create --type sheets --title \"Productivity Playbook\" --rootDir src)",
+      "Bash(npx clasp push --force)",
+      "Bash(npx clasp open)",
+      "WebFetch(domain:developer.whoop.com)",
+      "Bash(wc -l /Users/kevin/Desktop/productivity-playbook/src/*.js)",
+      "Bash(npm ls --depth=0)"
+    ]
+  }
+}
