@@ -34,6 +34,11 @@ function onOpen(e) {
       .addItem('Connection Status', 'whoopStatus')
       .addItem('Disconnect', 'whoopDisconnect'))
     .addSeparator()
+    .addSubMenu(SpreadsheetApp.getUi().createMenu('Trackers')
+      .addItem('Quick Add Food', 'quickAddFood')
+      .addSeparator()
+      .addItem('Log Lift Session', 'logLiftSessionMenu'))
+    .addSeparator()
     .addSubMenu(SpreadsheetApp.getUi().createMenu('Admin')
       .addItem('Re-setup Triggers', 'setupTriggers')
       .addItem('Remove All Triggers', 'removeAllTriggers')
@@ -45,6 +50,9 @@ function onOpen(e) {
   if (dailyLog) {
     createTodayRow();
   }
+
+  // Auto-create today's prayer row
+  try { createPrayerRow(); } catch(e) { /* Prayers sheet may not exist yet */ }
 }
 
 /**
@@ -74,4 +82,44 @@ function onEdit(e) {
       checkWeeklyReviewCompletion();
     }
   }
+
+  // Prayer edits — sync fard completion to Daily Log
+  if (sheetName === SHEET_NAMES.PRAYERS) {
+    handlePrayerEdit(e);
+  }
+}
+
+/**
+ * Menu handler for logging a lift session
+ */
+function logLiftSessionMenu() {
+  var ui = SpreadsheetApp.getUi();
+  var sessionNames = WORKOUT_SPLIT.map(function(s) { return s.name; });
+  var result = ui.prompt('Lift Session',
+    'Which session?\n' + sessionNames.map(function(n, i) { return (i + 1) + '. ' + n; }).join('\n') +
+    '\n\nEnter the number:',
+    ui.ButtonSet.OK_CANCEL);
+
+  if (result.getSelectedButton() !== ui.Button.OK) return;
+  var idx = parseInt(result.getResponseText()) - 1;
+  if (isNaN(idx) || idx < 0 || idx >= WORKOUT_SPLIT.length) {
+    ui.alert('Invalid selection.');
+    return;
+  }
+
+  var session = WORKOUT_SPLIT[idx];
+  var allExercises = session.exercises.concat(ABS_EXERCISES);
+
+  // Navigate to Lifts sheet
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var liftSheet = ss.getSheetByName(SHEET_NAMES.LIFTS);
+  if (liftSheet) {
+    ss.setActiveSheet(liftSheet);
+  }
+
+  ui.alert('Session: ' + session.name + '\n\n' +
+    'Exercises:\n' + allExercises.map(function(ex) {
+      return '- ' + ex.name + (ex.targetWeight ? ' (' + ex.targetWeight + 'lb x ' + ex.targetReps + ')' : '');
+    }).join('\n') +
+    '\n\nLog your sets directly in the Lifts sheet, or use the PWA for a better experience.');
 }

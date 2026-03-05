@@ -91,6 +91,9 @@ function createTodayRow() {
   // Also create Body Comp row for today
   try { createBodyCompRow(); } catch(e) { /* Body Comp sheet may not exist yet */ }
 
+  // Also create Prayer row for today
+  try { createPrayerRow(); } catch(e) { /* Prayers sheet may not exist yet */ }
+
   jumpToRow(sheet, newRow);
 }
 
@@ -197,6 +200,29 @@ function calculateDailyXP(sheet, row) {
     if (dietScore === 5) {
       xp += DIET_PERFECT_XP;
     }
+  }
+
+  // Prayer XP (from Prayers sheet)
+  var rowDate = sheet.getRange(row, DL.DATE).getValue();
+  if (rowDate instanceof Date) {
+    try {
+      var prayerXP = calculatePrayerXP(rowDate);
+      xp += prayerXP;
+    } catch(e) { /* Prayers sheet may not exist */ }
+
+    // Lift XP
+    try {
+      if (hasLiftLog(rowDate)) {
+        xp += LIFT_LOG_XP;
+      }
+    } catch(e) { /* Lifts sheet may not exist */ }
+
+    // Nutrition XP
+    try {
+      if (hasNutritionLog(rowDate)) {
+        xp += NUTRITION_LOG_XP;
+      }
+    } catch(e) { /* Nutrition sheet may not exist */ }
   }
 
   // Apply streak multiplier

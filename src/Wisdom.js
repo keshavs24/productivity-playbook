@@ -312,6 +312,78 @@ var WISDOM_POOL = [
   },
 
   // ============================================================
+  // FITNESS / STRENGTH
+  // ============================================================
+  {
+    text: 'Your body is a trust from Allah. Take care of it as you would any amanah.',
+    source: 'Islamic Principle',
+    category: 'fitness',
+    trigger: 'positive'
+  },
+  {
+    text: 'The strong believer is better and more beloved to Allah than the weak believer, while there is good in both. Strive for that which benefits you.',
+    source: 'Muslim',
+    category: 'fitness',
+    trigger: 'positive'
+  },
+  {
+    text: 'Teach your children swimming, archery, and horse riding.',
+    source: 'Attributed to Umar ibn al-Khattab (ra)',
+    category: 'fitness',
+    trigger: 'positive'
+  },
+
+  // ============================================================
+  // NUTRITION / DISCIPLINE
+  // ============================================================
+  {
+    text: 'The son of Adam does not fill any vessel worse than his stomach. It is sufficient for the son of Adam to eat a few morsels to keep him alive.',
+    source: 'Tirmidhi, Ibn Majah',
+    category: 'nutrition',
+    trigger: 'positive'
+  },
+  {
+    text: 'Eat and drink, but be not excessive. Indeed, He likes not those who commit excess.',
+    source: 'Surah Al-A\'raf 7:31',
+    category: 'nutrition',
+    trigger: 'positive'
+  },
+  {
+    text: 'We used to eat while walking and drink while standing during the time of the Prophet.',
+    source: 'Tirmidhi',
+    category: 'nutrition',
+    trigger: 'general'
+  },
+
+  // ============================================================
+  // WEALTH / RIZQ
+  // ============================================================
+  {
+    text: 'Wealth is not in having many possessions. Rather, true wealth is the richness of the soul.',
+    source: 'Bukhari & Muslim',
+    category: 'wealth',
+    trigger: 'positive'
+  },
+  {
+    text: 'No one eats better food than what he earns from the work of his own hands.',
+    source: 'Bukhari',
+    category: 'wealth',
+    trigger: 'positive'
+  },
+  {
+    text: 'If you put your trust completely in Allah, He would provide for you as He provides for the birds. They go out in the morning hungry and return in the evening full.',
+    source: 'Tirmidhi, Ibn Majah',
+    category: 'wealth',
+    trigger: 'positive'
+  },
+  {
+    text: 'Whoever relieves a believer of a hardship of this world, Allah will relieve him of a hardship on the Day of Resurrection.',
+    source: 'Muslim',
+    category: 'wealth',
+    trigger: 'positive'
+  },
+
+  // ============================================================
   // GENERAL / RAMADAN
   // ============================================================
   {

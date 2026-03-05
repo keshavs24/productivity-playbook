@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#1C1917">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Gamified productivity tracker — level up your life.">
+
+  <title>Productivity Playbook</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/app.css">
+
+  <script src="https://accounts.google.com/gsi/client" async></script>
+</head>
+<body>
+
+  <!-- ======== Login Screen ======== -->
+  <section id="login-screen" class="login-screen" aria-label="Sign in">
+    <div class="login-content">
+      <div class="login-brand">
+        <svg class="login-logo" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#F97316"/>
+          <path d="M20 44V28l12-8 12 8v16" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 44v-8h8v8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h1 class="login-title">Productivity Playbook</h1>
+        <p class="login-subtitle">Level up your life</p>
+      </div>
+
+      <button id="login-btn" class="login-btn" type="button" aria-label="Sign in with Google">
+        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 0 1 0-9.18l-7.98-6.19a24.0 24.0 0 0 0 0 21.56l7.98-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <span>Sign in with Google</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ======== Main App Container ======== -->
+  <main id="app" class="app" hidden>
+
+    <!-- Tab Panels -->
+    <section id="tab-dashboard" class="tab-panel active" role="tabpanel" aria-label="Dashboard">
+      <!-- Dashboard content rendered by JS -->
+    </section>
+
+    <section id="tab-checkin" class="tab-panel" role="tabpanel" aria-label="Daily Check-in">
+      <!-- Check-in content rendered by JS -->
+    </section>
+
+    <section id="tab-nutrition" class="tab-panel" role="tabpanel" aria-label="Nutrition">
+      <!-- Nutrition content rendered by JS -->
+    </section>
+
+    <section id="tab-lifts" class="tab-panel" role="tabpanel" aria-label="Lifts">
+      <!-- Lifts content rendered by JS -->
+    </section>
+
+    <section id="tab-prayers" class="tab-panel" role="tabpanel" aria-label="Prayers">
+      <!-- Prayers content rendered by JS -->
+    </section>
+
+    <!-- Fixed Bottom Navigation -->
+    <nav id="bottom-nav" class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-tab="tab-dashboard" type="button" aria-label="Dashboard" aria-current="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+
+      <button class="nav-btn" data-tab="tab-checkin" type="button" aria-label="Daily Check-in">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        <span>Check-in</span>
+      </button>
+
+      <button class="nav-btn" data-tab="tab-nutrition" type="button" aria-label="Nutrition">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+          <path d="M7 2v20"/>
+          <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+        </svg>
+        <span>Nutrition</span>
+      </button>
+
+      <button class="nav-btn" data-tab="tab-lifts" type="button" aria-label="Lifts">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 6.5h11"/>
+          <path d="M6.5 17.5h11"/>
+          <rect x="2" y="4" width="3" height="7" rx="1"/>
+          <rect x="19" y="4" width="3" height="7" rx="1"/>
+          <rect x="2" y="13" width="3" height="7" rx="1"/>
+          <rect x="19" y="13" width="3" height="7" rx="1"/>
+          <path d="M12 2v20"/>
+        </svg>
+        <span>Lifts</span>
+      </button>
+
+      <button class="nav-btn" data-tab="tab-prayers" type="button" aria-label="Prayers">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/>
+          <path d="M19 3v4"/>
+          <path d="M21 5h-4"/>
+        </svg>
+        <span>Prayers</span>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- ======== Achievement Popup Overlay ======== -->
+  <div id="achievement-overlay" class="achievement-overlay" hidden aria-modal="true" role="dialog" aria-label="Achievement unlocked">
+    <div class="achievement-card">
+      <div class="achievement-glow"></div>
+      <div class="achievement-badge" aria-hidden="true">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="28" r="20" fill="#F97316"/>
+          <path d="M32 18l3.09 6.26L42 25.27l-5 4.87 1.18 6.88L32 33.77l-6.18 3.25L27 30.14l-5-4.87 6.91-1.01L32 18z" fill="#fff"/>
+          <path d="M22 48l10-6 10 6v-8l-10 6-10-6v8z" fill="#F97316"/>
+        </svg>
+      </div>
+      <h2 class="achievement-name"></h2>
+      <p class="achievement-description"></p>
+      <p class="achievement-xp"></p>
+      <button class="achievement-dismiss" type="button">Let's go!</button>
+    </div>
+  </div>
+
+  <!-- ======== Loading Spinner Overlay ======== -->
+  <div id="loading" class="loading-overlay" hidden aria-label="Loading" role="status">
+    <div class="spinner" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="#F9731633" stroke-width="4"/>
+        <path d="M44 24c0-11.05-8.95-20-20-20" stroke="#F97316" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <p class="loading-text">Loading&hellip;</p>
+  </div>
+
+  <!-- ======== Toast Container ======== -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Entry Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

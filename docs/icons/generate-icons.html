@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Icon Generator - Productivity Playbook</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #D4A574;
+        }
+        p.subtitle {
+            color: #888;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .icons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .icon-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .icon-card canvas {
+            border-radius: 8px;
+            image-rendering: pixelated;
+        }
+        .icon-card .label {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .icon-card .filename {
+            font-size: 0.75rem;
+            color: #666;
+            font-family: monospace;
+        }
+        button {
+            background: #D4A574;
+            color: #1C1917;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        button:hover { background: #e0b68a; }
+        .download-all {
+            background: #D4A574;
+            color: #1C1917;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .note {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            max-width: 500px;
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Productivity Playbook - PWA Icon Generator</h1>
+    <p class="subtitle">Generate and download PWA icons with a gold lightning bolt on dark background</p>
+
+    <div class="icons-grid" id="iconsGrid"></div>
+
+    <button class="download-all" onclick="downloadAll()">Download All Icons</button>
+
+    <div class="note">
+        <strong>Instructions:</strong> Click individual download buttons or "Download All Icons" to save
+        the PNG files. Place them in your <code>docs/icons/</code> directory. The icons feature a gold
+        (#D4A574) lightning bolt on a dark charcoal (#1C1917) background with rounded corners.
+    </div>
+
+    <script>
+        const ICONS = [
+            { size: 192, filename: 'icon-192.png', label: '192x192 — Standard PWA' },
+            { size: 512, filename: 'icon-512.png', label: '512x512 — Splash Screen' },
+            { size: 180, filename: 'apple-touch-icon-180.png', label: '180x180 — Apple Touch' },
+        ];
+
+        const BG_COLOR = '#1C1917';
+        const BOLT_COLOR = '#D4A574';
+
+        function drawIcon(canvas, size) {
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            const s = size;
+
+            // Rounded rectangle background
+            const radius = s * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(radius, 0);
+            ctx.lineTo(s - radius, 0);
+            ctx.quadraticCurveTo(s, 0, s, radius);
+            ctx.lineTo(s, s - radius);
+            ctx.quadraticCurveTo(s, s, s - radius, s);
+            ctx.lineTo(radius, s);
+            ctx.quadraticCurveTo(0, s, 0, s - radius);
+            ctx.lineTo(0, radius);
+            ctx.quadraticCurveTo(0, 0, radius, 0);
+            ctx.closePath();
+            ctx.fillStyle = BG_COLOR;
+            ctx.fill();
+
+            // Clip to rounded rect for clean edges
+            ctx.save();
+            ctx.clip();
+
+            // Lightning bolt
+            ctx.beginPath();
+            ctx.moveTo(0.52 * s, 0.12 * s);
+            ctx.lineTo(0.30 * s, 0.50 * s);
+            ctx.lineTo(0.46 * s, 0.50 * s);
+            ctx.lineTo(0.36 * s, 0.88 * s);
+            ctx.lineTo(0.70 * s, 0.42 * s);
+            ctx.lineTo(0.54 * s, 0.42 * s);
+            ctx.closePath();
+            ctx.fillStyle = BOLT_COLOR;
+            ctx.fill();
+
+            // Subtle glow
+            ctx.shadowColor = BOLT_COLOR;
+            ctx.shadowBlur = s * 0.04;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.restore();
+        }
+
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function downloadAll() {
+            document.querySelectorAll('.icon-card button').forEach((btn, i) => {
+                setTimeout(() => btn.click(), i * 300);
+            });
+        }
+
+        // Build the UI
+        const grid = document.getElementById('iconsGrid');
+        ICONS.forEach(icon => {
+            const card = document.createElement('div');
+            card.className = 'icon-card';
+
+            const canvas = document.createElement('canvas');
+            const displaySize = Math.min(icon.size, 200);
+            canvas.style.width = displaySize + 'px';
+            canvas.style.height = displaySize + 'px';
+            drawIcon(canvas, icon.size);
+
+            const label = document.createElement('div');
+            label.className = 'label';
+            label.textContent = icon.label;
+
+            const fname = document.createElement('div');
+            fname.className = 'filename';
+            fname.textContent = icon.filename;
+
+            const btn = document.createElement('button');
+            btn.textContent = 'Download';
+            btn.onclick = () => downloadCanvas(canvas, icon.filename);
+
+            card.appendChild(canvas);
+            card.appendChild(label);
+            card.appendChild(fname);
+            card.appendChild(btn);
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

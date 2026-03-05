@@ -130,6 +130,42 @@ function getAchievementDefinitions() {
     },
 
     // ============================================================
+    // LIFT BADGES
+    // ============================================================
+    { icon: '🏋️', name: 'First Lift', description: 'Log your first lift session', category: 'Lifts', xp: 50,
+      check: function(d) { return d.liftSessions >= 1; } },
+    { icon: '⚒️', name: 'Iron Disciple', description: 'Complete 30 lift sessions', category: 'Lifts', xp: 500,
+      check: function(d) { return d.liftSessions >= 30; } },
+    { icon: '💥', name: 'PR Breaker', description: 'Set 10 personal records', category: 'Lifts', xp: 300,
+      check: function(d) { return d.prCount >= 10; } },
+    { icon: '🔱', name: 'Volume King', description: 'Log 500 total sets', category: 'Lifts', xp: 500,
+      check: function(d) { return d.totalSets >= 500; } },
+    { icon: '🦾', name: 'Century Lifter', description: 'Complete 100 lift sessions', category: 'Lifts', xp: 1000,
+      check: function(d) { return d.liftSessions >= 100; } },
+
+    // ============================================================
+    // PRAYER BADGES
+    // ============================================================
+    { icon: '🕋', name: 'Fard Guardian', description: 'All 5 fard prayers for 7 consecutive days', category: 'Prayer', xp: 300,
+      check: function(d) { return d.fardStreak >= 7; } },
+    { icon: '🌙', name: 'Qiyam Al-Layl', description: 'Witr prayer for 30 consecutive days', category: 'Prayer', xp: 500,
+      check: function(d) { return d.witrStreak >= 30; } },
+    { icon: '✨', name: 'Full Salah x7', description: 'All 11 prayers for 7 consecutive days', category: 'Prayer', xp: 750,
+      check: function(d) { return d.fullPrayerStreak >= 7; } },
+    { icon: '🤲', name: 'Fard Guardian x30', description: 'All 5 fard prayers for 30 consecutive days', category: 'Prayer', xp: 750,
+      check: function(d) { return d.fardStreak >= 30; } },
+
+    // ============================================================
+    // NUTRITION BADGES
+    // ============================================================
+    { icon: '🥗', name: 'Macro Master', description: 'Log nutrition 7 consecutive days with protein target hit', category: 'Nutrition', xp: 200,
+      check: function(d) { return d.nutritionStreak >= 7; } },
+    { icon: '📊', name: 'Nutrition Tracker x30', description: 'Log nutrition for 30 consecutive days', category: 'Nutrition', xp: 500,
+      check: function(d) { return d.nutritionStreak >= 30; } },
+    { icon: '🎯', name: 'Calorie Sniper', description: 'Stay within 100 cal of target for 7 days', category: 'Nutrition', xp: 300,
+      check: function(d) { return d.calorieAccuracyStreak >= 7; } },
+
+    // ============================================================
     // META / LEVEL BADGES
     // ============================================================
     { icon: '🔍', name: 'Mureed (Seeker)', description: 'Reach Level 5', category: 'Meta', xp: 100,
@@ -185,7 +221,15 @@ function gatherAchievementData() {
     dietStreak: 0,           // Consecutive days diet score >= 4
     perfectDietStreak: 0,    // Consecutive days diet score == 5
     weightLost: 0,           // Total weight lost from CUT.START_WEIGHT
-    lowestBF: 0              // Lowest body fat % recorded
+    lowestBF: 0,             // Lowest body fat % recorded
+    liftSessions: 0,         // Total lift sessions
+    prCount: 0,              // Total PRs set
+    totalSets: 0,            // Total sets logged
+    fardStreak: 0,           // Consecutive days all 5 fard
+    witrStreak: 0,           // Consecutive days witr done
+    fullPrayerStreak: 0,     // Consecutive days all 11 prayers
+    nutritionStreak: 0,      // Consecutive days with nutrition logged
+    calorieAccuracyStreak: 0 // Consecutive days within 100 cal of target
   };
 
   // Initialize arrays
@@ -359,6 +403,105 @@ function gatherAchievementData() {
       }
     }
   }
+
+  // Lift data
+  try {
+    data.liftSessions = countLiftSessions();
+    data.prCount = countPRs();
+    data.totalSets = countTotalSets();
+  } catch(e) { /* Lifts sheet may not exist */ }
+
+  // Prayer streak data
+  try {
+    var prayerSheet = ss.getSheetByName(SHEET_NAMES.PRAYERS);
+    if (prayerSheet && prayerSheet.getLastRow() >= 2) {
+      var prayerData = prayerSheet.getRange(2, 1, prayerSheet.getLastRow() - 1, PRA.COMPLETION).getValues();
+      var currentFardStreak = 0;
+      var currentWitrStreak = 0;
+      var currentFullStreak = 0;
+      var prevPrayerDate = null;
+
+      for (var pi = 0; pi < prayerData.length; pi++) {
+        var pRow = prayerData[pi];
+        var pDate = pRow[PRA.DATE - 1];
+        var isPrayerConsecutive = prevPrayerDate && pDate instanceof Date &&
+          daysBetween(prevPrayerDate, pDate) === 1;
+
+        // Check all 5 fard
+        var allFardDone = true;
+        for (var fi = 0; fi < FARD_PRAYER_COLS.length; fi++) {
+          if (pRow[FARD_PRAYER_COLS[fi] - 1] !== true) { allFardDone = false; break; }
+        }
+
+        if (allFardDone) {
+          currentFardStreak = (isPrayerConsecutive || pi === 0) ? currentFardStreak + 1 : 1;
+          if (currentFardStreak > data.fardStreak) data.fardStreak = currentFardStreak;
+        } else {
+          currentFardStreak = 0;
+        }
+
+        // Check witr
+        if (pRow[PRA.WITR - 1] === true) {
+          currentWitrStreak = (isPrayerConsecutive || pi === 0) ? currentWitrStreak + 1 : 1;
+          if (currentWitrStreak > data.witrStreak) data.witrStreak = currentWitrStreak;
+        } else {
+          currentWitrStreak = 0;
+        }
+
+        // Check all 11 prayers
+        var allDone = true;
+        for (var ai2 = PRA.FAJR_SUNNAH; ai2 <= PRA.WITR; ai2++) {
+          if (pRow[ai2 - 1] !== true) { allDone = false; break; }
+        }
+
+        if (allDone) {
+          currentFullStreak = (isPrayerConsecutive || pi === 0) ? currentFullStreak + 1 : 1;
+          if (currentFullStreak > data.fullPrayerStreak) data.fullPrayerStreak = currentFullStreak;
+        } else {
+          currentFullStreak = 0;
+        }
+
+        prevPrayerDate = pDate instanceof Date ? stripTime(pDate) : prevPrayerDate;
+      }
+    }
+  } catch(e) { /* Prayers sheet may not exist */ }
+
+  // Nutrition streak data
+  try {
+    var nutSheet = ss.getSheetByName(SHEET_NAMES.NUTRITION);
+    if (nutSheet && nutSheet.getLastRow() >= 2) {
+      var nutData = nutSheet.getRange(2, 1, nutSheet.getLastRow() - 1, NUT.CALORIES).getValues();
+      // Group by date
+      var nutByDate = {};
+      for (var ni = 0; ni < nutData.length; ni++) {
+        var nDate = nutData[ni][NUT.DATE - 1];
+        if (nDate instanceof Date) {
+          var nKey = stripTime(nDate).getTime();
+          if (!nutByDate[nKey]) nutByDate[nKey] = 0;
+          nutByDate[nKey] += (nutData[ni][NUT.CALORIES - 1] || 0);
+        }
+      }
+
+      // Sort dates and check streak
+      var nutDates = Object.keys(nutByDate).sort();
+      var currentNutStreak = 0;
+      var currentAccStreak = 0;
+      for (var nd = 0; nd < nutDates.length; nd++) {
+        var isNutConsecutive = nd > 0 &&
+          (parseInt(nutDates[nd]) - parseInt(nutDates[nd - 1])) === 86400000;
+        currentNutStreak = (isNutConsecutive || nd === 0) ? currentNutStreak + 1 : 1;
+        if (currentNutStreak > data.nutritionStreak) data.nutritionStreak = currentNutStreak;
+
+        var calDiff = Math.abs(nutByDate[nutDates[nd]] - CUT.DAILY_CALORIES);
+        if (calDiff <= 100) {
+          currentAccStreak = (isNutConsecutive || nd === 0) ? currentAccStreak + 1 : 1;
+          if (currentAccStreak > data.calorieAccuracyStreak) data.calorieAccuracyStreak = currentAccStreak;
+        } else {
+          currentAccStreak = 0;
+        }
+      }
+    }
+  } catch(e) { /* Nutrition sheet may not exist */ }
 
   // MRR growth weeks (from weekly review)
   if (review) {

@@ -40,7 +40,14 @@ var WIN_OF_DAY_XP = 10;
 var DIET_PERFECT_XP = 15;            // Diet score of 5
 var DIET_LOG_XP = 5;                 // Any diet score logged
 var BODY_COMP_LOG_XP = 5;            // Logged AM + PM weight
-var MAX_DAILY_XP_BASE = 180;         // Before streak multiplier
+var PRAYER_XP_PER_FARD = 5;          // Per fard prayer logged
+var PRAYER_XP_PER_SUNNAH = 2;        // Per sunnah/witr logged
+var PRAYER_ALL_FARD_BONUS = 15;      // All 5 fard prayers
+var PRAYER_ALL_PRAYERS_BONUS = 25;   // All 11 prayers completed
+var NUTRITION_LOG_XP = 5;            // Any food logged today
+var LIFT_LOG_XP = 10;               // Any lift session logged today
+var LIFT_PR_XP = 20;                // New personal record
+var MAX_DAILY_XP_BASE = 250;         // Before streak multiplier
 
 // Weekly review XP
 var WEEKLY_REVIEW_XP = 50;
@@ -184,7 +191,10 @@ var SHEET_NAMES = {
   CONFIG: 'Config',
   DATA: 'Data',
   BODY_COMP: 'Body Comp',
-  MEALS: 'Meals'
+  MEALS: 'Meals',
+  NUTRITION: 'Nutrition',
+  LIFTS: 'Lifts',
+  PRAYERS: 'Prayers'
 };
 
 // ============================================================
@@ -249,6 +259,124 @@ var CUT = {
   CARBS_G: 100,
   RATE_PER_WEEK: 1.0        // Target lb/week loss
 };
+
+// ============================================================
+// NUTRITION COLUMN MAPPING (Nutrition sheet, 1-indexed)
+// ============================================================
+var NUT = {
+  DATE: 1,
+  MEAL_LABEL: 2,     // Suhoor, Main Meal, Snack, Shake
+  FOOD_NAME: 3,
+  CALORIES: 4,
+  PROTEIN: 5,
+  CARBS: 6,
+  FAT: 7,
+  TIMESTAMP: 8
+};
+
+// ============================================================
+// LIFTS COLUMN MAPPING (Lifts sheet, 1-indexed)
+// ============================================================
+var LFT = {
+  DATE: 1,
+  SESSION_TYPE: 2,
+  EXERCISE: 3,
+  SET_NUM: 4,
+  TARGET_WEIGHT: 5,
+  ACTUAL_WEIGHT: 6,
+  TARGET_REPS: 7,
+  ACTUAL_REPS: 8,
+  RPE: 9,
+  NOTES: 10
+};
+
+// ============================================================
+// PRAYERS COLUMN MAPPING (Prayers sheet, 1-indexed)
+// ============================================================
+var PRA = {
+  DATE: 1,
+  FAJR_SUNNAH: 2,
+  FAJR_FARD: 3,
+  DHUHR_SUNNAH_BEFORE: 4,
+  DHUHR_FARD: 5,
+  DHUHR_SUNNAH_AFTER: 6,
+  ASR_FARD: 7,
+  MAGHRIB_FARD: 8,
+  MAGHRIB_SUNNAH: 9,
+  ISHA_FARD: 10,
+  ISHA_SUNNAH: 11,
+  WITR: 12,
+  TOTAL: 13,
+  COMPLETION: 14
+};
+
+// ============================================================
+// PRAYER DEFINITIONS
+// ============================================================
+var PRAYERS = [
+  { name: 'Fajr Sunnah',        col: PRA.FAJR_SUNNAH,        type: 'sunnah', time: 'Fajr',    rakahs: 2 },
+  { name: 'Fajr Fard',          col: PRA.FAJR_FARD,          type: 'fard',   time: 'Fajr',    rakahs: 2 },
+  { name: 'Dhuhr Sunnah Before', col: PRA.DHUHR_SUNNAH_BEFORE, type: 'sunnah', time: 'Dhuhr',   rakahs: 4 },
+  { name: 'Dhuhr Fard',         col: PRA.DHUHR_FARD,         type: 'fard',   time: 'Dhuhr',   rakahs: 4 },
+  { name: 'Dhuhr Sunnah After',  col: PRA.DHUHR_SUNNAH_AFTER, type: 'sunnah', time: 'Dhuhr',   rakahs: 2 },
+  { name: 'Asr Fard',           col: PRA.ASR_FARD,           type: 'fard',   time: 'Asr',     rakahs: 4 },
+  { name: 'Maghrib Fard',       col: PRA.MAGHRIB_FARD,       type: 'fard',   time: 'Maghrib', rakahs: 3 },
+  { name: 'Maghrib Sunnah',     col: PRA.MAGHRIB_SUNNAH,     type: 'sunnah', time: 'Maghrib', rakahs: 2 },
+  { name: 'Isha Fard',          col: PRA.ISHA_FARD,          type: 'fard',   time: 'Isha',    rakahs: 4 },
+  { name: 'Isha Sunnah',        col: PRA.ISHA_SUNNAH,        type: 'sunnah', time: 'Isha',    rakahs: 2 },
+  { name: 'Witr',               col: PRA.WITR,               type: 'wajib',  time: 'Isha',    rakahs: 3 }
+];
+
+var FARD_PRAYER_COLS = [PRA.FAJR_FARD, PRA.DHUHR_FARD, PRA.ASR_FARD, PRA.MAGHRIB_FARD, PRA.ISHA_FARD];
+
+// ============================================================
+// WORKOUT SPLIT & EXERCISES
+// ============================================================
+var WORKOUT_SPLIT = [
+  {
+    name: 'Chest + Back + Abs',
+    exercises: [
+      { name: 'Flat DB Press',     targetWeight: 80,  targetReps: 8, sets: 2 },
+      { name: 'Incline DB Press',  targetWeight: 60,  targetReps: 8, sets: 3 },
+      { name: 'Pec Fly (Cable)',   targetWeight: 130, targetReps: 8, sets: 4, notes: 'Last set drop' },
+      { name: 'Lat Pulldown',      targetWeight: 0,   targetReps: 10, sets: 3 },
+      { name: 'Cable Row',         targetWeight: 0,   targetReps: 10, sets: 3 },
+      { name: 'Barbell Row',       targetWeight: 0,   targetReps: 8, sets: 3 }
+    ]
+  },
+  {
+    name: 'Shoulders + Arms + Abs',
+    exercises: [
+      { name: 'OHP (DB or BB)',    targetWeight: 0,  targetReps: 8, sets: 3 },
+      { name: 'Lateral Raises',    targetWeight: 0,  targetReps: 12, sets: 3 },
+      { name: 'Face Pulls',        targetWeight: 0,  targetReps: 15, sets: 3 },
+      { name: 'Barbell Curls',     targetWeight: 0,  targetReps: 10, sets: 3 },
+      { name: 'Tricep Pushdowns',  targetWeight: 0,  targetReps: 12, sets: 3 },
+      { name: 'Hammer Curls',      targetWeight: 0,  targetReps: 10, sets: 3 },
+      { name: 'Skull Crushers',    targetWeight: 0,  targetReps: 10, sets: 3 }
+    ]
+  },
+  {
+    name: 'Legs + Abs',
+    exercises: [
+      { name: 'Squat',             targetWeight: 0,  targetReps: 8, sets: 3 },
+      { name: 'Leg Press',         targetWeight: 0,  targetReps: 10, sets: 3 },
+      { name: 'RDL',               targetWeight: 0,  targetReps: 8, sets: 3 },
+      { name: 'Leg Curl',          targetWeight: 0,  targetReps: 10, sets: 3 },
+      { name: 'Leg Extension',     targetWeight: 0,  targetReps: 10, sets: 3 },
+      { name: 'Calf Raises',       targetWeight: 0,  targetReps: 15, sets: 3 }
+    ]
+  },
+  {
+    name: 'Cardio + Abs',
+    exercises: []   // Freeform cardio
+  }
+];
+
+var ABS_EXERCISES = [
+  { name: 'Plate-Loaded Ab Crunch', targetWeight: 0, targetReps: 15, sets: 3 },
+  { name: 'Hanging Leg Raises',     targetWeight: 0, targetReps: 12, sets: 3 }
+];
 
 // ============================================================
 // COLORS  (green + white game theme)

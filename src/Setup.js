@@ -17,6 +17,9 @@ function runSetup() {
   setupDataSheet(ss);
   setupBodyCompSheet(ss);
   setupMealsSheet(ss);
+  setupPrayersSheet(ss);
+  setupNutritionSheet(ss);
+  setupLiftsSheet(ss);
 
   // Remove default "Sheet1" if it exists
   var sheet1 = ss.getSheetByName('Sheet1');
