@@ -7,23 +7,24 @@ import { SHEET_ID, SCOPES } from '../config.js';
 let accessToken = null;
 let tokenClient = null;
 let onAuthCallback = null;
+let clientId = null;
+
+/**
+ * Set the OAuth client ID
+ */
+export function setClientId(id) {
+  clientId = id;
+}
 
 /**
  * Initialize Google Identity Services OAuth
  */
 export function initAuth(callback) {
   onAuthCallback = callback;
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: import.meta.url.includes('localhost') ? '' : '',
-    scope: SCOPES,
-    callback: handleTokenResponse
-  });
-}
-
-/**
- * Update the OAuth client ID (called from app.js after config loads)
- */
-export function setClientId(clientId) {
+  if (!clientId) {
+    console.error('Client ID not set — call setClientId() before initAuth()');
+    return;
+  }
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: clientId,
     scope: SCOPES,
