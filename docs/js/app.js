@@ -57,11 +57,7 @@ async function init() {
     return;
   }
 
-  // Wait for GIS to load (poll since async script may not be ready)
-  await waitForGIS();
-  initGIS();
-
-  // Set up tab navigation
+  // Set up tab navigation (do this before GIS so nav works regardless)
   setupNavigation();
 
   // Online/offline handlers
@@ -70,6 +66,16 @@ async function init() {
 
   // Register service worker
   registerSW();
+
+  // Wait for GIS to load (poll since async script may not be ready)
+  try {
+    await waitForGIS();
+    initGIS();
+  } catch (e) {
+    console.error(e);
+    const subtitle = document.querySelector('.login-subtitle');
+    if (subtitle) subtitle.textContent = 'Failed to load Google sign-in. Try refreshing.';
+  }
 }
 
 /**

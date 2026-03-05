@@ -2,7 +2,7 @@
  * sw.js — Service Worker for offline caching
  */
 
-const CACHE_NAME = 'playbook-v1';
+const CACHE_NAME = 'playbook-v2';
 const STATIC_ASSETS = [
   './',
   './index.html',
