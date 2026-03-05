@@ -23,6 +23,27 @@ const tabRenderers = {
 const loadedTabs = new Set();
 
 /**
+ * Wait for Google Identity Services library to load
+ */
+function waitForGIS(timeout = 10000) {
+  return new Promise((resolve, reject) => {
+    if (typeof google !== 'undefined' && google.accounts) {
+      return resolve();
+    }
+    const start = Date.now();
+    const check = setInterval(() => {
+      if (typeof google !== 'undefined' && google.accounts) {
+        clearInterval(check);
+        resolve();
+      } else if (Date.now() - start > timeout) {
+        clearInterval(check);
+        reject(new Error('Google Identity Services failed to load'));
+      }
+    }, 100);
+  });
+}
+
+/**
  * Initialize the app
  */
 async function init() {
@@ -36,14 +57,9 @@ async function init() {
     return;
   }
 
-  // Wait for GIS to load
-  if (typeof google === 'undefined' || !google.accounts) {
-    window.addEventListener('load', () => {
-      setTimeout(initGIS, 500);
-    });
-  } else {
-    initGIS();
-  }
+  // Wait for GIS to load (poll since async script may not be ready)
+  await waitForGIS();
+  initGIS();
 
   // Set up tab navigation
   setupNavigation();
