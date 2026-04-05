@@ -1,22 +1,78 @@
+'use client'
+
+import { useState } from 'react'
+import { useGameState } from '@/hooks/useGameState'
+import {
+  HABITS,
+  HABIT_KEYS,
+  ATTRIBUTES,
+  ATTRIBUTE_KEYS,
+  PRAYERS,
+  FARD_PRAYERS,
+  WORKOUT_SPLIT,
+  ABS_EXERCISES,
+  type HabitKey,
+  type AttributeKey,
+} from '@/lib/config'
+import { createClient } from '@/lib/supabase/client'
+
+const TABS = ['Habits', 'Prayers', 'Lifts', 'Body'] as const
+type Tab = typeof TABS[number]
+
 export default function TrackPage() {
+  const {
+    loading,
+    dailyLog,
+    prayerLog,
+    xpBreakdown,
+    bodyComp,
+    nonNegotiablesMet,
+    toggleHabit,
+    setAttribute,
+    updateDailyField,
+    togglePrayer,
+    saveBodyComp,
+    completeDay,
+  } = useGameState()
+
+  const [activeTab, setActiveTab] = useState<Tab>('Habits')
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-8 w-48" />
+        <div className="skeleton h-12 w-full" />
+        <div className="skeleton h-64 w-full" />
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>
-        Daily Tracking
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>
+          Daily Tracking
+        </h1>
+        {xpBreakdown.subtotal > 0 && (
+          <span className="stat-number text-sm font-bold" style={{ color: 'var(--accent-gold)' }}>
+            +{xpBreakdown.total} XP
+          </span>
+        )}
+      </div>
 
       {/* Tab Bar */}
       <div
         className="flex gap-1 p-1 rounded-lg overflow-x-auto"
         style={{ background: 'var(--bg-card)' }}
       >
-        {['Habits', 'Nutrition', 'Lifts', 'Prayers', 'Body'].map((tab, i) => (
+        {TABS.map((tab) => (
           <button
             key={tab}
+            onClick={() => setActiveTab(tab)}
             className="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
             style={{
-              background: i === 0 ? 'var(--bg-hover)' : 'transparent',
-              color: i === 0 ? 'var(--text-primary)' : 'var(--text-muted)',
+              background: activeTab === tab ? 'var(--bg-hover)' : 'transparent',
+              color: activeTab === tab ? 'var(--text-primary)' : 'var(--text-muted)',
               border: 'none',
               cursor: 'pointer',
             }}
@@ -26,26 +82,92 @@ export default function TrackPage() {
         ))}
       </div>
 
-      {/* Habits Tab Content */}
+      {activeTab === 'Habits' && (
+        <HabitsTab
+          dailyLog={dailyLog}
+          xpBreakdown={xpBreakdown}
+          toggleHabit={toggleHabit}
+          setAttribute={setAttribute}
+          updateDailyField={updateDailyField}
+          completeDay={completeDay}
+        />
+      )}
+      {activeTab === 'Prayers' && (
+        <PrayersTab
+          prayerLog={prayerLog}
+          nonNegotiablesMet={nonNegotiablesMet}
+          togglePrayer={togglePrayer}
+        />
+      )}
+      {activeTab === 'Lifts' && <LiftsTab />}
+      {activeTab === 'Body' && (
+        <BodyTab bodyComp={bodyComp} saveBodyComp={saveBodyComp} />
+      )}
+    </div>
+  )
+}
+
+// ============================================================
+// HABITS TAB
+// ============================================================
+function HabitsTab({
+  dailyLog,
+  xpBreakdown,
+  toggleHabit,
+  setAttribute,
+  updateDailyField,
+  completeDay,
+}: {
+  dailyLog: ReturnType<typeof useGameState>['dailyLog']
+  xpBreakdown: ReturnType<typeof useGameState>['xpBreakdown']
+  toggleHabit: ReturnType<typeof useGameState>['toggleHabit']
+  setAttribute: ReturnType<typeof useGameState>['setAttribute']
+  updateDailyField: ReturnType<typeof useGameState>['updateDailyField']
+  completeDay: ReturnType<typeof useGameState>['completeDay']
+}) {
+  const [completing, setCompleting] = useState(false)
+
+  const handleComplete = async () => {
+    setCompleting(true)
+    await completeDay()
+    setCompleting(false)
+  }
+
+  return (
+    <>
+      {/* Habits */}
       <div className="card">
         <h2 className="text-sm font-bold mb-4 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
           Habits
+          <span className="ml-2 stat-number" style={{ color: 'var(--accent-gold)' }}>
+            +{xpBreakdown.habits + xpBreakdown.perfectDay} XP
+          </span>
         </h2>
         <div className="space-y-3">
-          {[
-            'Wake Before Fajr',
-            'Prayers (2+)',
-            'Workout',
-            'Deep Work 4h+',
-            'Ship Something',
-            'Quran Reading',
-            'Read 30 Min',
-          ].map((habit) => (
-            <div key={habit} className="flex items-center justify-between">
-              <span className="text-sm">{habit}</span>
-              <div className="habit-toggle" data-checked="false" role="checkbox" aria-checked="false" tabIndex={0} />
-            </div>
-          ))}
+          {HABITS.map((habit, i) => {
+            const key = HABIT_KEYS[i]
+            const checked = !!dailyLog.habits[key]
+            return (
+              <div key={key} className="flex items-center justify-between">
+                <span className="text-sm" style={{ color: checked ? 'var(--text-muted)' : undefined, textDecoration: checked ? 'line-through' : 'none' }}>
+                  {habit}
+                </span>
+                <button
+                  className="habit-toggle"
+                  data-checked={checked.toString()}
+                  role="checkbox"
+                  aria-checked={checked}
+                  onClick={() => toggleHabit(key)}
+                >
+                  {checked && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            )
+          })}
         </div>
       </div>
 
@@ -53,31 +175,438 @@ export default function TrackPage() {
       <div className="card">
         <h2 className="text-sm font-bold mb-4 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
           Attributes (1-5)
+          <span className="ml-2 stat-number" style={{ color: 'var(--accent-gold)' }}>
+            +{xpBreakdown.attributes + xpBreakdown.allAttributes} XP
+          </span>
         </h2>
         <div className="space-y-3">
-          {['Discipline', 'Focus', 'Confidence', 'Deen', 'Mental Toughness', 'Reliability'].map((attr) => (
-            <div key={attr} className="flex items-center justify-between">
-              <span className="text-sm">{attr}</span>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <button
-                    key={n}
-                    className="w-8 h-8 rounded-md text-xs font-bold transition-colors"
-                    style={{
-                      background: 'var(--bg-hover)',
-                      color: 'var(--text-muted)',
-                      border: '1px solid var(--border-subtle)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    {n}
-                  </button>
-                ))}
+          {ATTRIBUTES.map((attr, i) => {
+            const key = ATTRIBUTE_KEYS[i]
+            const value = dailyLog.attributes[key] || 0
+            return (
+              <div key={key} className="flex items-center justify-between">
+                <span className="text-sm">{attr}</span>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => setAttribute(key, n)}
+                      className="w-8 h-8 rounded-md text-xs font-bold transition-colors"
+                      style={{
+                        background: value >= n ? 'var(--accent-cyan)' : 'var(--bg-hover)',
+                        color: value >= n ? '#fff' : 'var(--text-muted)',
+                        border: value >= n ? 'none' : '1px solid var(--border-subtle)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
               </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Quick Fields */}
+      <div className="card space-y-4">
+        <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Extras
+        </h2>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>MRR ($)</label>
+            <input
+              type="number"
+              value={dailyLog.mrr ?? ''}
+              onChange={(e) => updateDailyField('mrr', e.target.value ? Number(e.target.value) : null)}
+              placeholder="0"
+              className="w-full px-3 py-2 rounded-md text-sm"
+              style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            />
+          </div>
+          <div>
+            <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>Diet Score (1-5)</label>
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                  key={n}
+                  onClick={() => updateDailyField('diet_score', n)}
+                  className="w-8 h-8 rounded-md text-xs font-bold"
+                  style={{
+                    background: (dailyLog.diet_score || 0) >= n ? 'var(--accent-green)' : 'var(--bg-hover)',
+                    color: (dailyLog.diet_score || 0) >= n ? '#fff' : 'var(--text-muted)',
+                    border: (dailyLog.diet_score || 0) >= n ? 'none' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {n}
+                </button>
+              ))}
             </div>
+          </div>
+        </div>
+        <div>
+          <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>Win of the Day</label>
+          <input
+            type="text"
+            value={dailyLog.win_of_day ?? ''}
+            onChange={(e) => updateDailyField('win_of_day', e.target.value || null)}
+            placeholder="What was your biggest win today?"
+            className="w-full px-3 py-2 rounded-md text-sm"
+            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+          />
+        </div>
+        <div>
+          <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>Niyyah (Intention)</label>
+          <input
+            type="text"
+            value={dailyLog.niyyah ?? ''}
+            onChange={(e) => updateDailyField('niyyah', e.target.value || null)}
+            placeholder="Today I intend to..."
+            className="w-full px-3 py-2 rounded-md text-sm"
+            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+          />
+        </div>
+      </div>
+
+      {/* Complete Day */}
+      {!dailyLog.completed && (
+        <button
+          className="btn btn-gold w-full text-lg py-4"
+          onClick={handleComplete}
+          disabled={completing}
+        >
+          {completing ? 'Saving...' : `Complete Day (+${xpBreakdown.total} XP)`}
+        </button>
+      )}
+      {dailyLog.completed && (
+        <div className="card text-center" style={{ borderColor: 'var(--accent-green)' }}>
+          <p className="text-lg font-bold" style={{ color: 'var(--accent-green)' }}>
+            Day Complete!
+          </p>
+          <p className="stat-number text-sm mt-1" style={{ color: 'var(--text-gold)' }}>
+            +{dailyLog.xp_earned} XP earned
+          </p>
+        </div>
+      )}
+    </>
+  )
+}
+
+// ============================================================
+// PRAYERS TAB
+// ============================================================
+function PrayersTab({
+  prayerLog,
+  nonNegotiablesMet,
+  togglePrayer,
+}: {
+  prayerLog: ReturnType<typeof useGameState>['prayerLog']
+  nonNegotiablesMet: ReturnType<typeof useGameState>['nonNegotiablesMet']
+  togglePrayer: ReturnType<typeof useGameState>['togglePrayer']
+}) {
+  // Group prayers by time
+  const times = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] as const
+  const grouped = times.map((time) => ({
+    time,
+    prayers: PRAYERS.filter((p) => p.time === time),
+  }))
+
+  return (
+    <>
+      {/* Non-negotiable status */}
+      <div className="card">
+        <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Non-Negotiables
+        </h2>
+        <div className="flex gap-4">
+          <div className="flex items-center gap-2">
+            <span style={{ color: nonNegotiablesMet.fajr ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+              {nonNegotiablesMet.fajr ? '✓' : '✗'}
+            </span>
+            <span className="text-sm">Fajr</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span style={{ color: nonNegotiablesMet.secondPrayer ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+              {nonNegotiablesMet.secondPrayer ? '✓' : '✗'}
+            </span>
+            <span className="text-sm">Maghrib / Isha</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Prayer Grid */}
+      {grouped.map(({ time, prayers }) => (
+        <div key={time} className="card">
+          <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--text-secondary)' }}>
+            {time}
+            {(time === 'Fajr' || time === 'Maghrib' || time === 'Isha') && (
+              <span className="ml-2 text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgba(239, 68, 68, 0.1)', color: 'var(--accent-red)' }}>
+                non-negotiable
+              </span>
+            )}
+          </h3>
+          <div className="space-y-2">
+            {prayers.map((prayer) => {
+              const checked = !!prayerLog.prayers[prayer.key]
+              return (
+                <div key={prayer.key} className="flex items-center justify-between">
+                  <div>
+                    <span className="text-sm">{prayer.name}</span>
+                    <span className="text-xs ml-2" style={{ color: 'var(--text-muted)' }}>
+                      {prayer.rakahs}r
+                    </span>
+                  </div>
+                  <button
+                    className="habit-toggle"
+                    style={{ width: '36px', height: '36px' }}
+                    data-checked={checked.toString()}
+                    onClick={() => togglePrayer(prayer.key)}
+                  >
+                    {checked && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+// ============================================================
+// LIFTS TAB
+// ============================================================
+function LiftsTab() {
+  const supabase = createClient()
+  const today = new Date().toISOString().split('T')[0]
+
+  const [selectedSplit, setSelectedSplit] = useState(0)
+  const [sets, setSets] = useState<Record<string, { weight: number; reps: number }[]>>({})
+  const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+
+  const session = WORKOUT_SPLIT[selectedSplit]
+  const exercises = [...session.exercises, ...ABS_EXERCISES]
+
+  const addSet = (exerciseName: string) => {
+    const current = sets[exerciseName] || []
+    const lastSet = current[current.length - 1]
+    setSets({
+      ...sets,
+      [exerciseName]: [...current, { weight: lastSet?.weight || 0, reps: lastSet?.reps || 0 }],
+    })
+  }
+
+  const updateSet = (exerciseName: string, index: number, field: 'weight' | 'reps', value: number) => {
+    const current = [...(sets[exerciseName] || [])]
+    current[index] = { ...current[index], [field]: value }
+    setSets({ ...sets, [exerciseName]: current })
+  }
+
+  const removeSet = (exerciseName: string, index: number) => {
+    const current = [...(sets[exerciseName] || [])]
+    current.splice(index, 1)
+    setSets({ ...sets, [exerciseName]: current })
+  }
+
+  const saveSets = async () => {
+    setSaving(true)
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) { setSaving(false); return }
+
+    const rows = Object.entries(sets).flatMap(([exercise, exerciseSets]) =>
+      exerciseSets.map((s, i) => ({
+        user_id: user.id,
+        date: today,
+        session_type: session.name,
+        exercise,
+        set_number: i + 1,
+        weight: s.weight,
+        reps: s.reps,
+        rpe: null,
+        is_pr: false,
+        notes: null,
+      }))
+    )
+
+    if (rows.length > 0) {
+      await supabase.from('lift_sets').insert(rows)
+    }
+
+    setSaving(false)
+    setSaved(true)
+  }
+
+  return (
+    <>
+      {/* Split selector */}
+      <div className="card">
+        <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Workout Split
+        </h2>
+        <div className="flex gap-2 flex-wrap">
+          {WORKOUT_SPLIT.map((split, i) => (
+            <button
+              key={split.name}
+              onClick={() => { setSelectedSplit(i); setSets({}); setSaved(false) }}
+              className="px-3 py-2 rounded-md text-xs font-medium"
+              style={{
+                background: selectedSplit === i ? 'var(--accent-cyan)' : 'var(--bg-hover)',
+                color: selectedSplit === i ? '#fff' : 'var(--text-muted)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {split.name}
+            </button>
           ))}
         </div>
       </div>
+
+      {/* Exercises */}
+      {exercises.map((exercise) => {
+        const exerciseSets = sets[exercise.name] || []
+        return (
+          <div key={exercise.name} className="card">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-medium">{exercise.name}</h3>
+              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                Target: {exercise.targetWeight > 0 ? `${exercise.targetWeight}lb` : '—'} × {exercise.targetReps} × {exercise.sets}
+              </span>
+            </div>
+            {exerciseSets.map((s, i) => (
+              <div key={i} className="flex items-center gap-2 mb-2">
+                <span className="text-xs w-6" style={{ color: 'var(--text-muted)' }}>#{i + 1}</span>
+                <input
+                  type="number"
+                  value={s.weight || ''}
+                  onChange={(e) => updateSet(exercise.name, i, 'weight', Number(e.target.value))}
+                  placeholder="lbs"
+                  className="w-20 px-2 py-1.5 rounded text-sm text-center"
+                  style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                />
+                <span className="text-xs" style={{ color: 'var(--text-muted)' }}>×</span>
+                <input
+                  type="number"
+                  value={s.reps || ''}
+                  onChange={(e) => updateSet(exercise.name, i, 'reps', Number(e.target.value))}
+                  placeholder="reps"
+                  className="w-16 px-2 py-1.5 rounded text-sm text-center"
+                  style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                />
+                <button
+                  onClick={() => removeSet(exercise.name, i)}
+                  className="text-xs px-2 py-1 rounded"
+                  style={{ color: 'var(--accent-red)', cursor: 'pointer', background: 'none', border: 'none' }}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() => addSet(exercise.name)}
+              className="text-xs px-3 py-1.5 rounded-md"
+              style={{ background: 'var(--bg-hover)', color: 'var(--text-muted)', border: 'none', cursor: 'pointer' }}
+            >
+              + Add Set
+            </button>
+          </div>
+        )
+      })}
+
+      {Object.keys(sets).length > 0 && !saved && (
+        <button className="btn btn-primary w-full" onClick={saveSets} disabled={saving}>
+          {saving ? 'Saving...' : 'Save Workout'}
+        </button>
+      )}
+      {saved && (
+        <div className="card text-center" style={{ borderColor: 'var(--accent-green)' }}>
+          <p className="font-bold" style={{ color: 'var(--accent-green)' }}>Workout Saved!</p>
+        </div>
+      )}
+    </>
+  )
+}
+
+// ============================================================
+// BODY TAB
+// ============================================================
+function BodyTab({
+  bodyComp,
+  saveBodyComp,
+}: {
+  bodyComp: ReturnType<typeof useGameState>['bodyComp']
+  saveBodyComp: ReturnType<typeof useGameState>['saveBodyComp']
+}) {
+  const [amWeight, setAmWeight] = useState<string>(bodyComp?.am_weight?.toString() || '')
+  const [pmWeight, setPmWeight] = useState<string>(bodyComp?.pm_weight?.toString() || '')
+  const [bodyFat, setBodyFat] = useState<string>(bodyComp?.body_fat?.toString() || '')
+  const [saved, setSaved] = useState(false)
+
+  const handleSave = async () => {
+    await saveBodyComp({
+      am_weight: amWeight ? Number(amWeight) : null,
+      pm_weight: pmWeight ? Number(pmWeight) : null,
+      body_fat: bodyFat ? Number(bodyFat) : null,
+    })
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }
+
+  return (
+    <div className="card space-y-4">
+      <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+        Body Composition
+      </h2>
+      <div className="grid grid-cols-3 gap-3">
+        <div>
+          <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>AM Weight (lbs)</label>
+          <input
+            type="number"
+            step="0.1"
+            value={amWeight}
+            onChange={(e) => setAmWeight(e.target.value)}
+            placeholder="0.0"
+            className="w-full px-3 py-2 rounded-md text-sm text-center"
+            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+          />
+        </div>
+        <div>
+          <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>PM Weight (lbs)</label>
+          <input
+            type="number"
+            step="0.1"
+            value={pmWeight}
+            onChange={(e) => setPmWeight(e.target.value)}
+            placeholder="0.0"
+            className="w-full px-3 py-2 rounded-md text-sm text-center"
+            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+          />
+        </div>
+        <div>
+          <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>Body Fat %</label>
+          <input
+            type="number"
+            step="0.1"
+            value={bodyFat}
+            onChange={(e) => setBodyFat(e.target.value)}
+            placeholder="0.0"
+            className="w-full px-3 py-2 rounded-md text-sm text-center"
+            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+          />
+        </div>
+      </div>
+      <button className="btn btn-primary w-full" onClick={handleSave}>
+        {saved ? 'Saved!' : 'Save Body Comp'}
+      </button>
     </div>
   )
 }

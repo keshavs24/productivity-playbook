@@ -1,4 +1,44 @@
+'use client'
+
+import { useGameState } from '@/hooks/useGameState'
+import { HABITS, HABIT_KEYS, REVENUE_HOURS_TARGET } from '@/lib/config'
+
 export default function DashboardPage() {
+  const {
+    loading,
+    character,
+    dailyLog,
+    xpBreakdown,
+    level,
+    levelTitle,
+    levelProgress,
+    xpToNext,
+    currentLevelXP,
+    nextLevelXP,
+    streakMultiplier,
+    totalRevenueHours,
+    totalRevenueMinutes,
+    nonNegotiablesMet,
+    toggleHabit,
+  } = useGameState()
+
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="skeleton h-48 w-full" />
+        <div className="skeleton h-32 w-full" />
+        <div className="skeleton h-32 w-full" />
+        <div className="skeleton h-64 w-full" />
+      </div>
+    )
+  }
+
+  const totalXP = character?.total_xp || 0
+  const streak = character?.current_streak || 0
+  const revenueProgress = Math.min((totalRevenueHours / REVENUE_HOURS_TARGET) * 100, 100)
+  const revenueH = Math.floor(totalRevenueHours)
+  const revenueM = Math.round((totalRevenueHours - revenueH) * 60)
+
   return (
     <div className="space-y-6">
       {/* Player Card */}
@@ -25,7 +65,7 @@ export default function DashboardPage() {
           </div>
           <div className="text-right">
             <div className="stat-number text-2xl font-bold" style={{ color: 'var(--text-gold)' }}>
-              0
+              {totalXP.toLocaleString()}
             </div>
             <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
               Total XP
@@ -36,29 +76,47 @@ export default function DashboardPage() {
         {/* XP Bar */}
         <div className="mb-2">
           <div className="flex items-center justify-between text-xs mb-1">
-            <span style={{ color: 'var(--text-gold)' }}>LVL 1 — Tawbah</span>
+            <span style={{ color: 'var(--text-gold)' }}>LVL {level} — {levelTitle}</span>
             <span className="stat-number" style={{ color: 'var(--text-muted)' }}>
-              0 / 100 XP
+              {totalXP.toLocaleString()} / {nextLevelXP.toLocaleString()} XP
             </span>
           </div>
           <div className="progress-bar progress-xp" style={{ height: '10px' }}>
-            <div className="progress-bar-fill" style={{ width: '0%' }} />
+            <div className="progress-bar-fill" style={{ width: `${(levelProgress * 100).toFixed(1)}%` }} />
           </div>
         </div>
 
-        {/* Streak */}
+        {/* Streak + Multiplier */}
         <div className="flex items-center gap-4 mt-4">
           <div className="flex items-center gap-2">
             <span style={{ color: 'var(--text-muted)' }}>Streak:</span>
-            <span className="stat-number font-bold">0 days</span>
+            <span className="stat-number font-bold">{streak} day{streak !== 1 ? 's' : ''}</span>
           </div>
           <div className="flex items-center gap-2">
             <span style={{ color: 'var(--text-muted)' }}>Multiplier:</span>
             <span className="stat-number font-bold" style={{ color: 'var(--text-gold)' }}>
-              1.0x
+              {streakMultiplier}x
             </span>
           </div>
+          {character?.phoenix_active && (
+            <div className="flex items-center gap-1">
+              <span style={{ color: 'var(--accent-orange)' }}>Phoenix 2x</span>
+              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                ({character.phoenix_days}d left)
+              </span>
+            </div>
+          )}
         </div>
+
+        {/* Today's XP preview */}
+        {xpBreakdown.subtotal > 0 && (
+          <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)' }}>
+            <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Today so far: </span>
+            <span className="stat-number text-sm font-bold" style={{ color: 'var(--accent-green)' }}>
+              +{xpBreakdown.total} XP
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Non-Negotiables Status */}
@@ -71,9 +129,9 @@ export default function DashboardPage() {
         </h2>
         <div className="space-y-3">
           {[
-            { name: '6h Revenue Work', done: false },
-            { name: 'Fajr Prayer', done: false },
-            { name: 'Maghrib / Isha Prayer', done: false },
+            { name: '6h Revenue Work', done: nonNegotiablesMet.revenue },
+            { name: 'Fajr Prayer', done: nonNegotiablesMet.fajr },
+            { name: 'Maghrib / Isha Prayer', done: nonNegotiablesMet.secondPrayer },
           ].map((item) => (
             <div key={item.name} className="flex items-center gap-3">
               <div
@@ -89,7 +147,9 @@ export default function DashboardPage() {
                   </svg>
                 )}
               </div>
-              <span className="text-sm">{item.name}</span>
+              <span className="text-sm" style={{ color: item.done ? 'var(--accent-green)' : undefined }}>
+                {item.name}
+              </span>
             </div>
           ))}
         </div>
@@ -105,15 +165,15 @@ export default function DashboardPage() {
             Revenue Hours
           </h2>
           <span className="stat-number text-lg font-bold" style={{ color: 'var(--accent-cyan)' }}>
-            0h 0m
+            {revenueH}h {revenueM}m
           </span>
         </div>
         <div className="progress-bar progress-revenue" style={{ height: '10px' }}>
-          <div className="progress-bar-fill" style={{ width: '0%' }} />
+          <div className="progress-bar-fill" style={{ width: `${revenueProgress}%` }} />
         </div>
         <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-          <span>0h</span>
-          <span>6h target</span>
+          <span>{revenueH}h {revenueM}m</span>
+          <span>{REVENUE_HOURS_TARGET}h target</span>
         </div>
       </div>
 
@@ -126,28 +186,31 @@ export default function DashboardPage() {
           Today&apos;s Habits
         </h2>
         <div className="space-y-2">
-          {[
-            'Wake Before Fajr',
-            'Prayers (2+)',
-            'Workout',
-            'Deep Work 4h+',
-            'Ship Something',
-            'Quran Reading',
-            'Read 30 Min',
-          ].map((habit) => (
-            <div key={habit} className="flex items-center gap-3">
-              <div
-                className="habit-toggle"
-                data-checked="false"
-                role="checkbox"
-                aria-checked="false"
-                tabIndex={0}
-              >
-                {/* Empty when unchecked */}
+          {HABITS.map((habit, i) => {
+            const key = HABIT_KEYS[i]
+            const checked = !!dailyLog.habits[key]
+            return (
+              <div key={key} className="flex items-center gap-3">
+                <button
+                  className="habit-toggle"
+                  data-checked={checked.toString()}
+                  role="checkbox"
+                  aria-checked={checked}
+                  tabIndex={0}
+                  onClick={() => toggleHabit(key)}
+                >
+                  {checked && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+                <span className="text-sm" style={{ textDecoration: checked ? 'line-through' : 'none', color: checked ? 'var(--text-muted)' : undefined }}>
+                  {habit}
+                </span>
               </div>
-              <span className="text-sm">{habit}</span>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 
