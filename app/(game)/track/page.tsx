@@ -11,12 +11,13 @@ import {
   FARD_PRAYERS,
   WORKOUT_SPLIT,
   ABS_EXERCISES,
+  CUT,
   type HabitKey,
   type AttributeKey,
 } from '@/lib/config'
 import { createClient } from '@/lib/supabase/client'
 
-const TABS = ['Habits', 'Prayers', 'Lifts', 'Body'] as const
+const TABS = ['Habits', 'Prayers', 'Nutrition', 'Lifts', 'Body'] as const
 type Tab = typeof TABS[number]
 
 export default function TrackPage() {
@@ -99,6 +100,7 @@ export default function TrackPage() {
           togglePrayer={togglePrayer}
         />
       )}
+      {activeTab === 'Nutrition' && <NutritionTab />}
       {activeTab === 'Lifts' && <LiftsTab />}
       {activeTab === 'Body' && (
         <BodyTab bodyComp={bodyComp} saveBodyComp={saveBodyComp} />
@@ -608,5 +610,201 @@ function BodyTab({
         {saved ? 'Saved!' : 'Save Body Comp'}
       </button>
     </div>
+  )
+}
+
+// ============================================================
+// NUTRITION TAB
+// ============================================================
+interface FoodEntry {
+  id: string
+  meal_label: string | null
+  food_name: string
+  calories: number | null
+  protein: number | null
+  carbs: number | null
+  fat: number | null
+}
+
+const MEALS = ['Breakfast', 'Lunch', 'Dinner', 'Snack']
+
+function NutritionTab() {
+  const supabase = createClient()
+  const today = new Date().toISOString().split('T')[0]
+
+  const [entries, setEntries] = useState<FoodEntry[]>([])
+  const [loaded, setLoaded] = useState(false)
+  const [meal, setMeal] = useState('Lunch')
+  const [foodName, setFoodName] = useState('')
+  const [calories, setCalories] = useState('')
+  const [protein, setProtein] = useState('')
+  const [carbs, setCarbs] = useState('')
+  const [fat, setFat] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  // Fetch today's entries
+  useState(() => {
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) { setLoaded(true); return }
+      const { data } = await supabase
+        .from('food_logs')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('date', today)
+        .order('created_at', { ascending: true })
+      if (data) setEntries(data)
+      setLoaded(true)
+    })()
+  })
+
+  const addEntry = async () => {
+    if (!foodName.trim()) return
+    setSaving(true)
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) { setSaving(false); return }
+
+    const { data } = await supabase.from('food_logs').insert({
+      user_id: user.id,
+      date: today,
+      meal_label: meal,
+      food_name: foodName.trim(),
+      calories: calories ? Number(calories) : null,
+      protein: protein ? Number(protein) : null,
+      carbs: carbs ? Number(carbs) : null,
+      fat: fat ? Number(fat) : null,
+    }).select().single()
+
+    if (data) setEntries((prev) => [...prev, data])
+    setFoodName('')
+    setCalories('')
+    setProtein('')
+    setCarbs('')
+    setFat('')
+    setSaving(false)
+  }
+
+  const deleteEntry = async (id: string) => {
+    await supabase.from('food_logs').delete().eq('id', id)
+    setEntries((prev) => prev.filter((e) => e.id !== id))
+  }
+
+  // Macro totals
+  const totals = entries.reduce(
+    (acc, e) => ({
+      calories: acc.calories + (e.calories || 0),
+      protein: acc.protein + (e.protein || 0),
+      carbs: acc.carbs + (e.carbs || 0),
+      fat: acc.fat + (e.fat || 0),
+    }),
+    { calories: 0, protein: 0, carbs: 0, fat: 0 }
+  )
+
+  return (
+    <>
+      {/* Daily Macro Summary */}
+      <div className="card">
+        <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Daily Macros
+        </h2>
+        <div className="grid grid-cols-4 gap-2 text-center">
+          <div>
+            <div className="stat-number text-lg font-bold" style={{ color: totals.calories > CUT.DAILY_CALORIES ? 'var(--accent-red)' : 'var(--accent-green)' }}>
+              {totals.calories}
+            </div>
+            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>/ {CUT.DAILY_CALORIES} cal</div>
+          </div>
+          <div>
+            <div className="stat-number text-lg font-bold" style={{ color: totals.protein >= CUT.PROTEIN_G ? 'var(--accent-green)' : 'var(--text-primary)' }}>
+              {Math.round(totals.protein)}g
+            </div>
+            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>/ {CUT.PROTEIN_G}g pro</div>
+          </div>
+          <div>
+            <div className="stat-number text-lg font-bold">{Math.round(totals.carbs)}g</div>
+            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>/ {CUT.CARBS_G}g carbs</div>
+          </div>
+          <div>
+            <div className="stat-number text-lg font-bold">{Math.round(totals.fat)}g</div>
+            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>/ {CUT.FAT_G}g fat</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Add Food Form */}
+      <div className="card space-y-3">
+        <h3 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Log Food
+        </h3>
+        <div className="flex gap-2 flex-wrap">
+          {MEALS.map((m) => (
+            <button
+              key={m}
+              onClick={() => setMeal(m)}
+              className="px-3 py-1.5 rounded-md text-xs font-medium"
+              style={{
+                background: meal === m ? 'var(--accent-cyan)' : 'var(--bg-hover)',
+                color: meal === m ? '#fff' : 'var(--text-muted)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {m}
+            </button>
+          ))}
+        </div>
+        <input
+          type="text"
+          value={foodName}
+          onChange={(e) => setFoodName(e.target.value)}
+          placeholder="Food name"
+          className="w-full px-3 py-2 rounded-md text-sm"
+          style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+        />
+        <div className="grid grid-cols-4 gap-2">
+          <input type="number" value={calories} onChange={(e) => setCalories(e.target.value)} placeholder="Cal" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
+          <input type="number" value={protein} onChange={(e) => setProtein(e.target.value)} placeholder="Pro g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
+          <input type="number" value={carbs} onChange={(e) => setCarbs(e.target.value)} placeholder="Carb g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
+          <input type="number" value={fat} onChange={(e) => setFat(e.target.value)} placeholder="Fat g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
+        </div>
+        <button className="btn btn-primary w-full" onClick={addEntry} disabled={saving}>
+          {saving ? 'Adding...' : 'Add Food'}
+        </button>
+      </div>
+
+      {/* Today's Entries */}
+      <div className="card">
+        <h3 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+          Today&apos;s Log
+        </h3>
+        {entries.length === 0 ? (
+          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>No food logged today.</p>
+        ) : (
+          <div className="space-y-2">
+            {entries.map((entry) => (
+              <div
+                key={entry.id}
+                className="flex items-center justify-between p-2 rounded-lg"
+                style={{ background: 'var(--bg-primary)' }}
+              >
+                <div>
+                  <div className="text-sm font-medium">{entry.food_name}</div>
+                  <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                    {entry.meal_label} — {entry.calories || 0} cal, {entry.protein || 0}g P, {entry.carbs || 0}g C, {entry.fat || 0}g F
+                  </div>
+                </div>
+                <button
+                  onClick={() => deleteEntry(entry.id)}
+                  className="text-xs px-2 py-1"
+                  style={{ color: 'var(--accent-red)', background: 'none', border: 'none', cursor: 'pointer' }}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   )
 }

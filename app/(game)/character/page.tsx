@@ -1,8 +1,11 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import { useGameState } from '@/hooks/useGameState'
 import { ATTRIBUTES, ATTRIBUTE_KEYS } from '@/lib/config'
 import { getLevelXP } from '@/lib/game/levels'
+import { ACHIEVEMENTS, getAchievementCategories } from '@/lib/game/achievements'
+import { createClient } from '@/lib/supabase/client'
 
 export default function CharacterPage() {
   const {
@@ -132,15 +135,76 @@ export default function CharacterPage() {
         </div>
       </div>
 
-      {/* Achievements placeholder */}
-      <div className="card">
-        <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-          Achievements
-        </h2>
-        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-          50 badges to unlock. Complete daily habits, hit milestones, and build streaks to earn them.
-        </p>
-      </div>
+      {/* Achievements */}
+      <AchievementsGrid />
+    </div>
+  )
+}
+
+function AchievementsGrid() {
+  const supabase = createClient()
+  const [unlockedKeys, setUnlockedKeys] = useState<Set<string>>(new Set())
+
+  const fetchUnlocked = useCallback(async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+    const { data } = await supabase
+      .from('achievements')
+      .select('key')
+      .eq('user_id', user.id)
+    if (data) {
+      setUnlockedKeys(new Set(data.map((a) => a.key)))
+    }
+  }, [])
+
+  useEffect(() => { fetchUnlocked() }, [fetchUnlocked])
+
+  const categories = getAchievementCategories()
+  const unlockedCount = unlockedKeys.size
+
+  return (
+    <div className="card">
+      <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+        Achievements ({unlockedCount}/{ACHIEVEMENTS.length})
+      </h2>
+      {categories.map((cat) => {
+        const badges = ACHIEVEMENTS.filter((a) => a.category === cat)
+        const catUnlocked = badges.filter((a) => unlockedKeys.has(a.key)).length
+        return (
+          <div key={cat} className="mb-4">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase" style={{ color: 'var(--text-muted)' }}>
+                {cat}
+              </span>
+              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                {catUnlocked}/{badges.length}
+              </span>
+            </div>
+            <div className="grid grid-cols-5 sm:grid-cols-6 gap-2">
+              {badges.map((badge) => {
+                const unlocked = unlockedKeys.has(badge.key)
+                return (
+                  <div
+                    key={badge.key}
+                    className="text-center p-2 rounded-lg"
+                    style={{
+                      background: unlocked ? 'rgba(245, 158, 11, 0.1)' : 'var(--bg-primary)',
+                      opacity: unlocked ? 1 : 0.4,
+                      border: unlocked ? '1px solid var(--accent-gold)' : '1px solid transparent',
+                    }}
+                    title={`${badge.name}: ${badge.description} (+${badge.xp} XP)`}
+                  >
+                    <div className="text-xl">{badge.icon}</div>
+                    <div className="text-[10px] mt-1 leading-tight" style={{ color: 'var(--text-muted)' }}>
+                      {badge.name}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

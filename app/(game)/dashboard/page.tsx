@@ -2,6 +2,7 @@
 
 import { useGameState } from '@/hooks/useGameState'
 import { HABITS, HABIT_KEYS, REVENUE_HOURS_TARGET } from '@/lib/config'
+import { getWisdom } from '@/lib/game/wisdom'
 
 export default function DashboardPage() {
   const {
@@ -215,17 +216,24 @@ export default function DashboardPage() {
       </div>
 
       {/* Wisdom Quote */}
-      <div
-        className="card text-center"
-        style={{ background: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.15)' }}
-      >
-        <p className="text-sm italic" style={{ color: 'var(--text-secondary)' }}>
-          &ldquo;The most beloved of deeds to Allah are those that are most consistent, even if they are small.&rdquo;
-        </p>
-        <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
-          — Bukhari &amp; Muslim
-        </p>
-      </div>
+      <WisdomCard />
+    </div>
+  )
+}
+
+function WisdomCard() {
+  const wisdom = getWisdom('positive')
+  return (
+    <div
+      className="card text-center"
+      style={{ background: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.15)' }}
+    >
+      <p className="text-sm italic" style={{ color: 'var(--text-secondary)' }}>
+        &ldquo;{wisdom.text}&rdquo;
+      </p>
+      <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
+        — {wisdom.source}
+      </p>
     </div>
   )
 }
