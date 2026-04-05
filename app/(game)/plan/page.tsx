@@ -67,8 +67,11 @@ export default function PlanPage() {
     setEditingId(null)
   }
 
+  const [saveError, setSaveError] = useState<string | null>(null)
+
   const saveGoal = async () => {
     if (!title.trim()) return
+    setSaveError(null)
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
@@ -83,25 +86,30 @@ export default function PlanPage() {
       lag_measure: lagMeasure.trim() || null,
     }
 
-    if (editingId) {
-      await supabase.from('goals').update(payload).eq('id', editingId)
-    } else {
-      await supabase.from('goals').insert(payload)
+    try {
+      if (editingId) {
+        const { error } = await supabase.from('goals').update(payload).eq('id', editingId)
+        if (error) throw error
+      } else {
+        const { error } = await supabase.from('goals').insert(payload)
+        if (error) throw error
+      }
+      resetForm()
+      await fetchGoals()
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save goal')
     }
-
-    resetForm()
-    await fetchGoals()
   }
 
   const toggleStatus = async (goal: Goal) => {
     const newStatus = goal.status === 'completed' ? 'active' : 'completed'
-    await supabase.from('goals').update({ status: newStatus }).eq('id', goal.id)
-    await fetchGoals()
+    const { error } = await supabase.from('goals').update({ status: newStatus }).eq('id', goal.id)
+    if (!error) await fetchGoals()
   }
 
   const deleteGoal = async (id: string) => {
-    await supabase.from('goals').delete().eq('id', id)
-    await fetchGoals()
+    const { error } = await supabase.from('goals').delete().eq('id', id)
+    if (!error) await fetchGoals()
   }
 
   const editGoal = (goal: Goal) => {
@@ -251,6 +259,9 @@ export default function PlanPage() {
               />
             </div>
           </div>
+          {saveError && (
+            <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{saveError}</p>
+          )}
           <div className="flex gap-3">
             <button className="btn btn-primary" onClick={saveGoal}>
               {editingId ? 'Update' : 'Add Goal'}

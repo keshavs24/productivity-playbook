@@ -115,6 +115,201 @@ interface GameActions {
   refresh: () => Promise<void>
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SupaClient = ReturnType<typeof createClient>
+
+async function buildAchievementContext(
+  supabase: SupaClient,
+  userId: string,
+  bestStreak: number,
+  totalXP: number,
+): Promise<AchievementContext> {
+  const [logsRes, prayerRes, liftStatsRes, foodDatesRes, bodyRes, reviewRes] = await Promise.all([
+    supabase.from('daily_logs').select('date, completed, habits, attributes, mrr, diet_score, weight').eq('user_id', userId).order('date', { ascending: true }),
+    supabase.from('prayer_logs').select('date, prayers').eq('user_id', userId).order('date', { ascending: true }),
+    supabase.from('lift_sets').select('date, exercise, is_pr, id').eq('user_id', userId),
+    supabase.from('food_logs').select('date').eq('user_id', userId),
+    supabase.from('body_comp').select('date, am_weight, body_fat').eq('user_id', userId).order('date', { ascending: true }),
+    supabase.from('weekly_reviews').select('id', { count: 'exact', head: true }).eq('user_id', userId),
+  ])
+
+  const logs = (logsRes.data || []) as Array<{
+    date: string; completed: boolean; habits: Record<string, boolean>;
+    attributes: Record<string, number>; mrr: number | null; diet_score: number | null; weight: number | null
+  }>
+
+  // Habit counts (total times each habit was true)
+  const habitCounts: Record<string, number> = {}
+  const consecutiveHabit: Record<string, number> = {}
+  const attrStreaks: Record<string, number> = {}
+  let perfectDays = 0
+  let consecutivePerfectDays = 0
+  let maxConsecutivePerfect = 0
+  let maxMRR = 0
+  let dietStreak = 0
+  let maxDietStreak = 0
+  let perfectDietStreak = 0
+  let maxPerfectDietStreak = 0
+
+  // Track consecutive habit streaks
+  const habitStreakCurrent: Record<string, number> = {}
+  const attrStreakCurrent: Record<string, number> = {}
+
+  for (const log of logs) {
+    if (!log.completed) {
+      // Reset consecutive counters
+      consecutivePerfectDays = 0
+      for (const k of Object.keys(habitStreakCurrent)) habitStreakCurrent[k] = 0
+      for (const k of Object.keys(attrStreakCurrent)) attrStreakCurrent[k] = 0
+      dietStreak = 0
+      perfectDietStreak = 0
+      continue
+    }
+
+    // Count habits
+    const habits = log.habits || {}
+    let allHabits = true
+    for (const [k, v] of Object.entries(habits)) {
+      if (v) {
+        habitCounts[k] = (habitCounts[k] || 0) + 1
+        habitStreakCurrent[k] = (habitStreakCurrent[k] || 0) + 1
+      } else {
+        habitStreakCurrent[k] = 0
+        allHabits = false
+      }
+      consecutiveHabit[k] = Math.max(consecutiveHabit[k] || 0, habitStreakCurrent[k] || 0)
+    }
+    if (Object.keys(habits).length < 7) allHabits = false
+
+    if (allHabits) {
+      perfectDays++
+      consecutivePerfectDays++
+      maxConsecutivePerfect = Math.max(maxConsecutivePerfect, consecutivePerfectDays)
+    } else {
+      consecutivePerfectDays = 0
+    }
+
+    // Attributes
+    const attrs = log.attributes || {}
+    for (const [k, v] of Object.entries(attrs)) {
+      if ((v as number) >= 4) {
+        attrStreakCurrent[k] = (attrStreakCurrent[k] || 0) + 1
+      } else {
+        attrStreakCurrent[k] = 0
+      }
+      attrStreaks[k] = Math.max(attrStreaks[k] || 0, attrStreakCurrent[k] || 0)
+    }
+
+    // MRR
+    if (log.mrr && log.mrr > maxMRR) maxMRR = log.mrr
+
+    // Diet
+    if ((log.diet_score || 0) >= 4) {
+      dietStreak++
+      maxDietStreak = Math.max(maxDietStreak, dietStreak)
+    } else {
+      dietStreak = 0
+    }
+    if ((log.diet_score || 0) === 5) {
+      perfectDietStreak++
+      maxPerfectDietStreak = Math.max(maxPerfectDietStreak, perfectDietStreak)
+    } else {
+      perfectDietStreak = 0
+    }
+  }
+
+  // Perfect days this week (last 7 completed logs)
+  const last7 = logs.filter(l => l.completed).slice(-7)
+  const perfectDaysThisWeek = last7.filter(l => {
+    const h = l.habits || {}
+    return Object.keys(h).length >= 7 && Object.values(h).every(Boolean)
+  }).length
+
+  // Body comp
+  const bodyLogs = bodyRes.data || []
+  let consecutiveWeighIns = 0
+  let lowestBF = 0
+  let firstWeight = 0
+  let latestWeight = 0
+  for (const b of bodyLogs as Array<{ date: string; am_weight: number | null; body_fat: number | null }>) {
+    if (b.am_weight) {
+      consecutiveWeighIns++
+      if (!firstWeight) firstWeight = b.am_weight
+      latestWeight = b.am_weight
+    } else {
+      consecutiveWeighIns = 0
+    }
+    if (b.body_fat && (lowestBF === 0 || b.body_fat < lowestBF)) lowestBF = b.body_fat
+  }
+  const weightLost = firstWeight > 0 ? firstWeight - latestWeight : 0
+
+  // Prayer streaks
+  const prayerLogs = (prayerRes.data || []) as Array<{ date: string; prayers: Record<string, boolean> }>
+  let fardStreak = 0, maxFardStreak = 0
+  let witrStreak = 0, maxWitrStreak = 0
+  let fullPrayerStreak = 0, maxFullPrayerStreak = 0
+  for (const pl of prayerLogs) {
+    const p = pl.prayers || {}
+    const fards = ['fajr_fard', 'dhuhr_fard', 'asr_fard', 'maghrib_fard', 'isha_fard']
+    const allFard = fards.every(k => p[k])
+    if (allFard) { fardStreak++; maxFardStreak = Math.max(maxFardStreak, fardStreak) }
+    else fardStreak = 0
+
+    if (p['isha_witr']) { witrStreak++; maxWitrStreak = Math.max(maxWitrStreak, witrStreak) }
+    else witrStreak = 0
+
+    const allPrayers = Object.values(p).filter(Boolean).length >= 11
+    if (allPrayers) { fullPrayerStreak++; maxFullPrayerStreak = Math.max(maxFullPrayerStreak, fullPrayerStreak) }
+    else fullPrayerStreak = 0
+  }
+
+  // Lift stats
+  const liftRows = (liftStatsRes.data || []) as Array<{ date: string; exercise: string; is_pr: boolean; id: string }>
+  const liftDates = new Set(liftRows.map(r => r.date))
+  const prCount = liftRows.filter(r => r.is_pr).length
+
+  // Nutrition streak
+  const foodDates = new Set(((foodDatesRes.data || []) as Array<{ date: string }>).map(r => r.date))
+  let nutritionStreak = 0
+  let maxNutritionStreak = 0
+  const allDates = [...new Set([...logs.map(l => l.date)])].sort()
+  for (const d of allDates) {
+    if (foodDates.has(d)) { nutritionStreak++; maxNutritionStreak = Math.max(maxNutritionStreak, nutritionStreak) }
+    else nutritionStreak = 0
+  }
+
+  return {
+    bestStreak,
+    phoenixCompleted: false,
+    habitCounts,
+    consecutiveHabit,
+    perfectDays,
+    consecutivePerfectDays: maxConsecutivePerfect,
+    perfectDaysThisWeek,
+    attrStreaks,
+    maxMRR,
+    maxWeeklyMRRGrowth: 0,
+    consecutiveMRRGrowthWeeks: 0,
+    consecutiveWeighIns,
+    bodyFatTarget: false,
+    lowestBF,
+    weightLost: Math.max(0, weightLost),
+    dietStreak: maxDietStreak,
+    perfectDietStreak: maxPerfectDietStreak,
+    liftSessions: liftDates.size,
+    prCount,
+    totalSets: liftRows.length,
+    fardStreak: maxFardStreak,
+    witrStreak: maxWitrStreak,
+    fullPrayerStreak: maxFullPrayerStreak,
+    nutritionStreak: maxNutritionStreak,
+    calorieAccuracyStreak: 0,
+    level: getLevelFromXP(totalXP),
+    totalXP,
+    weeklyReviews: reviewRes.count || 0,
+  }
+}
+
 const defaultDailyLog: DailyLog = {
   date: getToday(),
   completed: false,
@@ -324,111 +519,89 @@ export function useGameState(): GameState & GameActions {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user || !character) return
 
-    // Calculate final XP
-    const finalXP = xpBreakdown.total
-
-    // Update daily log
-    await upsertDailyLog({
-      completed: true,
-      xp_earned: finalXP,
-      xp_breakdown: xpBreakdown as unknown as Record<string, number>,
-    })
-
-    // Fetch recent logs for streak calculation
-    const { data: recentLogs } = await supabase
-      .from('daily_logs')
-      .select('date, completed')
-      .eq('user_id', user.id)
-      .order('date', { ascending: true })
-      .limit(30)
-
-    const missedDays = countMissedDays(recentLogs || [], today)
-
-    const currentState: StreakState = {
-      currentStreak: character.current_streak,
-      longestStreak: character.longest_streak,
-      freezesRemaining: character.streak_freezes,
-      phoenixActive: character.phoenix_active,
-      phoenixDaysLeft: character.phoenix_days,
-    }
-
-    const newStreak = processStreakUpdate(currentState, true, missedDays)
-    const newTotalXP = character.total_xp + finalXP
-
-    // Update character
-    const updatedChar = {
-      ...character,
-      total_xp: newTotalXP,
-      current_streak: newStreak.currentStreak,
-      longest_streak: newStreak.longestStreak,
-      streak_freezes: newStreak.freezesRemaining,
-      phoenix_active: newStreak.phoenixActive,
-      phoenix_days: newStreak.phoenixDaysLeft,
-    }
-
-    setCharacter(updatedChar)
-
-    await supabase.from('characters').update({
-      total_xp: newTotalXP,
-      current_streak: newStreak.currentStreak,
-      longest_streak: newStreak.longestStreak,
-      streak_freezes: newStreak.freezesRemaining,
-      phoenix_active: newStreak.phoenixActive,
-      phoenix_days: newStreak.phoenixDaysLeft,
-    }).eq('id', character.id)
-
-    // Check for new achievements
     try {
+      // Calculate final XP
+      const finalXP = xpBreakdown.total
+
+      // Update daily log
+      await upsertDailyLog({
+        completed: true,
+        xp_earned: finalXP,
+        xp_breakdown: xpBreakdown as unknown as Record<string, number>,
+      })
+
+      // Fetch recent logs for streak calculation
+      const { data: recentLogs } = await supabase
+        .from('daily_logs')
+        .select('date, completed')
+        .eq('user_id', user.id)
+        .order('date', { ascending: true })
+        .limit(30)
+
+      const missedDays = countMissedDays(recentLogs || [], today)
+
+      const currentState: StreakState = {
+        currentStreak: character.current_streak,
+        longestStreak: character.longest_streak,
+        freezesRemaining: character.streak_freezes,
+        phoenixActive: character.phoenix_active,
+        phoenixDaysLeft: character.phoenix_days,
+      }
+
+      const newStreak = processStreakUpdate(currentState, true, missedDays)
+      const newTotalXP = character.total_xp + finalXP
+
+      // Update character
+      const updatedChar = {
+        ...character,
+        total_xp: newTotalXP,
+        current_streak: newStreak.currentStreak,
+        longest_streak: newStreak.longestStreak,
+        streak_freezes: newStreak.freezesRemaining,
+        phoenix_active: newStreak.phoenixActive,
+        phoenix_days: newStreak.phoenixDaysLeft,
+      }
+
+      setCharacter(updatedChar)
+
+      const { error: charError } = await supabase.from('characters').update({
+        total_xp: newTotalXP,
+        current_streak: newStreak.currentStreak,
+        longest_streak: newStreak.longestStreak,
+        streak_freezes: newStreak.freezesRemaining,
+        phoenix_active: newStreak.phoenixActive,
+        phoenix_days: newStreak.phoenixDaysLeft,
+      }).eq('id', character.id)
+
+      if (charError) throw charError
+
+      // Check for new achievements
+      try {
       const { data: unlockedRows } = await supabase
         .from('achievements')
-        .select('achievement_key')
+        .select('key')
         .eq('user_id', user.id)
 
-      const unlockedSet = new Set((unlockedRows || []).map((r: { achievement_key: string }) => r.achievement_key))
+      const unlockedSet = new Set((unlockedRows || []).map((r: { key: string }) => r.key))
 
-      const ctx: AchievementContext = {
-        bestStreak: newStreak.longestStreak,
-        phoenixCompleted: newStreak.phoenixActive,
-        habitCounts: {},
-        consecutiveHabit: {},
-        perfectDays: 0,
-        consecutivePerfectDays: 0,
-        perfectDaysThisWeek: 0,
-        attrStreaks: {},
-        maxMRR: dailyLog.mrr || 0,
-        maxWeeklyMRRGrowth: 0,
-        consecutiveMRRGrowthWeeks: 0,
-        consecutiveWeighIns: bodyComp ? 1 : 0,
-        bodyFatTarget: false,
-        lowestBF: bodyComp?.body_fat || 0,
-        weightLost: 0,
-        dietStreak: (dailyLog.diet_score || 0) >= 4 ? 1 : 0,
-        perfectDietStreak: (dailyLog.diet_score || 0) === 5 ? 1 : 0,
-        liftSessions: hasLiftLog ? 1 : 0,
-        prCount: 0,
-        totalSets: 0,
-        fardStreak: prayerLog.fajr_done ? 1 : 0,
-        witrStreak: 0,
-        fullPrayerStreak: 0,
-        nutritionStreak: hasNutritionLog ? 1 : 0,
-        calorieAccuracyStreak: 0,
-        level: getLevelFromXP(newTotalXP),
-        totalXP: newTotalXP,
-        weeklyReviews: 0,
-      }
+      const ctx = await buildAchievementContext(supabase, user.id, newStreak.longestStreak, newTotalXP)
 
       const newlyUnlocked = checkNewAchievements(ctx, unlockedSet)
       if (newlyUnlocked.length > 0) {
         await supabase.from('achievements').insert(
           newlyUnlocked.map((a) => ({
             user_id: user.id,
-            achievement_key: a.key,
+            key: a.key,
             xp_awarded: a.xp,
           }))
         )
       }
     } catch (err) {
       console.error('Achievement check failed:', err)
+    }
+    } catch (err) {
+      console.error('Failed to complete day:', err)
+      setError(err instanceof Error ? err.message : 'Failed to complete day')
     }
   }
 
