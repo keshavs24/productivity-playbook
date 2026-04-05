@@ -1,2 +1,8 @@
 node_modules/
 .clasp.json
+.next/
+.env.local
+.env*.local
+out/
+*.tsbuildinfo
+next-env.d.ts
