@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useGameState } from '@/hooks/useGameState'
 import {
   HABITS,
@@ -394,6 +394,7 @@ function LiftsTab() {
   const [sets, setSets] = useState<Record<string, { weight: number; reps: number }[]>>({})
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [prMessage, setPrMessage] = useState<string | null>(null)
 
   const session = WORKOUT_SPLIT[selectedSplit]
   const exercises = [...session.exercises, ...ABS_EXERCISES]
@@ -421,26 +422,52 @@ function LiftsTab() {
 
   const saveSets = async () => {
     setSaving(true)
+    setPrMessage(null)
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) { setSaving(false); return }
 
+    // Query max weights for PR detection
+    const exerciseNames = Object.keys(sets)
+    const { data: prData } = await supabase
+      .from('lift_sets')
+      .select('exercise, weight')
+      .eq('user_id', user.id)
+      .in('exercise', exerciseNames)
+      .order('weight', { ascending: false })
+
+    const prMap: Record<string, number> = {}
+    for (const row of prData || []) {
+      if (!prMap[row.exercise] || row.weight > prMap[row.exercise]) {
+        prMap[row.exercise] = row.weight
+      }
+    }
+
+    const prs: string[] = []
     const rows = Object.entries(sets).flatMap(([exercise, exerciseSets]) =>
-      exerciseSets.map((s, i) => ({
-        user_id: user.id,
-        date: today,
-        session_type: session.name,
-        exercise,
-        set_number: i + 1,
-        weight: s.weight,
-        reps: s.reps,
-        rpe: null,
-        is_pr: false,
-        notes: null,
-      }))
+      exerciseSets.map((s, i) => {
+        const isPR = s.weight > 0 && s.weight > (prMap[exercise] || 0)
+        if (isPR) prs.push(`${exercise}: ${s.weight}lbs`)
+        return {
+          user_id: user.id,
+          date: today,
+          session_type: session.name,
+          exercise,
+          set_number: i + 1,
+          weight: s.weight,
+          reps: s.reps,
+          rpe: null,
+          is_pr: isPR,
+          notes: null,
+        }
+      })
     )
 
     if (rows.length > 0) {
       await supabase.from('lift_sets').insert(rows)
+    }
+
+    if (prs.length > 0) {
+      setPrMessage(`PR! ${prs.join(', ')}`)
     }
 
     setSaving(false)
@@ -532,6 +559,9 @@ function LiftsTab() {
       {saved && (
         <div className="card text-center" style={{ borderColor: 'var(--accent-green)' }}>
           <p className="font-bold" style={{ color: 'var(--accent-green)' }}>Workout Saved!</p>
+          {prMessage && (
+            <p className="text-sm mt-1" style={{ color: 'var(--accent-gold)' }}>{prMessage}</p>
+          )}
         </div>
       )}
     </>
@@ -643,7 +673,7 @@ function NutritionTab() {
   const [saving, setSaving] = useState(false)
 
   // Fetch today's entries
-  useState(() => {
+  useEffect(() => {
     (async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { setLoaded(true); return }
@@ -656,7 +686,7 @@ function NutritionTab() {
       if (data) setEntries(data)
       setLoaded(true)
     })()
-  })
+  }, [today])
 
   const addEntry = async () => {
     if (!foodName.trim()) return

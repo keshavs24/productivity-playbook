@@ -1,0 +1,22 @@
+{
+  "name": "Productivity Playbook",
+  "short_name": "Playbook",
+  "description": "Level up your life — gamified productivity, revenue tracking, goal mapping",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "theme_color": "#0a0a0f",
+  "background_color": "#0a0a0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

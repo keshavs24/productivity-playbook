@@ -1,8 +1,18 @@
 'use client'
 
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { useGameState } from '@/hooks/useGameState'
 import { HABITS, HABIT_KEYS, REVENUE_HOURS_TARGET } from '@/lib/config'
 import { getWisdom } from '@/lib/game/wisdom'
+
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+}
+const stagger = {
+  animate: { transition: { staggerChildren: 0.06 } },
+}
 
 export default function DashboardPage() {
   const {
@@ -21,6 +31,8 @@ export default function DashboardPage() {
     totalRevenueMinutes,
     nonNegotiablesMet,
     toggleHabit,
+    error,
+    refresh,
   } = useGameState()
 
   if (loading) {
@@ -41,11 +53,22 @@ export default function DashboardPage() {
   const revenueM = Math.round((totalRevenueHours - revenueH) * 60)
 
   return (
-    <div className="space-y-6">
+    <motion.div className="space-y-6" variants={stagger} initial="initial" animate="animate">
+      {/* Error Banner */}
+      {error && (
+        <div className="card" style={{ borderColor: 'var(--accent-red)' }}>
+          <div className="flex items-center justify-between">
+            <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{error}</p>
+            <button className="btn btn-ghost text-xs" onClick={refresh}>Retry</button>
+          </div>
+        </div>
+      )}
+
       {/* Player Card */}
-      <div
+      <motion.div
         className="card p-6"
         style={{ borderColor: 'var(--accent-gold)', borderWidth: '1px' }}
+        variants={fadeUp}
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -118,10 +141,10 @@ export default function DashboardPage() {
             </span>
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Non-Negotiables Status */}
-      <div className="card">
+      <motion.div className="card" variants={fadeUp}>
         <h2
           className="text-sm font-bold mb-3 uppercase tracking-wider"
           style={{ color: 'var(--text-secondary)' }}
@@ -154,10 +177,10 @@ export default function DashboardPage() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Revenue Hours Today */}
-      <div className="card">
+      <motion.div className="card" variants={fadeUp}>
         <div className="flex items-center justify-between mb-3">
           <h2
             className="text-sm font-bold uppercase tracking-wider"
@@ -176,10 +199,10 @@ export default function DashboardPage() {
           <span>{revenueH}h {revenueM}m</span>
           <span>{REVENUE_HOURS_TARGET}h target</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Today's Habits */}
-      <div className="card">
+      <motion.div className="card" variants={fadeUp}>
         <h2
           className="text-sm font-bold mb-3 uppercase tracking-wider"
           style={{ color: 'var(--text-secondary)' }}
@@ -213,11 +236,30 @@ export default function DashboardPage() {
             )
           })}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Mobile Review Link */}
+      <motion.div variants={fadeUp}>
+        <Link
+          href="/review"
+          className="card flex items-center justify-between no-underline lg:hidden"
+          style={{ borderColor: 'var(--accent-cyan)', borderWidth: '1px' }}
+        >
+          <div>
+            <span className="text-sm font-medium">End of Day Review</span>
+            <span className="text-xs block mt-0.5" style={{ color: 'var(--text-muted)' }}>
+              XP breakdown, weekly stats, muhasaba
+            </span>
+          </div>
+          <span style={{ color: 'var(--accent-cyan)' }}>&rarr;</span>
+        </Link>
+      </motion.div>
 
       {/* Wisdom Quote */}
-      <WisdomCard />
-    </div>
+      <motion.div variants={fadeUp}>
+        <WisdomCard />
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -232,7 +274,7 @@ function WisdomCard() {
         &ldquo;{wisdom.text}&rdquo;
       </p>
       <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
-        — {wisdom.source}
+        &mdash; {wisdom.source}
       </p>
     </div>
   )

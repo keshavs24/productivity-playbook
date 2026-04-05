@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useGameState } from '@/hooks/useGameState'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', shortcut: '1' },
@@ -14,6 +15,9 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
   const pathname = usePathname()
+  const { level, levelTitle, levelProgress, character, nextLevelXP } = useGameState()
+  const totalXP = character?.total_xp || 0
+  const streak = character?.current_streak || 0
 
   return (
     <aside
@@ -64,21 +68,21 @@ export default function Sidebar() {
       >
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold" style={{ color: 'var(--text-gold)' }}>
-            LVL 1 — Tawbah
+            LVL {level} — {levelTitle}
           </span>
           <span className="stat-number text-xs" style={{ color: 'var(--text-gold)' }}>
-            0 XP
+            {totalXP.toLocaleString()} XP
           </span>
         </div>
         <div className="progress-bar progress-xp">
-          <div className="progress-bar-fill" style={{ width: '0%' }} />
+          <div className="progress-bar-fill" style={{ width: `${(levelProgress * 100).toFixed(1)}%` }} />
         </div>
         <div className="flex items-center justify-between mt-2">
           <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            0-day streak
+            {streak}-day streak
           </span>
           <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
-            0/100 XP
+            {totalXP.toLocaleString()}/{nextLevelXP.toLocaleString()} XP
           </span>
         </div>
       </div>

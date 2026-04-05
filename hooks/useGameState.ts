@@ -6,6 +6,7 @@ import { calculateDailyXP, type DailyData, type XPBreakdown } from '@/lib/game/x
 import { getLevelFromXP, getLevelTitle, getLevelProgress, getXPToNextLevel, getLevelXP } from '@/lib/game/levels'
 import { getStreakMultiplier } from '@/lib/game/xp'
 import { processStreakUpdate, countMissedDays, type StreakState } from '@/lib/game/streaks'
+import { checkNewAchievements, type AchievementContext } from '@/lib/game/achievements'
 import {
   HABITS,
   HABIT_KEYS,
@@ -83,6 +84,7 @@ export interface BodyComp {
 
 interface GameState {
   loading: boolean
+  error: string | null
   character: Character | null
   dailyLog: DailyLog
   prayerLog: PrayerLog
@@ -152,6 +154,9 @@ export function useGameState(): GameState & GameActions {
   const [prayerLog, setPrayerLog] = useState<PrayerLog>(defaultPrayerLog)
   const [revenueBlocks, setRevenueBlocks] = useState<RevenueBlock[]>([])
   const [bodyComp, setBodyComp] = useState<BodyComp | null>(null)
+  const [hasNutritionLog, setHasNutritionLog] = useState(false)
+  const [hasLiftLog, setHasLiftLog] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const supabase = createClient()
   const today = getToday()
@@ -175,8 +180,8 @@ export function useGameState(): GameState & GameActions {
     winOfDay: dailyLog.win_of_day,
     dietScore: dailyLog.diet_score,
     prayers: prayerLog.prayers,
-    hasNutritionLog: false, // TODO: wire up when nutrition is implemented
-    hasLiftLog: false, // Will be computed from lift_sets
+    hasNutritionLog,
+    hasLiftLog,
     revenueHours: totalRevenueHours,
     nonNegotiablesKept: nonNegotiablesMet.all,
   }
@@ -198,12 +203,14 @@ export function useGameState(): GameState & GameActions {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { setLoading(false); return }
 
-      const [charRes, logRes, prayerRes, revenueRes, bodyRes] = await Promise.all([
+      const [charRes, logRes, prayerRes, revenueRes, bodyRes, nutritionRes, liftRes] = await Promise.all([
         supabase.from('characters').select('*').eq('user_id', user.id).single(),
         supabase.from('daily_logs').select('*').eq('user_id', user.id).eq('date', today).single(),
         supabase.from('prayer_logs').select('*').eq('user_id', user.id).eq('date', today).single(),
         supabase.from('revenue_blocks').select('*').eq('user_id', user.id).eq('date', today).order('start_time', { ascending: true }),
         supabase.from('body_comp').select('*').eq('user_id', user.id).eq('date', today).single(),
+        supabase.from('food_logs').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', today),
+        supabase.from('lift_sets').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', today),
       ])
 
       if (charRes.data) setCharacter(charRes.data)
@@ -211,8 +218,11 @@ export function useGameState(): GameState & GameActions {
       if (prayerRes.data) setPrayerLog(prayerRes.data)
       if (revenueRes.data) setRevenueBlocks(revenueRes.data)
       if (bodyRes.data) setBodyComp(bodyRes.data)
+      setHasNutritionLog((nutritionRes.count || 0) > 0)
+      setHasLiftLog((liftRes.count || 0) > 0)
     } catch (err) {
       console.error('Failed to fetch game state:', err)
+      setError(err instanceof Error ? err.message : 'Failed to load data')
     } finally {
       setLoading(false)
     }
@@ -366,10 +376,65 @@ export function useGameState(): GameState & GameActions {
       phoenix_active: newStreak.phoenixActive,
       phoenix_days: newStreak.phoenixDaysLeft,
     }).eq('id', character.id)
+
+    // Check for new achievements
+    try {
+      const { data: unlockedRows } = await supabase
+        .from('achievements')
+        .select('achievement_key')
+        .eq('user_id', user.id)
+
+      const unlockedSet = new Set((unlockedRows || []).map((r: { achievement_key: string }) => r.achievement_key))
+
+      const ctx: AchievementContext = {
+        bestStreak: newStreak.longestStreak,
+        phoenixCompleted: newStreak.phoenixActive,
+        habitCounts: {},
+        consecutiveHabit: {},
+        perfectDays: 0,
+        consecutivePerfectDays: 0,
+        perfectDaysThisWeek: 0,
+        attrStreaks: {},
+        maxMRR: dailyLog.mrr || 0,
+        maxWeeklyMRRGrowth: 0,
+        consecutiveMRRGrowthWeeks: 0,
+        consecutiveWeighIns: bodyComp ? 1 : 0,
+        bodyFatTarget: false,
+        lowestBF: bodyComp?.body_fat || 0,
+        weightLost: 0,
+        dietStreak: (dailyLog.diet_score || 0) >= 4 ? 1 : 0,
+        perfectDietStreak: (dailyLog.diet_score || 0) === 5 ? 1 : 0,
+        liftSessions: hasLiftLog ? 1 : 0,
+        prCount: 0,
+        totalSets: 0,
+        fardStreak: prayerLog.fajr_done ? 1 : 0,
+        witrStreak: 0,
+        fullPrayerStreak: 0,
+        nutritionStreak: hasNutritionLog ? 1 : 0,
+        calorieAccuracyStreak: 0,
+        level: getLevelFromXP(newTotalXP),
+        totalXP: newTotalXP,
+        weeklyReviews: 0,
+      }
+
+      const newlyUnlocked = checkNewAchievements(ctx, unlockedSet)
+      if (newlyUnlocked.length > 0) {
+        await supabase.from('achievements').insert(
+          newlyUnlocked.map((a) => ({
+            user_id: user.id,
+            achievement_key: a.key,
+            xp_awarded: a.xp,
+          }))
+        )
+      }
+    } catch (err) {
+      console.error('Achievement check failed:', err)
+    }
   }
 
   return {
     loading,
+    error,
     character,
     dailyLog,
     prayerLog,
