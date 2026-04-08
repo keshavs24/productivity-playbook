@@ -224,8 +224,7 @@ function HabitsTab({
               value={dailyLog.mrr ?? ''}
               onChange={(e) => updateDailyField('mrr', e.target.value ? Number(e.target.value) : null)}
               placeholder="0"
-              className="w-full px-3 py-2 rounded-md text-sm"
-              style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+              className="input"
             />
           </div>
           <div>
@@ -395,6 +394,7 @@ function LiftsTab() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [prMessage, setPrMessage] = useState<string | null>(null)
+  const [liftError, setLiftError] = useState<string | null>(null)
 
   const session = WORKOUT_SPLIT[selectedSplit]
   const exercises = [...session.exercises, ...ABS_EXERCISES]
@@ -423,55 +423,62 @@ function LiftsTab() {
   const saveSets = async () => {
     setSaving(true)
     setPrMessage(null)
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { setSaving(false); return }
+    setLiftError(null)
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) { setSaving(false); return }
 
-    // Query max weights for PR detection
-    const exerciseNames = Object.keys(sets)
-    const { data: prData } = await supabase
-      .from('lift_sets')
-      .select('exercise, weight')
-      .eq('user_id', user.id)
-      .in('exercise', exerciseNames)
-      .order('weight', { ascending: false })
+      // Query max weights for PR detection
+      const exerciseNames = Object.keys(sets)
+      const { data: prData } = await supabase
+        .from('lift_sets')
+        .select('exercise, weight')
+        .eq('user_id', user.id)
+        .in('exercise', exerciseNames)
+        .order('weight', { ascending: false })
 
-    const prMap: Record<string, number> = {}
-    for (const row of prData || []) {
-      if (!prMap[row.exercise] || row.weight > prMap[row.exercise]) {
-        prMap[row.exercise] = row.weight
-      }
-    }
-
-    const prs: string[] = []
-    const rows = Object.entries(sets).flatMap(([exercise, exerciseSets]) =>
-      exerciseSets.map((s, i) => {
-        const isPR = s.weight > 0 && s.weight > (prMap[exercise] || 0)
-        if (isPR) prs.push(`${exercise}: ${s.weight}lbs`)
-        return {
-          user_id: user.id,
-          date: today,
-          session_type: session.name,
-          exercise,
-          set_number: i + 1,
-          weight: s.weight,
-          reps: s.reps,
-          rpe: null,
-          is_pr: isPR,
-          notes: null,
+      const prMap: Record<string, number> = {}
+      for (const row of prData || []) {
+        if (!prMap[row.exercise] || row.weight > prMap[row.exercise]) {
+          prMap[row.exercise] = row.weight
         }
-      })
-    )
+      }
 
-    if (rows.length > 0) {
-      await supabase.from('lift_sets').insert(rows)
+      const prs: string[] = []
+      const rows = Object.entries(sets).flatMap(([exercise, exerciseSets]) =>
+        exerciseSets.map((s, i) => {
+          const isPR = s.weight > 0 && s.weight > (prMap[exercise] || 0)
+          if (isPR) prs.push(`${exercise}: ${s.weight}lbs`)
+          return {
+            user_id: user.id,
+            date: today,
+            session_type: session.name,
+            exercise,
+            set_number: i + 1,
+            weight: s.weight,
+            reps: s.reps,
+            rpe: null,
+            is_pr: isPR,
+            notes: null,
+          }
+        })
+      )
+
+      if (rows.length > 0) {
+        const { error } = await supabase.from('lift_sets').insert(rows)
+        if (error) throw error
+      }
+
+      if (prs.length > 0) {
+        setPrMessage(`PR! ${prs.join(', ')}`)
+      }
+
+      setSaved(true)
+    } catch (err) {
+      setLiftError(err instanceof Error ? err.message : 'Failed to save workout')
+    } finally {
+      setSaving(false)
     }
-
-    if (prs.length > 0) {
-      setPrMessage(`PR! ${prs.join(', ')}`)
-    }
-
-    setSaving(false)
-    setSaved(true)
   }
 
   return (
@@ -519,8 +526,7 @@ function LiftsTab() {
                   value={s.weight || ''}
                   onChange={(e) => updateSet(exercise.name, i, 'weight', Number(e.target.value))}
                   placeholder="lbs"
-                  className="w-20 px-2 py-1.5 rounded text-sm text-center"
-                  style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                  className="input input-sm w-20"
                 />
                 <span className="text-xs" style={{ color: 'var(--text-muted)' }}>×</span>
                 <input
@@ -528,8 +534,7 @@ function LiftsTab() {
                   value={s.reps || ''}
                   onChange={(e) => updateSet(exercise.name, i, 'reps', Number(e.target.value))}
                   placeholder="reps"
-                  className="w-16 px-2 py-1.5 rounded text-sm text-center"
-                  style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                  className="input input-sm w-16"
                 />
                 <button
                   onClick={() => removeSet(exercise.name, i)}
@@ -551,6 +556,9 @@ function LiftsTab() {
         )
       })}
 
+      {liftError && (
+        <p className="text-sm text-center" style={{ color: 'var(--accent-red)' }}>{liftError}</p>
+      )}
       {Object.keys(sets).length > 0 && !saved && (
         <button className="btn btn-primary w-full" onClick={saveSets} disabled={saving}>
           {saving ? 'Saving...' : 'Save Workout'}
@@ -582,15 +590,21 @@ function BodyTab({
   const [pmWeight, setPmWeight] = useState<string>(bodyComp?.pm_weight?.toString() || '')
   const [bodyFat, setBodyFat] = useState<string>(bodyComp?.body_fat?.toString() || '')
   const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
 
   const handleSave = async () => {
-    await saveBodyComp({
-      am_weight: amWeight ? Number(amWeight) : null,
-      pm_weight: pmWeight ? Number(pmWeight) : null,
-      body_fat: bodyFat ? Number(bodyFat) : null,
-    })
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    setSaveError(null)
+    try {
+      await saveBodyComp({
+        am_weight: amWeight ? Number(amWeight) : null,
+        pm_weight: pmWeight ? Number(pmWeight) : null,
+        body_fat: bodyFat ? Number(bodyFat) : null,
+      })
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save')
+    }
   }
 
   return (
@@ -607,8 +621,7 @@ function BodyTab({
             value={amWeight}
             onChange={(e) => setAmWeight(e.target.value)}
             placeholder="0.0"
-            className="w-full px-3 py-2 rounded-md text-sm text-center"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input input-sm"
           />
         </div>
         <div>
@@ -619,8 +632,7 @@ function BodyTab({
             value={pmWeight}
             onChange={(e) => setPmWeight(e.target.value)}
             placeholder="0.0"
-            className="w-full px-3 py-2 rounded-md text-sm text-center"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input input-sm"
           />
         </div>
         <div>
@@ -631,11 +643,13 @@ function BodyTab({
             value={bodyFat}
             onChange={(e) => setBodyFat(e.target.value)}
             placeholder="0.0"
-            className="w-full px-3 py-2 rounded-md text-sm text-center"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input input-sm"
           />
         </div>
       </div>
+      {saveError && (
+        <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{saveError}</p>
+      )}
       <button className="btn btn-primary w-full" onClick={handleSave}>
         {saved ? 'Saved!' : 'Save Body Comp'}
       </button>
@@ -671,6 +685,7 @@ function NutritionTab() {
   const [carbs, setCarbs] = useState('')
   const [fat, setFat] = useState('')
   const [saving, setSaving] = useState(false)
+  const [entryError, setEntryError] = useState<string | null>(null)
 
   // Fetch today's entries
   useEffect(() => {
@@ -691,10 +706,11 @@ function NutritionTab() {
   const addEntry = async () => {
     if (!foodName.trim()) return
     setSaving(true)
+    setEntryError(null)
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) { setSaving(false); return }
 
-    const { data } = await supabase.from('food_logs').insert({
+    const { data, error } = await supabase.from('food_logs').insert({
       user_id: user.id,
       date: today,
       meal_label: meal,
@@ -705,7 +721,11 @@ function NutritionTab() {
       fat: fat ? Number(fat) : null,
     }).select().single()
 
-    if (data) setEntries((prev) => [...prev, data])
+    if (error) {
+      setEntryError(error.message)
+    } else if (data) {
+      setEntries((prev) => [...prev, data])
+    }
     setFoodName('')
     setCalories('')
     setProtein('')
@@ -792,11 +812,14 @@ function NutritionTab() {
           style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
         />
         <div className="grid grid-cols-4 gap-2">
-          <input type="number" value={calories} onChange={(e) => setCalories(e.target.value)} placeholder="Cal" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
-          <input type="number" value={protein} onChange={(e) => setProtein(e.target.value)} placeholder="Pro g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
-          <input type="number" value={carbs} onChange={(e) => setCarbs(e.target.value)} placeholder="Carb g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
-          <input type="number" value={fat} onChange={(e) => setFat(e.target.value)} placeholder="Fat g" className="px-2 py-2 rounded-md text-sm text-center" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }} />
+          <input type="number" value={calories} onChange={(e) => setCalories(e.target.value)} placeholder="Cal" className="input input-sm" />
+          <input type="number" value={protein} onChange={(e) => setProtein(e.target.value)} placeholder="Pro g" className="input input-sm" />
+          <input type="number" value={carbs} onChange={(e) => setCarbs(e.target.value)} placeholder="Carb g" className="input input-sm" />
+          <input type="number" value={fat} onChange={(e) => setFat(e.target.value)} placeholder="Fat g" className="input input-sm" />
         </div>
+        {entryError && (
+          <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{entryError}</p>
+        )}
         <button className="btn btn-primary w-full" onClick={addEntry} disabled={saving}>
           {saving ? 'Adding...' : 'Add Food'}
         </button>

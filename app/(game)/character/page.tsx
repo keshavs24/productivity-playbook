@@ -144,16 +144,22 @@ export default function CharacterPage() {
 function AchievementsGrid() {
   const supabase = createClient()
   const [unlockedKeys, setUnlockedKeys] = useState<Set<string>>(new Set())
+  const [fetchError, setFetchError] = useState<string | null>(null)
 
   const fetchUnlocked = useCallback(async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
-    const { data } = await supabase
-      .from('achievements')
-      .select('key')
-      .eq('user_id', user.id)
-    if (data) {
-      setUnlockedKeys(new Set(data.map((a) => a.key)))
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data, error } = await supabase
+        .from('achievements')
+        .select('key')
+        .eq('user_id', user.id)
+      if (error) throw error
+      if (data) {
+        setUnlockedKeys(new Set(data.map((a) => a.key)))
+      }
+    } catch (err) {
+      setFetchError(err instanceof Error ? err.message : 'Failed to load achievements')
     }
   }, [])
 
@@ -167,6 +173,9 @@ function AchievementsGrid() {
       <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
         Achievements ({unlockedCount}/{ACHIEVEMENTS.length})
       </h2>
+      {fetchError && (
+        <p className="text-sm mb-3" style={{ color: 'var(--accent-red)' }}>{fetchError}</p>
+      )}
       {categories.map((cat) => {
         const badges = ACHIEVEMENTS.filter((a) => a.category === cat)
         const catUnlocked = badges.filter((a) => unlockedKeys.has(a.key)).length

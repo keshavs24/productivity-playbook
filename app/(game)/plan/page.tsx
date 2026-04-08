@@ -179,8 +179,7 @@ export default function PlanPage() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Goal title"
-            className="w-full px-3 py-2 rounded-md text-sm"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input"
             autoFocus
           />
           <div className="grid grid-cols-2 gap-3">
@@ -189,8 +188,7 @@ export default function PlanPage() {
               <select
                 value={goalType}
                 onChange={(e) => setGoalType(e.target.value)}
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               >
                 {GOAL_TYPES.map((t) => (
                   <option key={t.value} value={t.value}>{t.label}</option>
@@ -204,8 +202,7 @@ export default function PlanPage() {
                 value={targetValue}
                 onChange={(e) => setTargetValue(e.target.value)}
                 placeholder="e.g. 30000"
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               />
             </div>
           </div>
@@ -216,8 +213,7 @@ export default function PlanPage() {
                 type="date"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               />
             </div>
             <div>
@@ -225,8 +221,7 @@ export default function PlanPage() {
               <select
                 value={parentId || ''}
                 onChange={(e) => setParentId(e.target.value || null)}
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               >
                 <option value="">None (top-level)</option>
                 {goals.filter((g) => g.id !== editingId).map((g) => (
@@ -243,8 +238,7 @@ export default function PlanPage() {
                 value={leadMeasure}
                 onChange={(e) => setLeadMeasure(e.target.value)}
                 placeholder="What you control"
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               />
             </div>
             <div>
@@ -254,8 +248,7 @@ export default function PlanPage() {
                 value={lagMeasure}
                 onChange={(e) => setLagMeasure(e.target.value)}
                 placeholder="Result you want"
-                className="w-full px-3 py-2 rounded-md text-sm"
-                style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+                className="input"
               />
             </div>
           </div>

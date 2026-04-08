@@ -365,6 +365,34 @@ h1, h2, h3 {
 }
 
 /* ============================================================
+   FORM INPUTS — reusable dark input styles
+   ============================================================ */
+.input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  outline: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--accent-cyan);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input-sm {
+  padding: 0.375rem 0.5rem;
+  text-align: center;
+}
+
+/* ============================================================
    UTILITY: Safe area padding for mobile
    ============================================================ */
 .pb-safe {

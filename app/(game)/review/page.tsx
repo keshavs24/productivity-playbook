@@ -39,55 +39,56 @@ export default function ReviewPage() {
   const [nextFocus, setNextFocus] = useState('')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
 
   const weekStart = getWeekStart()
 
   const fetchWeekData = useCallback(async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
 
-    // Fetch this week's daily logs
-    const today = new Date().toISOString().split('T')[0]
-    const { data: logs } = await supabase
-      .from('daily_logs')
-      .select('xp_earned, habits, completed')
-      .eq('user_id', user.id)
-      .gte('date', weekStart)
-      .lte('date', today)
+      const today = new Date().toISOString().split('T')[0]
+      const [logsRes, blocksRes, reviewRes] = await Promise.all([
+        supabase
+          .from('daily_logs')
+          .select('xp_earned, habits, completed')
+          .eq('user_id', user.id)
+          .gte('date', weekStart)
+          .lte('date', today),
+        supabase
+          .from('revenue_blocks')
+          .select('duration_min')
+          .eq('user_id', user.id)
+          .gte('date', weekStart)
+          .lte('date', today),
+        supabase
+          .from('weekly_reviews')
+          .select('*')
+          .eq('user_id', user.id)
+          .eq('week_start', weekStart)
+          .single(),
+      ])
 
-    if (logs) {
+      const logs = logsRes.data || []
       const totalXP = logs.reduce((s, l) => s + (l.xp_earned || 0), 0)
       const avgHabits = logs.length > 0
         ? logs.reduce((s, l) => s + Object.values(l.habits || {}).filter(Boolean).length, 0) / logs.length
         : 0
       const daysCompleted = logs.filter((l) => l.completed).length
-
-      // Fetch revenue blocks this week
-      const { data: blocks } = await supabase
-        .from('revenue_blocks')
-        .select('duration_min')
-        .eq('user_id', user.id)
-        .gte('date', weekStart)
-        .lte('date', today)
-
-      const totalRevenue = (blocks || []).reduce((s, b) => s + (b.duration_min || 0), 0) / 60
+      const totalRevenue = (blocksRes.data || []).reduce((s, b) => s + (b.duration_min || 0), 0) / 60
 
       setWeekStats({ totalXP, avgHabits, totalRevenue, daysCompleted, nonNegDays: daysCompleted })
-    }
 
-    // Check for existing weekly review
-    const { data: review } = await supabase
-      .from('weekly_reviews')
-      .select('*')
-      .eq('user_id', user.id)
-      .eq('week_start', weekStart)
-      .single()
-
-    if (review) {
-      setWeeklyReview(review)
-      setWhatWorked(review.what_worked || '')
-      setWhatDidnt(review.what_didnt || '')
-      setNextFocus(review.next_focus || '')
+      const review = reviewRes.data
+      if (review) {
+        setWeeklyReview(review)
+        setWhatWorked(review.what_worked || '')
+        setWhatDidnt(review.what_didnt || '')
+        setNextFocus(review.next_focus || '')
+      }
+    } catch (err) {
+      console.error('Failed to fetch week data:', err)
     }
   }, [weekStart])
 
@@ -95,22 +96,30 @@ export default function ReviewPage() {
 
   const saveWeeklyReview = async () => {
     setSaving(true)
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { setSaving(false); return }
+    setSaveError(null)
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) { setSaving(false); return }
 
-    await supabase.from('weekly_reviews').upsert({
-      user_id: user.id,
-      week_start: weekStart,
-      stats: weekStats,
-      what_worked: whatWorked.trim() || null,
-      what_didnt: whatDidnt.trim() || null,
-      next_focus: nextFocus.trim() || null,
-      bonus_xp: 50,
-    }, { onConflict: 'user_id,week_start' })
+      const { error } = await supabase.from('weekly_reviews').upsert({
+        user_id: user.id,
+        week_start: weekStart,
+        stats: weekStats,
+        what_worked: whatWorked.trim() || null,
+        what_didnt: whatDidnt.trim() || null,
+        next_focus: nextFocus.trim() || null,
+        bonus_xp: 50,
+      }, { onConflict: 'user_id,week_start' })
 
-    setSaving(false)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+      if (error) throw error
+
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save review')
+    } finally {
+      setSaving(false)
+    }
   }
 
   if (loading) {
@@ -275,6 +284,9 @@ export default function ReviewPage() {
         <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
           Weekly Review {saved && <span style={{ color: 'var(--accent-green)' }}>— Saved! +50 XP</span>}
         </h2>
+        {saveError && (
+          <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{saveError}</p>
+        )}
         <div>
           <label className="text-xs block mb-1" style={{ color: 'var(--text-muted)' }}>What worked this week?</label>
           <textarea
@@ -282,8 +294,7 @@ export default function ReviewPage() {
             onChange={(e) => setWhatWorked(e.target.value)}
             placeholder="Wins, breakthroughs, habits that stuck..."
             rows={3}
-            className="w-full px-3 py-2 rounded-md text-sm resize-none"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input resize-none"
           />
         </div>
         <div>
@@ -293,8 +304,7 @@ export default function ReviewPage() {
             onChange={(e) => setWhatDidnt(e.target.value)}
             placeholder="Missed habits, wasted time, blockers..."
             rows={3}
-            className="w-full px-3 py-2 rounded-md text-sm resize-none"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input resize-none"
           />
         </div>
         <div>
@@ -304,8 +314,7 @@ export default function ReviewPage() {
             onChange={(e) => setNextFocus(e.target.value)}
             placeholder="Top priority, key daily action, commitment..."
             rows={3}
-            className="w-full px-3 py-2 rounded-md text-sm resize-none"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input resize-none"
           />
         </div>
         <button className="btn btn-primary w-full" onClick={saveWeeklyReview} disabled={saving}>
@@ -322,7 +331,7 @@ export default function ReviewPage() {
           &ldquo;{wisdom.text}&rdquo;
         </p>
         <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
-          — {wisdom.source}
+          &mdash; {wisdom.source}
         </p>
       </div>
     </div>

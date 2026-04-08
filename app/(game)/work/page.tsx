@@ -34,6 +34,7 @@ export default function WorkPage() {
   const [showSaveForm, setShowSaveForm] = useState(false)
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('deep_work')
+  const [saveError, setSaveError] = useState<string | null>(null)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const today = new Date().toISOString().split('T')[0]
@@ -59,25 +60,30 @@ export default function WorkPage() {
 
   const saveBlock = async () => {
     if (!startTime) return
+    setSaveError(null)
     const endTime = new Date()
     const durationMin = Math.round((endTime.getTime() - startTime.getTime()) / 60000)
 
-    await addRevenueBlock({
-      date: today,
-      start_time: startTime.toISOString(),
-      end_time: endTime.toISOString(),
-      duration_min: durationMin,
-      description: description.trim() || null,
-      category,
-      is_revenue: category !== 'admin',
-    })
+    try {
+      await addRevenueBlock({
+        date: today,
+        start_time: startTime.toISOString(),
+        end_time: endTime.toISOString(),
+        duration_min: durationMin,
+        description: description.trim() || null,
+        category,
+        is_revenue: category !== 'admin',
+      })
 
-    setShowSaveForm(false)
-    setDescription('')
-    setCategory('deep_work')
-    setElapsed(0)
-    setStartTime(null)
-    await refresh()
+      setShowSaveForm(false)
+      setDescription('')
+      setCategory('deep_work')
+      setElapsed(0)
+      setStartTime(null)
+      await refresh()
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save block')
+    }
   }
 
   const discardBlock = () => {
@@ -139,18 +145,15 @@ export default function WorkPage() {
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
               Session: {formatDuration(Math.round(elapsed / 60))}
             </p>
+            {saveError && (
+              <p className="text-sm" style={{ color: 'var(--accent-red)' }}>{saveError}</p>
+            )}
             <input
               type="text"
               placeholder="What did you work on?"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg text-sm"
-              style={{
-                background: 'var(--bg-primary)',
-                border: '1px solid var(--border-medium)',
-                color: 'var(--text-primary)',
-                outline: 'none',
-              }}
+              className="input"
               autoFocus
             />
             <div className="flex gap-2 justify-center flex-wrap">

@@ -179,7 +179,7 @@ async function buildAchievementContext(
       }
       consecutiveHabit[k] = Math.max(consecutiveHabit[k] || 0, habitStreakCurrent[k] || 0)
     }
-    if (Object.keys(habits).length < 7) allHabits = false
+    if (Object.keys(habits).length < 7 || !Object.values(habits).every(Boolean)) allHabits = false
 
     if (allHabits) {
       perfectDays++
@@ -255,7 +255,7 @@ async function buildAchievementContext(
     if (allFard) { fardStreak++; maxFardStreak = Math.max(maxFardStreak, fardStreak) }
     else fardStreak = 0
 
-    if (p['isha_witr']) { witrStreak++; maxWitrStreak = Math.max(maxWitrStreak, witrStreak) }
+    if (p['witr']) { witrStreak++; maxWitrStreak = Math.max(maxWitrStreak, witrStreak) }
     else witrStreak = 0
 
     const allPrayers = Object.values(p).filter(Boolean).length >= 11
@@ -278,9 +278,21 @@ async function buildAchievementContext(
     else nutritionStreak = 0
   }
 
+  // Phoenix completed: user came back after a streak break and logged 3+ days
+  const phoenixCompleted = bestStreak >= 3 && logs.some((l, i) => {
+    if (i < 3 || !l.completed) return false
+    // Check if there was a gap before this run of 3+
+    const prev = logs[i - 1]
+    if (!prev) return false
+    const curr = new Date(l.date)
+    const prevD = new Date(prev.date)
+    const gap = Math.round((curr.getTime() - prevD.getTime()) / 86400000)
+    return gap > 1
+  })
+
   return {
     bestStreak,
-    phoenixCompleted: false,
+    phoenixCompleted,
     habitCounts,
     consecutiveHabit,
     perfectDays,
@@ -354,6 +366,8 @@ export function useGameState(): GameState & GameActions {
   const [error, setError] = useState<string | null>(null)
 
   const supabase = createClient()
+
+  // Compute today fresh on each render so midnight rollovers work
   const today = getToday()
 
   // Compute XP breakdown from current state
@@ -392,20 +406,22 @@ export function useGameState(): GameState & GameActions {
   const nextLevelXP = getLevelXP(Math.min(level + 1, 50))
   const streakMultiplier = getStreakMultiplier(streak)
 
-  // Fetch all data
+  // Fetch all data — recompute `today` inside callback to handle midnight rollover
   const fetchData = useCallback(async () => {
+    const fetchToday = getToday()
     try {
+      setError(null)
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { setLoading(false); return }
 
       const [charRes, logRes, prayerRes, revenueRes, bodyRes, nutritionRes, liftRes] = await Promise.all([
         supabase.from('characters').select('*').eq('user_id', user.id).single(),
-        supabase.from('daily_logs').select('*').eq('user_id', user.id).eq('date', today).single(),
-        supabase.from('prayer_logs').select('*').eq('user_id', user.id).eq('date', today).single(),
-        supabase.from('revenue_blocks').select('*').eq('user_id', user.id).eq('date', today).order('start_time', { ascending: true }),
-        supabase.from('body_comp').select('*').eq('user_id', user.id).eq('date', today).single(),
-        supabase.from('food_logs').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', today),
-        supabase.from('lift_sets').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', today),
+        supabase.from('daily_logs').select('*').eq('user_id', user.id).eq('date', fetchToday).single(),
+        supabase.from('prayer_logs').select('*').eq('user_id', user.id).eq('date', fetchToday).single(),
+        supabase.from('revenue_blocks').select('*').eq('user_id', user.id).eq('date', fetchToday).order('start_time', { ascending: true }),
+        supabase.from('body_comp').select('*').eq('user_id', user.id).eq('date', fetchToday).single(),
+        supabase.from('food_logs').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', fetchToday),
+        supabase.from('lift_sets').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('date', fetchToday),
       ])
 
       if (charRes.data) setCharacter(charRes.data)
@@ -421,7 +437,8 @@ export function useGameState(): GameState & GameActions {
     } finally {
       setLoading(false)
     }
-  }, [today])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     fetchData()
@@ -535,8 +552,8 @@ export function useGameState(): GameState & GameActions {
         .from('daily_logs')
         .select('date, completed')
         .eq('user_id', user.id)
-        .order('date', { ascending: true })
-        .limit(30)
+        .order('date', { ascending: false })
+        .limit(100)
 
       const missedDays = countMissedDays(recentLogs || [], today)
 
@@ -577,28 +594,28 @@ export function useGameState(): GameState & GameActions {
 
       // Check for new achievements
       try {
-      const { data: unlockedRows } = await supabase
-        .from('achievements')
-        .select('key')
-        .eq('user_id', user.id)
+        const { data: unlockedRows } = await supabase
+          .from('achievements')
+          .select('key')
+          .eq('user_id', user.id)
 
-      const unlockedSet = new Set((unlockedRows || []).map((r: { key: string }) => r.key))
+        const unlockedSet = new Set((unlockedRows || []).map((r: { key: string }) => r.key))
 
-      const ctx = await buildAchievementContext(supabase, user.id, newStreak.longestStreak, newTotalXP)
+        const ctx = await buildAchievementContext(supabase, user.id, newStreak.longestStreak, newTotalXP)
 
-      const newlyUnlocked = checkNewAchievements(ctx, unlockedSet)
-      if (newlyUnlocked.length > 0) {
-        await supabase.from('achievements').insert(
-          newlyUnlocked.map((a) => ({
-            user_id: user.id,
-            key: a.key,
-            xp_awarded: a.xp,
-          }))
-        )
+        const newlyUnlocked = checkNewAchievements(ctx, unlockedSet)
+        if (newlyUnlocked.length > 0) {
+          await supabase.from('achievements').insert(
+            newlyUnlocked.map((a) => ({
+              user_id: user.id,
+              key: a.key,
+              xp_awarded: a.xp,
+            }))
+          )
+        }
+      } catch (err) {
+        console.error('Achievement check failed:', err)
       }
-    } catch (err) {
-      console.error('Achievement check failed:', err)
-    }
     } catch (err) {
       console.error('Failed to complete day:', err)
       setError(err instanceof Error ? err.message : 'Failed to complete day')

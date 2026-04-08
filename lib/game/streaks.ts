@@ -59,8 +59,8 @@ export function countMissedDays(
   const todayDate = new Date(today)
   let missed = 0
 
-  // Walk backwards from yesterday
-  for (let d = 1; d <= 10; d++) {
+  // Walk backwards from yesterday (up to 90 days for reliable Phoenix detection)
+  for (let d = 1; d <= 90; d++) {
     const checkDate = new Date(todayDate)
     checkDate.setDate(checkDate.getDate() - d)
     const dateStr = checkDate.toISOString().split('T')[0]
