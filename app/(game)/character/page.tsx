@@ -145,6 +145,7 @@ function AchievementsGrid() {
   const supabase = createClient()
   const [unlockedKeys, setUnlockedKeys] = useState<Set<string>>(new Set())
   const [fetchError, setFetchError] = useState<string | null>(null)
+  const [expandedCat, setExpandedCat] = useState<string | null>(null)
 
   const fetchUnlocked = useCallback(async () => {
     try {
@@ -168,26 +169,56 @@ function AchievementsGrid() {
   const categories = getAchievementCategories()
   const unlockedCount = unlockedKeys.size
 
+  // Overall progress
+  const overallPct = ACHIEVEMENTS.length > 0 ? Math.round((unlockedCount / ACHIEVEMENTS.length) * 100) : 0
+
   return (
     <div className="card">
-      <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
+      <h2 className="text-sm font-bold mb-2 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
         Achievements ({unlockedCount}/{ACHIEVEMENTS.length})
       </h2>
+      {/* Overall progress bar */}
+      <div className="progress-bar progress-xp mb-4" style={{ height: '6px' }}>
+        <div className="progress-bar-fill" style={{ width: `${overallPct}%` }} />
+      </div>
       {fetchError && (
         <p className="text-sm mb-3" style={{ color: 'var(--accent-red)' }}>{fetchError}</p>
       )}
       {categories.map((cat) => {
         const badges = ACHIEVEMENTS.filter((a) => a.category === cat)
         const catUnlocked = badges.filter((a) => unlockedKeys.has(a.key)).length
+        const isExpanded = expandedCat === cat
+        const catPct = Math.round((catUnlocked / badges.length) * 100)
         return (
           <div key={cat} className="mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase" style={{ color: 'var(--text-muted)' }}>
-                {cat}
-              </span>
-              <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
+            <button
+              onClick={() => setExpandedCat(isExpanded ? null : cat)}
+              className="flex items-center justify-between w-full mb-2"
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase" style={{ color: 'var(--text-muted)' }}>
+                  {cat}
+                </span>
+                <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                  {catPct}%
+                </span>
+              </div>
+              <span className="text-xs" style={{ color: catUnlocked === badges.length ? 'var(--accent-green)' : 'var(--text-muted)' }}>
                 {catUnlocked}/{badges.length}
               </span>
+            </button>
+            {/* Category mini progress */}
+            <div className="progress-bar mb-2" style={{ height: '3px' }}>
+              <div
+                className="progress-bar-fill"
+                style={{
+                  width: `${catPct}%`,
+                  background: catUnlocked === badges.length
+                    ? 'var(--accent-green)'
+                    : 'linear-gradient(90deg, var(--accent-gold-dim), var(--accent-gold))',
+                }}
+              />
             </div>
             <div className="grid grid-cols-5 sm:grid-cols-6 gap-2">
               {badges.map((badge) => {
@@ -198,19 +229,48 @@ function AchievementsGrid() {
                     className="text-center p-2 rounded-lg"
                     style={{
                       background: unlocked ? 'rgba(245, 158, 11, 0.1)' : 'var(--bg-primary)',
-                      opacity: unlocked ? 1 : 0.4,
+                      opacity: unlocked ? 1 : 0.5,
                       border: unlocked ? '1px solid var(--accent-gold)' : '1px solid transparent',
                     }}
                     title={`${badge.name}: ${badge.description} (+${badge.xp} XP)`}
                   >
                     <div className="text-xl">{badge.icon}</div>
-                    <div className="text-[10px] mt-1 leading-tight" style={{ color: 'var(--text-muted)' }}>
+                    <div className="text-[10px] mt-1 leading-tight" style={{ color: unlocked ? 'var(--text-gold)' : 'var(--text-muted)' }}>
                       {badge.name}
                     </div>
                   </div>
                 )
               })}
             </div>
+            {/* Expanded detail — show descriptions for this category */}
+            {isExpanded && (
+              <div className="mt-2 space-y-1">
+                {badges.map((badge) => {
+                  const unlocked = unlockedKeys.has(badge.key)
+                  return (
+                    <div
+                      key={badge.key}
+                      className="flex items-center gap-2 px-2 py-1.5 rounded-md text-xs"
+                      style={{
+                        background: unlocked ? 'rgba(245, 158, 11, 0.05)' : 'transparent',
+                        color: unlocked ? 'var(--text-primary)' : 'var(--text-muted)',
+                      }}
+                    >
+                      <span>{badge.icon}</span>
+                      <span className="font-medium flex-1">{badge.name}</span>
+                      <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
+                        {badge.description}
+                      </span>
+                      {unlocked ? (
+                        <span style={{ color: 'var(--accent-green)' }}>✓</span>
+                      ) : (
+                        <span className="stat-number" style={{ color: 'var(--text-muted)' }}>+{badge.xp}</span>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
           </div>
         )
       })}

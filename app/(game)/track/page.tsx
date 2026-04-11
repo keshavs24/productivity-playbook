@@ -1,7 +1,10 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { useGameState } from '@/hooks/useGameState'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useGameState, type CompleteDayResult } from '@/hooks/useGameState'
+import { useToast } from '@/components/ui/GameToast'
+import { getLevelTitle } from '@/lib/game/levels'
 import {
   HABITS,
   HABIT_KEYS,
@@ -21,6 +24,7 @@ const TABS = ['Habits', 'Prayers', 'Nutrition', 'Lifts', 'Body'] as const
 type Tab = typeof TABS[number]
 
 export default function TrackPage() {
+  const gameState = useGameState()
   const {
     loading,
     dailyLog,
@@ -34,9 +38,25 @@ export default function TrackPage() {
     togglePrayer,
     saveBodyComp,
     completeDay,
-  } = useGameState()
+  } = gameState
 
   const [activeTab, setActiveTab] = useState<Tab>('Habits')
+
+  // Compute tab completion status
+  const habitsCompleted = Object.values(dailyLog.habits).filter(Boolean).length
+  const habitsTotal = HABIT_KEYS.length
+  const attrsRated = Object.values(dailyLog.attributes).filter((v) => v > 0).length
+  const prayersDone = Object.values(prayerLog.prayers).filter(Boolean).length
+  const prayersTotal = PRAYERS.length
+
+  const tabStatus: Record<Tab, 'done' | 'partial' | 'empty'> = {
+    Habits: habitsCompleted === habitsTotal && attrsRated === ATTRIBUTES.length ? 'done'
+      : (habitsCompleted > 0 || attrsRated > 0) ? 'partial' : 'empty',
+    Prayers: prayersDone >= 5 ? 'done' : prayersDone > 0 ? 'partial' : 'empty',
+    Nutrition: 'empty', // Updated by NutritionTab internally
+    Lifts: 'empty',
+    Body: bodyComp?.am_weight || bodyComp?.pm_weight ? 'done' : 'empty',
+  }
 
   if (loading) {
     return (
@@ -61,26 +81,47 @@ export default function TrackPage() {
         )}
       </div>
 
-      {/* Tab Bar */}
-      <div
-        className="flex gap-1 p-1 rounded-lg overflow-x-auto"
-        style={{ background: 'var(--bg-card)' }}
-      >
-        {TABS.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
-            style={{
-              background: activeTab === tab ? 'var(--bg-hover)' : 'transparent',
-              color: activeTab === tab ? 'var(--text-primary)' : 'var(--text-muted)',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            {tab}
-          </button>
-        ))}
+      {/* Progress Summary Chips */}
+      <div className="progress-mini">
+        <span className={`progress-chip ${habitsCompleted === habitsTotal ? 'progress-chip-done' : habitsCompleted > 0 ? 'progress-chip-partial' : ''}`}>
+          {habitsCompleted === habitsTotal ? '✓' : ''} Habits {habitsCompleted}/{habitsTotal}
+        </span>
+        <span className={`progress-chip ${prayersDone >= 5 ? 'progress-chip-done' : prayersDone > 0 ? 'progress-chip-partial' : ''}`}>
+          {prayersDone >= 5 ? '✓' : ''} Prayers {prayersDone}/{prayersTotal}
+        </span>
+        <span className={`progress-chip ${attrsRated === ATTRIBUTES.length ? 'progress-chip-done' : attrsRated > 0 ? 'progress-chip-partial' : ''}`}>
+          {attrsRated === ATTRIBUTES.length ? '✓' : ''} Attrs {attrsRated}/{ATTRIBUTES.length}
+        </span>
+        {dailyLog.diet_score && (
+          <span className="progress-chip progress-chip-done">
+            Diet {dailyLog.diet_score}/5
+          </span>
+        )}
+      </div>
+
+      {/* Tab Bar — sticky */}
+      <div className="tab-bar-sticky">
+        <div
+          className="flex gap-1 p-1 rounded-lg overflow-x-auto"
+          style={{ background: 'var(--bg-card)' }}
+        >
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+              style={{
+                background: activeTab === tab ? 'var(--bg-hover)' : 'transparent',
+                color: activeTab === tab ? 'var(--text-primary)' : 'var(--text-muted)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {tab}
+              <span className={`tab-dot ${tabStatus[tab] === 'done' ? 'tab-dot-done' : tabStatus[tab] === 'partial' ? 'tab-dot-partial' : 'tab-dot-empty'}`} />
+            </button>
+          ))}
+        </div>
       </div>
 
       {activeTab === 'Habits' && (
@@ -125,14 +166,69 @@ function HabitsTab({
   toggleHabit: ReturnType<typeof useGameState>['toggleHabit']
   setAttribute: ReturnType<typeof useGameState>['setAttribute']
   updateDailyField: ReturnType<typeof useGameState>['updateDailyField']
-  completeDay: ReturnType<typeof useGameState>['completeDay']
+  completeDay: () => Promise<CompleteDayResult | null>
 }) {
   const [completing, setCompleting] = useState(false)
+  const [justCompleted, setJustCompleted] = useState(false)
+  const { showToast } = useToast()
 
   const handleComplete = async () => {
     setCompleting(true)
-    await completeDay()
+    const result = await completeDay()
     setCompleting(false)
+
+    if (!result) return
+
+    setJustCompleted(true)
+
+    // XP toast
+    showToast({
+      type: 'xp',
+      title: `+${result.xpEarned} XP Earned`,
+      subtitle: `Day complete! Streak: ${result.newStreak} days`,
+      xp: result.xpEarned,
+    })
+
+    // Perfect day toast
+    if (result.isPerfectDay) {
+      setTimeout(() => showToast({
+        type: 'perfect',
+        title: 'Perfect Day!',
+        subtitle: 'All 7 habits completed — +30 bonus XP',
+        icon: '⭐',
+      }), 600)
+    }
+
+    // Level up toast
+    if (result.newLevel > result.oldLevel) {
+      setTimeout(() => showToast({
+        type: 'levelup',
+        title: `Level Up! Level ${result.newLevel}`,
+        subtitle: getLevelTitle(result.newLevel),
+        icon: '🎖️',
+      }), 1200)
+    }
+
+    // Phoenix toast
+    if (result.phoenixActivated) {
+      setTimeout(() => showToast({
+        type: 'phoenix',
+        title: 'Phoenix Rising!',
+        subtitle: '2x XP multiplier for 3 days — welcome back!',
+        icon: '🔥',
+      }), 1800)
+    }
+
+    // Achievement toasts
+    result.achievements.forEach((a, i) => {
+      setTimeout(() => showToast({
+        type: 'achievement',
+        title: a.name,
+        subtitle: 'Achievement Unlocked!',
+        icon: a.icon,
+        xp: a.xp,
+      }), 2400 + i * 600)
+    })
   }
 
   return (
@@ -173,7 +269,7 @@ function HabitsTab({
         </div>
       </div>
 
-      {/* Attributes */}
+      {/* Attributes — larger 44px touch targets */}
       <div className="card">
         <h2 className="text-sm font-bold mb-4 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
           Attributes (1-5)
@@ -193,7 +289,7 @@ function HabitsTab({
                     <button
                       key={n}
                       onClick={() => setAttribute(key, n)}
-                      className="w-8 h-8 rounded-md text-xs font-bold transition-colors"
+                      className="w-10 h-10 rounded-md text-sm font-bold transition-colors"
                       style={{
                         background: value >= n ? 'var(--accent-cyan)' : 'var(--bg-hover)',
                         color: value >= n ? '#fff' : 'var(--text-muted)',
@@ -234,7 +330,7 @@ function HabitsTab({
                 <button
                   key={n}
                   onClick={() => updateDailyField('diet_score', n)}
-                  className="w-8 h-8 rounded-md text-xs font-bold"
+                  className="w-10 h-10 rounded-md text-sm font-bold"
                   style={{
                     background: (dailyLog.diet_score || 0) >= n ? 'var(--accent-green)' : 'var(--bg-hover)',
                     color: (dailyLog.diet_score || 0) >= n ? '#fff' : 'var(--text-muted)',
@@ -255,8 +351,7 @@ function HabitsTab({
             value={dailyLog.win_of_day ?? ''}
             onChange={(e) => updateDailyField('win_of_day', e.target.value || null)}
             placeholder="What was your biggest win today?"
-            className="w-full px-3 py-2 rounded-md text-sm"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input"
           />
         </div>
         <div>
@@ -266,32 +361,51 @@ function HabitsTab({
             value={dailyLog.niyyah ?? ''}
             onChange={(e) => updateDailyField('niyyah', e.target.value || null)}
             placeholder="Today I intend to..."
-            className="w-full px-3 py-2 rounded-md text-sm"
-            style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-subtle)', color: 'var(--text-primary)', outline: 'none' }}
+            className="input"
           />
         </div>
       </div>
 
       {/* Complete Day */}
-      {!dailyLog.completed && (
-        <button
-          className="btn btn-gold w-full text-lg py-4"
-          onClick={handleComplete}
-          disabled={completing}
-        >
-          {completing ? 'Saving...' : `Complete Day (+${xpBreakdown.total} XP)`}
-        </button>
-      )}
-      {dailyLog.completed && (
-        <div className="card text-center" style={{ borderColor: 'var(--accent-green)' }}>
-          <p className="text-lg font-bold" style={{ color: 'var(--accent-green)' }}>
-            Day Complete!
-          </p>
-          <p className="stat-number text-sm mt-1" style={{ color: 'var(--text-gold)' }}>
-            +{dailyLog.xp_earned} XP earned
-          </p>
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {!dailyLog.completed && !justCompleted && (
+          <motion.button
+            key="complete-btn"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="btn btn-gold w-full text-lg py-4"
+            onClick={handleComplete}
+            disabled={completing}
+          >
+            {completing ? 'Saving...' : `Complete Day (+${xpBreakdown.total} XP)`}
+          </motion.button>
+        )}
+        {(dailyLog.completed || justCompleted) && (
+          <motion.div
+            key="complete-card"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="card text-center celebration-card"
+            style={{ borderColor: 'var(--accent-green)', borderWidth: '1px' }}
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.1 }}
+              className="text-4xl mb-2"
+            >
+              ✨
+            </motion.div>
+            <p className="text-lg font-bold" style={{ color: 'var(--accent-green)' }}>
+              Day Complete!
+            </p>
+            <p className="stat-number text-sm mt-1" style={{ color: 'var(--text-gold)' }}>
+              +{dailyLog.xp_earned || xpBreakdown.total} XP earned
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

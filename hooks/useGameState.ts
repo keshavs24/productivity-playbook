@@ -21,6 +21,16 @@ function getToday(): string {
   return new Date().toISOString().split('T')[0]
 }
 
+export interface CompleteDayResult {
+  xpEarned: number
+  newLevel: number
+  oldLevel: number
+  newStreak: number
+  isPerfectDay: boolean
+  phoenixActivated: boolean
+  achievements: { key: string; name: string; icon: string; xp: number }[]
+}
+
 export interface Character {
   id: string
   user_id: string
@@ -111,7 +121,7 @@ interface GameActions {
   togglePrayer: (key: string) => Promise<void>
   saveBodyComp: (data: Partial<BodyComp>) => Promise<void>
   addRevenueBlock: (block: Omit<RevenueBlock, 'id'>) => Promise<void>
-  completeDay: () => Promise<void>
+  completeDay: () => Promise<CompleteDayResult | null>
   refresh: () => Promise<void>
 }
 
@@ -532,13 +542,14 @@ export function useGameState(): GameState & GameActions {
     }
   }
 
-  const completeDay = async () => {
+  const completeDay = async (): Promise<CompleteDayResult | null> => {
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user || !character) return
+    if (!user || !character) return null
 
     try {
       // Calculate final XP
       const finalXP = xpBreakdown.total
+      const oldLevel = getLevelFromXP(character.total_xp)
 
       // Update daily log
       await upsertDailyLog({
@@ -565,34 +576,40 @@ export function useGameState(): GameState & GameActions {
         phoenixDaysLeft: character.phoenix_days,
       }
 
-      const newStreak = processStreakUpdate(currentState, true, missedDays)
+      const newStreakState = processStreakUpdate(currentState, true, missedDays)
       const newTotalXP = character.total_xp + finalXP
+      const newLevel = getLevelFromXP(newTotalXP)
 
       // Update character
       const updatedChar = {
         ...character,
         total_xp: newTotalXP,
-        current_streak: newStreak.currentStreak,
-        longest_streak: newStreak.longestStreak,
-        streak_freezes: newStreak.freezesRemaining,
-        phoenix_active: newStreak.phoenixActive,
-        phoenix_days: newStreak.phoenixDaysLeft,
+        current_streak: newStreakState.currentStreak,
+        longest_streak: newStreakState.longestStreak,
+        streak_freezes: newStreakState.freezesRemaining,
+        phoenix_active: newStreakState.phoenixActive,
+        phoenix_days: newStreakState.phoenixDaysLeft,
       }
 
       setCharacter(updatedChar)
 
       const { error: charError } = await supabase.from('characters').update({
         total_xp: newTotalXP,
-        current_streak: newStreak.currentStreak,
-        longest_streak: newStreak.longestStreak,
-        streak_freezes: newStreak.freezesRemaining,
-        phoenix_active: newStreak.phoenixActive,
-        phoenix_days: newStreak.phoenixDaysLeft,
+        current_streak: newStreakState.currentStreak,
+        longest_streak: newStreakState.longestStreak,
+        streak_freezes: newStreakState.freezesRemaining,
+        phoenix_active: newStreakState.phoenixActive,
+        phoenix_days: newStreakState.phoenixDaysLeft,
       }).eq('id', character.id)
 
       if (charError) throw charError
 
+      // Check for perfect day
+      const isPerfectDay = Object.keys(dailyLog.habits).length >= 7 &&
+        Object.values(dailyLog.habits).every(Boolean)
+
       // Check for new achievements
+      let unlockedAchievements: { key: string; name: string; icon: string; xp: number }[] = []
       try {
         const { data: unlockedRows } = await supabase
           .from('achievements')
@@ -601,7 +618,7 @@ export function useGameState(): GameState & GameActions {
 
         const unlockedSet = new Set((unlockedRows || []).map((r: { key: string }) => r.key))
 
-        const ctx = await buildAchievementContext(supabase, user.id, newStreak.longestStreak, newTotalXP)
+        const ctx = await buildAchievementContext(supabase, user.id, newStreakState.longestStreak, newTotalXP)
 
         const newlyUnlocked = checkNewAchievements(ctx, unlockedSet)
         if (newlyUnlocked.length > 0) {
@@ -612,13 +629,30 @@ export function useGameState(): GameState & GameActions {
               xp_awarded: a.xp,
             }))
           )
+          unlockedAchievements = newlyUnlocked.map(a => ({
+            key: a.key,
+            name: a.name,
+            icon: a.icon,
+            xp: a.xp,
+          }))
         }
       } catch (err) {
         console.error('Achievement check failed:', err)
       }
+
+      return {
+        xpEarned: finalXP,
+        newLevel,
+        oldLevel,
+        newStreak: newStreakState.currentStreak,
+        isPerfectDay,
+        phoenixActivated: newStreakState.phoenixActive && !character.phoenix_active,
+        achievements: unlockedAchievements,
+      }
     } catch (err) {
       console.error('Failed to complete day:', err)
       setError(err instanceof Error ? err.message : 'Failed to complete day')
+      return null
     }
   }
 

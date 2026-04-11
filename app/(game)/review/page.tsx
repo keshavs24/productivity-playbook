@@ -14,11 +14,17 @@ interface WeekStats {
   nonNegDays: number
 }
 
-function getWeekStart(): string {
+function getWeekStart(weeksAgo = 0): string {
   const d = new Date()
   const day = d.getDay()
-  const diff = d.getDate() - day + (day === 0 ? -6 : 1) // Monday
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1) - (weeksAgo * 7)
   d.setDate(diff)
+  return d.toISOString().split('T')[0]
+}
+
+function getWeekEnd(weekStart: string): string {
+  const d = new Date(weekStart)
+  d.setDate(d.getDate() + 6)
   return d.toISOString().split('T')[0]
 }
 
@@ -33,6 +39,7 @@ export default function ReviewPage() {
   } = useGameState()
 
   const [weekStats, setWeekStats] = useState<WeekStats | null>(null)
+  const [lastWeekStats, setLastWeekStats] = useState<WeekStats | null>(null)
   const [weeklyReview, setWeeklyReview] = useState<{ what_worked: string; what_didnt: string; next_focus: string } | null>(null)
   const [whatWorked, setWhatWorked] = useState('')
   const [whatDidnt, setWhatDidnt] = useState('')
@@ -42,6 +49,8 @@ export default function ReviewPage() {
   const [saveError, setSaveError] = useState<string | null>(null)
 
   const weekStart = getWeekStart()
+  const lastWeekStart = getWeekStart(1)
+  const lastWeekEnd = getWeekEnd(lastWeekStart)
 
   const fetchWeekData = useCallback(async () => {
     try {
@@ -49,7 +58,7 @@ export default function ReviewPage() {
       if (!user) return
 
       const today = new Date().toISOString().split('T')[0]
-      const [logsRes, blocksRes, reviewRes] = await Promise.all([
+      const [logsRes, blocksRes, reviewRes, lastLogsRes, lastBlocksRes] = await Promise.all([
         supabase
           .from('daily_logs')
           .select('xp_earned, habits, completed')
@@ -68,6 +77,19 @@ export default function ReviewPage() {
           .eq('user_id', user.id)
           .eq('week_start', weekStart)
           .single(),
+        // Last week data
+        supabase
+          .from('daily_logs')
+          .select('xp_earned, habits, completed')
+          .eq('user_id', user.id)
+          .gte('date', lastWeekStart)
+          .lte('date', lastWeekEnd),
+        supabase
+          .from('revenue_blocks')
+          .select('duration_min')
+          .eq('user_id', user.id)
+          .gte('date', lastWeekStart)
+          .lte('date', lastWeekEnd),
       ])
 
       const logs = logsRes.data || []
@@ -80,6 +102,16 @@ export default function ReviewPage() {
 
       setWeekStats({ totalXP, avgHabits, totalRevenue, daysCompleted, nonNegDays: daysCompleted })
 
+      // Last week stats
+      const lastLogs = lastLogsRes.data || []
+      if (lastLogs.length > 0) {
+        const lastTotalXP = lastLogs.reduce((s, l) => s + (l.xp_earned || 0), 0)
+        const lastAvgHabits = lastLogs.reduce((s, l) => s + Object.values(l.habits || {}).filter(Boolean).length, 0) / lastLogs.length
+        const lastDaysCompleted = lastLogs.filter((l) => l.completed).length
+        const lastTotalRevenue = (lastBlocksRes.data || []).reduce((s, b) => s + (b.duration_min || 0), 0) / 60
+        setLastWeekStats({ totalXP: lastTotalXP, avgHabits: lastAvgHabits, totalRevenue: lastTotalRevenue, daysCompleted: lastDaysCompleted, nonNegDays: lastDaysCompleted })
+      }
+
       const review = reviewRes.data
       if (review) {
         setWeeklyReview(review)
@@ -90,7 +122,7 @@ export default function ReviewPage() {
     } catch (err) {
       console.error('Failed to fetch week data:', err)
     }
-  }, [weekStart])
+  }, [weekStart, lastWeekStart, lastWeekEnd])
 
   useEffect(() => { fetchWeekData() }, [fetchWeekData])
 
@@ -252,29 +284,41 @@ export default function ReviewPage() {
         )}
       </div>
 
-      {/* Weekly Stats */}
+      {/* Weekly Stats with Week-over-Week Comparison */}
       {weekStats && (
         <div className="card">
           <h2 className="text-sm font-bold mb-4 uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
             This Week (from {new Date(weekStart).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})
           </h2>
           <div className="grid grid-cols-4 gap-3 text-center">
-            <div>
-              <div className="stat-number text-lg font-bold" style={{ color: 'var(--text-gold)' }}>{weekStats.totalXP}</div>
-              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>XP</div>
-            </div>
-            <div>
-              <div className="stat-number text-lg font-bold">{weekStats.avgHabits.toFixed(1)}</div>
-              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>Avg Habits</div>
-            </div>
-            <div>
-              <div className="stat-number text-lg font-bold" style={{ color: 'var(--accent-cyan)' }}>{weekStats.totalRevenue.toFixed(1)}h</div>
-              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>Revenue</div>
-            </div>
-            <div>
-              <div className="stat-number text-lg font-bold" style={{ color: 'var(--accent-green)' }}>{weekStats.daysCompleted}/7</div>
-              <div className="text-xs" style={{ color: 'var(--text-muted)' }}>Days</div>
-            </div>
+            {[
+              { label: 'XP', current: weekStats.totalXP, prev: lastWeekStats?.totalXP, color: 'var(--text-gold)', format: (v: number) => v.toString() },
+              { label: 'Avg Habits', current: weekStats.avgHabits, prev: lastWeekStats?.avgHabits, color: undefined, format: (v: number) => v.toFixed(1) },
+              { label: 'Revenue', current: weekStats.totalRevenue, prev: lastWeekStats?.totalRevenue, color: 'var(--accent-cyan)', format: (v: number) => `${v.toFixed(1)}h` },
+              { label: 'Days', current: weekStats.daysCompleted, prev: lastWeekStats?.daysCompleted, color: 'var(--accent-green)', format: (v: number) => `${v}/7` },
+            ].map((stat) => {
+              const diff = stat.prev != null ? stat.current - stat.prev : null
+              const isUp = diff != null && diff > 0
+              const isDown = diff != null && diff < 0
+              return (
+                <div key={stat.label}>
+                  <div className="stat-number text-lg font-bold" style={{ color: stat.color }}>
+                    {stat.format(stat.current)}
+                  </div>
+                  <div className="text-xs" style={{ color: 'var(--text-muted)' }}>{stat.label}</div>
+                  {diff != null && diff !== 0 && (
+                    <div className="text-[10px] mt-0.5 font-medium" style={{ color: isUp ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+                      {isUp ? '▲' : '▼'} {stat.label === 'XP' ? Math.abs(diff) : stat.label === 'Days' ? Math.abs(diff) : Math.abs(diff).toFixed(1)} vs last wk
+                    </div>
+                  )}
+                  {diff === 0 && (
+                    <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                      = same as last wk
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
