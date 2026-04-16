@@ -125,35 +125,62 @@ export function calculateDailyXP(day, streak = 0) {
 }
 
 /**
- * Calculate streak from daily log data array
- * @param {Array<Array>} logData - rows from Daily Log (most recent last)
+ * Calculate streak from Firestore daily log documents.
+ * @param {Array<{date: string, completed: boolean}>} logs - sorted ascending by date
  * @returns {number} current streak
  */
-export function calculateStreak(logData) {
+export function calculateStreak(logs) {
+  if (!logs || logs.length === 0) return 0;
+
   let streak = 0;
 
-  for (let i = logData.length - 1; i >= 0; i--) {
-    const row = logData[i];
-    const completed = row[DL.COMPLETED - 1];
+  for (let i = logs.length - 1; i >= 0; i--) {
+    const log = logs[i];
+    if (!log.completed) break;
 
-    if (completed === true || completed === 'TRUE') {
-      streak++;
+    streak++;
 
-      // Check if previous day is consecutive
-      if (i > 0) {
-        const thisDate = parseSheetDate(row[DL.DATE - 1]);
-        const prevDate = parseSheetDate(logData[i - 1][DL.DATE - 1]);
-        if (thisDate && prevDate) {
-          const diffDays = Math.round((thisDate - prevDate) / 86400000);
-          if (diffDays !== 1) break;
-        }
-      }
-    } else {
-      break;
+    // Check consecutive day gap
+    if (i > 0) {
+      const thisDate = new Date(log.date);
+      const prevDate = new Date(logs[i - 1].date);
+      const diffDays = Math.round((thisDate - prevDate) / 86400000);
+      if (diffDays !== 1) break;
     }
   }
 
   return streak;
+}
+
+/**
+ * Convert a Firestore prayer document to the array format calculateDailyXP expects.
+ * Maps the named prayer fields to positional indices matching PRAYERS config.
+ * @param {object} prayerDoc - Firestore prayer document
+ * @returns {Array<boolean>} prayer data array (index = prayer.col - 2)
+ */
+export function prayerDocToArray(prayerDoc) {
+  if (!prayerDoc) return null;
+
+  // Map prayer field names to their column positions
+  const fieldMap = {
+    fajrSunnah: 0,       // col 2 → index 0
+    fajrFard: 1,         // col 3 → index 1
+    dhuhrSunnahBefore: 2,// col 4 → index 2
+    dhuhrFard: 3,        // col 5 → index 3
+    dhuhrSunnahAfter: 4, // col 6 → index 4
+    asrFard: 5,          // col 7 → index 5
+    maghribFard: 6,      // col 8 → index 6
+    maghribSunnah: 7,    // col 9 → index 7
+    ishaFard: 8,         // col 10 → index 8
+    ishaSunnah: 9,       // col 11 → index 9
+    witr: 10             // col 12 → index 10
+  };
+
+  const arr = new Array(11).fill(false);
+  for (const [field, idx] of Object.entries(fieldMap)) {
+    arr[idx] = !!prayerDoc[field];
+  }
+  return arr;
 }
 
 /**

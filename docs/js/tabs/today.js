@@ -12,29 +12,116 @@
  * 7. Mark complete button
  */
 
-import { getTodayLog, updateTodayLog, toggleHabit, setAttribute, getRecentLogs, getFlashcardStates } from '../firebase.js';
-import { getLevelFromXP, getLevelTitle, getLevelProgress } from '../engine.js';
+import {
+  getTodayLog, updateTodayLog, toggleHabit, setAttribute, getRecentLogs,
+  getFlashcardStates, getTodayPrayers, getTodayNutrition, getTodayLifts, getAllLogs
+} from '../firebase.js';
+import {
+  getLevelFromXP, getLevelTitle, getLevelProgress, calculateDailyXP,
+  calculateStreak, getStreakMultiplier, prayerDocToArray, formatCurrency, daysUntil
+} from '../engine.js';
 import { getDueCards, getReviewStats } from '../spaced-repetition.js';
 import { openFlashcardReview } from '../components/flashcard-review.js';
 import { createProgressBar } from '../components/progress-bar.js';
 import { createSegmentBar } from '../components/segment-bar.js';
 import { createHeatmap } from '../components/heatmap.js';
-import { HABITS, ATTRIBUTES } from '../../config.js';
+import { HABITS, ATTRIBUTES, GOALS, CUT } from '../../config.js';
 import { WISDOM_QUOTES } from '../wisdom.js';
+
+// Debounce timer for XP recalculation
+let xpDebounceTimer = null;
+
+/**
+ * Recalculate XP for today based on ALL data sources.
+ * Called after any mutation (habit, attribute, MRR, weight, etc.)
+ * Debounced to 500ms to batch rapid changes.
+ */
+function scheduleXPRecalc() {
+  clearTimeout(xpDebounceTimer);
+  xpDebounceTimer = setTimeout(async () => {
+    try {
+      const [todayLog, prayers, nutrition, lifts, allLogs] = await Promise.all([
+        getTodayLog(),
+        getTodayPrayers(),
+        getTodayNutrition(),
+        getTodayLifts(),
+        getAllLogs()
+      ]);
+
+      const streak = calculateStreak(allLogs);
+      const prayerArray = prayerDocToArray(prayers);
+
+      const dayData = {
+        habits: todayLog.habits || [],
+        attrs: todayLog.attributes || [],
+        mrr: todayLog.mrr || 0,
+        weight: todayLog.weight || 0,
+        win: todayLog.winOfDay || '',
+        dietScore: todayLog.dietScore || 0,
+        prayerData: prayerArray,
+        hasLifts: lifts.length > 0,
+        hasNutrition: nutrition.length > 0
+      };
+
+      const xpEarned = calculateDailyXP(dayData, streak);
+
+      // Get yesterday's totalXp to compute cumulative
+      const yesterdayLog = allLogs.length >= 2 ? allLogs[allLogs.length - 2] : null;
+      const prevTotalXp = (yesterdayLog && todayLog.date !== yesterdayLog.date)
+        ? (yesterdayLog.totalXp || 0)
+        : (todayLog.totalXp - (todayLog.xpEarned || 0)) || 0;
+      const totalXp = prevTotalXp + xpEarned;
+
+      await updateTodayLog({ xpEarned, totalXp, streak });
+
+      // Update level display if visible
+      updateLevelDisplay(totalXp, streak);
+    } catch (e) {
+      console.error('XP recalc failed:', e);
+    }
+  }, 500);
+}
+
+/**
+ * Update the level display on screen without full re-render.
+ */
+function updateLevelDisplay(totalXp, streak) {
+  const levelNum = document.querySelector('.level-display__number');
+  const levelTitle = document.querySelector('.level-display__title');
+  const xpText = document.querySelector('.level-display__xp');
+  const streakEl = document.querySelector('.streak-display');
+
+  if (levelNum) {
+    const level = getLevelFromXP(totalXp);
+    levelNum.textContent = level;
+    if (levelTitle) levelTitle.textContent = getLevelTitle(level);
+    if (xpText) {
+      const mult = getStreakMultiplier(streak);
+      xpText.textContent = `${totalXp.toLocaleString()} XP${mult > 1 ? ` · ${mult}x` : ''}`;
+    }
+  }
+  if (streakEl && streak !== undefined) {
+    streakEl.textContent = streak > 0 ? `${streak}-day streak` : '';
+  }
+}
 
 export async function renderToday(isFirstLoad) {
   const panel = document.getElementById('tab-today');
   if (!panel) return;
 
-  // Fetch data from Firestore (offline-first — returns cached data instantly)
-  let flashcardsData = null;
-  let flashcardStates = {};
-  const [todayLog, recentLogs] = await Promise.all([
+  // Fetch ALL data sources in parallel
+  const [todayLog, recentLogs, allLogs, prayers, nutrition, lifts] = await Promise.all([
     getTodayLog(),
-    getRecentLogs(28)
+    getRecentLogs(28),
+    getAllLogs(),
+    getTodayPrayers().catch(() => null),
+    getTodayNutrition().catch(() => []),
+    getTodayLifts().catch(() => [])
   ]);
 
   // Load flashcards for daily review
+  let flashcardsData = null;
+  let flashcardStates = {};
   try {
     const [fcResp, fcStates] = await Promise.all([
       fetch('data/flashcards.json').then(r => r.json()),
@@ -44,10 +131,13 @@ export async function renderToday(isFirstLoad) {
     flashcardStates = fcStates;
   } catch (e) { /* ok */ }
 
-  renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashcardStates);
+  // Calculate streak from all logs
+  const streak = calculateStreak(allLogs);
+
+  renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrition, lifts, flashcardsData, flashcardStates);
 }
 
-function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashcardStates) {
+function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrition, lifts, flashcardsData, flashcardStates) {
   const totalXP = todayLog.totalXp || 0;
   const level = getLevelFromXP(totalXP);
   const title = getLevelTitle(level);
@@ -69,10 +159,20 @@ function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashca
   levelTitle.textContent = title;
   levelSection.appendChild(levelTitle);
 
+  const mult = getStreakMultiplier(streak);
   const xpText = document.createElement('div');
   xpText.className = 'level-display__xp';
-  xpText.textContent = `${totalXP.toLocaleString()} XP`;
+  xpText.textContent = `${totalXP.toLocaleString()} XP${mult > 1 ? ` · ${mult}x streak` : ''}`;
   levelSection.appendChild(xpText);
+
+  // Streak display
+  if (streak > 0) {
+    const streakEl = document.createElement('div');
+    streakEl.className = 'streak-display';
+    streakEl.style.cssText = 'font-size: 0.875rem; color: var(--accent); font-weight: 500; margin-top: var(--sp-1);';
+    streakEl.textContent = `${streak}-day streak`;
+    levelSection.appendChild(streakEl);
+  }
 
   const progressWrapper = document.createElement('div');
   progressWrapper.style.cssText = 'max-width: 200px; margin: 0 auto;';
@@ -156,6 +256,7 @@ function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashca
       btn.classList.toggle('habit-toggle--active', newState);
       btn.setAttribute('aria-pressed', newState ? 'true' : 'false');
       await toggleHabit(i, newState);
+      scheduleXPRecalc();
     });
     habitsGrid.appendChild(btn);
   });
@@ -181,6 +282,7 @@ function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashca
     row.appendChild(label);
     const bar = createSegmentBar(a, attrs[i] || 0, async (val) => {
       await setAttribute(i, val);
+      scheduleXPRecalc();
     });
     bar.style.flex = '1';
     row.appendChild(bar);
@@ -209,12 +311,28 @@ function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashca
   quickCard.className = 'card stack stack--4';
 
   quickCard.appendChild(createInputRow('MRR ($)', 'number', todayLog.mrr || '',
-    async (val) => await updateTodayLog({ mrr: Number(val) || 0 })
+    async (val) => { await updateTodayLog({ mrr: Number(val) || 0 }); scheduleXPRecalc(); }
   ));
 
   quickCard.appendChild(createInputRow('Weight (lbs)', 'number', todayLog.weight || '',
-    async (val) => await updateTodayLog({ weight: Number(val) || 0 })
+    async (val) => { await updateTodayLog({ weight: Number(val) || 0 }); scheduleXPRecalc(); }
   ));
+
+  // Diet score
+  const dietRow = document.createElement('div');
+  dietRow.className = 'row row--between';
+  const dietLabel = document.createElement('span');
+  dietLabel.className = 'text-muted';
+  dietLabel.style.cssText = 'font-size: 0.8125rem; width: 120px; flex-shrink: 0;';
+  dietLabel.textContent = 'Diet Score';
+  dietRow.appendChild(dietLabel);
+  const dietBar = createSegmentBar('Diet', todayLog.dietScore || 0, async (val) => {
+    await updateTodayLog({ dietScore: val });
+    scheduleXPRecalc();
+  });
+  dietBar.style.flex = '1';
+  dietRow.appendChild(dietBar);
+  quickCard.appendChild(dietRow);
 
   // Win of the day
   const winRow = document.createElement('div');
@@ -230,6 +348,7 @@ function renderTodayContent(panel, todayLog, recentLogs, flashcardsData, flashca
   winInput.value = todayLog.winOfDay || '';
   winInput.addEventListener('change', async () => {
     await updateTodayLog({ winOfDay: winInput.value });
+    scheduleXPRecalc();
   });
   winRow.appendChild(winInput);
   quickCard.appendChild(winRow);
