@@ -296,9 +296,11 @@ export async function addFoodEntry(entry) {
 export async function getTodayNutrition() {
   const id = todayId();
   const ref = collection(db, userRef('nutrition'));
-  const q = query(ref, where('date', '==', id), orderBy('createdAt', 'asc'));
+  const q = query(ref, where('date', '==', id));
   const snap = await getDocs(q);
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const results = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  results.sort((a, b) => (a.createdAt?.seconds || 0) - (b.createdAt?.seconds || 0));
+  return results;
 }
 
 // ============================================================
@@ -325,9 +327,11 @@ export async function addLiftEntry(entry) {
 export async function getTodayLifts() {
   const id = todayId();
   const ref = collection(db, userRef('lifts'));
-  const q = query(ref, where('date', '==', id), orderBy('createdAt', 'asc'));
+  const q = query(ref, where('date', '==', id));
   const snap = await getDocs(q);
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const results = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  results.sort((a, b) => (a.createdAt?.seconds || 0) - (b.createdAt?.seconds || 0));
+  return results;
 }
 
 export async function getAllLifts() {
@@ -479,9 +483,11 @@ export async function addChallengeEntry(skillId, level, entry) {
 
 export async function getChallengeEntries(skillId) {
   const ref = collection(db, userRef('challengeEntries'));
-  const q = query(ref, where('skillId', '==', skillId), orderBy('createdAt', 'desc'));
+  const q = query(ref, where('skillId', '==', skillId));
   const snap = await getDocs(q);
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const results = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  results.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+  return results;
 }
 
 // ============================================================
