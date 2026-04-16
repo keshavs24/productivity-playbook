@@ -1,13 +1,25 @@
 /**
- * config.js — User configuration + all game constants (ported from Apps Script Config.js)
+ * config.js — User configuration + all game constants
+ * v2: Firebase backend (replaces Google Sheets)
  */
 
 // ============================================================
-// USER CONFIG — Fill these in after Google Cloud Console setup
+// FIREBASE CONFIG — Paste your config from Firebase Console
 // ============================================================
-export const SHEET_ID = '1lT2pV52qfmeveZs64Rv5Y6G6ekgx4SaoF9M-Ur800IA';
-export const OAUTH_CLIENT_ID = '478641343430-al5ehpdhv3savpse55mnluliqig2f1dg.apps.googleusercontent.com';
-export const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+export const FIREBASE_CONFIG = {
+  apiKey: 'AIzaSyBCF_9g2qwTPUjsmnvXc9b4jzHIH-S39fM',
+  authDomain: 'productivity-playbook-30372.firebaseapp.com',
+  projectId: 'productivity-playbook-30372',
+  storageBucket: 'productivity-playbook-30372.firebasestorage.app',
+  messagingSenderId: '175998865124',
+  appId: '1:175998865124:web:377f8d945e924cec3c26f1'
+};
+
+// ============================================================
+// AUTH CONFIG
+// ============================================================
+export const AUTH_EMAIL = '';    // Your email for sign-in
+export const AUTH_PASSWORD = ''; // Your password for sign-in
 
 // ============================================================
 // HABITS

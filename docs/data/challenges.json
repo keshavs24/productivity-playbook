@@ -1,0 +1,422 @@
+[
+  {
+    "skillId": "anchoring-and-adjustment",
+    "observe": "This week, notice 3 times when a first number influenced your thinking -- in prices, salary discussions, project estimates, or time commitments. Write down: (1) what the anchor was, (2) what your initial gut reaction was, and (3) whether the final number stayed close to the anchor.",
+    "intervene": "Before your next negotiation, purchase, or estimate, research the fair value independently and write down YOUR number before hearing theirs. After the interaction, record whether their anchor still pulled you and by how much. Repeat for 3 decisions this week.",
+    "teach": "Explain anchoring bias to a colleague or friend using a real example from your week -- ideally one involving money or time estimates. Write down: (1) how you explained it, (2) what questions they asked, (3) one thing you realized you did not fully understand until you tried to teach it."
+  },
+  {
+    "skillId": "availability",
+    "observe": "Track 3 decisions this week where you judged something as likely or unlikely based on how easily examples came to mind. Write down: (1) the decision, (2) the vivid memory or news story influencing you, and (3) what the actual base rate or statistic is when you look it up.",
+    "intervene": "For one important decision this week, deliberately counteract the availability heuristic: before deciding, look up actual data or base rates instead of relying on memorable examples. Write down what your gut said versus what the data showed, and which one you followed.",
+    "teach": "Explain the availability heuristic to someone using a current news story as your example -- show them how media coverage distorts perceived risk. Write down: (1) the example you used, (2) their initial reaction, (3) whether they could identify it operating in their own recent decisions."
+  },
+  {
+    "skillId": "system-1-system-2",
+    "observe": "Set 3 random phone alarms throughout your day this week. When each goes off, freeze and write down: (1) what you were just doing, (2) whether it was automatic (System 1) or deliberate (System 2), and (3) what percentage of your day you estimate runs on autopilot.",
+    "intervene": "Identify one important recurring decision you normally make on autopilot (hiring, prioritization, responding to messages). This week, force System 2 by writing out your reasoning before acting. Record whether slowing down changed the outcome and whether it was worth the effort.",
+    "teach": "Explain the System 1/System 2 framework to a team member or friend. Use a live demonstration -- give them a quick math puzzle that triggers System 1 errors (like the bat-and-ball problem). Write down: (1) whether they got it wrong initially, (2) their reaction when you explained why, (3) what clicked for them."
+  },
+  {
+    "skillId": "confirmation-heuristic",
+    "observe": "This week, catch yourself 3 times seeking information that confirms what you already believe -- in product decisions, hiring judgments, or reading habits. Write down: (1) the belief you were protecting, (2) what confirming evidence you gravitated toward, and (3) what disconfirming evidence you were ignoring.",
+    "intervene": "Pick one strong belief you hold about your product, market, or a person. Spend 20 minutes actively searching for the best arguments AGAINST it. Write down the 3 strongest counterpoints you found and whether any of them shifted your view even slightly.",
+    "teach": "Explain confirmation bias to a colleague by walking through a real business decision where it might be operating -- yours or theirs. Write down: (1) how you framed the concept, (2) whether they could see it in their own thinking, (3) what defense mechanism they (or you) noticed kicking in."
+  },
+  {
+    "skillId": "framing-effects",
+    "observe": "This week, notice 3 times when the way information was presented (rather than the information itself) influenced your reaction -- in marketing, news, or someone's request. Write down: (1) the frame used, (2) an alternative frame for the same facts, and (3) whether the frame changed your emotional response.",
+    "intervene": "Take one important decision you are facing and deliberately reframe it three ways: as a gain, as a loss, and as a percentage vs. absolute number. Write down your preference under each frame and make your final choice based on the underlying facts, not whichever frame felt most compelling.",
+    "teach": "Explain framing effects to a friend or team member by presenting the same information two different ways and watching their reaction shift. Write down: (1) the two frames you used, (2) whether their preference changed, (3) their reaction when you revealed it was the same information."
+  },
+  {
+    "skillId": "fundamental-attribution-error",
+    "observe": "For 3 days, whenever someone frustrates you (a slow email response, a missed deadline, a rude interaction), pause and write down: (1) the character judgment you made about them, (2) at least 2 situational factors that could explain their behavior, and (3) which explanation you believe after reflection.",
+    "intervene": "The next time you are about to give critical feedback to someone on your team, first investigate the situational factors before addressing character. Ask them what obstacles they faced. Write down: (1) your initial attribution, (2) what you learned about their situation, and (3) how it changed your feedback.",
+    "teach": "Explain the fundamental attribution error to a colleague using a real workplace example from your week. Write down: (1) the example you used, (2) whether they recognized it in their own recent judgments, (3) what practical rule of thumb you both agreed on to catch it in the future."
+  },
+  {
+    "skillId": "loss-aversion",
+    "observe": "This week, notice 3 times when the fear of losing something outweighed the potential gain of something new -- in decisions about products, investments, routines, or relationships. Write down: (1) what you were afraid to lose, (2) the potential upside you were ignoring, and (3) the ratio of how much the loss stung versus the gain excited you.",
+    "intervene": "Identify one thing you are holding onto purely because letting go feels like a loss -- a failing feature, an underperforming hire, a dead-end project. Calculate its actual current value versus what you could gain by redirecting that energy. Make the rational call this week and record the outcome.",
+    "teach": "Explain loss aversion to a founder friend or team member using a real business decision where fear of loss is blocking progress. Write down: (1) how you explained the concept, (2) whether they could identify loss aversion in their own current decisions, (3) what action they committed to after the conversation."
+  },
+  {
+    "skillId": "halo-effect",
+    "observe": "This week, when you form a strong first impression of someone (a candidate, a speaker, a new contact), stop and write down: (1) the one trait driving your impression (attractiveness, confidence, credentials), (2) 3 qualities you are assuming because of that trait, and (3) what evidence you actually have for each assumption.",
+    "intervene": "In your next hiring or partnership evaluation, create a structured scorecard with 5 specific criteria BEFORE the meeting. Score each criterion independently rather than giving an overall gut rating. Record whether your structured scores matched or diverged from your gut feeling.",
+    "teach": "Explain the halo effect to a colleague involved in hiring or evaluating people. Walk them through how one positive trait (prestigious school, charisma) contaminates all other judgments. Write down: (1) their initial reaction, (2) a time they now realize the halo effect influenced them, (3) what process change they want to make."
+  },
+  {
+    "skillId": "hindsight-bias",
+    "observe": "Before 3 uncertain events this week (a pitch outcome, a product launch metric, a meeting result), write down your specific prediction and your confidence level as a percentage. After each outcome, immediately record whether you feel tempted to say 'I knew it all along' and compare to your written prediction.",
+    "intervene": "Start a prediction journal this week. For each major decision or bet you make, write the date, your prediction, your confidence level, and your reasoning BEFORE the outcome. Review it weekly. Record your calibration accuracy -- how often your 80% confidence predictions actually come true about 80% of the time.",
+    "teach": "Explain hindsight bias to a teammate by running a quick experiment: tell them the outcome of something, then ask how predictable it was. Compare to how uncertain it actually felt beforehand. Write down: (1) how confident they claimed it was 'obvious,' (2) evidence that it was not, (3) their reaction to the gap."
+  },
+  {
+    "skillId": "sunk-cost-fallacy",
+    "observe": "Audit your current commitments this week: subscriptions, projects, tools, routines. For each one you are lukewarm about, write down: (1) how much time or money you have already invested, (2) whether you would start it fresh today knowing what you know now, and (3) whether the sunk investment is the real reason you continue.",
+    "intervene": "Pick one commitment you identified as a sunk cost trap and actually exit it this week -- cancel the subscription, shelve the project, or drop the tool. Record: (1) how it felt to let go, (2) what you redirected that time or money toward, and (3) whether you regret it after 7 days.",
+    "teach": "Explain the sunk cost fallacy to a fellow founder or colleague using a real project or commitment you walked away from. Write down: (1) how you explained the difference between sunk costs and future value, (2) whether they identified a sunk cost trap in their own work, (3) what they decided to do about it."
+  },
+  {
+    "skillId": "cognitive-dissonance",
+    "observe": "Catch yourself rationalizing 3 times this week -- moments when you construct a story for why a questionable choice was actually good. Write down: (1) the choice, (2) the rationalization, and (3) the simplest honest explanation for why you really did it.",
+    "intervene": "The next time you notice cognitive dissonance (a gap between your values and your actions), resist the urge to rationalize. Instead, write down the contradiction plainly: 'I believe X, but I did Y because Z.' Then choose one concrete action to bring your behavior closer to your stated value this week.",
+    "teach": "Explain cognitive dissonance to a friend using a real example from your life where your actions contradicted your beliefs. Write down: (1) how you described the concept, (2) an example they shared from their own life, (3) what you both learned about how the mind protects itself from contradiction."
+  },
+  {
+    "skillId": "endowment-effect",
+    "observe": "Pick 3 things you own -- physical items, equity, or even ideas you have championed -- and write down what you would sell or trade them for. Then research what a buyer would actually pay or what the market says they are worth. Record the gap between your price and the market price for each.",
+    "intervene": "The next time you are evaluating whether to keep or let go of something you own (a feature you built, a process you designed, stock you hold), pretend you do not own it yet and ask: 'Would I acquire this today at its current cost?' Record your answer and whether the endowment effect was inflating your valuation.",
+    "teach": "Explain the endowment effect to a colleague by asking them to value something they own versus something equivalent they do not own. Write down: (1) the valuation gap you observed, (2) their reaction when you pointed out the bias, (3) how they plan to check for it in future product or business decisions."
+  },
+  {
+    "skillId": "overconfidence-in-calibration",
+    "observe": "Make 10 specific predictions this week -- project timelines, meeting outcomes, user behavior, revenue targets -- and assign each a confidence percentage. At the end of the week, score yourself. Write down: (1) your average confidence, (2) your actual accuracy, and (3) the calibration gap between them.",
+    "intervene": "For your most important prediction this week, create a pre-mortem: assume you are wrong and write 3 reasons why. Then adjust your confidence level. Record whether the pre-mortem changed your estimate, and after the outcome, whether the adjusted estimate was more accurate than your original gut feeling.",
+    "teach": "Explain overconfidence and calibration to a team member. Have them make 5 predictions with confidence levels, then score them. Write down: (1) their calibration gap, (2) their reaction to seeing they were overconfident (or not), (3) what practical habit you both agreed to adopt for better calibration."
+  },
+  {
+    "skillId": "hot-cold-empathy-gap",
+    "observe": "This week, notice 3 times when your emotional state (hunger, anger, excitement, fatigue) influenced a decision you were about to make. Write down: (1) the emotion, (2) the decision you almost made, and (3) what you think you would have decided in a calm, neutral state.",
+    "intervene": "Create a personal rule: for any decision above a certain stakes threshold (financial, relational, strategic), impose a 24-hour cooling period. Test it this week on one real decision. Write down: (1) what you wanted to do in the hot state, (2) what you decided after cooling off, and (3) which choice was better.",
+    "teach": "Explain the hot-cold empathy gap to a friend or team member. Share a time when your emotional state led you to a decision you later regretted. Write down: (1) how you explained the concept, (2) an example they shared from their life, (3) what specific 'cooling off' rule you both agreed would help."
+  },
+  {
+    "skillId": "escalation-of-commitment",
+    "observe": "Review your current projects and commitments this week. Identify 2 where you have continued investing despite mediocre results. Write down for each: (1) the original goal, (2) how much you have invested so far, (3) whether the reason you continue is the original goal or the investment itself.",
+    "intervene": "For one project showing signs of escalation, write a clear 'kill criteria' list: 3 specific measurable conditions under which you will walk away. Share it with someone who will hold you accountable. Record whether any of the criteria are already met and what you decide to do.",
+    "teach": "Explain escalation of commitment to a founder or colleague who is deep in a struggling project. Walk them through how prior investment creates psychological pressure to continue. Write down: (1) how you framed it without making them defensive, (2) whether they could see it in their situation, (3) what they decided to do."
+  },
+  {
+    "skillId": "false-consensus-effect",
+    "observe": "Pick 3 opinions or preferences you hold this week (a product opinion, a political view, a lifestyle choice). For each, predict what percentage of people agree with you. Then actually ask 5-10 people. Write down: (1) your prediction, (2) the actual result, and (3) the gap between them.",
+    "intervene": "Before your next product decision or team meeting where you plan to advocate for something, poll 5 people outside your echo chamber for their honest opinion first. Write down: (1) your assumption about consensus, (2) what you actually found, and (3) whether it changed your approach or proposal.",
+    "teach": "Explain the false consensus effect to a team member or friend. Have them predict agreement rates on 3 opinions, then test it. Write down: (1) how far off their predictions were, (2) what surprised them most, (3) how this bias might be affecting your team or product decisions."
+  },
+  {
+    "skillId": "keeping-doors-open",
+    "observe": "List all the options and backup plans you are currently maintaining 'just in case' -- side projects, job possibilities, tool subscriptions, half-started initiatives. Write down for each: (1) the time and mental energy you spend keeping it alive, (2) the probability you will actually use it, and (3) what it costs you in focus.",
+    "intervene": "Close one door this week. Pick the option with the worst cost-to-probability ratio and fully commit to letting it go. Redirect the time and energy to your top priority. Record: (1) what you shut down, (2) how it felt, and (3) what you accomplished with the freed-up resources after 7 days.",
+    "teach": "Explain the 'keeping doors open' trap to a fellow entrepreneur or colleague who seems spread thin. Walk through the hidden costs of optionality. Write down: (1) how you explained the paradox that options can reduce results, (2) which open doors they identified in their own life, (3) whether they committed to closing one."
+  },
+  {
+    "skillId": "intrinsic-motivation",
+    "observe": "Track your energy levels across 5 different tasks this week on a 1-10 scale. For each task, write down: (1) whether you are doing it for internal interest or external reward, (2) your energy level while doing it, and (3) whether there is a pattern between motivation source and energy.",
+    "intervene": "Take one task you do purely for external reasons (money, obligation, approval) and redesign one element of it to make it genuinely interesting. Maybe change the approach, add a creative constraint, or connect it to a deeper purpose. Record your energy level before and after the redesign.",
+    "teach": "Explain the difference between intrinsic and extrinsic motivation to a team member or friend. Help them map their week's tasks by motivation type. Write down: (1) what surprised them about the mapping, (2) which extrinsic task they want to redesign, (3) the specific change they plan to make."
+  },
+  {
+    "skillId": "autonomy-need",
+    "observe": "For every task on your to-do list this week, mark it as 'chosen' or 'imposed.' Write down: (1) the ratio of chosen versus imposed tasks, (2) which imposed tasks drain you most, and (3) whether any imposed tasks could be reframed as chosen by changing the how, when, or why.",
+    "intervene": "Pick your most draining 'imposed' task and reclaim ownership over it in one specific way this week: change the method, the timing, or the framing. Record: (1) what you changed, (2) whether your motivation shifted, and (3) what this taught you about the relationship between autonomy and drive.",
+    "teach": "Explain the psychological need for autonomy to a manager or team lead. Discuss how micromanagement kills motivation even when well-intentioned. Write down: (1) how you explained it, (2) whether they recognized autonomy-undermining habits in their management style, (3) one concrete change they committed to making."
+  },
+  {
+    "skillId": "competence-need",
+    "observe": "Track moments this week when you felt either competent or incompetent. Write down 3 of each: (1) the task, (2) what triggered the feeling, and (3) how the competence feeling affected your motivation and willingness to continue.",
+    "intervene": "Choose one skill you use daily and set a specific, measurable micro-goal to improve it this week -- a faster workflow, a cleaner output, a new technique. After each practice session, write one sentence about what you learned. Record whether small wins compound into increased motivation.",
+    "teach": "Explain the need for competence to a teammate who seems stuck or disengaged. Help them identify one skill they could set a micro-goal for. Write down: (1) how you explained the competence-motivation link, (2) the micro-goal they chose, (3) their energy shift just from having a clear growth target."
+  },
+  {
+    "skillId": "relatedness-need",
+    "observe": "Track your sense of connection across your workday this week. After each meeting or significant interaction, write down: (1) whether you felt genuinely connected or just transactional, (2) what made the difference, and (3) how the quality of connection affected your energy afterward.",
+    "intervene": "Reach out to 3 people this week with a specific, genuine message about something you value about them -- not generic networking, but real recognition. Record: (1) what you said, (2) their response, and (3) how these micro-connections affected your motivation and energy for the rest of the day.",
+    "teach": "Explain the psychological need for relatedness to a colleague who works remotely or in isolation. Help them design 2 small rituals for genuine connection. Write down: (1) how you explained why belonging fuels motivation, (2) the rituals they chose, (3) their feedback after trying one."
+  },
+  {
+    "skillId": "self-efficacy",
+    "observe": "Notice 3 times this week when you hesitated or avoided a task because you doubted your ability. Write down: (1) the task, (2) the specific doubt ('I am not good enough at X'), and (3) what evidence exists for and against that doubt.",
+    "intervene": "Pick one task you have been avoiding due to self-doubt. Break it into 3 tiny steps and complete just the first one this week. After completing it, write: 'I completed step 1. Here is my evidence that I can handle this.' Then schedule step 2.",
+    "teach": "Explain self-efficacy to a friend or mentee who is struggling with confidence on a specific task. Walk them through Bandura's four sources: mastery experiences, vicarious experience, verbal persuasion, and emotional state. Write down: (1) which source resonated with them most, (2) one past success they identified as evidence, (3) the first step they committed to."
+  },
+  {
+    "skillId": "overjustification-effect",
+    "observe": "Identify 3 activities you used to enjoy that now feel like obligations. For each, write down: (1) when the shift happened, (2) whether an external reward, deadline, or evaluation was introduced around that time, and (3) whether removing the external pressure might bring back the intrinsic joy.",
+    "intervene": "Take one activity that has lost its spark due to external rewards or pressure. Do it once this week purely for fun with zero stakes -- no tracking, no scoring, no deliverable. Record: (1) how it felt compared to the obligatory version, (2) whether the intrinsic motivation returned, and (3) what you want to change going forward.",
+    "teach": "Explain the overjustification effect to a manager or team lead who uses rewards heavily. Discuss how bonuses and gamification can accidentally kill intrinsic motivation. Write down: (1) their initial reaction (most people resist this idea), (2) an example from their team where it might be happening, (3) what alternative approach they want to try."
+  },
+  {
+    "skillId": "hyperbolic-discounting",
+    "observe": "Track 3 times this week when you chose short-term comfort over long-term benefit -- snoozing the alarm, skipping a workout, choosing easy tasks over important ones. Write down: (1) the short-term reward, (2) the long-term cost, and (3) how much future-you would pay present-you to make the better choice.",
+    "intervene": "Design and implement one precommitment device this week for your biggest present-bias trap: automate the good choice, remove the temptation, or create a social penalty. Run it for 7 days and record: (1) the device you set up, (2) your compliance rate, and (3) whether it reduced the willpower battle.",
+    "teach": "Explain hyperbolic discounting to a friend by drawing the two discount curves -- how the small immediate reward looms larger than the big future reward until you step back. Write down: (1) the example you used, (2) what precommitment device they identified for their own life, (3) whether they set it up."
+  },
+  {
+    "skillId": "mastery-experience",
+    "observe": "Write down 5 past accomplishments where you overcame genuine difficulty -- not easy wins, but times you pushed through doubt. For each, note: (1) what made it hard, (2) the moment you almost quit, and (3) what got you through. Keep this list accessible.",
+    "intervene": "Before your most challenging task this week, re-read your mastery evidence bank. After completing the task (or making meaningful progress), add it to the list. Record: (1) whether reviewing past wins affected your approach, (2) how your confidence level changed, and (3) what you would tell someone facing a similar challenge.",
+    "teach": "Explain mastery experiences to a mentee or team member who is facing a confidence crisis. Help them build their own evidence bank of past wins. Write down: (1) how many accomplishments they initially remembered versus how many you helped them uncover, (2) their emotional shift during the exercise, (3) which mastery experience they plan to draw on next."
+  },
+  {
+    "skillId": "deliberate-practice",
+    "observe": "For 3 days, track how you practice or develop your skills. Write down: (1) whether you are repeating comfortable routines or pushing at the edge of your ability, (2) whether you are getting specific feedback, and (3) whether you are focused on fixing specific weaknesses versus doing general repetition.",
+    "intervene": "Choose one skill you want to improve and design a 20-minute daily deliberate practice session: identify the specific sub-skill to target, set a difficulty level just beyond your current ability, and build in immediate feedback. Run it for 5 days and record your progress after each session.",
+    "teach": "Explain the principles of deliberate practice (vs. naive practice) to a teammate or friend who wants to improve at something. Help them design one focused practice session. Write down: (1) the difference between their current practice routine and a deliberate one, (2) what specific sub-skill they chose to target, (3) their feedback after trying it."
+  },
+  {
+    "skillId": "if-then-plans",
+    "observe": "Notice 3 times this week when you failed to follow through on a goal because you did not have a specific plan for when and where to act. Write down: (1) the intention you had, (2) the moment you could have acted but did not, and (3) what specific trigger and action pairing would have made it automatic.",
+    "intervene": "Take your most important goal this week and create 3 specific if-then plans: 'If [specific situation], then I will [specific action].' Write them on a card you see daily. At the end of the week, record: (1) how many times each plan triggered, (2) your follow-through rate, and (3) whether the specificity made the behavior feel more automatic.",
+    "teach": "Explain implementation intentions to a friend or colleague who is struggling with follow-through on a goal. Help them create 3 if-then plans. Write down: (1) how you explained why vague goals fail, (2) the specific plans they created, (3) their follow-through rate after one week."
+  },
+  {
+    "skillId": "procrastination-and-precommitment",
+    "observe": "Track your procrastination patterns for 5 days. Each time you procrastinate, write down: (1) the task you were avoiding, (2) the emotion driving the avoidance (fear, boredom, overwhelm), and (3) what you did instead. Look for patterns.",
+    "intervene": "Identify your number one procrastination trigger and design a precommitment that makes procrastinating harder than starting. Examples: block distracting sites, tell someone your deadline, pay a penalty for not completing. Run it for one week and record: (1) the precommitment, (2) your compliance, and (3) whether the underlying emotion changed.",
+    "teach": "Explain the connection between procrastination and precommitment to a friend who procrastinates on something important. Help them identify their emotional trigger and design one precommitment device. Write down: (1) the trigger they identified, (2) the precommitment they designed, (3) whether they followed through and what happened."
+  },
+  {
+    "skillId": "vicarious-experience",
+    "observe": "Identify 3 people who are similar to you and have achieved something you are working toward. Write down for each: (1) how they are similar to you (background, resources, starting point), (2) what they accomplished, and (3) what about their journey makes you believe it is achievable for you.",
+    "intervene": "Find one person similar to you who has achieved your current goal. Study their path in detail -- read their writing, listen to their talks, or reach out directly. Write down: (1) the 3 most useful strategies you learned, (2) what surprised you about their journey, and (3) one specific tactic you will apply this week.",
+    "teach": "Explain vicarious experience as a source of self-efficacy to someone who is doubting themselves. Help them identify a relatable role model. Write down: (1) why relatability matters more than fame (a similar peer beating a similar challenge), (2) the role model they chose, (3) what specific belief shifted for them."
+  },
+  {
+    "skillId": "psychological-reactance",
+    "observe": "Notice 3 times this week when being told you 'must,' 'should,' or 'cannot' do something triggered a rebellious urge to do the opposite. Write down: (1) the restriction, (2) your emotional reaction, and (3) whether the resistance was rational or purely reflexive.",
+    "intervene": "The next time you feel reactance (rebellious resistance to a rule or request), pause and separate the message from the delivery. Ask: 'If this exact advice came from someone I respect, in a way I chose, would I follow it?' Record: (1) the trigger, (2) your reframed evaluation, and (3) whether you ended up following the advice.",
+    "teach": "Explain psychological reactance to a manager or colleague who is struggling to get buy-in on a policy or change. Show them how controlling language creates resistance. Write down: (1) the specific controlling phrases they were using, (2) the autonomy-preserving alternatives you suggested, (3) whether the new framing improved buy-in."
+  },
+  {
+    "skillId": "social-norms-vs-market-norms",
+    "observe": "Map your key relationships this week into 'social' (favors, loyalty, friendship) and 'market' (contracts, payments, transactions) categories. Write down: (1) the relationship, (2) which norm governs it, and (3) any relationships where the norms are confused or have shifted in a way that creates tension.",
+    "intervene": "Identify one relationship where introducing market norms (paying for a favor, tracking costs) might be damaging trust, or one where keeping things 'social' is leading to resentment. Make one adjustment this week. Record: (1) what you changed, (2) how the other person responded, and (3) whether the dynamic improved.",
+    "teach": "Explain social versus market norms to a founder friend or manager, using the 'day care late fee' study as your example. Write down: (1) how you explained why paying for favors can destroy goodwill, (2) which relationships they identified as norm-confused, (3) what specific adjustment they plan to make."
+  },
+  {
+    "skillId": "internalization",
+    "observe": "Pick 3 rules or expectations you follow in your work or life (deadlines, health habits, team norms). For each, write down: (1) whether you follow it grudgingly or willingly, (2) whether you understand and agree with the reason behind it, and (3) where it sits on the spectrum from external compliance to genuinely internalized value.",
+    "intervene": "Pick one rule or expectation you follow grudgingly. This week, investigate the 'why' behind it deeply -- talk to the person who set it, research the evidence, or reflect on its connection to your values. Write down: (1) what you discovered about the purpose, (2) whether understanding the reason changed your motivation, and (3) whether you genuinely internalized it or decided to challenge it.",
+    "teach": "Explain the internalization spectrum (external regulation, introjection, identification, integration) to a team member or friend who is complying with a rule they resent. Write down: (1) where they placed themselves on the spectrum, (2) what information or reframing would help them move toward genuine buy-in, (3) whether the conversation itself shifted their perspective."
+  },
+  {
+    "skillId": "zone-of-comfort-zone-of-growth",
+    "observe": "Each day for 5 days, write down: (1) one task you did that was comfortable and easy, (2) one task that stretched you just past your comfort zone, and (3) one task (if any) that felt overwhelming or panic-inducing. Map your week across the comfort, growth, and panic zones.",
+    "intervene": "Each day this week, deliberately do one thing in your growth zone -- not comfortable, not panicking. Examples: lead a meeting you normally avoid, try a new technical approach, have a difficult conversation. Record: (1) the growth zone activity, (2) your anxiety level before and after, and (3) what capability you gained.",
+    "teach": "Explain the comfort-growth-panic zone model to a friend or mentee who is either playing it too safe or pushing into burnout. Help them identify one growth zone activity for the coming week. Write down: (1) which zone they spend most of their time in, (2) the growth zone activity they chose, (3) their reflection after completing it."
+  },
+  {
+    "skillId": "emotion-regulation",
+    "observe": "Three times this week when you feel a strong negative emotion (frustration, anxiety, anger), pause and write down: (1) the emotion and its intensity on a 1-10 scale, (2) the trigger, and (3) whether naming the emotion precisely ('I feel anxious about the deadline' vs. 'I feel bad') reduced its intensity.",
+    "intervene": "Practice one emotion regulation strategy this week: cognitive reappraisal (reinterpreting the situation), labeling (naming the exact emotion), or distancing (asking 'what would I advise a friend?'). Use it in 3 real situations and record: (1) the strategy used, (2) your emotional intensity before and after, and (3) whether it affected your decision quality.",
+    "teach": "Explain emotion regulation strategies to a teammate or friend who tends to make decisions when emotionally activated. Walk them through labeling, reappraisal, and distancing. Write down: (1) which strategy resonated with them most, (2) a recent situation where they wish they had used it, (3) their plan for using it next time."
+  },
+  {
+    "skillId": "reciprocation",
+    "observe": "This week, notice 3 times when someone did something for you and you felt compelled to return the favor, or when you did something for someone with an unspoken expectation of return. Write down: (1) the favor, (2) the sense of obligation, and (3) whether the reciprocation impulse was genuine generosity or social pressure.",
+    "intervene": "Give 3 unexpected, genuine favors this week to people you want stronger relationships with -- no strings attached, no tracking. Record: (1) what you gave, (2) their response, and (3) whether anything came back to you naturally within the week. Notice the difference between strategic and genuine giving.",
+    "teach": "Explain Cialdini's reciprocation principle to a colleague, including both its positive uses (relationship building) and manipulative ones (sales tactics). Write down: (1) how you distinguished ethical reciprocity from manipulation, (2) an example of manipulative reciprocity they recognized from their experience, (3) how they plan to use reciprocation ethically."
+  },
+  {
+    "skillId": "social-proof",
+    "observe": "Catch yourself following the crowd 3 times this week -- a restaurant choice, an app download, a meeting opinion, a product purchase. Write down: (1) what 'proof' influenced you (reviews, popularity, others' behavior), (2) whether you evaluated the option independently, and (3) whether the crowd was right.",
+    "intervene": "The next time you are about to make a decision based on social proof (reviews, trends, what competitors are doing), pause and evaluate the option on its own merits first. Write your independent assessment before looking at what others did. Record: (1) your independent judgment, (2) the social proof, and (3) which one you ultimately followed and why.",
+    "teach": "Explain social proof to a colleague, using examples from your product or marketing. Show how testimonials, user counts, and 'trending' labels leverage this bias. Write down: (1) how you explained the mechanism, (2) where they see social proof being used on them, (3) one way they plan to use social proof ethically in their own work."
+  },
+  {
+    "skillId": "commitment-and-consistency",
+    "observe": "Notice 3 times this week when you continued doing something mainly because you had already publicly committed to it or because it was consistent with your self-image. Write down: (1) the commitment, (2) whether continuing was actually the best choice, and (3) whether you would make the same commitment today.",
+    "intervene": "Use the foot-in-the-door technique deliberately this week: when you need someone's cooperation on something big, start with a small, easy request first. Record: (1) the small commitment you asked for, (2) the larger request that followed, and (3) whether the initial small yes made the bigger yes more likely.",
+    "teach": "Explain the commitment and consistency principle to a colleague, including both the positive side (building habits) and the manipulative side (foot-in-the-door sales tactics). Write down: (1) how you framed it, (2) an example they recognized from their own experience, (3) one way they plan to use it constructively."
+  },
+  {
+    "skillId": "scarcity-principle",
+    "observe": "This week, notice 3 times when you felt urgency to buy, decide, or act because something was 'limited,' 'exclusive,' or 'almost gone.' Write down: (1) the scarcity claim, (2) whether the scarcity was real or manufactured, and (3) whether the item would be worth the same price without the urgency.",
+    "intervene": "The next time you feel scarcity-driven urgency, force a 24-hour pause. Ask: 'Would I want this if there were unlimited supply?' If you are on the other side, test ethical scarcity in your own marketing -- a genuine limited offer. Record: (1) what happened when you paused, (2) whether the desire persisted, and (3) the outcome.",
+    "teach": "Explain the scarcity principle to a friend or colleague, using examples from marketing, product launches, or hiring. Write down: (1) the examples you used, (2) whether they realized they had fallen for manufactured scarcity recently, (3) how they plan to spot it in the future and use it ethically in their own work."
+  },
+  {
+    "skillId": "authority-principle",
+    "observe": "Three times this week when an expert, authority figure, or credentialed person tells you something, pause and write down: (1) the claim they made, (2) what their credentials actually are (and whether those credentials are relevant to this specific claim), and (3) whether you would believe the same claim from someone without the title.",
+    "intervene": "The next time you are persuaded by authority (a consultant's recommendation, an advisor's opinion, a thought leader's tweet), evaluate the argument on its own merits before considering the source. Write down: (1) the argument stripped of authority, (2) your independent assessment, and (3) whether the authority's credentials changed your conclusion.",
+    "teach": "Explain the authority principle to a colleague, including how titles, uniforms, and credentials can trigger automatic compliance. Write down: (1) a real example where authority influenced a decision at your company, (2) their reaction to realizing the mechanism, (3) what 'authority audit' practice they plan to adopt."
+  },
+  {
+    "skillId": "liking-principle",
+    "observe": "This week, notice 3 times when you agreed with someone or complied with a request partly because you liked them personally. Write down: (1) what made you like them (similarity, compliments, attractiveness, familiarity), (2) whether your compliance was based on the merits of their request, and (3) what you would have decided if the request came from someone you disliked.",
+    "intervene": "Before your next 3 important conversations (sales calls, partnership discussions, negotiations), find one genuine point of similarity or interest with the other person and mention it early. Record: (1) the similarity you found, (2) how it affected the tone of the conversation, and (3) whether the rapport made the discussion more productive.",
+    "teach": "Explain the liking principle to a colleague in sales or partnerships. Walk through the specific drivers of liking: similarity, compliments, cooperation, familiarity. Write down: (1) which driver they rely on most naturally, (2) which one they want to develop, (3) a specific conversation where they plan to apply it this week."
+  },
+  {
+    "skillId": "contrast-principle",
+    "observe": "Notice 3 times this week when the order of presentation influenced your judgment -- an expensive option making the next one seem cheap, a terrible idea making a mediocre one seem great, or a bad experience making a normal one feel wonderful. Write down: (1) the contrast, (2) how it shifted your perception, and (3) the objective value independent of the contrast.",
+    "intervene": "Deliberately use the contrast principle in your next presentation, pricing, or proposal: present options in an order that makes your preferred option shine. Record: (1) the order you chose, (2) the audience's reaction, and (3) whether sequencing visibly influenced their preference.",
+    "teach": "Explain the contrast principle to a team member working on pricing, proposals, or presentations. Show them how A-B-C option ordering changes perception. Write down: (1) the example you used, (2) whether they could identify contrast effects in their current work, (3) one specific change they plan to make to their presentation order."
+  },
+  {
+    "skillId": "mirroring-technique",
+    "observe": "In 3 conversations this week, pay attention to whether you or the other person naturally mirrors body language, tone, or words. Write down: (1) what was mirrored, (2) whether mirroring correlated with rapport and openness, and (3) what happened when the mirroring stopped or was absent.",
+    "intervene": "In 3 conversations this week, practice verbal mirroring: repeat the last 1-3 critical words of what the other person just said with an upward inflection. Record: (1) what you mirrored, (2) how much additional information they volunteered after feeling heard, and (3) whether it felt natural or forced by the third conversation.",
+    "teach": "Explain the mirroring technique (from Chris Voss's approach) to a friend or colleague and practice it together in a role-play conversation. Write down: (1) how you explained the technique, (2) their experience trying it, (3) what surprised them about how much the other person opened up with just a few repeated words."
+  },
+  {
+    "skillId": "tactical-empathy",
+    "observe": "In 3 conversations this week, before responding, pause and write down what you think the other person is feeling and why. After the conversation, check: (1) were you right about their emotion? (2) did you address their feeling before making your point? (3) how did acknowledging (or failing to acknowledge) their emotion affect the outcome?",
+    "intervene": "In your next difficult conversation, before making your case, verbalize the other person's perspective and emotions: 'It seems like you feel X because Y.' Record: (1) your labeling statement, (2) their response (did they say 'that is right'?), and (3) whether leading with empathy made them more receptive to your point.",
+    "teach": "Explain tactical empathy to a colleague who is struggling with a difficult negotiation or conversation. Role-play their situation with you playing the other side. Write down: (1) the labeling statements they practiced, (2) what felt different about leading with empathy vs. leading with their argument, (3) what they plan to say differently in the real conversation."
+  },
+  {
+    "skillId": "calibrated-questions",
+    "observe": "Track your questions in 3 important conversations this week. Write down: (1) each question you asked, (2) whether it was closed (yes/no) or open (how/what), and (3) how much useful information each type of question generated.",
+    "intervene": "Replace 3 closed questions this week with calibrated 'how' or 'what' questions. Instead of 'Can you do this by Friday?' try 'What would it take to get this done by Friday?' Record: (1) the original closed question, (2) the calibrated replacement, and (3) how much more information and buy-in the open question generated.",
+    "teach": "Explain calibrated questions to a colleague who manages people or negotiates regularly. Help them convert 5 of their go-to closed questions into calibrated open ones. Write down: (1) the before and after for each question, (2) which conversion they found most powerful, (3) what happened when they used one in a real conversation."
+  },
+  {
+    "skillId": "positions-vs-interests",
+    "observe": "In your next 3 disagreements or negotiations, write down: (1) what the other person is asking for (their position), (2) what you think they actually need underneath that position (their interest), and (3) whether addressing the interest rather than the position would open up new solutions.",
+    "intervene": "In your next disagreement, resist responding to the position. Instead, ask 'help me understand why that is important to you' to uncover the underlying interest. Record: (1) their stated position, (2) the interest you uncovered, and (3) the creative solution that became possible once you understood what they really needed.",
+    "teach": "Explain the positions versus interests framework to a colleague facing a negotiation or conflict. Use the classic orange example or a real situation from your week. Write down: (1) how you distinguished positions from interests, (2) whether they could reframe their current negotiation around interests, (3) the new options that opened up."
+  },
+  {
+    "skillId": "accusation-audit",
+    "observe": "Before 3 conversations this week where you anticipate resistance, write down every negative thing the other person might be thinking about you or your proposal. Note: (1) the assumptions you listed, (2) which ones turned out to be accurate, and (3) whether the act of listing them reduced your anxiety about the conversation.",
+    "intervene": "Before a conversation where someone might resist you, list every negative assumption they might have, then address them proactively at the start: 'You are probably thinking X...' Record: (1) your accusation audit statements, (2) the other person's response (did it disarm them?), and (3) whether the conversation went more smoothly than expected.",
+    "teach": "Explain the accusation audit technique to a teammate preparing for a tough meeting or pitch. Help them draft their audit. Write down: (1) the negative assumptions they listed, (2) how they felt about saying those things out loud proactively, (3) what happened when they used it in the actual conversation."
+  },
+  {
+    "skillId": "elaboration-likelihood-model",
+    "observe": "For 3 persuasion attempts you witness this week (ads, pitches, presentations), write down: (1) whether the persuader used the central route (strong arguments, evidence) or peripheral route (celebrity, emotion, aesthetics), (2) whether the audience was motivated and able to process deeply, and (3) whether the route matched the audience.",
+    "intervene": "For your next persuasion attempt, assess your audience first: are they motivated and able to think carefully about your topic? If yes, prepare strong arguments (central route). If no, focus on credibility cues, stories, and simple messaging (peripheral route). Record: (1) your audience assessment, (2) the route you chose, and (3) how effective it was.",
+    "teach": "Explain the Elaboration Likelihood Model to a colleague who pitches or presents regularly. Help them assess which route to use for their next audience. Write down: (1) how you explained the two routes, (2) which route they typically default to, (3) how they plan to adjust their next pitch based on audience motivation."
+  },
+  {
+    "skillId": "fixed-pie-bias",
+    "observe": "In your next 3 negotiations or resource-allocation discussions, notice whether you (or the other party) are assuming the pie is fixed -- that for you to win, they must lose. Write down: (1) the assumption, (2) at least 2 dimensions where value could be created or expanded, and (3) whether the discussion changed when you looked beyond the single dimension.",
+    "intervene": "In your next negotiation, before discussing terms, list 5 dimensions of the deal beyond price (timeline, scope, exclusivity, referrals, future work). Ask about the other party's priorities. Record: (1) the dimensions you identified, (2) which priorities differed between you, and (3) the value-creating trade you made.",
+    "teach": "Explain fixed-pie bias to a colleague entering a negotiation. Help them list 5 dimensions they had not considered. Write down: (1) how you explained the concept, (2) how many dimensions they initially had versus after your conversation, (3) the potential trade they identified that could make both sides better off."
+  },
+  {
+    "skillId": "reactive-devaluation",
+    "observe": "This week, when someone you disagree with or distrust makes a proposal, notice your immediate impulse to dismiss or devalue it. Write down 3 instances: (1) the proposal, (2) your gut reaction, and (3) how you would evaluate the exact same proposal if it came from someone you trusted.",
+    "intervene": "The next time you are in a disagreement and the other side offers a concession or idea, force yourself to evaluate it as if a neutral third party proposed it. Write the proposal on paper stripped of its source. Record: (1) the proposal, (2) your initial reaction with the source attached, (3) your reaction with the source removed, and (4) which reaction was more rational.",
+    "teach": "Explain reactive devaluation to a team member who is in a conflict with another department or person. Show them how the source of a proposal contaminates the evaluation. Write down: (1) how you explained the bias, (2) a proposal they had dismissed that they now see differently, (3) whether this changed their approach to the conflict."
+  },
+  {
+    "skillId": "inoculation-theory",
+    "observe": "Before your next 3 presentations or proposals, list the strongest counterarguments your audience might have. Write down: (1) each counterargument, (2) your response to it, and (3) whether you addressed it preemptively or waited for it to come up (and which approach worked better).",
+    "intervene": "Before your next important pitch or argument, identify the single strongest objection and address it before anyone raises it: present a weakened version of the counterargument, then refute it. Record: (1) the objection you inoculated against, (2) the audience's reaction, and (3) whether anyone still raised it afterwards.",
+    "teach": "Explain inoculation theory to a colleague preparing for a pitch or debate. Help them identify their top 3 vulnerabilities and craft preemptive responses. Write down: (1) how you explained the vaccine metaphor, (2) the inoculations they crafted, (3) their feedback on how the audience responded when they used them."
+  },
+  {
+    "skillId": "pre-suasion",
+    "observe": "This week, before 3 important conversations or requests, pay attention to what happens in the moments just before the ask. Write down: (1) what the other person was primed with (an image, a question, a context), (2) how that priming shaped the conversation, and (3) whether you could have set the stage differently.",
+    "intervene": "Before your next important request, deliberately prime the other person by directing their attention to a concept that supports your message. Example: ask about their values before asking for a commitment to those values. Record: (1) the priming you used, (2) how it affected the conversation's direction, and (3) whether the request was received differently than usual.",
+    "teach": "Explain pre-suasion to a colleague involved in sales, pitching, or leadership. Walk them through how the moment BEFORE a message matters as much as the message itself. Write down: (1) the examples you used, (2) what pre-suasion tactic they want to try, (3) their feedback after trying it in a real conversation."
+  },
+  {
+    "skillId": "value-creation-in-negotiation",
+    "observe": "In your next 3 negotiations or deal discussions, track whether the conversation focuses on dividing existing value or creating new value. Write down: (1) the initial framing (competitive or collaborative), (2) any opportunities to expand the pie that were missed, and (3) whether both parties left satisfied.",
+    "intervene": "In your next negotiation, before discussing price or terms, spend at least 10 minutes asking about the other party's priorities, constraints, and goals. Look for differences in preferences that allow trades. Record: (1) the questions you asked, (2) the information you uncovered, and (3) the value-creating trade you proposed.",
+    "teach": "Explain value creation in negotiation to a colleague who defaults to zero-sum haggling. Use a real example to show how differing priorities enable trades that benefit both sides. Write down: (1) the example you used, (2) whether they could identify a current negotiation where value creation is possible, (3) the specific trade they plan to propose."
+  },
+  {
+    "skillId": "audience-as-hero",
+    "observe": "Review your last 3 presentations, pitches, or team emails. Write down: (1) whether the opening focused on you/your company or on the audience, (2) whether the audience was positioned as the hero of the story or the passive recipient, and (3) how you could rewrite each opening to start with the audience's challenge.",
+    "intervene": "In your next presentation or pitch, rewrite your opening to start with the AUDIENCE's problem, dream, or challenge -- not your credentials or product. Position them as the hero and yourself as the guide. Record: (1) the original opening versus the rewritten one, (2) the audience's engagement level, and (3) whether framing them as the hero changed their receptiveness.",
+    "teach": "Explain the 'audience as hero' framework to a colleague preparing a presentation or pitch. Help them rewrite their opening. Write down: (1) how their original opening focused on themselves, (2) the rewritten version centering the audience, (3) their reaction to how much more compelling the audience-centered version feels."
+  },
+  {
+    "skillId": "commanders-intent",
+    "observe": "Review your last 5 emails, briefs, or team updates. For each, write down: (1) the core message in one sentence, (2) how many sentences it takes to find that core message, and (3) whether someone could take the right action if they only read the first two sentences.",
+    "intervene": "For your next project brief or team communication, write the ONE core message or intended outcome in the first sentence. Strip everything else back to supporting detail. Record: (1) your original draft versus the commander's intent version, (2) whether the recipient understood and acted faster, and (3) what you had to cut.",
+    "teach": "Explain commander's intent to a colleague who writes long, unfocused communications. Help them distill their next email or brief to a single core message. Write down: (1) how you explained the military origins and why clarity saves lives (and time), (2) their original versus revised message, (3) the feedback they got from the recipient."
+  },
+  {
+    "skillId": "concreteness-principle",
+    "observe": "Review your last email, presentation, or product description for abstract language: words like 'optimize,' 'leverage,' 'synergize,' 'drive,' 'streamline.' Write down: (1) each abstract term you find, (2) a concrete, specific replacement, and (3) whether the concrete version communicates more clearly.",
+    "intervene": "Rewrite one important communication this week replacing every abstract term with a concrete, specific, sensory-rich description. Instead of 'improve customer experience,' say exactly what the customer will see, feel, or do differently. Record: (1) the before and after, (2) the recipient's comprehension, and (3) whether specificity made the message more persuasive.",
+    "teach": "Explain the concreteness principle to a colleague who writes in abstractions. Give them one paragraph of their own writing and help them make every sentence concrete and specific. Write down: (1) the abstract terms they relied on most, (2) the concrete replacements you created together, (3) their reaction to how much clearer the revised version is."
+  },
+  {
+    "skillId": "story-as-simulation",
+    "observe": "In the next 3 presentations or conversations you witness, notice when the speaker uses data versus when they use a specific story about a real person. Write down: (1) which moments held your attention, (2) which you remembered an hour later, and (3) whether the story or the data was more persuasive to you.",
+    "intervene": "Replace one data point in your next presentation or proposal with a specific story about a real person affected by the issue. Include their name, their situation, and what changed. Record: (1) the data you replaced, (2) the story you used, and (3) the audience's reaction compared to your typical data-driven slides.",
+    "teach": "Explain 'story as simulation' to a colleague who relies heavily on charts and statistics. Help them find one data point in their next deck and replace it with a real human story. Write down: (1) the data point they chose, (2) the story they crafted, (3) their audience's reaction and whether it was more engaging than the data alone."
+  },
+  {
+    "skillId": "credibility-in-communication",
+    "observe": "Before your next important communication, score yourself on the key credibility dimensions: expertise, trustworthiness, dynamism, and composure. Write down: (1) your honest self-score on each dimension (1-10), (2) which dimension is your weakest, and (3) what specific evidence the audience has for each.",
+    "intervene": "For your weakest credibility dimension, take one specific action to strengthen it before your next important presentation or meeting. Build in a proof point: a demonstration of expertise, a moment of vulnerability for trust, or a physical/vocal adjustment for dynamism. Record: (1) the action you took, (2) the audience's response, and (3) whether your credibility felt stronger.",
+    "teach": "Explain the components of credibility to a colleague preparing for a high-stakes presentation. Help them identify their weakest dimension and plan one specific action to strengthen it. Write down: (1) which dimension they scored lowest on, (2) the action you designed together, (3) the feedback they received after implementing it."
+  },
+  {
+    "skillId": "nonverbal-communication",
+    "observe": "Record yourself speaking for 2 minutes (video). Watch it on mute and write down: (1) your posture and gestures, (2) any nervous habits (touching face, shifting weight, fidgeting), and (3) whether your body language projects confidence and openness or tension and discomfort.",
+    "intervene": "In your next meeting or presentation, deliberately adjust one nonverbal element: plant your feet, use purposeful hand gestures, or maintain eye contact for 3-5 seconds per person. Record yourself if possible. Write down: (1) the adjustment you made, (2) whether it felt natural by the end, and (3) any feedback you received.",
+    "teach": "Explain the impact of nonverbal communication to a colleague. Watch each other's 2-minute videos and give specific feedback. Write down: (1) the nonverbal habits they were unaware of, (2) the one adjustment you recommended, (3) the difference in their before and after delivery."
+  },
+  {
+    "skillId": "empathy",
+    "observe": "In 3 conversations this week, before responding, pause and write down what you think the other person is feeling and needing right now. After the conversation, check: (1) were you right? (2) did you address their emotional state before the content? (3) how did it affect the conversation's outcome?",
+    "intervene": "In your next 3 conversations where someone shares a problem, resist the urge to solve it immediately. Instead, acknowledge their emotion first: 'That sounds frustrating' or 'I can see why that matters to you.' Record: (1) what you would have said without the pause, (2) what you actually said, and (3) whether leading with empathy changed the dynamic.",
+    "teach": "Explain the difference between empathy (feeling with) and sympathy (feeling for) to a colleague who tends to jump to solutions. Role-play a scenario where empathy is needed first. Write down: (1) how you distinguished the two, (2) their experience of receiving empathy versus advice in the role-play, (3) one conversation where they plan to lead with empathy this week."
+  },
+  {
+    "skillId": "what-is-what-could-be",
+    "observe": "Review your last 3 team updates, presentations, or pitches. Write down: (1) whether you described the current reality (what is), the future vision (what could be), or both, (2) whether you alternated between them to create tension, and (3) at what point the audience seemed most engaged.",
+    "intervene": "Structure your next team update or pitch by alternating between 'what is' (current reality and its pain) and 'what could be' (the better future). Create at least 3 contrasts. Record: (1) the contrasts you built, (2) the audience's engagement at each shift, and (3) whether the alternating structure was more compelling than your usual format.",
+    "teach": "Explain the 'what is vs. what could be' framework (from Nancy Duarte) to a colleague preparing a presentation. Help them restructure their talk using the alternating pattern. Write down: (1) their original structure, (2) the revised alternating structure, (3) their reaction to how much more momentum the new structure creates."
+  },
+  {
+    "skillId": "star-moment",
+    "observe": "Think about the last 5 presentations or talks you attended. Write down: (1) which ones you still remember, (2) what specific moment made them memorable (a demo, a story, a dramatic reveal, a prop), and (3) whether the forgettable ones lacked a signature moment.",
+    "intervene": "For your next presentation, plan one dramatic 'S.T.A.R. moment' -- something the audience will remember and retell. A live demo, a shocking statistic with a visual, a personal confession, or a physical prop. Record: (1) the moment you designed, (2) the audience's reaction, and (3) whether anyone mentioned it afterward.",
+    "teach": "Explain the S.T.A.R. moment concept to a colleague preparing a presentation. Help them brainstorm and design one memorable moment for their talk. Write down: (1) the ideas you generated together, (2) the one they chose, (3) the audience's reaction when they delivered it."
+  },
+  {
+    "skillId": "structure-in-spontaneity",
+    "observe": "Track 3 times this week when you were asked a question or put on the spot with no preparation. Write down: (1) how you responded, (2) whether your answer was structured or rambling, and (3) whether the audience seemed to follow your point clearly.",
+    "intervene": "Learn one impromptu speaking framework (Problem-Solution-Benefit or What-So What-Now What) and use it 3 times this week when asked an unexpected question. Record: (1) the question, (2) the framework you applied, and (3) whether having a structure made your spontaneous answer clearer and more confident.",
+    "teach": "Teach an impromptu speaking framework to a colleague or friend. Give them 3 surprise questions and have them practice responding with the structure. Write down: (1) the framework you taught, (2) how their answers improved from question 1 to question 3, (3) what they found most helpful about having a structure for spontaneous moments."
+  },
+  {
+    "skillId": "three-conversations-framework",
+    "observe": "Before your next 3 difficult conversations, map all three layers by writing down: (1) the 'What Happened' conversation (the facts and who is right), (2) the 'Feelings' conversation (the emotions involved for both sides), and (3) the 'Identity' conversation (what this situation says about who you are). Note which layer you usually skip.",
+    "intervene": "In your next difficult conversation, deliberately address all three layers instead of just arguing about facts. Acknowledge the emotions and identity stakes. Record: (1) the three layers you identified before the conversation, (2) which layer shifted the dynamic most when you addressed it, and (3) the outcome versus what usually happens when you only argue facts.",
+    "teach": "Explain the Three Conversations Framework (from 'Difficult Conversations') to a colleague facing a tough interaction. Help them map all three layers for their situation. Write down: (1) which layer they had been ignoring, (2) how mapping all three changed their understanding of the conflict, (3) what happened when they addressed the previously ignored layer."
+  },
+  {
+    "skillId": "third-story",
+    "observe": "In your next 3 disagreements, notice how you typically open the conversation. Write down: (1) whether you started from your version of events, their version, or a neutral third-party perspective, (2) how the other person reacted to your opening, and (3) whether starting from 'your story' triggered defensiveness.",
+    "intervene": "In your next disagreement, resist starting from your version. Open with a neutral 'third story' that an impartial observer would tell: 'We seem to see this differently...' or 'There is a gap between what I expected and what happened.' Record: (1) your third-story opening, (2) the other person's response compared to your usual approach, and (3) whether it created more space for resolution.",
+    "teach": "Explain the 'third story' technique to a colleague who struggles with conflict conversations. Role-play a disagreement where they practice opening from the neutral third-party perspective. Write down: (1) how their usual opening compares to the third story version, (2) the shift they felt when using it, (3) the real conversation where they plan to apply it."
+  },
+  {
+    "skillId": "tell-sell-consult-join",
+    "observe": "Before your next 3 communications, write down: (1) the style you are defaulting to (Tell, Sell, Consult, or Join), (2) whether that style matches what the situation actually needs, and (3) whether you tend to over-use one style regardless of context.",
+    "intervene": "Before your next 3 communications, consciously choose your style: Tell (crisis, clear directive), Sell (need buy-in, explain why), Consult (need input, want ownership), or Join (collaborative decision). Match the style to the situation. Record: (1) the situation and style you chose, (2) whether it felt different from your default, and (3) the audience's response.",
+    "teach": "Explain the Tell-Sell-Consult-Join framework to a manager or team lead. Help them audit their last 5 communications and categorize the style used. Write down: (1) their default style pattern, (2) situations where they used the wrong style, (3) one upcoming communication where they plan to consciously choose a different style."
+  },
+  {
+    "skillId": "testable-credentials",
+    "observe": "Review your last 3 pitches, proposals, or arguments. Write down: (1) how many claims relied on 'trust me' authority versus verifiable evidence, (2) which claims could be turned into testable demonstrations, and (3) whether the audience had reason to verify your claims independently.",
+    "intervene": "In your next pitch or argument, replace one 'trust me' claim with a testable credential: a demo, a trial, a checkable fact, or a 'try it yourself' invitation. Record: (1) the original claim, (2) the testable version, and (3) whether giving the audience verification power increased their trust more than assertion would have.",
+    "teach": "Explain testable credentials to a colleague who relies on authority-based persuasion ('we are the best,' 'trust our experience'). Help them convert one claim into a testable demonstration. Write down: (1) the claim they chose, (2) the testable version you created together, (3) the audience's reaction to being able to verify rather than just trust."
+  },
+  {
+    "skillId": "trojan-horse-stories",
+    "observe": "This week, notice 3 times when a story, parable, or analogy changed your mind more effectively than a direct argument could have. Write down: (1) the story, (2) the lesson embedded inside it, and (3) why the story bypassed your defenses in a way a lecture would not have.",
+    "intervene": "Take one key lesson or principle you want to share with your team this week. Instead of stating it directly, embed it in a story -- a customer experience, a personal failure, a historical parallel. Record: (1) the lesson you wanted to convey, (2) the story you wrapped it in, and (3) whether the team absorbed and acted on the lesson more than they would have from a direct statement.",
+    "teach": "Explain the 'Trojan horse story' technique to a colleague who struggles to get people to act on their advice. Help them take one piece of advice and wrap it in a compelling story. Write down: (1) the advice they want to deliver, (2) the story they crafted, (3) the recipient's response to the story versus how they typically respond to direct advice."
+  },
+  {
+    "skillId": "interpersonal-vulnerability",
+    "observe": "This week, notice 3 moments where you had the opportunity to be vulnerable (admit a mistake, share uncertainty, ask for help) but chose to protect your image instead. Write down: (1) the moment, (2) what you chose to say or do, (3) what you would have said if you felt completely safe, and (4) what you feared would happen.",
+    "intervene": "Choose one important relationship and share something real this week -- an uncertainty, a fear, a mistake, or a struggle. Not a grand confession, just honest. Record: (1) what you shared, (2) how they responded, (3) whether the vulnerability deepened the relationship or felt risky in retrospect.",
+    "teach": "Explain why interpersonal vulnerability builds trust and deepens relationships to a colleague who tends to keep a professional wall up. Share a time vulnerability strengthened one of your relationships. Write down: (1) their initial resistance to the idea, (2) a relationship where they want to try being more open, (3) what they plan to share and with whom."
+  },
+  {
+    "skillId": "pinch-crunch-model",
+    "observe": "Identify 3 'pinches' in your important relationships this week -- small irritations, unspoken expectations, or minor disappointments you have been swallowing. Write down for each: (1) the pinch, (2) how long you have been sitting on it, and (3) whether ignoring it is making it grow toward a crunch.",
+    "intervene": "Address one pinch this week before it becomes a crunch. Have a direct, low-stakes conversation about the small irritation while it is still small. Record: (1) the pinch you addressed, (2) how you brought it up, (3) the other person's response, and (4) whether early addressing prevented a larger conflict.",
+    "teach": "Explain the Pinch-Crunch model to a colleague or friend who tends to avoid small conflicts until they explode. Help them identify a current pinch they are sitting on. Write down: (1) how you explained the escalation from pinch to crunch, (2) the pinch they identified, (3) the plan they made for addressing it this week and what happened."
+  },
+  {
+    "skillId": "feedback-model",
+    "observe": "Track 3 pieces of feedback you give or receive this week. For each, write down: (1) whether the feedback described specific behavior or made general character judgments, (2) whether it explained the impact of the behavior, and (3) whether it included a clear, actionable request for change.",
+    "intervene": "Give one piece of growth-oriented feedback this week using this structure: describe the specific behavior you observed, explain its impact on you or the team, and make a specific request for what you would like to see instead. Record: (1) the full feedback you gave, (2) the recipient's response, and (3) whether the structured format made the conversation feel different from your usual feedback.",
+    "teach": "Explain a growth-oriented feedback model to a colleague who either avoids giving feedback or gives it in a way that triggers defensiveness. Role-play giving structured feedback together. Write down: (1) the model you taught (SBI, observation-impact-request, etc.), (2) the feedback they practiced delivering, (3) how the structured version compared to their instinctive approach."
+  }
+]

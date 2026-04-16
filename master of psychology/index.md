@@ -1,0 +1,645 @@
+# Wiki Index
+
+## Phases
+- [[phase-1-overview]] — Cognitive foundations: biases, heuristics, emotional intelligence, influence principles
+- [[phase-2-overview]] — Decision science: judgment under uncertainty, behavioral economics
+- [[phase-3-overview]] — Motivation science: self-determination theory, self-efficacy
+- [[phase-4-overview]] — Communication foundations: rhetoric, persuasive writing, difficult conversations
+- [[phase-5-overview]] — Negotiation: principled negotiation, deal design, tactical empathy
+- [[phase-6-overview]] — Advanced persuasion: pre-suasion, propaganda, influence at scale
+- [[phase-7-overview]] — Leadership communication: influence without authority, storytelling, speaking
+
+## Concepts (alphabetical)
+- [[accusation-audit]] — Listing every terrible thing your counterpart could say about you and saying it first to defuse negativity (Phase 5) [confidence: 0.7]
+- [[abstract-vs-concrete-information]] — Vivid case-based information overwhelms pallid statistical data in judgment (Phase 2, 4, 6) [confidence: 0.7]
+- [[active-commitment]] — Behavioral commitments change self-image more than passive decisions (Phase 1) [confidence: 0.5]
+- [[audience-as-hero]] — The audience is the hero of the presentation, not the presenter; the presenter is the mentor (Yoda, not Luke) (Phase 7) [confidence: 0.7]
+- [[exceptional-relationships]] — Relationships defined by six hallmarks: authenticity, vulnerability, trust, honesty, productive conflict, mutual growth (Phase 7) [confidence: 0.7]
+- [[alexithymia]] — Inability to appraise and verbally express emotions; clinical deficit in emotional perception (Phase 1) [confidence: 0.7]
+- [[altruistic-punishment]] — Willingness to incur personal costs to punish fairness violators, even with no direct benefit (Phase 2) [confidence: 0.7]
+- [[and-stance]] — Embracing both stories simultaneously rather than choosing between them in difficult conversations (Phase 4, 5) [confidence: 0.7]
+- [[anchoring-and-adjustment]] — Heuristic: estimating by insufficient adjustment from an initial value (Phase 1, 2) [confidence: 0.6]
+- [[arbitrary-coherence]] — First purchase anchors all future prices for a product; extends anchoring to market behavior (Phase 2) [confidence: 0.7]
+- [[audience-analysis]] — Systematic analysis of audience identity, knowledge, emotions, and persuadability (Phase 4) [confidence: 0.7]
+- [[authority-principle]] — Deference to perceived experts and authority figures; Cialdini's fifth principle (Phase 1, 6) [confidence: 0.5]
+- [[feedback-model]] — Bradford & Robin's structured approach to feedback as a relationship-strengthening growth tool (Phase 7) [confidence: 0.7]
+- [[authority-symbols]] — Titles, clothes, and trappings that trigger compliance without genuine expertise (Phase 1, 6) [confidence: 0.5]
+- [[autonomy-need]] — Basic psychological need for volition and self-endorsement of actions; necessary for intrinsic motivation (Phase 3) [confidence: 0.7]
+- [[autonomy-orientation]] — Personality-level tendency to orient toward informational aspects of environments; associated with identified/integrated/intrinsic regulation (Phase 3) [confidence: 0.7]
+- [[autonomy-in-relationships]] — Autonomy and relatedness are complementary, not opposing; SDT distinguishes autonomy from independence (Phase 3) [confidence: 0.7]
+- [[autonomy-support]] — Interpersonal orientation supporting others' autonomy through choice, rationale, and perspective-taking (Phase 3) [confidence: 0.7]
+- [[availability]] — Heuristic: judging frequency/probability by ease of recall (Phase 1, 2) [confidence: 0.6]
+- [[base-rate-fallacy-in-medicine]] — Physicians confuse P(test|disease) with P(disease|test), overestimating disease probability by tenfold (Phase 2) [confidence: 0.7]
+- [[base-rate-neglect]] — Ignoring prior probabilities when individuating information is present (Phase 1, 2) [confidence: 0.8]
+- [[aspiration-index]] — Kasser & Ryan's instrument measuring relative importance of intrinsic vs. extrinsic life goals (Phase 3) [confidence: 0.7]
+- [[associative-priming]] — Exposure to one concept activates linked concepts, shaping subsequent behavior; building blocks of pre-suasion (Phase 6) [confidence: 0.7]
+- [[basic-psychological-needs]] — Three universal nutriments for growth, integrity, and well-being: autonomy, competence, relatedness (Phase 3) [confidence: 0.7]
+- [[basic-psychological-needs-theory]] — BPNT: fourth SDT mini-theory formalizing three needs as universal nutriments, eight propositions (Phase 3) [confidence: 0.7]
+- [[basking-in-reflected-glory]] — Connecting oneself to winners and distancing from losers (BIRGing/CORFing) (Phase 1) [confidence: 0.5]
+- [[bayesian-conservatism]] — Tendency to under-update beliefs relative to Bayes' theorem (Phase 2) [confidence: 0.7]
+- [[beer-and-free-choice]] — Public ordering drives uniqueness-seeking; private ordering drives conformity (Phase 2) [confidence: 0.7]
+- [[big-idea]] — The one key message with three components: unique POV, clear stakes, complete sentence form; serves as both generator and filter for content (Phase 7) [confidence: 0.7]
+- [[behavioral-finance]] — Application of cognitive biases to financial markets and investment decisions (Phase 2) [confidence: 0.7]
+- [[belief-perseverance]] — Sticking with initial judgments despite contradicting evidence (Phase 1, 2, 6) [confidence: 0.75]
+- [[bias-blind-spot]] — Believing others are more biased than we are (Phase 1) [confidence: 0.5]
+- [[bootstrapping-judgment]] — Building a linear model of an expert's judgments and using the model instead of the expert (Phase 2) [confidence: 0.7]
+- [[bounded-awareness]] — Systematic failure to notice obvious, important, and readily available information (Phase 2) [confidence: 0.7]
+- [[bounded-ethicality]] — Systematic psychological processes that lead well-intentioned people to act unethically without conscious awareness (Phase 2) [confidence: 0.7]
+- [[bounded-rationality]] — Herbert Simon: human judgment is bounded; we satisfice rather than optimize (Phase 2) [confidence: 0.7]
+- [[bystander-effect]] — More witnesses to an emergency reduces the probability of any individual helping (Phase 1) [confidence: 0.5]
+- [[categorical-syllogisms]] — Logical inference from quantified premises; errors reveal non-logical reasoning (Phase 2) [confidence: 0.7]
+- [[causal-vs-incidental-base-rates]] — Causal base rates are utilized in judgment; incidental base rates are ignored (Phase 2) [confidence: 0.7]
+- [[certainty-effect]] — Overweighting certain outcomes relative to merely probable ones (Phase 1, 2) [confidence: 0.7]
+- [[change-blindness]] — Failure to notice obvious visual changes in one's environment; gradual ethical degradation (Phase 2) [confidence: 0.7]
+- [[claiming-vs-creating-value]] — The negotiator's dilemma: tension between competitive claiming and cooperative creating (Phase 5) [confidence: 0.7]
+- [[commanders-of-attention]] — Stimuli that naturally seize (attractors: sexual, threatening, different) or hold (magnetizers: self-relevant, unfinished, mysterious) attention (Phase 6) [confidence: 0.7]
+- [[competence-need]] — Basic psychological need to feel effectance and mastery; derived from White's effectance motivation (Phase 3) [confidence: 0.7]
+- [[controlled-vs-autonomous-motivation]] — Continuum from external regulation through intrinsic motivation; type of motivation matters more than amount (Phase 3) [confidence: 0.7]
+- [[chunking]] — Grouping information into meaningful units; basis of expert pattern recognition (Phase 2) [confidence: 0.7]
+- [[click-whirr]] — Automatic, trigger-feature-based responding; the meta-mechanism behind all influence principles (Phase 1) [confidence: 0.7]
+- [[clinical-vs-statistical-prediction]] — Statistical models consistently outperform expert intuitive judgment in prediction tasks (Phase 2) [confidence: 0.7]
+- [[cognitive-barriers-to-resolution]] — Loss aversion and reactive devaluation block concession exchange in negotiation (Phase 2, 5) [confidence: 0.7]
+- [[cognitive-dissonance]] — Psychological discomfort from contradictory cognitions motivates consistency-seeking (Phase 1, 2) [confidence: 0.6]
+- [[causality-orientations-theory]] — SDT's third mini-theory: individual differences in autonomy, control, and impersonal motivational orientations (Phase 3) [confidence: 0.7]
+- [[cognitive-evaluation-theory]] — SDT's first mini-theory: how rewards, feedback, and external events affect intrinsic motivation via autonomy and competence (Phase 3) [confidence: 0.7]
+- [[conditional-regard]] — Making love/attention contingent on compliance, pitting autonomy against relatedness; key mechanism of need thwarting in relationships (Phase 3) [confidence: 0.7]
+- [[control-orientation]] — Personality-level tendency to orient toward external contingencies and controls; associated with introjected/external regulation (Phase 3) [confidence: 0.7]
+- [[communication-strategy-framework]] — Five-variable model for strategic communication: communicator, audience, message, channel, culture (Phase 4) [confidence: 0.7]
+- [[commanders-intent]] — Finding and communicating the essential core of a message; the Army's method adapted for all communication (Phase 4) [confidence: 0.7]
+- [[commitment-and-consistency]] — Once we make a choice, pressures drive us to behave consistently with it (Phase 1, 5, 6) [confidence: 0.6]
+- [[commodity-theory]] — Any commodity is valued to the extent that it is unavailable (Phase 1) [confidence: 0.5]
+- [[commons-dilemma]] — Individual rational self-interest collectively depletes shared resources (Phase 2) [confidence: 0.7]
+- [[concreteness-principle]] — Concrete sensory language aids memory, understanding, and coordination; Velcro theory of memory hooks (Phase 4) [confidence: 0.7]
+- [[competence-feedback]] — Positive informational feedback enhances intrinsic motivation; controlling praise can undermine it (Phase 3) [confidence: 0.7]
+- [[competitive-escalation]] — Escalation driven by rivalry and desire to "win" rather than profit; dollar auction paradigm (Phase 2, 5) [confidence: 0.7]
+- [[conditional-reasoning]] — If-then logical inference including modus ponens and modus tollens (Phase 2) [confidence: 0.7]
+- [[conditioning-and-association]] — Innocent associations with good or bad things influence how people feel about us (Phase 1) [confidence: 0.5]
+- [[confirmation-heuristic]] — Tendency to seek confirmatory evidence and selective data; fourth general heuristic (Phase 2) [confidence: 0.7]
+- [[conflicts-of-interest]] — Professional incentives conflicting with duty to provide objective advice; disclosure paradoxically increases bias (Phase 2) [confidence: 0.7]
+- [[contingent-contracts]] — Negotiated agreements whose terms depend on future uncertain events; exploit differences in beliefs to create value (Phase 2, 5) [confidence: 0.7]
+- [[contribution-system]] — Replacing blame with joint contribution analysis; understanding how both parties' actions interact to produce outcomes (Phase 4, 5) [confidence: 0.7]
+- [[contrast-principle]] — Sequential presentation distorts judgment; perceptual weapon independent of the six principles (Phase 1) [confidence: 0.7]
+- [[cooperation-and-liking]] — Shared cooperative goals as a powerful generator of liking and intergroup harmony (Phase 1) [confidence: 0.5]
+- [[counterfactual-thinking]] — Mentally undoing past events to construct alternative outcomes; governed by the downhill change rule (Phase 2) [confidence: 0.7]
+- [[credibility-in-communication]] — Five-factor model: rank, goodwill, expertise, image, common ground; initial vs. acquired credibility (Phase 4) [confidence: 0.7]
+- [[covariation-model]] — Kelley's framework: consensus, distinctiveness, consistency determine internal vs. external attribution (Phase 1) [confidence: 0.6]
+- [[creeping-determinism]] — Unconscious tendency to view reported outcomes as having been relatively inevitable (Phase 2) [confidence: 0.7]
+- [[curse-of-knowledge]] — Once you know something, you can't imagine not knowing it; the primary villain of clear communication (Phase 4) [confidence: 0.7]
+- [[cumulative-prospect-theory]] — The 1992 revision of prospect theory using rank-dependent cumulative weighting; handles any number of outcomes (Phase 2) [confidence: 0.7]
+- [[cycle-of-distrust]] — Self-reinforcing loop of deception and consumer suspicion erodes market quality (Phase 2) [confidence: 0.7]
+- [[direct-vs-indirect-organization]] — BLUF vs. delayed-conclusion message structure based on audience receptivity and credibility (Phase 4) [confidence: 0.7]
+- [[deadline-tactic]] — Official time limits on opportunities to trigger urgency and reduce deliberation (Phase 1, 5) [confidence: 0.5]
+- [[debiasing-strategies]] — Seven-strategy framework for reducing systematic biases: decision tools, expertise, debiasing, analogical reasoning, outsider's view, understanding others' biases, nudges (Phase 2) [confidence: 0.75]
+- [[debiasing-taxonomy]] — Fischhoff's framework classifying debiasing methods by assumption about bias source: faulty tasks, faulty judges, mismatch (Phase 2) [confidence: 0.7]
+- [[decision-weights]] — Non-linear transformation of probabilities: overweight small p, underweight moderate p (Phase 1, 2) [confidence: 0.6]
+- [[decoy-effect]] — An inferior decoy option makes a nearby option look better; asymmetric dominance (Phase 2) [confidence: 0.7]
+- [[deliberate-practice]] — Structured, feedback-rich practice as the engine of expertise development (Phase 2) [confidence: 0.7]
+- [[dictator-game]] — Experimental game isolating pure fairness preferences; proposer splits money unilaterally with no rejection possible (Phase 2) [confidence: 0.7]
+- [[difference-reduction]] — Hill-climbing heuristic that minimizes gap between current and goal state (Phase 2) [confidence: 0.7]
+- [[dishonesty-fudge-factor]] — People cheat just enough to maintain a positive self-image (Phase 2) [confidence: 0.7]
+- [[disposition-effect]] — Investors sell winners too early and hold losers too long; direct application of prospect theory to finance (Phase 2) [confidence: 0.8]
+- [[dominance-violation]] — Choosing objectively inferior options when framing obscures the dominance relation (Phase 2) [confidence: 0.7]
+- [[downhill-change-rule]] — In mental simulation, people undo events by restoring normal/expected values, not by introducing exceptions (Phase 2) [confidence: 0.7]
+- [[effortful-commitment]] — Greater effort invested in a commitment increases its influence on attitudes (Phase 1) [confidence: 0.5]
+- [[ego-involvement]] — Intrapersonal controlling state where self-worth is contingent on performance; undermines intrinsic motivation (Phase 3) [confidence: 0.7]
+- [[einstellung-effect]] — Prior solutions mechanically block better alternatives (Phase 2) [confidence: 0.7]
+- [[elaboration-likelihood-model]] — Central vs. peripheral routes to persuasion; personal relevance determines route (Phase 6) [confidence: 0.7]
+- [[emotion-regulation]] — Monitoring, evaluating, and modifying emotional reactions in self and others (Phase 1) [confidence: 0.7]
+- [[emotional-facilitation]] — Using emotions to enhance cognition: planning, creativity, attention, motivation (Phase 1) [confidence: 0.7]
+- [[emotional-intelligence]] — Ability to monitor, discriminate among, and use emotional information to guide thought and action (Phase 1) [confidence: 0.7]
+- [[emotional-perception]] — Appraising and expressing emotion in self and others via verbal, nonverbal, and empathic channels (Phase 1) [confidence: 0.7]
+- [[empathy]] — Comprehending and re-experiencing another's feelings; component of emotional perception (Phase 1) [confidence: 0.7]
+- [[endowment-effect]] — Ownership inflates valuation ~2x through loss-aversion framing; sellers demand more than buyers will pay (Phase 2) [confidence: 0.7]
+- [[escalation-of-commitment]] — Continuing a failing course of action beyond rational prescription; driven by sunk costs, self-justification, impression management (Phase 2, 5) [confidence: 0.7]
+- [[expectation-assimilation]] — Expectations shape perception of quality and taste; prior beliefs alter experience (Phase 2) [confidence: 0.7]
+- [[expensive-equals-good]] — Price-quality heuristic: high price used as shortcut for quality assessment (Phase 1) [confidence: 0.7]
+- [[external-regulation]] — Most controlled form of extrinsic motivation; behavior dependent on external rewards/punishments (Phase 3) [confidence: 0.7]
+- [[extrinsic-aspirations]] — Life goals focused on wealth, fame, image/appearance; predict lower well-being, compensatory responses to need frustration (Phase 3) [confidence: 0.7]
+- [[extrinsic-motivation]] — Behaviors performed for separable outcomes; varies along autonomy-control continuum from external to integrated regulation (Phase 3) [confidence: 0.7]
+- [[expert-intuition]] — Rapid, accurate pattern-based judgment built from chunked experience (Phase 2) [confidence: 0.7]
+- [[extensionality]] — Arrow's term for invariance; requirement that equivalent representations yield identical choices (Phase 2) [confidence: 0.7]
+- [[fairness-as-constraint]] — Perceived fairness limits profit-seeking; dual entitlement theory (Phase 2) [confidence: 0.7]
+- [[false-consensus-effect]] — Tendency to see own behavioral choices as common and alternatives as deviant (Phase 1, 2, 5, 6) [confidence: 0.7]
+- [[fear-appeal]] — Conditions under which fear-based persuasion works: scare + specific recommendation + perceived effectiveness + self-efficacy (Phase 6) [confidence: 0.7]
+- [[feelings-conversation]] — The emotional dimension of difficult conversations; feelings are the core, not a side effect (Phase 4) [confidence: 0.7]
+- [[fixed-pie-bias]] — Assumption that one's interests are diametrically opposed to the other party's; blocks integrative negotiation (Phase 2, 5) [confidence: 0.7]
+- [[focalism]] — Tendency to focus too much on a focal event and too little on concurrent events; the focusing illusion (Phase 2) [confidence: 0.7]
+- [[foot-in-the-door]] — Small initial request increases later compliance with larger requests (Phase 1, 5, 6) [confidence: 0.5]
+- [[fourfold-pattern]] — The four-cell pattern of risk attitudes predicted by prospect theory: risk aversion/seeking depends on probability level and gain/loss domain (Phase 2) [confidence: 0.7]
+- [[getting-to-no]] — Strategic pursuit of "No" in negotiation because it gives safety, security, and control; "No" starts real negotiation (Phase 5) [confidence: 0.7]
+- [[focal-attention-is-causal]] — What is perceptually salient is automatically perceived as both important and causal (Phase 6) [confidence: 0.7]
+- [[framing-effects]] — Same objective choice, different presentation, different preferences (Phase 1, 2, 4, 5, 6) [confidence: 0.9]
+- [[functional-fixedness]] — Inability to see objects beyond their conventional use, blocking creative solutions (Phase 2) [confidence: 0.7]
+- [[fundamental-attribution-error]] — Overestimating dispositional causes, underestimating situational causes (Phase 1, 2, 4, 5, 6) [confidence: 0.75]
+- [[influence-without-authority]] — Mutual influence in balanced relationships without relying on positional power (Phase 7) [confidence: 0.7]
+- [[interpersonal-vulnerability]] — Willingness to take risks in self-disclosure; the engine that drives relationship deepening (Phase 7) [confidence: 0.7]
+- [[gamblers-fallacy]] — Expecting random sequences to self-correct (Phase 1, 2) [confidence: 0.5]
+- [[granfalloon]] — Meaningless group identity exploited for influence; based on Tajfel's minimal group paradigm (Phase 6) [confidence: 0.7]
+- [[gap-theory-of-curiosity]] — Loewenstein: curiosity arises from perceived information gaps; gaps cause pain that motivates information-seeking (Phase 4) [confidence: 0.7]
+- [[halo-effect]] — One positive characteristic dominates perception of the whole person (Phase 1) [confidence: 0.5]
+- [[hedonic-editing]] — Rules for coding outcomes to maximize subjective well-being based on the value function shape (Phase 2) [confidence: 0.7]
+- [[hindsight-bias]] — Exaggerating in retrospect what could have been anticipated in foresight; "I knew it all along" (Phase 2) [confidence: 0.7]
+- [[hot-cold-empathy-gap]] — Cold-state selves underpredict arousal's influence on decisions by 72-136% (Phase 2) [confidence: 0.7]
+- [[hyperbolic-discounting]] — Overweighting present vs. future; discount rate declines over time rather than staying constant (Phase 2) [confidence: 0.7]
+- [[identity-conversation]] — The internal conversation about what a difficult situation means for our self-image; the most subtle of the three conversations (Phase 4) [confidence: 0.7]
+- [[if-then-plans]] — Implementation intentions: pre-suasive cue-action associations that fire automatically for goal achievement (Phase 6) [confidence: 0.7]
+- [[identified-regulation]] — Consciously valued form of extrinsic motivation; personally important but not yet fully integrated (Phase 3) [confidence: 0.7]
+- [[labeling-emotions]] — Identifying and verbalizing the counterpart's emotions using "It seems like..." to disrupt amygdala activation and build trust (Phase 5) [confidence: 0.7]
+- [[late-night-fm-dj-voice]] — Calm, slow, downward-inflecting voice tone conveying authority without triggering defensiveness (Phase 5) [confidence: 0.7]
+- [[illusion-of-control]] — Expecting personal success probability higher than objective probability warrants; skill-chance confusion (Phase 2) [confidence: 0.7]
+- [[illusion-of-validity]] — Unwarranted confidence from coherent but low-validity patterns (Phase 1, 2) [confidence: 0.5]
+- [[influence-strategies-in-negotiation]] — Eight offensive and six defensive influence strategies applied to negotiation (Phase 5) [confidence: 0.7]
+- [[investigative-negotiation]] — Seven-principle framework for uncovering hidden information through detective-like inquiry (Phase 5) [confidence: 0.7]
+- [[illusory-correlation]] — Overestimating co-occurrence of associatively linked events (Phase 1) [confidence: 0.5]
+- [[impersonal-orientation]] — Personality-level tendency toward helplessness, anxiety, and amotivation; the least healthy causality orientation (Phase 3) [confidence: 0.7]
+- [[implicit-bias]] — Unconscious attitudes and stereotypes that automatically influence judgment; measured by the IAT (Phase 2) [confidence: 0.7]
+- [[improper-linear-models]] — Linear models with non-optimal weights that still outperform human judgment (Phase 2) [confidence: 0.7]
+- [[in-group-favoritism]] — Preferentially helping people who share one's group identity; functionally equivalent to out-group discrimination (Phase 2) [confidence: 0.7]
+- [[informational-vs-controlling]] — Functional significance of events: controlling aspects undermine and informational aspects enhance intrinsic motivation (Phase 3) [confidence: 0.7]
+- [[integrated-regulation]] — Most autonomous form of extrinsic motivation; fully assimilated with self-values and needs (Phase 3) [confidence: 0.7]
+- [[intent-impact-gap]] — The systematic difference between what someone intended and the impact they had; the error of inferring intent from impact (Phase 4, 5) [confidence: 0.7]
+- [[internalization]] — Active process of taking in external regulations and transforming them into self-regulations (Phase 3) [confidence: 0.7]
+- [[introjected-regulation]] — Partially internalized regulation driven by guilt, shame, and contingent self-esteem; internal but controlling (Phase 3) [confidence: 0.7]
+- [[inattentional-blindness]] — Failure to notice clearly visible but unexpected events when attention is focused elsewhere (Phase 2) [confidence: 0.7]
+- [[incubation-effect]] — Stepping away from a problem allows set effects to dissipate, enabling insight (Phase 2) [confidence: 0.7]
+- [[indirectly-unethical-behavior]] — Judging harmful actions as less unethical when harm is caused through intermediaries or delegation (Phase 2) [confidence: 0.7]
+- [[inner-choice]] — Commitments perceived as freely chosen produce lasting attitude change (Phase 1) [confidence: 0.5]
+- [[inoculation-theory]] — Building resistance to persuasion by pre-exposing to weak arguments and refuting them (Phase 6) [confidence: 0.7]
+- [[goal-contents-theory]] — GCT: fifth SDT mini-theory; intrinsic vs. extrinsic goal content differentially predicts well-being, mediated by need satisfaction (Phase 3) [confidence: 0.7]
+- [[intrinsic-aspirations]] — Life goals focused on personal growth, relationships, community, health; predict greater well-being via need satisfaction (Phase 3) [confidence: 0.7]
+- [[intrinsic-motivation]] — Behaviors performed for inherent satisfaction; sustained by autonomy and competence need satisfaction (Phase 3) [confidence: 0.7]
+- [[inside-view-outside-view]] — Singular case focus vs. reference class forecasting; key debiasing tool (Phase 2) [confidence: 0.7]
+- [[invariance-violation]] — Systematic failure to maintain consistent preferences across different descriptions of the same problem (Phase 2) [confidence: 0.7]
+- [[iowa-gambling-task]] — Decision paradigm revealing somatic/emotional signals guide advantageous choice (Phase 2) [confidence: 0.7]
+- [[isolation-effect]] — Discarding shared components leads to framing-dependent preferences (Phase 1, 2) [confidence: 0.6]
+- [[just-world-belief]] — Assuming people get what they deserve; defensive attribution (Phase 1) [confidence: 0.5]
+- [[keeping-doors-open]] — Irrational compulsion to preserve options at significant cost (Phase 2) [confidence: 0.7]
+- [[law-of-small-numbers]] — Expecting small samples to mirror population properties (Phase 1, 2) [confidence: 0.5]
+- [[learning-conversation]] — Shifting from message delivery to mutual exploration; moving from certainty to curiosity (Phase 4, 5, 7) [confidence: 0.7]
+- [[liking-principle]] — People comply more with those they like; Cialdini's fourth principle (Phase 1) [confidence: 0.5]
+- [[limited-numbers]] — Scarcity tactic: emphasizing limited supply to increase perceived value (Phase 1, 5) [confidence: 0.5]
+- [[loss-aversion]] — Losses loom ~2-2.5x larger than equivalent gains (Phase 1, 2, 5, 6) [confidence: 0.9]
+- [[lowball-technique]] — Favorable deal secures commitment; terms worsened but decision persists (Phase 1, 5, 6) [confidence: 0.5]
+- [[means-ends-analysis]] — Reduce current-goal gap by selecting operators that address the largest difference (Phase 2) [confidence: 0.7]
+- [[mindlessness-in-persuasion]] — Langer's research on mindless compliance; any reason triggers automatic processing (Phase 6) [confidence: 0.7]
+- [[mirroring-technique]] — Repeating the last 1-3 critical words of what someone said to trigger elaboration and build rapport (Phase 5) [confidence: 0.7]
+- [[mental-accounting]] — Cognitive operations to organize, evaluate, and track financial activities in separate mental accounts (Phase 2) [confidence: 0.8]
+- [[mental-model-theory]] — Reasoning via constructed internal simulations rather than formal logic (Phase 2) [confidence: 0.7]
+- [[mere-exposure-effect]] — Familiarity through repeated contact breeds liking under positive conditions (Phase 1) [confidence: 0.5]
+- [[moral-reminder-effect]] — Priming moral standards reduces cheating at the moment of temptation (Phase 2) [confidence: 0.7]
+- [[myopic-loss-aversion]] — Combination of loss aversion and frequent evaluation that produces excessive risk avoidance; explains equity premium puzzle (Phase 2) [confidence: 0.7]
+- [[narrow-framing]] — Evaluating risky choices in isolation rather than as a portfolio; enables loss aversion (Phase 2) [confidence: 0.7]
+- [[need-frustration]] — Active thwarting of basic needs produces pathology, compensatory motives, and physiological stress; distinct from mere low satisfaction (Phase 3) [confidence: 0.7]
+- [[need-satisfaction-in-relationships]] — How all three basic psychological needs operate within close relationships; mediates social support and wellness (Phase 3) [confidence: 0.7]
+- [[need-satisfaction-vs-frustration]] — Satisfaction and frustration are partially independent processes predicting qualitatively different outcomes via dual pathways (Phase 3) [confidence: 0.7]
+- [[negotiating-from-weakness]] — Strategies for negotiating when your BATNA is weak: concealing weakness, leveraging theirs, coalitions, relinquishing power (Phase 5) [confidence: 0.7]
+- [[negotiator-overconfidence]] — Systematic tendency for negotiators to overestimate the likelihood their positions will prevail (Phase 2, 5) [confidence: 0.7]
+- [[nonverbal-communication]] — Communication without words: facial expressions, gestures, gaze, touch, space; core EI skill (Phase 1) [confidence: 0.6]
+- [[obedience-to-authority]] — Deep-seated tendency to comply with authority directives, even against conscience (Phase 1) [confidence: 0.5]
+- [[option-fixation]] — *Superseded by [[keeping-doors-open]]* (Phase 2)
+- [[overclaiming-credit]] — Overestimating one's own contributions to joint endeavors; group members' claims sum to >100% (Phase 2) [confidence: 0.7]
+- [[organismic-integration]] — Inherent developmental tendency toward increasing differentiation and integration of psychological structures (Phase 3) [confidence: 0.7]
+- [[organismic-integration-theory]] — SDT's second mini-theory: internalization continuum and differentiation of extrinsic motivation (Phase 3) [confidence: 0.7]
+- [[overconfidence-in-calibration]] — Setting confidence intervals far too narrow (Phase 1, 2) [confidence: 0.7]
+- [[overestimation]] — Thinking we are better, smarter, more capable than we actually are (Phase 2) [confidence: 0.7]
+- [[overplacement]] — Thinking we rank higher than others on various dimensions (Phase 2) [confidence: 0.7]
+- [[overjustification-effect]] — External incentives for already-interesting activities cause discounting of intrinsic interest (Phase 3) [confidence: 0.7]
+- [[overprecision]] — Drawing overly narrow confidence intervals; too sure we know the truth (Phase 2) [confidence: 0.7]
+- [[paralysis-of-analysis]] — Overwhelming of analytical capacity that forces reliance on shortcuts (Phase 1) [confidence: 0.5]
+- [[perceptual-salience]] — What we attend to seems more causally important (Phase 1, 6) [confidence: 0.6]
+- [[phantom-alternative]] — Unavailable options that shift preference and decision criteria for available options (Phase 6) [confidence: 0.7]
+- [[persuasive-geography]] — Physical and psychological environments shape behavior through the associations their cues activate (Phase 6) [confidence: 0.7]
+- [[pre-persuasion-tactics]] — Pratkanis & Aronson's first stratagem: controlling how the issue is defined before arguments begin (Phase 6) [confidence: 0.7]
+- [[pre-suasion]] — The process of arranging for recipients to be receptive to a message before they encounter it (Phase 6) [confidence: 0.7]
+- [[propaganda-vs-persuasion]] — Ethical distinction: does communication induce thought or truncate it? (Phase 6) [confidence: 0.7]
+- [[privileged-moments]] — Temporary windows of heightened receptivity following pre-suasive openers (Phase 6) [confidence: 0.7]
+- [[permission-schema]] — Deontic social-contract reasoning that outperforms abstract conditional logic (Phase 2) [confidence: 0.7]
+- [[physical-attractiveness-bias]] — Systematic advantage attractive people enjoy across elections, hiring, sentencing, and persuasion (Phase 1) [confidence: 0.5]
+- [[placebo-effect]] — Belief in a treatment produces real physiological and psychological effects (Phase 2) [confidence: 0.7]
+- [[placebo-pricing]] — Higher price increases placebo effectiveness via expectation (Phase 2) [confidence: 0.7]
+- [[pluralistic-ignorance]] — Each person in a group decides that since nobody else is concerned, nothing is wrong (Phase 1) [confidence: 0.5]
+- [[post-settlement-settlement]] — Revisiting a completed agreement to search for Pareto-superior alternatives with the original deal as safety net (Phase 2, 5) [confidence: 0.7]
+- [[preference-reversal]] — Rank ordering of options changes between separate and joint evaluation; want/should and evaluability explanations (Phase 2) [confidence: 0.7]
+- [[primacy-effect]] — First information disproportionately shapes subsequent interpretation (Phase 1, 4, 6) [confidence: 0.5]
+- [[primitive-automaticity]] — Reversion to single-feature, animal-like decision-making under cognitive load (Phase 1) [confidence: 0.5]
+- [[problem-space]] — The representation of initial state, goal state, and operators defining a problem (Phase 2) [confidence: 0.7]
+- [[proceduralization]] — Conversion of declarative knowledge into efficient procedural skill through practice (Phase 2) [confidence: 0.7]
+- [[pinch-crunch-model]] — Framework for how minor irritants ("pinches") escalate into major crises ("crunches") when unaddressed (Phase 7) [confidence: 0.7]
+- [[procrastination-and-precommitment]] — Present bias causes delay; precommitment devices counteract it (Phase 2) [confidence: 0.7]
+- [[prospect-theory]] — Descriptive model of decision under risk: reference dependence, value function, decision weights (Phase 1, 2) [confidence: 0.8]
+- [[pseudocertainty]] — Illusory certainty created by framing a subset of risk as eliminated; extends the certainty effect (Phase 2) [confidence: 0.7]
+- [[psychological-reactance]] — Motivation to restore freedoms perceived as threatened or eliminated (Phase 1, 5) [confidence: 0.5]
+- [[public-commitment]] — Commitments visible to others are more binding than private ones (Phase 1) [confidence: 0.5]
+- [[reactive-devaluation]] — Devaluing a proposal or concession simply because it was offered by the opposing party (Phase 2, 5) [confidence: 0.7]
+- [[reciprocation]] — The rule that we must try to repay what another has provided; Cialdini's first principle (Phase 1, 5) [confidence: 0.7]
+- [[recognition-heuristic]] — Infer higher value from the recognized option when recognition is diagnostic (Phase 2) [confidence: 0.7]
+- [[reference-dependence]] — Value evaluated as changes from a reference point, not absolute states (Phase 1, 2, 5) [confidence: 0.8]
+- [[relative-aspirations]] — The ratio of intrinsic to extrinsic goal importance predicts well-being more strongly than absolute levels (Phase 3) [confidence: 0.7]
+- [[relatedness-need]] — Basic psychological need for social connection, belonging, and significance among others (Phase 3) [confidence: 0.7]
+- [[relationships-motivation-theory]] — RMT: SDT's sixth mini-theory on close relationships, autonomy-relatedness complementarity, and conditional regard (Phase 3) [confidence: 0.7]
+- [[reflection-effect]] — Risk preferences reverse when outcomes switch from gains to losses (Phase 1, 2) [confidence: 0.6]
+- [[regression-prediction]] — Intuitive predictions overweight correlation and ignore regression to mean (Phase 2) [confidence: 0.7]
+- [[regression-to-the-mean]] — Extreme values followed by less extreme ones; people fail to recognize this (Phase 1, 2) [confidence: 0.5]
+- [[regret-avoidance]] — Minimizing anticipated regret distorts decisions; counterfactual thinking drives near-miss pain (Phase 2) [confidence: 0.7]
+- [[rejection-then-retreat]] — Door-in-the-face technique using reciprocal concessions + contrast principle (Phase 1, 5) [confidence: 0.7]
+- [[representativeness]] — Heuristic: judging probability by similarity/resemblance (Phase 1, 2) [confidence: 0.6]
+- [[reservation-value]] — Walk-away price derived from BATNA; the indifference point between accepting a deal and pursuing alternatives (Phase 5) [confidence: 0.7]
+- [[retrospective-vs-predictive-accuracy]] — Sensitivity/specificity differ from positive/negative predictive value (Phase 2) [confidence: 0.7]
+- [[romeo-and-juliet-effect]] — Parental interference increases romantic attraction via psychological reactance (Phase 1) [confidence: 0.5]
+- [[scarcity-principle]] — Opportunities seem more valuable when availability is limited; Cialdini's sixth principle (Phase 1, 5, 6) [confidence: 0.5]
+- [[schema-breaking]] — Deliberate violation of expectations to grab attention; surprise must be post-dictable to produce insight, not frustration (Phase 4) [confidence: 0.7]
+- [[self-herding]] — Past behavior anchors future choices, creating irrational habits (Phase 2) [confidence: 0.7]
+- [[self-serving-attribution]] — Credit for success (internal), blame for failure (external) (Phase 1) [confidence: 0.5]
+- [[self-serving-bias-in-decisions]] — Unconsciously interpreting information and selecting fairness criteria to favor self-interest (Phase 2, 5) [confidence: 0.7]
+- [[self-serving-bias-in-negotiation]] — Each party sincerely believes their preferred outcome is fair; creates genuine impasses (Phase 2, 5) [confidence: 0.7]
+- [[set-effect]] — Prior problem-solving experience biases operator selection, blocking novel approaches (Phase 2) [confidence: 0.7]
+- [[similarity-and-liking]] — Increased compliance from perceived similarity in opinions, traits, dress, background (Phase 1) [confidence: 0.5]
+- [[similarity-and-social-proof]] — We follow most readily the lead of similar others (Phase 1) [confidence: 0.5]
+- [[simulation-heuristic]] — Judging probability/propensity by the ease of mentally constructing a scenario or running a model (Phase 2) [confidence: 0.7]
+- [[sly-sincerity]] — Arguing against one's own interests on minor points to establish trustworthiness (Phase 1, 6) [confidence: 0.5]
+- [[social-norms-vs-market-norms]] — Two incompatible exchange systems; mixing them irreversibly degrades social exchange (Phase 2) [confidence: 0.7]
+- [[social-proof]] — We determine correct behavior by observing what others do; Cialdini's third principle (Phase 1, 6) [confidence: 0.5]
+- [[sparkline]] — Visual analysis tool for mapping a presentation's contour between *what is* and *what could be*; Duarte's adaptation of story structure for presentations (Phase 7) [confidence: 0.7]
+- [[star-moment]] — Something They'll Always Remember: a deliberately planned dramatic moment in a presentation with five subtypes (Phase 7) [confidence: 0.7]
+- [[status-quo-bias]] — Systematic preference for the current state of affairs, driven by loss aversion (Phase 2) [confidence: 0.7]
+- [[success-framework]] — Heath brothers' SUCCESs checklist: Simple, Unexpected, Concrete, Credible, Emotional, Stories (Phase 4) [confidence: 0.7]
+- [[sunk-cost-fallacy]] — Continuing investment because of prior costs rather than evaluating future costs/benefits (Phase 2) [confidence: 0.7]
+- [[tactical-empathy]] — Voss's core negotiation framework: empathy as a martial art; emotional intelligence on steroids; listening to gain access and influence (Phase 5) [confidence: 0.7]
+- [[thats-right-moment]] — The breakthrough when a counterpart says "that's right" to an accurate summary of their worldview, signaling genuine understanding (Phase 5) [confidence: 0.7]
+- [[system-1-system-2]] — Dual-process thinking: fast/automatic/intuitive (System 1) vs. slow/deliberate/logical (System 2) (Phase 2) [confidence: 0.7]
+- [[thin-slicing]] — Forming meaningful impressions from extremely brief behavioral samples (Phase 1, 4, 7) [confidence: 0.5]
+- [[transactional-utility]] — Perceived deal quality evaluated against expected fair price; distinct from acquisition utility (Phase 2) [confidence: 0.7]
+- [[ultimatum-game]] — Experimental game demonstrating that people reject profitable but unfair offers; cornerstone of behavioral economics (Phase 2) [confidence: 0.7]
+- [[undermining-effect]] — Tangible contingent rewards reduce intrinsic motivation by shifting perceived locus of causality (Phase 3) [confidence: 0.7]
+- [[uncertainty-and-social-proof]] — Uncertainty amplifies susceptibility to social proof (Phase 1) [confidence: 0.5]
+- [[value-creation-in-negotiation]] — Expanding total value by exploiting differences in preferences, risk tolerance, time preferences, and predictions (Phase 2, 5) [confidence: 0.7]
+- [[value-function]] — S-shaped: concave for gains, convex for losses, steeper for losses (Phase 1, 2) [confidence: 0.8]
+- [[virtual-ownership]] — Imagining ownership triggers endowment effect before actual possession (Phase 2) [confidence: 0.7]
+- [[what-is-what-could-be]] — The fundamental contrast structure driving the presentation form: alternating between current reality and proposed future to create dramatic tension (Phase 7) [confidence: 0.7]
+- [[efficacy-expectations-vs-outcome-expectations]] — Bandura's distinction between beliefs about capability ("can I do this?") and beliefs about consequences ("if I do this, what happens?") (Phase 3) [confidence: 0.7]
+- [[generative-capability]] — Self-efficacy as a dynamic, integrative capability, not a fixed trait or repertoire of behaviors (Phase 3) [confidence: 0.7]
+- [[human-agency]] — The capacity to exercise control over one's own functioning and environmental events through intentional action (Phase 3) [confidence: 0.7]
+- [[reciprocal-determinism]] — Triadic reciprocal causation among personal factors, behavior, and environment (Phase 3) [confidence: 0.7]
+- [[academic-self-efficacy]] — Students' beliefs about their capability to master academic subjects; predicts performance beyond actual ability (Phase 3) [confidence: 0.7]
+- [[career-self-efficacy]] — Beliefs about capabilities for career development, occupational choice, and decisional subskills (Phase 3) [confidence: 0.7]
+- [[collective-efficacy]] — Group's shared belief in its conjoint capabilities to organize and execute courses of action (Phase 3) [confidence: 0.7]
+- [[organizational-efficacy]] — Self-efficacy applied to organizational and managerial functioning, decision making, and leadership (Phase 3) [confidence: 0.7]
+- [[political-efficacy]] — Beliefs about influencing the political system through political action; collective action dynamics (Phase 3) [confidence: 0.7]
+- [[self-efficacy]] — Beliefs in one's capabilities to organize and execute courses of action required to produce given attainments (Phase 3) [confidence: 0.7]
+- [[self-efficacy-dimensions]] — The three dimensions (level, generality, strength) along which efficacy beliefs vary (Phase 3) [confidence: 0.7]
+- [[teacher-efficacy]] — Teachers' beliefs about their ability to motivate and promote learning in their students (Phase 3) [confidence: 0.7]
+- [[tell-sell-consult-join]] — Four communication styles on a spectrum from speaker control to audience involvement (Phase 4) [confidence: 0.7]
+- [[third-story]] — Starting a difficult conversation from a neutral observer's perspective rather than your own story (Phase 4, 5) [confidence: 0.6]
+- [[three-conversations-framework]] — Every difficult conversation contains three hidden conversations: What Happened?, Feelings, and Identity (Phase 4, 5, 7) [confidence: 0.7]
+- [[want-should-conflict]] — Tension between impulsive "want" self (System 1) and reflective "should" self (System 2); explains self-control failures (Phase 2) [confidence: 0.7]
+- [[wason-selection-task]] — Classic logic puzzle exposing confirmation bias in conditional reasoning (Phase 2) [confidence: 0.7]
+- [[werther-effect]] — Publicized suicides trigger copycat suicides and disguised-suicide crashes (Phase 1) [confidence: 0.5]
+- [[winners-curse]] — Winner of an auction systematically overpays; failing to consider what the other side's acceptance signals about value (Phase 2, 5) [confidence: 0.7]
+- [[zero-price-effect]] — FREE is qualitatively different from any positive price; linked to loss aversion (Phase 2) [confidence: 0.7]
+- [[zopa]] — Zone of Possible Agreement; the range between seller's and buyer's reservation values within which a deal is possible (Phase 5) [confidence: 0.7]
+- [[attribution-theory]] — Heider/Kelley/Ross: how people explain causes of behavior — internal vs. external (Phase 1) [confidence: 0.5]
+- [[autonomous-work-motivation]] — Intrinsic + identified/integrated regulation at work; predicts performance, well-being, retention (Phase 3) [confidence: 0.7]
+- [[autonomy-support-in-education]] — How autonomy-supportive teaching enhances learning, conceptual understanding, and engagement (Phase 3) [confidence: 0.7]
+- [[autonomy-supportive-management]] — Trainable managerial skill set; 7 training aims; 3:1 ROI evidence (Phase 3) [confidence: 0.7]
+- [[efficacy-activated-cognitive-processes]] — Self-efficacy effects on visualization, attention, and thought patterns (Phase 3) [confidence: 0.7]
+- [[efficacy-activated-motivational-processes]] — Self-efficacy effects on attribution patterns and goal setting (Phase 3) [confidence: 0.7]
+- [[internalization-in-education]] — How students internalize academic values along the OIT continuum (Phase 3) [confidence: 0.7]
+- [[intrinsic-goal-framing]] — Framing activities in terms of intrinsic goals enhances learning depth and engagement (Phase 3) [confidence: 0.7]
+- [[mastery-experience]] — Most powerful source of self-efficacy; performance accomplishments (Phase 3) [confidence: 0.7]
+- [[need-satisfaction-at-work]] — Universal mediating mechanism linking workplace supports to outcomes (Phase 3) [confidence: 0.7]
+- [[physiological-and-affective-states]] — Somatic and emotional information as efficacy cues (Phase 3) [confidence: 0.7]
+- [[sdt-compensation-design]] — SDT's four principles for pay design; field evidence against performance-contingent pay (Phase 3) [confidence: 0.7]
+- [[self-efficacy-mediating-processes]] — Four pathways: cognitive, motivational, affective, selection (Phase 3) [confidence: 0.7]
+- [[sources-of-self-efficacy]] — Four sources: mastery experience, vicarious experience, verbal persuasion, physiological states (Phase 3) [confidence: 0.7]
+- [[verbal-persuasion]] — Social persuasion as self-efficacy source; conditions for effectiveness (Phase 3) [confidence: 0.7]
+- [[vicarious-experience]] — Modeling as self-efficacy source; similarity, coping vs. mastery models (Phase 3) [confidence: 0.7]
+- [[what-happened-conversation]] — The first of three conversations: disagreement about facts, intentions, and blame (Phase 4, 5) [confidence: 0.7]
+- [[work-engagement-sdt]] — Engagement as outcome of need satisfaction; contrast with burnout (Phase 3) [confidence: 0.7]
+- [[ackerman-model]] — 65-85-95-100% offer progression system for bargaining (Phase 5) [confidence: 0.7]
+- [[anchor-extreme]] — Extreme opening offers exploiting anchoring bias (Phase 5) [confidence: 0.7]
+- [[batna]] — Best Alternative to a Negotiated Agreement; the key source of negotiation power (Phase 5) [confidence: 0.8]
+- [[black-swan-theory-negotiation]] — Unknown unknowns as leverage multipliers in negotiation (Phase 5) [confidence: 0.7]
+- [[calibrated-questions]] — Open-ended "How" and "What" questions that give illusion of control (Phase 5) [confidence: 0.7]
+- [[claiming-vs-creating-value]] — The negotiator's dilemma: tension between claiming and creating (Phase 5) [confidence: 0.7]
+- [[deadline-pressure]] — Deadlines as psychological leverage in negotiation (Phase 5) [confidence: 0.7]
+- [[enthymeme]] — The rhetorical syllogism; the "body of persuasion" (Phase 4) [confidence: 0.7]
+- [[ethos]] — Character/credibility of speaker; phronesis, arete, eunoia (Phase 4) [confidence: 0.7]
+- [[fairness-in-negotiation]] — The three uses of "fair" as a negotiation weapon (Phase 5) [confidence: 0.7]
+- [[influence-strategies-in-negotiation]] — Eight offensive and six defensive influence strategies (Phase 5) [confidence: 0.7]
+- [[invent-options-for-mutual-gain]] — Creative option generation; dovetailing differences (Phase 5) [confidence: 0.7]
+- [[investigative-negotiation]] — Malhotra's seven principles for uncovering hidden information (Phase 5) [confidence: 0.7]
+- [[logos]] — Logical argument as persuasion; enthymeme and paradigm (Phase 4) [confidence: 0.7]
+- [[mother-teresa-principle]] — Feeling for one person, not statistics; identifiable victim effect (Phase 4) [confidence: 0.7]
+- [[negotiating-from-weakness]] — Strategies for weak-BATNA situations (Phase 5) [confidence: 0.7]
+- [[negotiation-jujitsu]] — Redirecting attacks with questions and silence (Phase 5) [confidence: 0.7]
+- [[objective-criteria]] — Fair standards and procedures as anchoring countermeasures (Phase 5) [confidence: 0.7]
+- [[one-text-procedure]] — Single negotiating text; Camp David model (Phase 5) [confidence: 0.7]
+- [[pathos]] — Emotional appeal as persuasion; emotions alter judgment (Phase 4) [confidence: 0.7]
+- [[positions-vs-interests]] — The central insight of interest-based negotiation (Phase 5) [confidence: 0.7]
+- [[principled-negotiation]] — Fisher/Ury's four-principle method (Phase 5) [confidence: 0.8]
+- [[reservation-value]] — Walk-away price derived from BATNA (Phase 5) [confidence: 0.7]
+- [[rhetorical-emotions]] — Aristotle's catalog of 10 emotion-pairs with causes (Phase 4) [confidence: 0.7]
+- [[rule-of-three]] — Getting agreement confirmed three ways to detect counterfeit yes (Phase 5) [confidence: 0.7]
+- [[separate-people-from-problem]] — Perception/emotion/communication framework (Phase 5) [confidence: 0.7]
+- [[seven-thirty-eight-fifty-five-rule]] — Mehrabian's communication splits (Phase 5) [confidence: 0.7]
+- [[sinatra-test]] — One compelling example that establishes credibility (Phase 4) [confidence: 0.7]
+- [[story-as-inspiration]] — Challenge/Connection/Creativity plot types (Phase 4) [confidence: 0.7]
+- [[story-as-simulation]] — Stories as mental flight simulators for action (Phase 4) [confidence: 0.7]
+- [[tactical-empathy]] — Voss's core framework: empathy as tactical negotiation tool (Phase 5) [confidence: 0.7]
+- [[testable-credentials]] — Claims audiences can verify themselves (Phase 4) [confidence: 0.7]
+- [[three-genres-of-rhetoric]] — Deliberative, judicial, epideictic (Phase 4) [confidence: 0.7]
+- [[three-modes-of-persuasion]] — Ethos/pathos/logos as exhaustive taxonomy (Phase 4) [confidence: 0.7]
+- [[topoi]] — Aristotle's 28 common topics for argument (Phase 4) [confidence: 0.7]
+- [[wiify-principle]] — What's In It For You; self-interest appeal (Phase 4) [confidence: 0.7]
+- [[zone-of-comfort-zone-of-growth]] — Growth requires leaving comfort zones; discomfort signals growth opportunity, not danger; AFOG principle (Phase 7) [confidence: 0.7]
+- [[zopa]] — Zone of Possible Agreement (Phase 5) [confidence: 0.7]
+
+- [[behavioral-residue]] — Physical traces making the private public; self-advertising products (Phase 6) [confidence: 0.7]
+- [[environmental-triggers]] — Top of mind = tip of tongue; frequency, strength, proximity (Phase 6) [confidence: 0.7]
+- [[high-arousal-emotions]] — Awe, anxiety, anger drive sharing; sadness doesn't (Phase 6) [confidence: 0.7]
+- [[practical-value]] — News you can use; prospect theory applied to sharing decisions (Phase 6) [confidence: 0.7]
+- [[social-currency]] — We share things that make us look good; remarkability, game mechanics, insiders (Phase 6) [confidence: 0.7]
+- [[stepps-framework]] — Social Currency, Triggers, Emotion, Public, Practical Value, Stories (Phase 6) [confidence: 0.7]
+- [[trojan-horse-stories]] — Stories as vessels for information; valuable virality (Phase 6) [confidence: 0.7]
+
+## Entities
+### People
+- [[anderson]] — John R. Anderson, cognitive psychology, ACT-R theory, problem-solving, expertise, reasoning (Phase 2)
+- [[ariely]] — Dan Ariely, behavioral economist, Predictably Irrational, MIT/Duke (Phase 2)
+- [[bandura]] — Albert Bandura, originator of social cognitive theory and self-efficacy theory (Phase 3)
+- [[berger]] — Jonah Berger, Wharton professor, STEPPS framework, word-of-mouth science (Phase 6)
+- [[aristotle]] — Father of rhetorical theory; ethos, pathos, logos; three genres of rhetoric (Phase 4)
+- [[aronson]] — Elliot Aronson, social psychologist, leading textbook author, co-author of Age of Propaganda (Phase 1, 6)
+- [[asch]] — Solomon Asch, pioneered impression formation and conformity research (Phase 1)
+- [[bradford-robin]] — David Bradford & Carole Robin, creators of Stanford's Interpersonal Dynamics ("Touchy-Feely") course, authors of Connect (Phase 7)
+- [[bazerman]] — Max H. Bazerman, decision science, bounded awareness, negotiation (Phase 2, 5)
+- [[camerer]] — Colin F. Camerer, prospect theory in the wild, neuroeconomics, NYC cab driver study (Phase 2)
+- [[cialdini]] — Robert B. Cialdini, six principles of influence, social psychology of persuasion (Phase 1, 6)
+- [[pratkanis]] — Anthony Pratkanis, social psychologist, co-author of Age of Propaganda, researcher on phantom alternatives and persuasion (Phase 6)
+- [[deci]] — Edward L. Deci, co-founder of SDT, pioneer of reward-undermining research (Phase 3)
+- [[dawes]] — Robyn M. Dawes, improper linear models, clinical vs. statistical prediction (Phase 2)
+- [[duarte]] — Nancy Duarte, CEO of Duarte Design, codified structure of transformative presentations, sparkline analysis tool (Phase 7)
+- [[eddy]] — David M. Eddy, clinical reasoning, probabilistic medical diagnosis (Phase 2)
+- [[fisher-ury]] — Roger Fisher, William Ury, Bruce Patton; Harvard Negotiation Project; principled negotiation (Phase 5)
+- [[festinger]] — Leon Festinger, cognitive dissonance theory, social comparison theory, When Prophecy Fails (Phase 1)
+- [[fischhoff]] — Baruch Fischhoff, hindsight bias, creeping determinism, risk communication (Phase 2)
+- [[heath-brothers]] — Chip Heath & Dan Heath, SUCCESs framework for sticky ideas, curse of knowledge (Phase 4)
+- [[heider]] — Fritz Heider, father of attribution theory (Phase 1)
+- [[kahneman]] — Daniel Kahneman, Nobel laureate, co-founder of heuristics/biases and prospect theory (Phase 1, 2)
+- [[knetsch]] — Jack L. Knetsch, endowment effect, fairness norms, experimental economics (Phase 2)
+- [[langer]] — Ellen J. Langer, illusion of control, skill-chance confusion (Phase 2)
+- [[lovallo]] — Dan Lovallo, inside/outside view, planning fallacy, organizational overconfidence (Phase 2)
+- [[malhotra]] — Deepak Malhotra, Harvard Business School, investigative negotiation, Negotiation Genius (Phase 5)
+- [[mayer]] — John D. Mayer, co-originator of emotional intelligence construct (Phase 1)
+- [[meehl]] — Paul Meehl, clinical vs. statistical prediction, founder of actuarial prediction debate (Phase 2)
+- [[milgram]] — Stanley Milgram, obedience experiments, authority and situational pressure (Phase 1)
+- [[munter]] — Mary Munter, Tuck School of Business, managerial communication strategy framework (Phase 4)
+- [[ross]] — Lee Ross, fundamental attribution error, belief perseverance, false consensus effect (Phase 1, 2)
+- [[ryan]] — Richard M. Ryan, co-founder of SDT, motivation and personality psychologist (Phase 3)
+- [[salovey]] — Peter Salovey, co-originator of emotional intelligence construct (Phase 1)
+- [[stone-patton-heen]] — Douglas Stone, Bruce Patton & Sheila Heen, Harvard Negotiation Project, three conversations framework (Phase 4, 5)
+- [[thaler]] — Richard H. Thaler, mental accounting, endowment effect, nudge, behavioral economics (Phase 2)
+- [[tversky]] — Amos Tversky, co-founder of heuristics/biases and prospect theory (Phase 1, 2)
+- [[voss]] — Chris Voss, former FBI lead international kidnapping negotiator, author of [[never-split-the-difference]], originator of [[tactical-empathy]] (Phase 5)
+
+### Books
+- [[resonate]] — Duarte: codifying the hidden structure of transformative presentations through story form, sparkline analysis, and audience-as-hero mindset (Phase 7) — **FULLY INGESTED**
+- [[connect]] — Bradford & Robin: building exceptional relationships through vulnerability, feedback, conflict, and mutual influence (Phase 7) — **PARTIALLY INGESTED (Ch.1-2)**
+- [[cognitive-psychology-and-its-implications]] — Anderson: problem-solving, expertise, reasoning, decision-making from a cognitive science perspective (Phase 2) — **PARTIALLY INGESTED (Ch.8-11)**
+- [[self-efficacy-exercise-of-control]] — Bandura: definitive statement of self-efficacy theory; agency, reciprocal determinism, efficacy beliefs (Phase 3) — **PARTIALLY INGESTED (Ch.1-4, 6, 10-11)**
+- [[influence-science-and-practice]] — Cialdini's definitive account of six universal principles of social influence (Phase 1, 6) — **FULLY INGESTED**
+- [[getting-to-yes]] — Fisher, Ury, Patton: principled negotiation; BATNA, interests vs. positions (Phase 5) — **FULLY INGESTED**
+- [[made-to-stick]] — Heath brothers' framework for designing ideas that stick: SUCCESs principles and the curse of knowledge (Phase 4) — **FULLY INGESTED**
+- [[judgment-in-managerial-decision-making]] — Bazerman & Moore: applying heuristics/biases to managerial decisions; bounded awareness; three-part overconfidence (Phase 2) — **FULLY INGESTED**
+- [[predictably-irrational]] — Ariely's behavioral economics field guide: decoy effect, arbitrary coherence, social norms, dishonesty (Phase 2) — **FULLY INGESTED**
+- [[on-rhetoric]] — Aristotle (Kennedy Translation): the foundational text on rhetoric; ethos, pathos, logos (Phase 4) — **PARTIALLY INGESTED (Intro + Books 1-2)**
+- [[self-determination-theory]] — Ryan & Deci: comprehensive macro-theory of motivation, development, and wellness; three basic needs and six mini-theories (Phase 3) — **PARTIALLY INGESTED (Ch.1, 5-12, 14, 21)**
+- [[difficult-conversations]] — Stone, Patton & Heen: the three conversations framework for handling difficult interpersonal exchanges (Phase 4, 5) — **PARTIALLY INGESTED (Ch.1-3)**
+- [[negotiation-genius]] — Malhotra & Bazerman: comprehensive negotiation framework integrating value claiming, value creation, investigative negotiation, influence, and weakness strategies (Phase 5) — **PARTIALLY INGESTED (Ch.1-3, 7, 11)**
+- [[never-split-the-difference]] — Voss & Raz: FBI hostage negotiation techniques applied to business and daily life; tactical empathy, mirroring, labeling, "No", "That's right" (Phase 5) — **FULLY INGESTED**
+- [[pre-suasion]] — Cialdini: what communicators do *before* delivering a message to make audiences receptive; attention, associations, and geography of influence (Phase 6) — **PARTIALLY INGESTED (Ch.1-9)**
+- [[contagious]] — Berger: STEPPS framework for why things catch on; social currency, triggers, emotion, public, practical value, stories (Phase 6) — **FULLY INGESTED**
+- [[age-of-propaganda]] — Pratkanis & Aronson: comprehensive analysis of propaganda and persuasion techniques; four stratagems, ELM, inoculation theory, granfalloon, phantoms, fear appeals (Phase 6) — **PARTIALLY INGESTED (Ch.3, 5-7, 24-27, 36, 38-39)**
+- [[guide-to-managerial-communication]] — Munter & Hamilton: five-variable strategic communication framework, tell-sell-consult-join, credibility model (Phase 4) — **PARTIALLY INGESTED (Ch.1, 3, 5)**
+
+### Frameworks
+- [[attribution-theory]] — Heider/Kelley/Ross: how people explain causes of behavior — internal vs. external (Phase 1) [confidence: 0.5]
+- [[emotional-intelligence-model]] — Salovey/Mayer: three-branch EI framework (appraisal/expression, regulation, utilization) (Phase 1) [confidence: 0.7]
+- [[heuristics-and-biases-program]] — Tversky/Kahneman: systematic cognitive biases from mental shortcuts (Phase 1, 2) [confidence: 0.5]
+- [[self-determination-theory-framework]] — Ryan/Deci: organismic macro-theory with six mini-theories (CET, OIT, COT, BPNT, GCT, RMT) and three basic psychological needs (Phase 3) [confidence: 0.7]
+- [[six-principles-of-influence]] — Cialdini: six universal principles of social influence — reciprocation, commitment/consistency, social proof, liking, authority, scarcity (Phase 1, 6) [confidence: 0.8]
+- [[success-framework]] — Heath brothers: SUCCESs framework — Simple, Unexpected, Concrete, Credible, Emotional, Stories — six principles for designing sticky ideas (Phase 4) [confidence: 0.7]
+- [[principled-negotiation]] — Fisher/Ury: four-principle negotiation method — people, interests, options, criteria (Phase 5) [confidence: 0.8]
+- [[stepps-framework]] — Berger: STEPPS — Social Currency, Triggers, Emotion, Public, Practical Value, Stories — six drivers of contagion (Phase 6) [confidence: 0.7]
+- [[three-modes-of-persuasion]] — Aristotle: ethos, pathos, logos as exhaustive taxonomy of persuasion (Phase 4) [confidence: 0.7]
+
+### Models
+
+## Source Summaries
+- [[summary-1-01-judgment-under-uncertainty]] — "Judgment Under Uncertainty: Heuristics and Biases" (1974) — Tversky & Kahneman — representativeness, availability, anchoring
+- [[summary-1-02-prospect-theory]] — "Prospect Theory: An Analysis of Decision Under Risk" (1979) — Kahneman & Tversky — loss aversion, value function, decision weights, framing
+- [[summary-1-03-social-psychology-ch4]] — "Social Psychology Ch.4: Social Perception" — Aronson, Wilson, Akert — FAE, attribution, first impressions, thin-slicing, culture
+- [[summary-1-04-influence-ch1]] — "Influence Ch.1: Weapons of Influence" — Cialdini — click-whirr, contrast principle, expensive-equals-good, shortcut responding
+- [[summary-1-04-influence-ch2]] — "Influence Ch.2: Reciprocation" — Cialdini — reciprocity rule, uninvited debts, unequal exchanges, rejection-then-retreat
+- [[summary-1-04-influence-ch3]] — "Influence Ch.3: Commitment and Consistency" — Cialdini — commitment, foot-in-the-door, lowball, public commitment, inner choice
+- [[summary-1-04-influence-ch4]] — "Influence Ch.4: Social Proof" — Cialdini — social proof, pluralistic ignorance, bystander effect, Werther effect
+- [[summary-1-04-influence-ch5]] — "Influence Ch.5: Liking" — Cialdini — attractiveness, similarity, compliments, mere exposure, association, cooperation, BIRGing
+- [[summary-1-04-influence-ch6]] — "Influence Ch.6: Authority" — Cialdini — Milgram obedience, authority symbols, sly sincerity
+- [[summary-1-04-influence-ch7]] — "Influence Ch.7: Scarcity" — Cialdini — scarcity, psychological reactance, limited numbers, deadline tactic, commodity theory
+- [[summary-1-04-influence-ch8]] — "Influence Ch.8: Instant Influence" — Cialdini — synthesis, primitive automaticity, paralysis of analysis, shortcuts as sacred
+- [[summary-1-05-emotional-intelligence]] — "Emotional Intelligence" (1990) — Salovey & Mayer — EI framework, emotional perception, regulation, utilization
+- [[summary-2-06-hb-ch9-attribution-shortcomings]] — "Shortcomings in the Attribution Process" (1982) — Ross & Anderson — fundamental attribution error, false consensus, belief perseverance
+- [[summary-2-06-hb-ch10-evidential-base-rates]] — "Evidential Impact of Base Rates" (1982) — Tversky & Kahneman — causal vs. incidental base rates, cab problem
+- [[summary-2-06-hb-ch14-simulation-heuristic]] — "The Simulation Heuristic" (1982) — Kahneman & Tversky — counterfactual thinking, mental simulation, downhill change rule
+- [[summary-2-06-hb-ch16-illusion-of-control]] — "The Illusion of Control" (1982) — Langer — skill-chance confusion, competition and choice effects on perceived control
+- [[summary-2-06-hb-ch23-hindsight-bias]] — "For Those Condemned to Study the Past" (1982) — Fischhoff — hindsight bias, creeping determinism, overfitting
+- [[summary-2-06-hb-ch28-improper-linear-models]] — "The Robust Beauty of Improper Linear Models" (1982) — Dawes — equal-weight models beat experts, clinical vs. statistical prediction
+- [[summary-2-06-hb-ch18-clinical-reasoning]] — "Probabilistic Reasoning in Clinical Medicine" — Eddy — base-rate fallacy in diagnosis, mammography screening
+- [[summary-2-06-hb-ch30-intuitive-prediction]] — "Intuitive Prediction: Biases and Corrective Procedures" — Kahneman & Tversky — regression prediction, correction procedure
+- [[summary-2-06-hb-ch31-debiasing]] — "Debiasing" — Fischhoff — taxonomy of debiasing methods, faulty tasks vs faulty judges
+- [[summary-2-07-cvf-ch1-choices-values-frames]] — "Choices, Values, and Frames" (1984) — Kahneman & Tversky — extends PT to riskless choice, Asian Disease Problem, mental accounting, cost-loss distinction
+- [[summary-2-07-cvf-ch3-cumulative-prospect-theory]] — "Advances in Prospect Theory: Cumulative Representation of Uncertainty" (1992) — Tversky & Kahneman — CPT, fourfold pattern, lambda=2.25, alpha=0.88
+- [[summary-2-07-cvf-ch8-endowment-loss-aversion-status-quo]] — "Anomalies: The Endowment Effect, Loss Aversion, and Status Quo Bias" (1991) — Kahneman, Knetsch, & Thaler — three phenomena unified by loss aversion
+- [[summary-2-07-cvf-ch14-mental-accounting-matters]] — "Mental Accounting Matters" (1999) — Thaler — transaction utility, hedonic editing, myopic loss aversion, choice bracketing
+- [[summary-2-07-cvf-ch12-rational-choice-framing]] — "Rational Choice and the Framing of Decisions" (1986) — Tversky & Kahneman — hierarchy of normative rules, dominance/invariance violations, bolstering assumptions dismantled
+- [[summary-2-07-cvf-ch16-pt-in-the-wild]] — "Prospect Theory in the Wild: Evidence from the Field" (2000) — Camerer — 10 field phenomena explained by PT: equity premium, disposition effect, cab drivers, asymmetric elasticities, status quo bias, horse racing, lotteries, insurance
+- [[summary-2-07-cvf-ch20-cab-drivers]] — "Labor Supply of NYC Cab Drivers" (1997) — Camerer, Babcock, Loewenstein, & Thaler — negative wage elasticity, daily income targeting, narrow bracketing
+- [[summary-2-07-cvf-ch18-fairness-constraint]] — "Fairness as a Constraint on Profit Seeking" — Kahneman, Knetsch, Thaler — dual entitlement, reference transactions
+- [[summary-2-07-cvf-ch22-timid-choices]] — "Timid Choices and Bold Forecasts" — Kahneman & Lovallo — inside/outside view, narrow framing, organizational risk
+- [[summary-2-07-cvf-ch26-conflict-resolution]] — "Conflict Resolution: A Cognitive Perspective" — Kahneman & Tversky — concession aversion, cognitive barriers to negotiation
+- [[summary-2-08-bazerman-ch1]] — "Introduction to Managerial Decision Making" — Bazerman & Moore — System 1/2, bounded rationality, heuristics overview
+- [[summary-2-08-bazerman-ch2]] — "Overconfidence" — Bazerman & Moore — overprecision, overestimation, overplacement
+- [[summary-2-08-bazerman-ch3]] — "Common Biases" — Bazerman & Moore — 12 biases from availability, representativeness, confirmation heuristics
+- [[summary-2-08-bazerman-ch4]] — "Bounded Awareness" — Bazerman & Moore — inattentional blindness, change blindness, focalism, strategic bounded awareness
+- [[summary-2-08-bazerman-ch5]] — "Framing and the Reversal of Preferences" — Bazerman & Moore — Asian Disease Problem, pseudocertainty, insurance framing, portfolio irrationality
+- [[summary-2-08-bazerman-ch6]] — "What's It Worth to You?" — Bazerman & Moore — endowment effect, mental accounting, rebate/bonus framing, joint vs. separate preference reversals
+- [[summary-2-08-bazerman-ch7]] — "Motivational and Emotional Influences on Decision Making" — Bazerman & Moore — want/should conflict, self-serving reasoning, specific emotions, hyperbolic discounting, regret avoidance
+- [[summary-2-08-bazerman-ch8]] — "The Escalation of Commitment" — Bazerman & Moore — unilateral and competitive escalation, sunk costs, dollar auction, four causes of escalation
+- [[summary-2-08-bazerman-ch9]] — "Fairness and Ethics in Decision Making" — Bazerman & Moore — ultimatum game, bounded ethicality, implicit bias, in-group favoritism, conflicts of interest
+- [[summary-2-08-bazerman-ch10]] — "Common Investment Mistakes" — Bazerman & Moore — behavioral finance, overconfidence in investing, disposition effect, index fund superiority
+- [[summary-2-08-bazerman-ch11]] — "Making Rational Decisions in Negotiations" — Bazerman & Moore — BATNA, value creation, contingent contracts, post-settlement settlements
+- [[summary-2-08-bazerman-ch12]] — "Negotiator Cognition" — Bazerman & Moore — fixed-pie bias, framing in negotiation, negotiator overconfidence, self-serving bias, reactive devaluation
+- [[summary-2-08-bazerman-ch13]] — "Improving Decision Making" — Bazerman & Moore — seven debiasing strategies, linear models, analogical reasoning, outsider's view, nudge architecture
+
+- [[summary-2-09-anderson-ch8]] — "Problem Solving" — John R. Anderson — problem-space, means-ends-analysis, functional-fixedness, set-effects, incubation, insight
+- [[summary-2-09-anderson-ch9]] — "Expertise" — John R. Anderson — skill-acquisition, deliberate-practice, chunking, proceduralization, transfer, power-law-of-learning
+- [[summary-2-09-anderson-ch10]] — "Reasoning" — John R. Anderson — categorical syllogisms, conditional reasoning, Bayesian reasoning, mental models, pragmatic schemas
+- [[summary-2-09-anderson-ch11]] — "Decision Making" — John R. Anderson — Bayesian conservatism, expected utility, prospect theory convergence, Iowa gambling task, neuroscience of decision
+
+- [[summary-2-S1-ariely-ch1]] — "The Truth about Relativity" — Ariely — decoy effect, relative valuation
+- [[summary-2-S1-ariely-ch2]] — "The Fallacy of Supply and Demand" — Ariely — arbitrary coherence, self-herding
+- [[summary-2-S1-ariely-ch3]] — "The Cost of Zero Cost" — Ariely — zero-price effect, loss aversion at zero
+- [[summary-2-S1-ariely-ch4-5]] — "The Cost of Social Norms / Free Cookie" — Ariely — social vs market norms
+- [[summary-2-S1-ariely-ch6]] — "The Influence of Arousal" — Ariely — hot-cold empathy gap
+- [[summary-2-S1-ariely-ch7]] — "Procrastination and Self-Control" — Ariely — precommitment, present bias
+- [[summary-2-S1-ariely-ch8]] — "The High Price of Ownership" — Ariely — virtual ownership, endowment effect
+- [[summary-2-S1-ariely-ch9]] — "Keeping Doors Open" — Ariely — option fixation, opportunity cost blindness
+- [[summary-2-S1-ariely-ch10]] — "The Effect of Expectations" — Ariely — expectation assimilation, placebo
+- [[summary-2-S1-ariely-ch11]] — "The Power of Price" — Ariely — placebo pricing, price-quality heuristic
+- [[summary-2-S1-ariely-ch12]] — "The Cycle of Distrust" — Ariely — commons dilemma, trust erosion
+- [[summary-2-S1-ariely-ch13]] — "The Context of Our Character Part I" — Ariely — dishonesty fudge factor, moral reminders
+- [[summary-2-S1-ariely-ch14]] — "The Context of Our Character Part II" — Ariely — cashless dishonesty, token distance
+- [[summary-2-S1-ariely-ch15]] — "Beer and Free Lunches" — Ariely — public vs private choice, behavioral economics manifesto
+
+- [[summary-3-10-sdt-ch1-introduction]] — "Self-Determination Theory: An Introduction and Overview" (Ch. 1) — Ryan & Deci — organismic perspective, basic psychological needs, autonomy-control continuum, six mini-theories
+- [[summary-3-10-sdt-ch5-intrinsic-motivation-history]] — "A Brief History of Intrinsic Motivation" (Ch. 5) — Ryan & Deci — Harlow's monkeys, White's effectance motivation, de Charms's personal causation, Deci's early reward experiments
+
+- [[summary-3-10-sdt-ch6-cet-part1]] — "CET Part I: Effects of Rewards, Feedback, and Other External Events on Intrinsic Motivation" — Ryan & Deci — undermining effect, reward contingencies, meta-analysis, neuroscience
+- [[summary-3-10-sdt-ch7-cet-part2]] — "CET Part II: Interpersonal and Intrapersonal Processes Affecting Intrinsic Motivation" — Ryan & Deci — autonomy support, ego involvement, creativity, learning outcomes
+- [[summary-3-10-sdt-ch8-oit]] — "Organismic Integration Theory" (Ch. 8) — Ryan & Deci — internalization continuum, external → introjected → identified → integrated regulation, conditions for internalization
+- [[summary-3-10-sdt-ch9-cot]] — "Causality Orientations Theory" (Ch. 9) — Ryan & Deci — autonomy/control/impersonal orientations, individual differences, priming effects
+- [[summary-3-10-sdt-ch10-bpnt]] — "Basic Psychological Needs Theory" (Ch. 10) — Ryan & Deci — BPNT formalized, eight propositions, need satisfaction vs. frustration, vitality, mindfulness, nature, eudaimonia
+- [[summary-3-10-sdt-ch11-gct]] — "Goal Contents Theory" (Ch. 11) — Ryan & Deci — GCT formalized, intrinsic vs. extrinsic aspirations, aspiration index, materialism, goal framing, developmental origins
+- [[summary-3-10-sdt-ch12-rmt]] — "Relationships Motivation Theory" (Ch. 12) — Ryan & Deci — RMT formalized, autonomy-relatedness complementarity, conditional regard, need satisfaction in relationships, mutuality of autonomy support, objectification
+- [[summary-3-10-sdt-ch14-schools]] — "Schools as Contexts for Learning" (Ch. 14) — Ryan & Deci — autonomy-supportive teaching, intrinsic goal framing, internalization, grading effects, need support training
+- [[summary-3-10-sdt-ch21-work]] — "Work and Organizations" (Ch. 21) — Ryan & Deci — autonomous work motivation, autonomy-supportive management, compensation design, need satisfaction at work, engagement
+- [[summary-3-11-se-ch1-theoretical-perspectives]] — "Theoretical Perspectives" — Bandura — human agency, reciprocal determinism, self-efficacy definition, construct differentiation
+- [[summary-3-11-se-ch2-nature-structure]] — "The Nature and Structure of Self-Efficacy" — Bandura — generative capability, dimensions, causality, optimistic efficacy, discordance sources
+- [[summary-3-11-se-ch3-sources]] — "Sources of Self-Efficacy" — Bandura — mastery experience, vicarious experience, verbal persuasion, physiological states
+- [[summary-3-11-se-ch4-mediating-processes]] — "Mediating Processes" — Bandura — cognitive, motivational, affective, and selection processes
+- [[summary-3-11-se-ch6-cognitive-functioning]] — "Cognitive Functioning" — Bandura — academic self-efficacy, teacher efficacy, collective school efficacy, self-regulated learning, intrinsic interest
+- [[summary-3-11-se-ch10-organizational-functioning]] — "Organizational Functioning" — Bandura — career development, mastery modeling, managerial decision making, entrepreneurial efficacy, occupational stress, collective organizational efficacy
+- [[summary-3-11-se-ch11-collective-efficacy]] — "Collective Efficacy" — Bandura — collective efficacy measurement, political efficacy, community enablement, media influence, sociocultural change, social diffusion
+
+- [[summary-4-13-munter-ch1-strategy]] — "Communication Strategy" — Munter & Hamilton — five strategic variables, tell-sell-consult-join, credibility, audience analysis, direct/indirect organization
+- [[summary-4-13-munter-ch3-macro-writing]] — "Writing: Macro Issues" — Munter & Hamilton — high skim value, headings, white space, typography, progression and linkage, generalization-and-support
+- [[summary-4-13-munter-ch5-speaking-structure]] — "Speaking: Verbal Structure" — Munter & Hamilton — tell/sell presentations, Q&A handling, consult/join meetings, openings, closings, impromptu speaking
+
+- [[summary-4-15-dc-ch1-three-conversations]] — "Sort Out the Three Conversations" — Stone, Patton & Heen — three conversations framework, truth assumption, intention invention, blame frame, learning conversation
+- [[summary-4-15-dc-ch2-explore-stories]] — "Stop Arguing About Who's Right: Explore Each Other's Stories" — Stone, Patton & Heen — different information, different interpretations, implicit rules, self-serving bias, And Stance, certainty to curiosity
+- [[summary-4-14-mts-intro]] — "Made to Stick: Introduction (What Sticks?)" — Heath & Heath — Kidney Heist, movie popcorn, SUCCESs framework, curse of knowledge, tapper experiment
+- [[summary-4-14-mts-ch1-simple]] — "Made to Stick: Ch.1 (Simple)" — Heath & Heath — Commander's Intent, burying the lead, inverted pyramid, proverbs, schemas, generative analogies
+- [[summary-4-14-mts-ch2-unexpected]] — "Made to Stick: Ch.2 (Unexpected)" — Heath & Heath — surprise brow, postdictability, schema breaking, gap theory of curiosity, priming the gap
+- [[summary-4-14-mts-ch3-concrete]] — "Made to Stick: Ch.3 (Concrete)" — Heath & Heath — Velcro theory of memory, brown eyes/blue eyes, engineers vs. manufacturers, oral rehydration therapy
+
+- [[summary-4-15-dc-ch1-three-conversations]] — "Sort Out the Three Conversations" — Stone, Patton & Heen — three conversations framework, truth assumption, intention invention, blame frame, learning conversation
+- [[summary-4-15-dc-ch2-explore-stories]] — "Stop Arguing About Who's Right: Explore Each Other's Stories" — Stone, Patton & Heen — different information, different interpretations, implicit rules, self-serving bias, And Stance, certainty to curiosity
+- [[summary-4-15-dc-ch3-intent-and-impact]] — "Don't Assume They Meant It: Disentangle Intent from Impact" — Stone, Patton & Heen — intent-impact gap, attribution errors, self-fulfilling attributions, good intentions and bad impact
+
+- [[summary-5-20-nstd-ch1-new-rules]] — "Never Split the Difference Ch.1: The New Rules" — Voss & Raz — tactical empathy, FBI negotiation evolution, Kahneman/Tversky foundation, calibrated questions
+- [[summary-5-20-nstd-ch2-mirroring]] — "Never Split the Difference Ch.2: Be a Mirror" — Voss & Raz — mirroring technique, late-night FM DJ voice, active listening, Chase Manhattan robbery
+- [[summary-5-20-nstd-ch3-labeling]] — "Never Split the Difference Ch.3: Don't Feel Their Pain, Label It" — Voss & Raz — labeling emotions, tactical empathy, accusation audit, amygdala disruption
+- [[summary-5-20-nstd-ch4-no]] — "Never Split the Difference Ch.4: Beware 'Yes' — Master 'No'" — Voss & Raz — getting to no, three kinds of yes, autonomy, loss aversion email
+- [[summary-5-20-nstd-ch5-thats-right]] — "Never Split the Difference Ch.5: Trigger the Two Words" — Voss & Raz — "that's right" moment, BCSM, summary technique, Schilling kidnapping
+
+- [[summary-5-17-ng-ch1-claiming-value]] — "Negotiation Genius Ch.1: Claiming Value" — Malhotra & Bazerman — five-step preparation, BATNA, reservation value, ZOPA, anchoring, haggling strategies, managing satisfaction
+- [[summary-5-17-ng-ch2-creating-value]] — "Negotiation Genius Ch.2: Creating Value" — Malhotra & Bazerman — logrolling, adding issues, contingency contracts, Pareto efficiency, post-settlement settlements, Holbrooke UN negotiation
+- [[summary-5-17-ng-ch3-investigative]] — "Negotiation Genius Ch.3: Investigative Negotiation" — Malhotra & Bazerman — seven principles, five elicitation strategies, selling vs. negotiating, Chris exclusivity story
+- [[summary-5-17-ng-ch7-influence]] — "Negotiation Genius Ch.7: Strategies of Influence" — Malhotra & Bazerman — eight influence strategies, six defense strategies, loss aversion, DITF, FITD, justification, social proof
+- [[summary-5-17-ng-ch11-weakness]] — "Negotiation Genius Ch.11: Negotiating from Weakness" — Malhotra & Bazerman — five strategies for weak BATNA, three strategies for shifting power, coalitions, DVP, relinquishing power
+
+- [[summary-4-12-rhetoric-intro]] — "On Rhetoric: Introduction" — Aristotle (Kennedy) — Aristotle's life, rhetoric classification, chapter outline
+- [[summary-4-12-rhetoric-book1]] — "On Rhetoric: Book 1" — Aristotle — definition of rhetoric, three pisteis, three genres, deliberative/epideictic/judicial topics
+- [[summary-4-12-rhetoric-book2]] — "On Rhetoric: Book 2" — Aristotle — emotion catalog, character types, enthymemes, 28 common topoi
+- [[summary-4-14-mts-ch4-credible]] — "Made to Stick: Ch.4 (Credible)" — Heath & Heath — authority/antiauthority, vivid details, Sinatra Test, testable credentials, human-scale statistics
+- [[summary-4-14-mts-ch5-emotional]] — "Made to Stick: Ch.5 (Emotional)" — Heath & Heath — Mother Teresa principle, semantic stretch, WIIFY, Maslow's basement, identity vs. self-interest
+- [[summary-4-14-mts-ch6-stories]] — "Made to Stick: Ch.6 (Stories)" — Heath & Heath — stories as flight simulators, Challenge/Connection/Creativity plots, springboard stories
+
+- [[summary-5-16-gty-ch1-positions]] — "Getting to Yes Ch.1: Don't Bargain Over Positions" — Fisher & Ury — positional bargaining fails all three criteria
+- [[summary-5-16-gty-ch2-people]] — "Getting to Yes Ch.2: Separate People from Problem" — Fisher & Ury — perception, emotion, communication
+- [[summary-5-16-gty-ch3-interests]] — "Getting to Yes Ch.3: Focus on Interests" — Fisher & Ury — Camp David, basic human needs
+- [[summary-5-16-gty-ch4-options]] — "Getting to Yes Ch.4: Invent Options" — Fisher & Ury — four obstacles, Circle Chart, dovetailing
+- [[summary-5-16-gty-ch5-criteria]] — "Getting to Yes Ch.5: Objective Criteria" — Fisher & Ury — fair standards and procedures
+- [[summary-5-16-gty-ch6-power]] — "Getting to Yes Ch.6: BATNA" — Fisher & Ury — best alternative as power source
+- [[summary-5-16-gty-ch7-wont-play]] — "Getting to Yes Ch.7: Negotiation Jujitsu" — Fisher & Ury — one-text procedure, Camp David 23 drafts
+- [[summary-5-16-gty-ch8-dirty-tricks]] — "Getting to Yes Ch.8: Dirty Tricks" — Fisher & Ury — deception, psychological warfare, pressure tactics
+
+- [[summary-5-20-nstd-ch6-bend-reality]] — "NSTD Ch.6: Bend Their Reality" — Voss — deadline psychology, fairness F-bomb, six reality-bending techniques, Ackerman model
+- [[summary-5-20-nstd-ch7-illusion-control]] — "NSTD Ch.7: Create the Illusion of Control" — Voss — calibrated questions, "How am I supposed to do that?"
+- [[summary-5-20-nstd-ch8-execution]] — "NSTD Ch.8: Guarantee Execution" — Voss — Rule of Three, 7-38-55 rule, pronoun analysis
+- [[summary-5-20-nstd-ch9-bargain-hard]] — "NSTD Ch.9: Bargain Hard" — Voss — three negotiator types, Ackerman model, strategic umbrage
+- [[summary-5-20-nstd-ch10-black-swan]] — "NSTD Ch.10: Find the Black Swan" — Voss — three leverage types, knowing their religion, similarity principle
+
+- [[summary-6-21-ps-ch1-introduction]] — "Pre-Suasion Ch.1: An Introduction" — Cialdini — pre-suasion, openers, Jim the salesman, anchoring, privileged moments
+- [[summary-6-21-ps-ch2-privileged-moments]] — "Pre-Suasion Ch.2: Privileged Moments" — Cialdini — single-chute questions, positive test strategy, channeled attention
+- [[summary-6-21-ps-ch3-attention]] — "Pre-Suasion Ch.3: The Importance of Attention... Is Importance" — Cialdini — focusing illusion, agenda-setting, background cues, embedded reporters
+- [[summary-6-21-ps-ch4-focal-causal]] — "Pre-Suasion Ch.4: What's Focal Is Causal" — Cialdini — focal-is-causal, camera-angle bias, false confessions, romance of leadership
+- [[summary-6-21-ps-ch5-attractors]] — "Pre-Suasion Ch.5: Commanders of Attention 1 — The Attractors" — Cialdini — sexual, threatening, different; dread risks; evolutionary matching
+- [[summary-6-21-ps-ch6-magnetizers]] — "Pre-Suasion Ch.6: Commanders of Attention 2 — The Magnetizers" — Cialdini — self-relevant, unfinished (Zeigarnik), mysterious; mystery story format
+- [[summary-6-21-ps-ch7-associations]] — "Pre-Suasion Ch.7: The Primacy of Associations" — Cialdini — associative priming, language as influence, metaphor, fluency, implicit egoism
+- [[summary-6-21-ps-ch8-geographies]] — "Pre-Suasion Ch.8: Persuasive Geographies" — Cialdini — environmental cues, self-influence, stereotype threat, positivity paradox
+- [[summary-6-21-ps-ch9-mechanics]] — "Pre-Suasion Ch.9: The Mechanics of Pre-Suasion" — Cialdini — cognitive accessibility, if/when-then plans, manufactured associations, correctives
+
+- [[summary-6-22-aop-ch3-mindless-propaganda]] — "Age of Propaganda Ch.3: Mindless Propaganda, Thoughtful Persuasion" — Pratkanis & Aronson — ELM, Langer mindlessness, pique technique, cognitive miser, Willie Horton
+- [[summary-6-22-aop-ch5-four-stratagems]] — "Age of Propaganda Ch.5: The Four Stratagems of Influence" — Pratkanis & Aronson — pre-persuasion, source credibility, message, emotions; Lincoln, Limbaugh, propaganda vs. persuasion
+- [[summary-6-22-aop-ch6-words-of-influence]] — "Age of Propaganda Ch.6: Words of Influence" — Pratkanis & Aronson — linguistic framing, glittering generalities, labeling, self-fulfilling prophecy
+- [[summary-6-22-aop-ch7-pictures-in-our-heads]] — "Age of Propaganda Ch.7: Pictures in Our Heads" — Pratkanis & Aronson — Lippmann, Gerbner cultivation analysis, television criminology, media distortion
+- [[summary-6-22-aop-ch24-fear-appeal]] — "Age of Propaganda Ch.24: The Fear Appeal" — Pratkanis & Aronson — four conditions for effectiveness, Leventhal research, self-esteem moderator, fear-then-relief
+- [[summary-6-22-aop-ch25-granfalloon]] — "Age of Propaganda Ch.25: The Granfalloon Technique" — Pratkanis & Aronson — Tajfel minimal group, in-group bias, cooption, five defenses
+- [[summary-6-22-aop-ch26-guilt-sells]] — "Age of Propaganda Ch.26: Guilt Sells" — Pratkanis & Aronson — Carlsmith guilt compliance, false confessions, forgiveness paradox, Brad Page case
+- [[summary-6-22-aop-ch27-phantoms]] — "Age of Propaganda Ch.27: Phantoms" — Pratkanis & Aronson — phantom alternatives, phantom trap, phantom fixation, scarcity, censorship backfire
+- [[summary-6-22-aop-ch36-cult-leader]] — "Age of Propaganda Ch.36: How to Become a Cult Leader" — Pratkanis & Aronson — seven cult tactics, rationalization trap, Jim Jones escalation
+- [[summary-6-22-aop-ch38-inoculation]] — "Age of Propaganda Ch.38: Inoculation Theory" — Pratkanis & Aronson — McGuire, forewarning limits, stealing thunder, McAlister anti-smoking
+- [[summary-6-22-aop-ch39-stopping-propaganda]] — "Age of Propaganda Ch.39: Stopping Propaganda" — Pratkanis & Aronson — gotcha procedure, 13 defenses, institutional reforms
+
+- [[summary-6-S2-contagious-intro]] — "Contagious: Introduction" — Berger — STEPPS overview, Barclay Prime, Blendtec, word-of-mouth statistics
+- [[summary-6-S2-contagious-ch1-social-currency]] — "Contagious Ch.1: Social Currency" — Berger — remarkability, game mechanics, exclusivity, Please Don't Tell
+- [[summary-6-S2-contagious-ch2-triggers]] — "Contagious Ch.2: Triggers" — Berger — top of mind, Kit Kat/coffee, Rebecca Black Friday, habitat growth
+- [[summary-6-S2-contagious-ch3-emotion]] — "Contagious Ch.3: Emotion" — Berger — arousal framework, awe/anger drive sharing, sadness suppresses
+- [[summary-6-S2-contagious-ch4-public]] — "Contagious Ch.4: Public" — Berger — behavioral residue, Movember, anti-drug backfire, observability
+- [[summary-6-S2-contagious-ch5-practical-value]] — "Contagious Ch.5: Practical Value" — Berger — prospect theory in sharing, Rule of 100, narrow audiences
+- [[summary-6-S2-contagious-ch6-stories]] — "Contagious Ch.6: Stories" — Berger — Trojan Horse stories, valuable virality, Jared/Subway
+
+- [[summary-7-24-connect-ch1-seeking-exceptional]] — "Connect Ch.1: Seeking Exceptional" — Bradford & Robin — six hallmarks, exceptional relationships defined, Touchy-Feely course
+- [[summary-7-24-connect-ch2-world-class-course]] — "Connect Ch.2: A World-Class Course, One Chapter at a Time" — Bradford & Robin — arc of relationships, learning mindset, AFOG, two antennae, book structure
+
+- [[summary-7-25-resonate-ch1]] — "Resonate Ch.1: Why Resonate?" — Duarte — persuasion, resonance, facts vs. stories, audience-as-hero
+- [[summary-7-25-resonate-ch2]] — "Resonate Ch.2: Lessons from Myths and Movies" — Duarte — story structure, Hero's Journey, presentation form, sparkline, what-is vs. what-could-be
+- [[summary-7-25-resonate-ch3]] — "Resonate Ch.3: Get to Know the Hero" — Duarte — audience segmentation, profiling hero and mentor, common ground, Reagan case study
+- [[summary-7-25-resonate-ch4]] — "Resonate Ch.4: Define the Journey" — Duarte — big idea, audience journey (move from/to), resistance, reward, GE case study
+- [[summary-7-25-resonate-ch5]] — "Resonate Ch.5: Create Meaningful Content" — Duarte — ethos/pathos/logos, contrast creates contour, stories, murder your darlings, Cisco case study
+- [[summary-7-25-resonate-ch6-7]] — "Resonate Ch.6-7: Structure & Memorable Delivery" — Duarte — organizational structures, S.T.A.R. moments, Feynman/Jobs/Ortberg case studies
+- [[summary-7-25-resonate-ch8-9]] — "Resonate Ch.8-9: Improve & Change Your World" — Duarte — signal-to-noise, brevity, balance emotion, rehearsal, ethics, MLK/Graham case studies
+
+## Comparisons
+
+## Applied
+
+## Crystallized
+- [[anxiety-management-in-speaking]] — Systematic approach to managing speaking anxiety using the ABCs and AMP framework (Phase 7) [confidence: 0.7]
+- [[spontaneous-speaking]] — The skill of communicating effectively in unplanned, in-the-moment situations (Phase 7) [confidence: 0.7]
+- [[structure-in-spontaneity]] — The paradox that internalized structures enable rather than constrain improvisation (Phase 7) [confidence: 0.7]
+- [[yes-and-technique]] — Improv principle of affirming and building on others' contributions rather than blocking (Phase 7) [confidence: 0.7]
+- [[what-so-what-now-what]] — Three-part communication structure: topic, significance, action/implications (Phase 7) [confidence: 0.7]
+- [[problem-solution-benefit]] — Three-part persuasive structure: define problem, present solution, describe benefits (Phase 7) [confidence: 0.7]
+
+### People
+- [[abrahams]] — Stanford lecturer, developer of the Think Faster Talk Smarter methodology (Phase 7)
+
+### Books
+- [[think-faster-talk-smarter]] — Abrahams' methodology for mastering spontaneous communication (Phase 7)
+
+## Source Summaries (7-26 — Think Faster Talk Smarter — Abrahams)
+- [[summary-7-26-tfts-introduction]] — Introduction: The case for mastering spontaneous speaking; six-step overview
+- [[summary-7-26-tfts-ch1]] — Ch.1 Calm: Tame the Anxiety Beast — ABCs, AMP, breathing, mantras
+- [[summary-7-26-tfts-ch2]] — Ch.2 Unlock: Maximize Mediocrity — heuristics, perfectionism, dare to be dull
+- [[summary-7-26-tfts-ch3]] — Ch.3 Redefine: Mind Your Mindset — growth mindset, audience focus, Yes And, Next Play
+- [[summary-7-26-tfts-ch4]] — Ch.4 Listen: Don't Just Do Something, Stand There — Pace Space Grace, 3 P's of noise
+- [[summary-7-26-tfts-ch5]] — Ch.5 Structure: Structure Your Spontaneity — What-So What-Now What, five classic structures
+- [[summary-7-26-tfts-ch6]] — Ch.6 Focus: The F-Word — precision, relevance, accessibility, concision
+- [[summary-7-26-tfts-app1]] — App.1: Going Big on Small Talk — What-So What-Now What for chitchat
+- [[summary-7-26-tfts-app2]] — App.2: Toasts That Tantalize — WHAT structure for tributes
+- [[summary-7-26-tfts-app3]] — App.3: Make That (Im)perfect Pitch — Problem-Solution-Benefit
+- [[summary-7-26-tfts-app4]] — App.4: Rocking the Q&A — ADD framework
+- [[summary-7-26-tfts-app5]] — App.5: Feedback That Doesn't Flop — 4 I's framework
+- [[summary-7-26-tfts-app6]] — App.6: The Secrets to Saying We're Sorry — AAA framework

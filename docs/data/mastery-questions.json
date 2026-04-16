@@ -1,0 +1,562 @@
+[
+  {
+    "skillId": "anchoring-and-adjustment",
+    "questions": [
+      "Your team is estimating a project timeline. The PM says '6 months' before anyone else speaks. Using your knowledge of anchoring, (a) predict how this affects the team's estimates, (b) design a process that would reduce anchoring bias in group estimation, and (c) explain why simply warning people about anchoring doesn't eliminate it.",
+      "A car dealer shows you a $45,000 sticker price, then 'negotiates' down to $38,000. Using anchoring AND the contrast principle, explain why this feels like a good deal. Then design a counter-strategy a buyer should use, explaining the psychological mechanism behind why it works.",
+      "Epley & Gilovich (2006) found that anchoring effects from self-generated anchors differ from those produced by experimenter-provided anchors. Design a study that tests whether knowledge of anchoring reduces its effect for each type. What would the results tell us about whether anchoring is primarily an effortful or automatic process?"
+    ]
+  },
+  {
+    "skillId": "availability",
+    "questions": [
+      "After a plane crash makes headlines, insurance companies see a spike in flight insurance purchases, yet no increase in general travel insurance. Using the availability heuristic and the affect heuristic, explain this asymmetry. Then explain why providing people with base-rate statistics about car vs. plane fatalities is largely ineffective at correcting the bias.",
+      "A hospital administrator notices that doctors in the ER overdiagnose rare diseases they've recently encountered while underdiagnosing common conditions they haven't seen in weeks. Design an intervention for the ER that reduces availability-driven diagnostic errors without slowing down clinical workflow. Justify each element of your design using the psychological mechanism it targets.",
+      "Schwarz et al. (1991) found that people who were asked to recall 12 examples of their own assertiveness rated themselves as LESS assertive than those asked to recall only 6. Explain this counterintuitive finding using the availability heuristic. Then predict: would this effect reverse if participants were told the task was supposed to feel difficult? Why or why not?"
+    ]
+  },
+  {
+    "skillId": "system-1-system-2",
+    "questions": [
+      "You're designing a mobile app for personal finance. Identify three specific design decisions where you would deliberately engage System 1 (to make the experience seamless) and three where you would deliberately engage System 2 (to prevent costly errors). For each, explain why that system is the right one to activate and what design element triggers it.",
+      "A colleague argues: 'If System 2 is the rational system, we should just train people to use System 2 all the time.' Construct a multi-part argument for why this is both impossible and undesirable. Include cognitive load theory, ego depletion research, and at least one domain where System 1 outperforms System 2.",
+      "Consider a chess grandmaster, an experienced driver, and a first-year medical student diagnosing patients. For each, analyze the interplay between System 1 and System 2 in their performance. How does expertise change which system dominates, and what does this tell us about the relationship between the two systems that Kahneman's original framing might understate?"
+    ]
+  },
+  {
+    "skillId": "confirmation-heuristic",
+    "questions": [
+      "A startup CEO is convinced their product-market fit is strong because every customer interview confirms enthusiasm. Design a 'disconfirmation protocol' -- a structured process the CEO should follow to actively seek disconfirming evidence. Explain why each step is necessary by referencing specific mechanisms of confirmation bias (selective search, biased interpretation, biased memory).",
+      "Wason's 2-4-6 task demonstrates that people test hypotheses by seeking confirming evidence. But in some professional domains (e.g., auditing, intelligence analysis), practitioners are trained to seek disconfirmation. Evaluate: does training actually reduce confirmation bias, or does it merely add a second layer of reasoning that itself can be subject to confirmation bias? Support your argument with evidence.",
+      "Two political analysts look at the same economic data. One concludes the economy is improving; the other concludes it's declining. Using confirmation bias, motivated reasoning, and belief perseverance, explain how this divergence is not only possible but psychologically inevitable. Then evaluate whether 'balanced' media exposure is a sufficient remedy."
+    ]
+  },
+  {
+    "skillId": "framing-effects",
+    "questions": [
+      "You are a public health official who must communicate that a new treatment has a 90% survival rate (equivalently, a 10% mortality rate). Design two versions of your communication -- one for a scenario where you need the public to adopt the treatment, and one where you need them to carefully weigh risks. Explain the framing mechanism behind each version, and address the ethical tension between effective communication and manipulation.",
+      "Tversky and Kahneman's Asian Disease Problem shows that gain frames produce risk aversion and loss frames produce risk seeking. But subsequent research has found boundary conditions where this pattern reverses. Identify at least two conditions under which the standard framing effect weakens or reverses, and explain the theoretical mechanism behind each exception.",
+      "A nonprofit is deciding between two fundraising appeals: one that emphasizes the number of children who will be saved (gain frame) and one that emphasizes the number who will die without help (loss frame). Using framing effects, the identifiable victim effect, and psychic numbing, predict which appeal will raise more money for (a) a single identified child and (b) a crisis affecting 500,000 children. Explain the divergence."
+    ]
+  },
+  {
+    "skillId": "fundamental-attribution-error",
+    "questions": [
+      "A manager consistently rates a remote employee as 'unmotivated' because they miss optional team social events. Analyze this judgment using the fundamental attribution error, then extend your analysis: how might the actor-observer asymmetry cause the employee to have a completely different explanation for the same behavior? Design a structured feedback conversation that accounts for both perspectives.",
+      "Cross-cultural research (e.g., Miller, 1984) shows that the fundamental attribution error is stronger in Western individualist cultures than in East Asian collectivist cultures. Does this evidence suggest the FAE is a universal cognitive bias or a culturally learned thinking pattern? What does your answer imply about whether the FAE can be trained away?",
+      "Consider a hiring manager reviewing a candidate who performed poorly in a panel interview. The candidate was nervous, gave short answers, and avoided eye contact. Using the FAE, situational construal, and the concept of correspondence bias, (a) explain why the manager is likely to conclude 'bad candidate' rather than 'bad interview conditions,' (b) identify what situational factors should be considered, and (c) design an interview process that structurally reduces attribution errors."
+    ]
+  },
+  {
+    "skillId": "loss-aversion",
+    "questions": [
+      "You're designing a corporate wellness program. Version A frames participation as 'earn a $500 bonus for meeting health goals.' Version B frames it as 'your $500 wellness bonus will be deducted if you don't meet health goals.' Predict the behavioral difference, explain the mechanism, and then address the ethical and cultural concerns of using loss-framed incentives in an employment context.",
+      "Loss aversion predicts that people should never accept a 50-50 gamble to win $X or lose $X. Yet people regularly accept such gambles in casinos, stock trading, and entrepreneurship. Identify and explain at least three psychological mechanisms that can override loss aversion, and evaluate which is most powerful.",
+      "A product manager wants to reduce churn by making it psychologically harder for users to cancel a subscription. Using loss aversion, endowment effect, and sunk cost reasoning, design three retention interventions. Then critically evaluate: at what point do these interventions cross from 'good UX' into 'dark patterns,' and how would you draw that ethical line?"
+    ]
+  },
+  {
+    "skillId": "halo-effect",
+    "questions": [
+      "A tech company's charismatic CEO gives a TED talk that goes viral. Analysts subsequently upgrade the company's stock, citing 'strong leadership.' Using the halo effect, explain how a single trait (charisma) could influence financial analysts' assessment of unrelated factors like operational efficiency and market strategy. What organizational safeguards could prevent halo-driven investment decisions?",
+      "In performance reviews, a manager rates an employee who is highly likable as also being highly competent, innovative, and reliable -- despite mixed objective evidence. Design a performance review system that structurally mitigates the halo effect. For each design element, explain which aspect of the halo effect it targets (global evaluation contaminating specific judgments, primacy effects, or affective consistency).",
+      "The halo effect and the fundamental attribution error both involve making unwarranted generalizations about people. Compare and contrast these two biases: where do their mechanisms overlap, where do they diverge, and can the halo effect actually cause a fundamental attribution error? Illustrate with a concrete scenario."
+    ]
+  },
+  {
+    "skillId": "hindsight-bias",
+    "questions": [
+      "After a startup fails, investors, board members, and the founding team all claim they 'saw the warning signs.' Using hindsight bias, memory reconstruction, and sense-making, explain why each stakeholder genuinely believes their own revisionist account. Then design a pre-mortem process that creates a documentary record to counter future hindsight bias.",
+      "Hindsight bias has been shown to affect medical malpractice juries, who judge doctors' decisions as negligent because the bad outcome was 'obvious' in retrospect. Design jury instructions or trial procedures that would reduce hindsight bias without undermining jurors' ability to evaluate genuine negligence. Explain the psychological mechanism each procedure targets.",
+      "Some researchers argue that hindsight bias is adaptive -- it helps us build causal models of the world by making events feel more predictable than they were. Evaluate this argument: if hindsight bias is functional, under what conditions does it become dysfunctional? How would you distinguish between healthy causal learning and pathological hindsight bias in a real-world decision-making context?"
+    ]
+  },
+  {
+    "skillId": "sunk-cost-fallacy",
+    "questions": [
+      "A company has invested $50M over three years in a failing product. The team estimates it needs another $20M and two years to launch, with a 30% chance of recouping the investment. A competing product requires only $15M and one year with a 60% chance of success. Most executives choose to continue the failing product. Using sunk costs, escalation of commitment, loss aversion, and identity threat, explain why -- and design a decision-making framework that would lead to the rational choice.",
+      "Behavioral economists argue that honoring sunk costs is always irrational, but some scholars counter that sunk cost sensitivity can be reputation-preserving (showing you 'finish what you start'). Evaluate both positions: when, if ever, is it strategically rational to honor sunk costs because of the social signal it sends? Where does this argument break down?",
+      "You notice a friend continuing to read a terrible book because they're 'already halfway through,' staying in an unfulfilling relationship because of 'all the time invested,' and refusing to sell a declining stock because they'd 'lock in the loss.' These feel like different situations, but identify the common psychological mechanism. Then explain why the sunk cost fallacy is harder to overcome in emotional contexts (relationships) than in financial ones (stocks)."
+    ]
+  },
+  {
+    "skillId": "cognitive-dissonance",
+    "questions": [
+      "Festinger's classic forced compliance study found that participants paid $1 to lie about a boring task rated it as more enjoyable than those paid $20. Explain this using cognitive dissonance theory. Then predict: what would happen if participants were paid $1,000? What does your prediction reveal about the boundary conditions of dissonance reduction through attitude change?",
+      "A health-conscious person who smokes experiences cognitive dissonance. Map out at least four distinct dissonance reduction strategies they might use (attitude change, behavior change, adding consonant cognitions, trivialization). Then evaluate which strategy is most psychologically 'expensive' and which is most common, explaining why people typically choose the path they do.",
+      "Compare Festinger's cognitive dissonance theory with Bem's self-perception theory as explanations for attitude change following counter-attitudinal behavior. Design a study that could distinguish between these two accounts. What specific predictions does each theory make about the role of physiological arousal?"
+    ]
+  },
+  {
+    "skillId": "endowment-effect",
+    "questions": [
+      "In Kahneman, Knetsch, and Thaler's classic mug experiment, sellers demanded roughly twice what buyers would pay. But subsequent research found the endowment effect disappears for experienced traders and in certain cultural contexts. What does this pattern of findings tell us about whether the endowment effect is a fundamental feature of human cognition or a contextual phenomenon? What are the implications for economic theory?",
+      "You're designing a free trial for a SaaS product. Using the endowment effect, loss aversion, and the IKEA effect, design the trial experience to maximize conversion to paid plans. Be specific about what psychological ownership mechanisms each design choice activates. Then identify the ethical boundary between leveraging psychology and manipulating users.",
+      "The endowment effect implies that in any negotiation, both parties overvalue what they currently have. Analyze how this creates a systematic barrier to agreement. Then design a negotiation protocol that reduces the endowment effect for both sides without requiring either party to 'give up' their sense of ownership prematurely."
+    ]
+  },
+  {
+    "skillId": "overconfidence-in-calibration",
+    "questions": [
+      "A venture capital firm finds that when their partners rate a deal as having an '80% chance of success,' the actual success rate is 45%. Design a calibration training program for the firm that addresses all three types of overconfidence (overprecision, overestimation, and overplacement). For each type, explain the mechanism and the specific training intervention that targets it.",
+      "Some researchers argue that overconfidence is adaptive in competitive environments -- that overconfident individuals are more likely to attempt and therefore achieve ambitious goals. Evaluate this argument using evidence from entrepreneurship, military strategy, and financial markets. Under what conditions is overconfidence a net positive, and when does it become catastrophic?",
+      "You're calibrated at 70% when you say you're 90% sure. Design a personal system for improving your calibration that you could implement this week. Address: how would you track predictions, what feedback loop would you create, and what specific cognitive habits would you practice? Explain why each element is necessary based on the psychology of calibration."
+    ]
+  },
+  {
+    "skillId": "hot-cold-empathy-gap",
+    "questions": [
+      "A dieter plans their meals for the week on Sunday morning (cold state) but consistently breaks the plan by Wednesday evening when stressed and tired (hot state). Using the hot-cold empathy gap and hyperbolic discounting, explain why the Sunday plan fails. Then design a system that accounts for the empathy gap rather than trying to eliminate it.",
+      "Loewenstein (2005) argued that the hot-cold empathy gap has profound implications for informed consent in medicine -- patients in a cold state cannot accurately predict how they'll feel during painful procedures. Evaluate how this challenges the standard model of informed consent, and propose modifications that account for empathy gap effects without being paternalistic.",
+      "Consider a negotiator who prepares extensively in a calm office (cold state) but faces a hostile counterpart who triggers anger (hot state). Using the empathy gap, ego depletion, and emotional flooding, explain why their careful preparation may be useless in the moment. Design a pre-negotiation protocol that bridges the hot-cold gap."
+    ]
+  },
+  {
+    "skillId": "escalation-of-commitment",
+    "questions": [
+      "Analyze the escalation of commitment in a real-world pattern: a government continues funding a defense project that is over budget, behind schedule, and technologically obsolete. Map each of the four drivers of escalation (self-justification, sunk costs, prospect theory's loss frame, and impression management) onto specific stakeholder behaviors. Then design an institutional mechanism -- a 'kill switch' -- that would enable de-escalation.",
+      "Barry Staw's classic 'knee-deep in the big muddy' research identified both individual and organizational factors that drive escalation. Compare the relative power of individual psychology (self-justification, ego defense) versus organizational dynamics (political incentives, face-saving) in sustaining escalation. Which is harder to counteract, and why?",
+      "You're advising a friend who has spent two years building a startup that isn't working. They say: 'I can't quit now -- I've sacrificed too much.' Distinguish between (a) legitimate perseverance based on new information and realistic assessment, and (b) irrational escalation driven by sunk cost reasoning. What specific questions would you ask to help them determine which category they're in?"
+    ]
+  },
+  {
+    "skillId": "false-consensus-effect",
+    "questions": [
+      "A product team builds features they personally want, then is shocked when users don't adopt them. Using the false consensus effect, explain this failure. Then extend the analysis: how does the false consensus effect interact with confirmation bias and the availability heuristic to create a self-reinforcing cycle that makes the product team increasingly disconnected from their users?",
+      "The false consensus effect predicts that people overestimate agreement with their views, but research also shows that people with minority opinions show a STRONGER false consensus effect than those with majority opinions. Explain this counterintuitive finding. What does it reveal about the motivational vs. cognitive roots of the false consensus effect?",
+      "Design a team decision-making process that surfaces genuine disagreement despite the false consensus effect, groupthink, and social desirability bias. For each element of your process, specify which bias it targets and explain the mechanism by which it works."
+    ]
+  },
+  {
+    "skillId": "keeping-doors-open",
+    "questions": [
+      "Shin and Ariely's (2004) 'door closing' experiments showed that people would sacrifice earnings to keep options available, even when those options were clearly inferior. Explain why this behavior persists despite being objectively costly. Address both the loss aversion mechanism (losing the option) and the information asymmetry argument (maybe the option will become valuable).",
+      "A professional is maintaining three career paths simultaneously -- consulting, entrepreneurship, and corporate leadership -- investing just enough in each to 'keep the door open' but not enough to excel in any. Using the concept of keeping doors open, opportunity cost theory, and deliberate practice, analyze the hidden costs of this strategy and predict the long-term outcome.",
+      "Some argue that keeping options open is actually rational in environments of high uncertainty because it preserves optionality. Evaluate this argument: under what conditions is maintaining options genuinely valuable (real options theory), and under what conditions is it the irrational compulsion Ariely describes? Develop criteria for distinguishing between the two."
+    ]
+  },
+  {
+    "skillId": "intrinsic-motivation",
+    "questions": [
+      "A school redesigns its grading system, replacing letter grades with narrative feedback and self-assessment. Using self-determination theory and the concept of intrinsic motivation, predict the effects on (a) students who were previously high-performers motivated by grades, (b) students who were previously disengaged, and (c) parents. Address why the same intervention might enhance intrinsic motivation in one group while disrupting it in another.",
+      "Csikszentmihalyi's flow state and Deci & Ryan's intrinsic motivation describe overlapping but distinct phenomena. Compare and contrast these two frameworks: what does flow add that intrinsic motivation alone doesn't capture? Can someone be intrinsically motivated without experiencing flow, or in flow without intrinsic motivation? Illustrate with examples.",
+      "A software company wants to foster intrinsic motivation among its engineers. They consider three approaches: (a) 20% time for personal projects, (b) eliminating all performance bonuses, (c) restructuring teams so engineers choose their own projects. Using SDT's three basic needs (autonomy, competence, relatedness), evaluate each approach, predicting which will most effectively enhance intrinsic motivation and which might backfire."
+    ]
+  },
+  {
+    "skillId": "autonomy-need",
+    "questions": [
+      "A hospital mandates a new hand-washing protocol, and compliance is only 40% despite training. Using autonomy support vs. control, explain why mandating the behavior undermines compliance even when healthcare workers agree it's important. Design a reimplementation strategy that achieves the same health outcome while supporting autonomy. Explain the psychological mechanism behind each element.",
+      "Distinguish between autonomy and independence. A soldier in a military unit has almost no independence but may nonetheless feel autonomous. How is this possible? What does this distinction reveal about the nature of autonomy as a psychological need, and what are the implications for leadership in hierarchical organizations?",
+      "Some critics argue that autonomy as a basic need is a Western, individualistic construct that doesn't apply in collectivist cultures. Evaluate this critique using cross-cultural SDT research. Does autonomy mean the same thing across cultures, or does its expression differ while the underlying need remains universal? What evidence would settle this debate?"
+    ]
+  },
+  {
+    "skillId": "competence-need",
+    "questions": [
+      "A manager gives an employee a stretch assignment that is significantly beyond their current skill level, expecting it to build competence. Instead, the employee becomes anxious and disengaged. Using the need for competence, the zone of proximal development, and self-efficacy theory, explain what went wrong. Redesign the assignment with scaffolding that would support competence while maintaining challenge.",
+      "Positive feedback generally enhances intrinsic motivation through competence satisfaction, but research shows that controlling positive feedback ('Good job, just as I expected') can actually undermine it. Explain this paradox by distinguishing between informational and controlling aspects of feedback. Design a feedback protocol for managers that maximizes the competence-supporting function while minimizing the controlling function.",
+      "Video games are masterful at satisfying the need for competence: clear goals, immediate feedback, calibrated difficulty, visible progress. Analyze three specific game design mechanics that satisfy competence needs, then evaluate which of these mechanics could be transferred to workplace design and which cannot -- explaining why the transfer fails or succeeds."
+    ]
+  },
+  {
+    "skillId": "relatedness-need",
+    "questions": [
+      "A fully remote company notices declining engagement despite competitive pay, autonomy, and challenging work. Using the need for relatedness, explain what's missing and why autonomy and competence alone are insufficient. Design three specific interventions that would satisfy relatedness needs in a remote context, explaining the psychological mechanism each targets.",
+      "Baumeister and Leary's 'belongingness hypothesis' argues that the need to belong is a fundamental human motivation. Compare this with SDT's relatedness need: are they describing the same construct? Where do the theories make different predictions, and what practical difference does it make for someone designing a community or team?",
+      "A high-performing team member prefers to work alone and resists team-building activities, yet produces excellent work. Their manager insists they participate because 'relatedness is a basic need.' Evaluate the manager's reasoning: is relatedness truly universal, or do individual differences mean some people genuinely don't need it? What does the research actually say about variance in relatedness needs?"
+    ]
+  },
+  {
+    "skillId": "self-efficacy",
+    "questions": [
+      "Bandura identified four sources of self-efficacy: mastery experiences, vicarious experience, verbal persuasion, and physiological/emotional states. Rank these from most to least powerful and justify your ranking. Then design a 30-day onboarding program for new salespeople that deliberately activates all four sources in the optimal sequence. Explain why order matters.",
+      "High self-efficacy generally predicts better performance, but research has identified conditions where high self-efficacy can lead to overconfidence, complacency, or failure to prepare adequately. Analyze the relationship between self-efficacy and overconfidence: where is the line between healthy confidence and dangerous overestimation? How would you help someone calibrate their self-efficacy to be motivating but accurate?",
+      "A student who failed calculus twice says: 'I'm just not a math person.' Using self-efficacy theory, learned helplessness, and attribution theory, analyze how this belief was formed and why it persists. Design an intervention that would rebuild their mathematical self-efficacy without relying on empty encouragement like 'you can do it!'"
+    ]
+  },
+  {
+    "skillId": "overjustification-effect",
+    "questions": [
+      "A company introduces a $500 bonus for employees who contribute to the internal knowledge base. Initially, contributions spike. Six months later, when the bonus is removed, contributions drop below the pre-bonus baseline. Using the overjustification effect and the shift from internal to external perceived locus of causality, explain this pattern. Design a reward system that would increase contributions without undermining intrinsic motivation.",
+      "Lepper, Greene, and Nisbett's (1973) classic study found that expected rewards undermined children's intrinsic motivation, but unexpected rewards did not. Explain why the expectation of reward matters. Then evaluate: in a workplace where employees know bonuses exist, is it possible to give a bonus that functions as 'unexpected'? If so, how?",
+      "Some researchers argue the overjustification effect is overstated and that, in practice, most people aren't intrinsically motivated by their work anyway, so external rewards are necessary. Evaluate this critique: under what conditions does the overjustification effect matter most, and under what conditions is it largely irrelevant? What does this imply for how organizations should design their compensation systems?"
+    ]
+  },
+  {
+    "skillId": "hyperbolic-discounting",
+    "questions": [
+      "A person chooses a $100 gift card today over a $150 gift card in one month, but when the same choice is moved to 11 months vs. 12 months, they choose the $150. Explain this preference reversal using hyperbolic (not exponential) discounting. Then explain why this pattern is problematic for classical economic models of rationality and what it implies about the stability of human preferences.",
+      "Hyperbolic discounting predicts that most New Year's resolutions will fail. Trace the full psychological path from January 1st (when the future reward of being fit is valued highly) to January 20th (when the immediate cost of going to the gym overwhelms the distant reward). Then design a commitment architecture that uses understanding of hyperbolic discounting to sustain the resolution.",
+      "Compare hyperbolic discounting with the hot-cold empathy gap as explanations for why people fail to follow through on long-term plans. Where do these two mechanisms overlap, where do they make distinct predictions, and how might they interact to make self-control even harder than either alone would predict?"
+    ]
+  },
+  {
+    "skillId": "mastery-experience",
+    "questions": [
+      "Bandura argues that mastery experiences are the most powerful source of self-efficacy, but not all successes build efficacy equally. Compare the efficacy-building power of: (a) an easy success, (b) a success after sustained effort and setbacks, (c) a success attributed to help from others, (d) a success attributed to luck. Explain why difficulty and attribution pattern matter, and design a coaching approach that maximizes the efficacy-building value of each success.",
+      "A manager wants to build a junior employee's self-efficacy through mastery experiences, but the employee's current skill level means they'll likely fail at most challenging tasks. Design a sequence of graduated challenges that creates genuine mastery experiences. Address: how do you set the difficulty level, how do you handle inevitable failures, and how do you ensure the employee attributes success to their own effort rather than to your scaffolding?",
+      "Some educational approaches (e.g., 'productive failure') deliberately have students fail before providing instruction, arguing that the failure makes subsequent mastery more meaningful. Evaluate this claim using mastery experience theory: under what conditions does failure before success strengthen self-efficacy, and under what conditions does it undermine it? What variables determine which outcome occurs?"
+    ]
+  },
+  {
+    "skillId": "deliberate-practice",
+    "questions": [
+      "Ericsson's deliberate practice framework requires focused attention on weaknesses, immediate feedback, and practice at the edge of current ability. Evaluate whether this framework applies equally well to: (a) chess, (b) leadership, (c) creative writing, and (d) psychotherapy. For each domain, identify what makes deliberate practice easy or hard to implement, and what modifications are needed.",
+      "A software engineer has 15 years of experience but has plateaued at a mid-senior level. Their colleague with 5 years of experience is advancing faster. Using the distinction between naive practice and deliberate practice, diagnose what's likely happening. Design a deliberate practice regimen for the experienced engineer that would restart their growth. Be specific about what they would practice, how they would get feedback, and what mental representations they would develop.",
+      "Critics of the deliberate practice framework (e.g., Macnamara et al., 2014) have argued that deliberate practice explains only about 26% of variance in performance, with factors like talent, working memory capacity, and age of starting playing significant roles. Evaluate: does this evidence refute Ericsson's claims, or is it compatible with them? What does the relative contribution of practice vs. talent imply for how individuals and organizations should invest in development?"
+    ]
+  },
+  {
+    "skillId": "if-then-plans",
+    "questions": [
+      "Implementation intentions ('if situation X, then I will do Y') dramatically increase goal achievement, but Gollwitzer's research shows they work differently for different types of goals. Compare the effectiveness of if-then plans for: (a) initiating a new behavior, (b) breaking a bad habit, (c) managing emotional responses, and (d) persisting through obstacles. For each, explain the mechanism and design a specific if-then plan.",
+      "A critic argues: 'If-then plans are just fancy to-do lists.' Refute this by explaining the specific cognitive mechanism that makes implementation intentions fundamentally different from goal intentions. Address: strategic automaticity, cue accessibility, and the delegate-to-environment principle. Why does 'I will exercise more' fail where 'If it is Monday at 7am, then I will run for 30 minutes' succeeds?",
+      "Design a system of implementation intentions for a student preparing for final exams that addresses: (a) when to study (initiation), (b) what to do when distracted by social media (shielding), (c) how to handle the emotional urge to procrastinate (emotion regulation), and (d) when to stop studying and rest (disengagement). Explain why each if-then plan targets a different self-regulatory challenge."
+    ]
+  },
+  {
+    "skillId": "procrastination-and-precommitment",
+    "questions": [
+      "Odysseus tied himself to the mast to resist the Sirens. Analyze three modern precommitment strategies (e.g., website blockers, automatic savings, public accountability) using the same framework: what 'mast' is the person tying themselves to, what 'Sirens' are they resisting, and what makes each strategy succeed or fail? Identify the conditions under which precommitment backfires.",
+      "Compare precommitment with willpower as strategies for overcoming procrastination. Using Baumeister's ego depletion model (and the debates around it) and the concept of decision fatigue, explain why precommitment is generally more reliable than willpower. Then identify a scenario where precommitment is inferior to building genuine self-regulation capacity.",
+      "A person who chronically procrastinates sets up elaborate precommitment systems (apps, penalties, accountability partners) but still procrastinates. Using Steel's temporal motivation theory (expectancy x value / impulsiveness x delay), diagnose which component of motivation the precommitment strategies are failing to address. Design an intervention that targets the root cause rather than the symptom."
+    ]
+  },
+  {
+    "skillId": "vicarious-experience",
+    "questions": [
+      "Bandura found that vicarious experience is most powerful when the model is perceived as similar to the observer. A first-generation college student sees a celebrity talk about overcoming poverty. Using vicarious experience theory, predict whether this will be an effective source of self-efficacy. Then compare it with: a peer from their own neighborhood who got into college. Explain why similarity matters, and identify what dimensions of similarity are most important.",
+      "Design a mentorship program for underrepresented minorities entering a corporate environment that maximizes vicarious experience as a source of self-efficacy. Address: (a) how you would select mentors, (b) what the mentors should share (process vs. outcome), (c) how to handle the risk that observing a highly successful mentor might actually intimidate rather than inspire, and (d) how vicarious experience interacts with the other three sources of self-efficacy.",
+      "Social media provides constant exposure to others' successes and failures. Using vicarious experience theory, analyze why social media often undermines rather than builds self-efficacy, even though it provides abundant models. Address the role of upward social comparison, curated self-presentation, and the absence of visible struggle in most social media content."
+    ]
+  },
+  {
+    "skillId": "psychological-reactance",
+    "questions": [
+      "Anti-drug campaigns aimed at teenagers often backfire, with some studies showing increased drug use among those exposed to the campaigns. Using psychological reactance theory, explain this boomerang effect. Then design an anti-drug message for teenagers that communicates the risks without triggering reactance. Explain the specific linguistic and framing choices you make and why.",
+      "A parent tells their teenager: 'You are NOT allowed to date that person.' Predict the teenager's response using reactance theory. Now compare this with a scenario where the parent says: 'I have some concerns about this relationship. Can we talk about them?' Using the concepts of perceived freedom threat, legitimacy of the restriction, and autonomy support, explain why the second approach is more effective.",
+      "Reactance theory predicts that restricting freedom increases desire for the restricted option. But some restrictions (e.g., laws, organizational policies) are accepted without reactance. Identify the conditions that determine whether a restriction triggers reactance or compliance. Address the roles of perceived legitimacy, magnitude of the threat, importance of the freedom, and prior experience with restrictions."
+    ]
+  },
+  {
+    "skillId": "social-norms-vs-market-norms",
+    "questions": [
+      "A daycare center starts fining parents who pick up their children late. Using Gneezy and Rustichelli's research and the social norms vs. market norms framework, predict what happens to late pickups. Then predict what happens when the fine is removed. Explain why the introduction of market norms permanently damages the social norm, and identify what the daycare should have done instead.",
+      "A startup offers equity to early employees, framing it as 'we're all in this together.' Later, during a compensation review, an employee asks for a detailed equity valuation and market-rate salary comparison. Using the social vs. market norms framework, explain the tension. How should the founders respond without either losing the employee or destroying the social norm that drives startup culture?",
+      "Compare the social/market norms framework with SDT's extrinsic motivation continuum (external regulation, introjection, identification, integration). Where do these frameworks align? Where do they make different predictions? Is there a way to introduce payment (market norm) into a social relationship without destroying the social norm? If so, what conditions make this possible?"
+    ]
+  },
+  {
+    "skillId": "internalization",
+    "questions": [
+      "A new employee follows company policies because they'll be fired otherwise (external regulation). Trace the path by which this employee could internalize these policies to the point of integrated regulation -- where they follow the policies because they genuinely align with their values. At each stage of the internalization continuum (external, introjected, identified, integrated), describe what the employee's experience feels like and what the organization must provide to support movement to the next stage.",
+      "A parent wants their child to value honesty. Compare two approaches: (a) punishing dishonesty and rewarding honesty, (b) explaining why honesty matters and allowing the child to experience consequences naturally. Using the internalization continuum and the concepts of autonomy support, competence scaffolding, and relatedness, predict which approach leads to deeper internalization and why.",
+      "Introjected regulation (doing something out of guilt, shame, or ego-involvement) is partially internalized but still controlling. Some religious and educational institutions deliberately use guilt as a motivational tool. Using SDT's internalization framework, evaluate this strategy: is introjection 'good enough,' or does it carry psychological costs that make it inferior to identified/integrated regulation? What does the evidence say about the well-being outcomes of introjected vs. identified motivation?"
+    ]
+  },
+  {
+    "skillId": "zone-of-comfort-zone-of-growth",
+    "questions": [
+      "A leader pushes their team into constant discomfort, arguing that 'growth only happens outside your comfort zone.' Using Vygotsky's zone of proximal development, Yerkes-Dodson law, and SDT's competence need, explain why this approach can backfire. Define the optimal 'growth zone' and the variables that determine where it falls for a given person on a given task.",
+      "Compare the comfort zone model with Csikszentmihalyi's flow channel model (which maps challenge against skill). Where do these models agree? Where do they make different predictions? Can someone be in their comfort zone and in flow simultaneously? Design a framework that integrates both models.",
+      "A person who has been in their comfort zone for years (same job, same routines, same social circle) wants to begin growing but feels paralyzed by anxiety when they try anything new. Using the comfort/growth/panic zone model, learned helplessness, and self-efficacy theory, explain the paralysis and design a gradual exposure plan that systematically expands their comfort zone without triggering panic."
+    ]
+  },
+  {
+    "skillId": "emotion-regulation",
+    "questions": [
+      "Gross's process model identifies five emotion regulation strategies: situation selection, situation modification, attentional deployment, cognitive reappraisal, and response modulation (suppression). Rank these from most to least effective for long-term well-being, justifying your ranking with evidence. Then explain why suppression -- the most common strategy -- is also the most costly.",
+      "A leader receives harsh public criticism in a board meeting. Trace how they could use each of Gross's five strategies in real time. Then address: is there a 'correct' strategy, or does the optimal choice depend on the situation? What factors determine which strategy to deploy?",
+      "Compare cognitive reappraisal ('changing how you think about a situation') with mindfulness-based acceptance ('observing emotions without judgment or change'). These seem contradictory -- one changes the emotion, the other accepts it. Evaluate when each approach is more adaptive, and whether they can be combined. What does the neuroscience evidence say about the distinct mechanisms underlying each?"
+    ]
+  },
+  {
+    "skillId": "reciprocation",
+    "questions": [
+      "Cialdini describes the 'reject-then-retreat' technique (door-in-the-face): make an extreme request, get rejected, then make a smaller request that seems like a concession. Using reciprocity AND the contrast principle, explain why this works. Then analyze: why does the person who received the concession feel more committed to following through than someone who was simply asked the smaller request directly?",
+      "A colleague always does small favors for everyone -- bringing coffee, offering help, sharing credit. Over time, people feel obligated to support their ideas in meetings. Using the reciprocity principle, analyze whether this is genuine generosity or strategic manipulation. Can the two be distinguished psychologically? Does it matter for the effectiveness of the influence?",
+      "Some cultures have elaborate gift-giving norms (e.g., Japanese omiyage, business gift exchange) while others view gifts in professional contexts with suspicion (e.g., anti-bribery laws). Using the reciprocity principle, compare how these cultural systems manage the obligation created by gifts. What happens when professionals from these different cultural systems interact?"
+    ]
+  },
+  {
+    "skillId": "social-proof",
+    "questions": [
+      "A restaurant owner notices that dishes described as 'our most popular' outsell objectively better dishes. Using social proof, explain this effect. Then analyze when social proof leads people to genuinely good choices versus when it creates 'information cascades' where everyone follows everyone else into a suboptimal choice. What determines which outcome occurs?",
+      "During a cardiac emergency on a crowded street, bystanders look at each other, see no one acting, and collectively conclude it's not an emergency (pluralistic ignorance). Using social proof and diffusion of responsibility, explain this tragic pattern. Design a public education campaign that would increase bystander intervention without simply telling people to 'be brave.'",
+      "Social proof is strongest under uncertainty and when the models are similar to us. An influencer marketing campaign targets teenagers. Evaluate: how does the 'similarity' mechanism interact with the 'authority' mechanism when the influencer is both aspirational (dissimilar in status) and relatable (similar in age and interests)? Predict when influencer marketing will succeed and when it will trigger psychological reactance instead."
+    ]
+  },
+  {
+    "skillId": "commitment-and-consistency",
+    "questions": [
+      "A salesperson uses the foot-in-the-door technique: first asking you to sign a petition for clean energy, then later asking for a $200 donation to an energy nonprofit. Using commitment and consistency, explain why signing the petition makes the donation more likely. Then identify the four properties of a commitment that make it most binding (active, public, effortful, and perceived as freely chosen) and explain why each matters.",
+      "The 'lowball' technique (offering a great deal, getting commitment, then revealing hidden costs) exploits commitment and consistency. But sometimes it backfires and creates anger rather than compliance. Using commitment theory and psychological reactance, identify the conditions that determine whether a lowball produces compliance or backlash.",
+      "A team lead uses commitment and consistency to build buy-in: they ask each team member to publicly state their support for a new initiative. Using Cialdini's framework AND cognitive dissonance theory, explain why public commitment is more binding than private agreement. Then evaluate the ethics of this approach: when does leveraging commitment become manipulation?"
+    ]
+  },
+  {
+    "skillId": "scarcity-principle",
+    "questions": [
+      "An e-commerce site displays 'Only 3 left in stock!' next to products. Using the scarcity principle, explain the two mechanisms through which this increases purchase urgency (scarcity-as-quality-heuristic and reactance-based desire). Then evaluate: when consumers become aware that scarcity claims are manufactured, does the effect diminish? What does the evidence say about 'scarcity skepticism'?",
+      "Compare the scarcity principle with loss aversion: both involve the psychological impact of potential loss, but they operate through different mechanisms. Design a marketing message that activates BOTH principles simultaneously. Then identify a scenario where scarcity and loss aversion make opposing predictions about behavior.",
+      "Worchel, Lee, and Adewole's (1975) cookie experiment found that cookies from a jar that was nearly empty tasted better than identical cookies from a full jar -- but ONLY when the scarcity was caused by high demand, not by accident. Using the scarcity principle and social proof, explain this interaction effect. What does it reveal about the cognitive mechanism underlying scarcity?"
+    ]
+  },
+  {
+    "skillId": "authority-principle",
+    "questions": [
+      "Milgram's obedience studies showed that 65% of participants administered what they believed were lethal shocks when instructed by an authority figure. Analyze the specific features of the situation that enabled such high obedience (graduated commitment, diffusion of responsibility, physical separation from the victim, perceived legitimacy of authority). Then design an organizational culture that maintains respect for authority while creating psychological safety to challenge unethical directives.",
+      "Authority operates through three symbols: titles, clothing, and trappings (e.g., luxury cars). A con artist uses all three to defraud elderly victims. Analyze which symbol is most powerful and why. Then evaluate: why are educated, intelligent people just as susceptible to authority symbols as anyone else? What does this reveal about whether the authority principle operates through System 1 or System 2?",
+      "In medicine, the 'captain-of-the-ship' authority of senior doctors has historically silenced concerns from nurses and junior staff, leading to preventable errors. Using the authority principle and the concept of destructive obedience, explain the mechanism. Then evaluate crew resource management (CRM) -- originally from aviation -- as an intervention. Why does it work, and what specific psychological barriers does it overcome?"
+    ]
+  },
+  {
+    "skillId": "liking-principle",
+    "questions": [
+      "Cialdini identifies five factors that produce liking: physical attractiveness, similarity, compliments, contact/cooperation, and conditioning/association. Rank these from most to least manipulable in a professional context, and explain why each is powerful. Then evaluate: can awareness of the liking principle inoculate you against it, or is it effective even when you know it's being used?",
+      "A negotiator deliberately mirrors your body language, finds common interests, and compliments your preparation before making their proposal. You know exactly what they're doing. Using the liking principle and the automaticity of social cognition, explain why this knowledge may not protect you. What specific counter-strategy would actually work?",
+      "The liking principle creates an ethical paradox: being genuinely likable and being strategically likable use the same behaviors. A leader who is naturally warm and empathetic inspires loyalty; a sociopath who mimics warmth inspires the same loyalty. Using the liking principle, evaluate whether the moral character of the influence agent matters for the effectiveness of the influence. What does this imply about the ethics of influence?"
+    ]
+  },
+  {
+    "skillId": "contrast-principle",
+    "questions": [
+      "A real estate agent shows you two terrible houses before showing you a mediocre one, which now feels great by comparison. Using the contrast principle, explain the perceptual mechanism. Then analyze how this interacts with anchoring: is the contrast principle simply anchoring applied to qualitative judgments, or is it a distinct psychological mechanism? What evidence supports your position?",
+      "Design a salary negotiation strategy that uses the contrast principle to your advantage. Specify: what information you present first, second, and third; what 'anchor' you establish; and how you create contrast between options. Then evaluate the ethical boundaries: when does strategic sequencing of information become deception?",
+      "The contrast principle can make a bad option seem good (by comparison with worse) or a good option seem bad (by comparison with better). A company presents three pricing tiers: Basic ($10), Pro ($50), Enterprise ($200). Using the contrast principle and the decoy effect, explain how the middle option's perceived value changes based on the prices around it. Then redesign the pricing to maximize Pro tier sales."
+    ]
+  },
+  {
+    "skillId": "mirroring-technique",
+    "questions": [
+      "Chris Voss teaches verbal mirroring as repeating the last 1-3 words of what someone said. Explain the psychological mechanism behind why this simple technique (a) builds rapport, (b) encourages elaboration, and (c) buys thinking time. Then compare verbal mirroring with body language mirroring (isopraxism): do they operate through the same mechanism, and which is more effective in a high-stakes negotiation?",
+      "A manager uses mirroring in a difficult conversation with an employee who says: 'I just don't think this team values my contributions.' The manager mirrors: 'Doesn't value your contributions?' Predict the employee's likely response and explain why mirroring is more effective here than (a) asking 'why do you feel that way?' (b) saying 'that's not true, we really value you,' or (c) offering solutions. What does each alternative response communicate that mirroring avoids?",
+      "Design a training exercise for sales professionals that teaches effective mirroring. Address: what makes a mirror feel natural vs. robotic, how to select which words to mirror (not just the last words but the emotionally loaded words), and how to combine mirroring with labeling and calibrated questions into a fluid conversational approach."
+    ]
+  },
+  {
+    "skillId": "tactical-empathy",
+    "questions": [
+      "Tactical empathy is sometimes criticized as 'fake empathy' because it is deployed strategically rather than felt spontaneously. Evaluate this critique: is tactical empathy fundamentally different from genuine empathy, or is the distinction artificial? Can empathy used for strategic advantage still be psychologically authentic? What does neuroscience research on cognitive vs. affective empathy suggest?",
+      "A hostage negotiator is dealing with an emotionally unstable person who has taken hostages. Using tactical empathy, labeling, and the accusation audit, design the first five minutes of the negotiation. Explain the psychological mechanism behind each statement and predict the subject's likely response. Address: why does demonstrating understanding reduce aggression, even when the negotiator doesn't agree with or condone the behavior?",
+      "Compare tactical empathy (Voss) with perspective-taking (social psychology research). What does Voss add to the academic concept? What does the research add to Voss's practical framework? Design a training protocol that integrates both, and explain when pure perspective-taking is insufficient and tactical empathy is needed."
+    ]
+  },
+  {
+    "skillId": "calibrated-questions",
+    "questions": [
+      "Transform these confrontational statements into calibrated questions and explain the psychological shift each transformation creates: (a) 'Your price is too high,' (b) 'I need this done by Friday,' (c) 'You're being unreasonable,' (d) 'That's not going to work.' For each, explain why the calibrated question gives the other side the illusion of control while advancing your position.",
+      "In a negotiation, your counterpart says: 'Take it or leave it.' Design a sequence of three calibrated questions that would reopen the negotiation without confrontation. For each question, explain what information you're seeking and what psychological barrier you're trying to lower. Address why 'how' and 'what' questions work but 'why' questions trigger defensiveness.",
+      "A manager needs to deny a raise request without damaging the relationship. Design a conversation that uses calibrated questions to (a) understand the employee's underlying interests, (b) redirect the conversation toward non-monetary solutions, and (c) make the employee feel heard even though the answer is 'no.' Explain which psychological needs (autonomy, competence, relatedness) each question addresses."
+    ]
+  },
+  {
+    "skillId": "positions-vs-interests",
+    "questions": [
+      "Two departments are fighting over a $200K budget allocation. Department A demands the full amount for hiring; Department B demands it for equipment. Using the positions vs. interests framework, show how these positions might conceal compatible interests. Design a process for uncovering interests that doesn't require either department to 'give up' their position prematurely.",
+      "Fisher and Ury's positions vs. interests distinction is foundational to principled negotiation, but critics argue it underestimates situations where interests genuinely are incompatible. Evaluate this critique: are there negotiations where interests truly conflict (not just positions), and if so, does the framework still add value? What does the negotiator do when interests are genuinely opposed?",
+      "A couple is arguing about whether to move to a new city. One partner's position: 'We're moving.' The other's: 'We're staying.' Map out at least five possible interests behind each position. Then design a conversation structure (using positions vs. interests, calibrated questions, and the three conversations framework) that could move them from positional bargaining to interest-based problem-solving."
+    ]
+  },
+  {
+    "skillId": "accusation-audit",
+    "questions": [
+      "You're about to deliver bad news to a client: the project is two months behind schedule and over budget. Write an accusation audit that you would deliver at the start of the conversation. Then explain the psychological mechanism: why does naming the negatives before the client does reduce their emotional impact? Reference inoculation theory and the concept of cognitive fluency in your answer.",
+      "Compare the accusation audit with the concepts of pre-suasion and inoculation theory. All three involve preparing the audience before the main message. How are the mechanisms similar and different? When would you use an accusation audit vs. pre-suasion vs. inoculation? Design a scenario where all three are used in sequence.",
+      "A job candidate is interviewing for a senior role but has a two-year gap in their resume and was fired from their last position. Design an accusation audit they could use at the start of the interview. Explain why proactively addressing these concerns is more effective than waiting to be asked, and predict how the interviewer's response would differ in each scenario."
+    ]
+  },
+  {
+    "skillId": "elaboration-likelihood-model",
+    "questions": [
+      "You're pitching a complex enterprise software solution. Your audience includes the CTO (high motivation and ability to process technical arguments) and the CFO (low motivation to process technical details, focused on ROI). Using the ELM, design a single presentation that simultaneously engages the central route for the CTO and the peripheral route for the CFO. Explain what elements target each route and why.",
+      "The ELM predicts that central-route attitude change is more durable and resistant to counter-persuasion than peripheral-route change. But in practice, many successful brands rely entirely on peripheral cues (celebrity endorsements, aesthetics, social proof). Evaluate: is peripheral persuasion 'inferior,' or are there contexts where it's actually more appropriate? What does your analysis imply about how organizations should allocate their persuasion resources?",
+      "A public health campaign needs to persuade people to get vaccinated. Some of the audience is highly engaged and will process arguments carefully; others are disengaged and will rely on cues. Design a multi-channel campaign that uses the ELM to match message type to audience processing mode. Address: how do you identify which mode each segment is in, and what happens when a central-route message reaches a peripheral-route processor?"
+    ]
+  },
+  {
+    "skillId": "fixed-pie-bias",
+    "questions": [
+      "Two siblings are fighting over an orange. The fixed-pie assumption says one must get the orange and the other must lose. But one sibling wants the juice and the other wants the rind for baking. Using this classic example, explain how the fixed-pie bias prevents negotiators from discovering integrative solutions. Then analyze: why is the bias so persistent even when people are told that win-win solutions exist?",
+      "Research shows that experienced negotiators are nearly as susceptible to fixed-pie bias as novices. Evaluate three explanations for this persistence: (a) competitive framing activates zero-sum thinking, (b) information asymmetry prevents discovery of compatible interests, (c) anchoring on the distributive dimension crowds out integrative thinking. Which explanation has the strongest evidence, and what practical intervention does each suggest?",
+      "Design a negotiation preparation worksheet that systematically combats fixed-pie bias. The worksheet should guide the user to: identify their own priorities and trade-offs, hypothesize about the other side's priorities, identify potential value-creating trades, and prepare calibrated questions that reveal information about the other side's interests. Explain the psychological mechanism each section targets."
+    ]
+  },
+  {
+    "skillId": "reactive-devaluation",
+    "questions": [
+      "During peace negotiations, Side A proposes a ceasefire plan. Side B immediately devalues it, assuming it must benefit Side A. The same plan, presented by a mediator, is viewed more favorably. Using reactive devaluation, explain this pattern. Then design a process by which Side A could present a genuinely good proposal in a way that minimizes reactive devaluation. What role does the source of the proposal play?",
+      "Reactive devaluation and the fixed-pie bias often work together to prevent agreement. Trace how these two biases interact in a labor-management negotiation: the union proposes a new benefits package, and management immediately devalues it (reactive devaluation) while assuming it must come at management's expense (fixed-pie bias). Design interventions that address both biases simultaneously.",
+      "Some negotiation scholars argue that reactive devaluation is actually rational in certain contexts -- if the other side proposes something, it likely IS in their interest. Evaluate this argument: when is devaluing the other side's proposals a reasonable heuristic, and when does it prevent mutually beneficial agreements? How can a negotiator distinguish between healthy skepticism and destructive reactive devaluation?"
+    ]
+  },
+  {
+    "skillId": "inoculation-theory",
+    "questions": [
+      "A company knows that a competitor will soon launch a negative campaign against their product. Using inoculation theory, design a pre-emptive communication strategy that builds resistance among current customers. Specify: what weakened form of the competitor's argument you would present, how you would refute it, and why the sequence matters. Address why this approach is more effective than simply presenting a strong positive message.",
+      "Compare inoculation theory with the accusation audit: both involve pre-emptively addressing negatives. But they operate through different mechanisms. Explain the distinct psychological process underlying each, and identify when you would choose inoculation over an accusation audit (and vice versa). Design a scenario where using the wrong one would backfire.",
+      "Inoculation theory was originally developed for health communication (e.g., anti-smoking campaigns for teenagers). Evaluate its effectiveness across three different domains: (a) political persuasion resistance, (b) consumer brand loyalty, (c) building critical thinking skills in education. For each domain, predict how well inoculation works and what modifications are needed."
+    ]
+  },
+  {
+    "skillId": "pre-suasion",
+    "questions": [
+      "Cialdini describes how a consultant doubles his fee acceptance rate by saying 'As you can tell, I'm not going to be able to charge you a million dollars for this' before stating his actual fee. Using pre-suasion, anchoring, and the contrast principle, explain why this works. Then design three pre-suasive techniques for different contexts: (a) a job interview, (b) a product pitch, (c) asking for a raise.",
+      "Pre-suasion argues that what people pay attention to BEFORE your message shapes how they receive it. Design an experiment that tests whether the physical environment (e.g., meeting in a comfortable vs. sterile room) changes the likelihood of agreement to a business proposal. What specific pre-suasive mechanism would the environment activate, and what does this tell us about the boundaries of rational decision-making?",
+      "Compare pre-suasion with priming research (e.g., Bargh's work on automaticity). Cialdini acknowledges that pre-suasion draws on priming, but claims it goes further. Evaluate this claim: what does pre-suasion add beyond what priming research already established? Address the replication crisis in priming research and what it means for the scientific foundations of pre-suasion."
+    ]
+  },
+  {
+    "skillId": "value-creation-in-negotiation",
+    "questions": [
+      "Two companies are negotiating a supply contract. Company A wants lower prices; Company B wants higher prices. This looks like a pure zero-sum negotiation. Using value creation principles, identify at least five dimensions where differences between the parties could create value (e.g., differences in time preferences, risk tolerance, forecasts, priorities, capabilities). For each, explain the specific trade that would make both parties better off.",
+      "The 'creating value' vs. 'claiming value' tension is the central dilemma of negotiation. A negotiator who reveals their interests to create value becomes vulnerable to a counterpart who uses that information to claim more. Design a negotiation strategy that balances value creation and value claiming. Address: when should you reveal interests, how do you protect yourself, and what role does trust play?",
+      "Evaluate the claim that 'there are no purely distributive negotiations.' Using real-world examples from employment negotiation, real estate, and international trade, identify whether value creation is always possible or whether some negotiations genuinely have a fixed pie. What distinguishes negotiations with high value-creation potential from those with low potential?"
+    ]
+  },
+  {
+    "skillId": "audience-as-hero",
+    "questions": [
+      "Most presenters instinctively make themselves the hero: 'Let me tell you what I did, what I discovered, what I built.' Using the audience-as-hero principle and the mentor archetype (Yoda, not Luke), rewrite the opening of a product launch presentation that shifts the hero role to the audience. Explain the psychological effect this shift creates on audience engagement, buy-in, and retention.",
+      "Compare the audience-as-hero principle with the concept of autonomy support from self-determination theory. Both involve empowering the other person rather than controlling them. How does treating the audience as the hero satisfy their needs for autonomy, competence, and relatedness? Design a presentation structure that activates all three needs.",
+      "A CEO is presenting the company's annual results to shareholders. The natural framing is the CEO as hero who led the company to success. Redesign this presentation using the audience-as-hero principle. Address: who is the 'audience' (shareholders, employees, customers?), how do you make them the hero when the content is about the company's performance, and what happens to the CEO's credibility when they step out of the hero role?"
+    ]
+  },
+  {
+    "skillId": "commanders-intent",
+    "questions": [
+      "A detailed project plan fails when unexpected obstacles arise. Rewrite the project's goals as Commander's Intent -- a statement that communicates the WHY and desired end-state without specifying the HOW. Explain why this enables improvisation at all levels when plans break down. Then evaluate: are there situations where detailed plans are superior to Commander's Intent? What determines which approach fits?",
+      "Compare Commander's Intent with implementation intentions (if-then plans). One says 'give the goal, let people figure out the how.' The other says 'specify exactly what to do in specific situations.' These seem contradictory. Reconcile them: when should a leader use Commander's Intent, when should they use implementation intentions, and how can these two approaches be layered for maximum effectiveness?",
+      "Write three versions of Commander's Intent for a marketing team launching a new product: one that is too vague to be useful, one that is too specific (defeating the purpose), and one that hits the sweet spot. Explain what makes the third version effective by analyzing how it balances clarity of purpose with freedom of execution."
+    ]
+  },
+  {
+    "skillId": "concreteness-principle",
+    "questions": [
+      "Transform this abstract mission statement into a concrete one using the concreteness principle: 'We leverage synergistic solutions to optimize stakeholder value through innovative paradigm shifts.' Then explain what specific cognitive mechanisms make the concrete version more memorable, more motivating, and easier to act on. Reference the generation effect and dual-coding theory.",
+      "The 'Curse of Knowledge' is the main enemy of concreteness: experts think in abstractions that novices can't parse. Design a method that a technical expert could use to systematically translate their abstract knowledge into concrete language. Address: why is concreteness so hard for experts, what specific techniques help, and how do you check whether your translation succeeded?",
+      "Some concepts are inherently abstract (justice, strategy, culture). Using the concreteness principle, demonstrate how you would make each of these three abstract concepts concrete without oversimplifying them. Evaluate the trade-off: does concreteness always improve communication, or are there situations where abstraction is more appropriate?"
+    ]
+  },
+  {
+    "skillId": "story-as-simulation",
+    "questions": [
+      "Research shows that process-focused mental simulation (imagining the steps to solve a problem) is more effective than outcome-focused simulation (imagining the happy ending). Yet most motivational speakers and visualization exercises focus on outcomes. Using the story-as-simulation framework, explain this discrepancy and design a narrative exercise for a sales team that activates process simulation rather than outcome fantasy.",
+      "A safety training program uses statistics and rules ('wear your harness 100% of the time'). Redesign it using the story-as-simulation principle: create a training approach that embeds the safety lessons inside a narrative that functions as a mental flight simulator. Explain why the story format activates different neural processing than the statistical format, and predict the behavioral outcomes of each approach.",
+      "Compare the story-as-simulation framework with vicarious experience (Bandura's second source of self-efficacy). Both involve learning from observing others' experiences. How are the mechanisms similar and different? Can a story build self-efficacy as effectively as a real-world vicarious experience? What conditions would need to be met?"
+    ]
+  },
+  {
+    "skillId": "credibility-in-communication",
+    "questions": [
+      "A young professional must present to a room of senior executives who are skeptical of their expertise. Their initial credibility is low on multiple dimensions (rank, expertise, image). Design a strategy that builds acquired credibility during the first five minutes of the presentation. For each element, specify which credibility dimension it targets and explain the psychological mechanism.",
+      "Aristotle identified three components of persuasive credibility: ethos (character), pathos (emotion), and logos (logic). Compare this classical framework with the five factors of modern credibility (rank, goodwill, expertise, image, common ground). Where do the frameworks overlap, and what does each capture that the other misses? Which framework is more useful for a contemporary communicator?",
+      "Credibility is a perception held by the audience, not a property of the speaker. This means the same speaker can have high credibility with one audience and low with another. Using the concept of common ground and in-group/out-group dynamics, explain how a speaker could simultaneously increase credibility with one faction while decreasing it with another. What are the implications for communicators addressing polarized audiences?"
+    ]
+  },
+  {
+    "skillId": "nonverbal-communication",
+    "questions": [
+      "Research consistently shows that when verbal and nonverbal messages conflict, people trust the nonverbal message. Explain why this asymmetry exists using the concepts of controllability, evolutionary primacy, and cognitive load. Then evaluate: does this mean nonverbal communication is more 'honest,' or can nonverbal cues be just as deceptive as verbal ones?",
+      "A leader delivers a message of confidence and optimism about the company's future, but their nonverbal behavior (crossed arms, averted gaze, rapid blinking) signals anxiety. Using the nonverbal communication framework, predict how the audience will interpret this incongruence. Then design a preparation routine the leader could use to align their nonverbal behavior with their intended message. Address whether 'faking' nonverbal confidence is effective or detectable.",
+      "Compare Mehrabian's '7-38-55 rule' (7% words, 38% tone, 55% body language) with subsequent research that has challenged this ratio. What did Mehrabian actually study, and why is his finding routinely misapplied? Under what specific conditions does nonverbal communication carry disproportionate weight, and when do words matter most?"
+    ]
+  },
+  {
+    "skillId": "empathy",
+    "questions": [
+      "Distinguish between cognitive empathy (understanding another's perspective), affective empathy (feeling another's emotions), and compassionate empathy (being moved to help). Using neuroscience research, explain how these three forms involve different brain systems. Then evaluate: is it possible to have cognitive empathy without affective empathy, and what are the social implications? Consider the case of psychopaths who demonstrate high cognitive but low affective empathy.",
+      "Paul Bloom argues in 'Against Empathy' that empathy is a poor moral guide because it is biased (we empathize more with similar, proximate individuals) and can be manipulated. Evaluate his argument: is empathy a reliable basis for moral judgment and helping behavior, or should we rely more on rational compassion? What evidence supports each position?",
+      "Design an empathy training program for healthcare workers that increases genuine empathic engagement without contributing to burnout (empathy fatigue). Address the paradox: how can you train people to feel more deeply without exhausting them? What does the research on empathy fatigue tell us about the difference between empathic distress and empathic concern, and how do you cultivate the latter while protecting against the former?"
+    ]
+  },
+  {
+    "skillId": "what-is-what-could-be",
+    "questions": [
+      "Write the opening two minutes of a presentation using the 'what is vs. what could be' structure for this scenario: you're proposing that a traditional company adopt remote work. Alternate between the current painful reality and the inspiring future at least three times. Then explain the psychological mechanism: why does this alternation create more engagement than simply describing the solution?",
+      "Martin Luther King Jr.'s 'I Have a Dream' speech is a masterclass in 'what is vs. what could be.' Analyze how the speech alternates between current injustice and future possibility. Then evaluate: does this structure work differently when the audience already agrees with the speaker vs. when they are skeptical? What modifications are needed for a resistant audience?",
+      "Compare the 'what is vs. what could be' structure with the problem-solution-benefit structure common in consulting presentations. Both involve describing a gap between current and desired states. What does the 'what is vs. what could be' approach add psychologically? When would the consulting structure be more appropriate, and why?"
+    ]
+  },
+  {
+    "skillId": "star-moment",
+    "questions": [
+      "Design a S.T.A.R. moment for a presentation about data privacy to a non-technical board of directors. The moment should be (a) dramatically memorable, (b) viscerally illustrate the risk, and (c) require no technical knowledge to understand. Explain why this moment will be more persuasive than showing statistics, and predict what the board members will tell their colleagues afterward.",
+      "Bill Gates released mosquitoes during a TED talk about malaria. Steve Jobs pulled the MacBook Air out of a manila envelope. Analyze what makes these S.T.A.R. moments work using the principles of concreteness, unexpectedness, and emotional resonance. Then evaluate: what would a FAILED S.T.A.R. moment look like, and what distinguishes a powerful moment from a gimmick?",
+      "Some presenters argue that S.T.A.R. moments are inappropriate for serious business contexts -- that they're 'theatrical' and undermine credibility. Evaluate this critique using the ELM: does a S.T.A.R. moment function as a central-route argument or a peripheral cue? Can it function as both? Design a S.T.A.R. moment for a quarterly earnings call that is memorable without being gimmicky."
+    ]
+  },
+  {
+    "skillId": "structure-in-spontaneity",
+    "questions": [
+      "A senior executive is asked an unexpected question at an all-hands meeting. They ramble for three minutes without making a clear point. Using the structure-in-spontaneity principle, explain what went wrong and design three structural frameworks (e.g., PREP, What-So What-Now What) they could have internalized that would have produced a coherent, compelling impromptu response.",
+      "Jazz musicians improvise brilliantly, but they do so within chord structures, scales, and conventions. Compare this with the concept of structure in spontaneity for communication. What are the 'chord progressions' of impromptu speaking? How does internalizing structure free cognitive resources for content? Design a practice regimen that would build structural fluency for spontaneous communication.",
+      "Compare the structure-in-spontaneity approach with preparing scripted answers to anticipated questions. Each has advantages and limitations. Analyze: when does structure-in-spontaneity produce better communication outcomes than scripting, and when does scripting win? What does your analysis reveal about the relationship between preparation and authenticity?"
+    ]
+  },
+  {
+    "skillId": "three-conversations-framework",
+    "questions": [
+      "A manager needs to address an employee who has been consistently late. The manager sees this as a simple 'What Happened' conversation about behavior. Using the Three Conversations Framework, reveal the layers the manager is missing: what Feelings conversation is happening (for both sides), and what Identity conversation is at stake (for both sides)? Design the conversation so that all three layers are addressed.",
+      "You're in a conflict with a colleague who took credit for your work in a meeting. You're furious. Map this situation onto all three conversations: (a) What Happened (what are the competing stories?), (b) Feelings (what emotions are present and why?), (c) Identity (what does this threaten about how you see yourself?). Then design your opening statement using the Third Story approach, and explain why starting from your own story would be counterproductive.",
+      "The Three Conversations Framework comes from the Harvard Negotiation Project. Compare it with Gottman's research on the 'Four Horsemen' (criticism, contempt, defensiveness, stonewalling) in relationships. Where do these frameworks make similar predictions about what goes wrong in difficult conversations? Where do they diverge, and which is more useful for (a) workplace conflicts and (b) intimate relationship conflicts?"
+    ]
+  },
+  {
+    "skillId": "third-story",
+    "questions": [
+      "You and a colleague have different memories of what was agreed upon in a meeting. You believe they committed to delivering a report by Friday; they believe they said 'early next week.' Write three versions of an opening statement for the conversation: (a) starting from YOUR story, (b) starting from THEIR story, (c) starting from the Third Story. Analyze why options (a) and (b) trigger defensiveness while option (c) opens dialogue.",
+      "The Third Story requires adopting the perspective of a 'neutral observer.' But critics argue that true neutrality is impossible and that the Third Story still reflects the speaker's biases. Evaluate this critique: is the Third Story genuinely neutral, or is it a rhetorical device that creates the appearance of neutrality? Does it matter whether it's truly neutral, as long as it reduces defensiveness?",
+      "Design a training exercise for a customer service team that teaches them to start difficult conversations from the Third Story rather than from the company's story or the customer's story. Include: (a) a scenario where the company is clearly at fault, (b) a scenario where the customer is clearly at fault, and (c) a scenario where fault is ambiguous. Show the Third Story opening for each and explain why it works."
+    ]
+  },
+  {
+    "skillId": "tell-sell-consult-join",
+    "questions": [
+      "A leader defaults to the 'Tell' style for every communication -- directives, announcements, strategy changes. Using the Tell-Sell-Consult-Join framework, diagnose the consequences of this one-style approach on team motivation, buy-in, and quality of decisions. Then prescribe: for each of the four communication scenarios (crisis response, vision setting, process improvement, team culture), which style should the leader use and why?",
+      "The Tell-Sell-Consult-Join continuum maps onto self-determination theory's autonomy continuum. Compare: how does each communication style affect the audience's sense of autonomy, and how does this in turn affect their motivation (external regulation, introjection, identification, integration)? Design a leader's playbook that matches communication style to motivational goal.",
+      "A manager uses the 'Join' style (collaborative brainstorming) for every decision, believing it's always the most empowering. Evaluate why this can be just as problematic as always using 'Tell.' Identify the costs of over-consulting (decision fatigue, diffusion of responsibility, pseudo-democracy) and design decision criteria for when a leader should deliberately choose a more directive style."
+    ]
+  },
+  {
+    "skillId": "testable-credentials",
+    "questions": [
+      "Ronald Reagan's 'Are you better off than you were four years ago?' is a classic testable credential -- it outsources credibility to the audience's own experience. Analyze why this is more persuasive than citing GDP growth statistics. Then design three testable credentials for different contexts: (a) a new fitness app, (b) a management consulting firm, (c) a nonprofit seeking donations.",
+      "Compare testable credentials with social proof. Both leverage external validation rather than the speaker's own authority. How do the mechanisms differ? When would you choose a testable credential over social proof, and vice versa? Is there a way to combine them for maximum impact?",
+      "Some claims resist testable credentials because the audience lacks the expertise to verify them (e.g., complex medical treatments, financial products). Evaluate: what does a communicator do when they can't outsource credibility to the audience? How do other credibility strategies (authority, expertise, endorsements) compensate, and what are the risks of each?"
+    ]
+  },
+  {
+    "skillId": "trojan-horse-stories",
+    "questions": [
+      "A manager wants to teach their team about the importance of attention to detail but knows a lecture will be ignored. Design a Trojan Horse story that delivers this message inside an engaging narrative. Then analyze: what makes the story format bypass the audience's resistance to being 'taught,' referencing the ELM's transportation mechanism and narrative persuasion research?",
+      "Compare Trojan Horse stories with direct argumentation. Slater and Rouner's research suggests that narrative transportation reduces counterarguing. Explain the mechanism: why do people argue back against logical arguments but accept the same message when embedded in a story? What does this tell us about the relationship between narrative processing and critical thinking?",
+      "A health campaign wants to change attitudes about mental health stigma. Design two interventions: one using direct persuasion (central-route arguments) and one using a Trojan Horse story (narrative transportation). Predict which will be more effective for (a) an audience that is already open to the message and (b) an audience that is resistant. Explain the mechanism behind the difference."
+    ]
+  },
+  {
+    "skillId": "interpersonal-vulnerability",
+    "questions": [
+      "Brene Brown argues that vulnerability is essential for deep connection, but in many workplace cultures, vulnerability is punished. Analyze this paradox: why is vulnerability both necessary for trust and dangerous in certain contexts? Using psychological safety research (Edmondson) and the vulnerability loop (Coyle), design a protocol for a leader who wants to model vulnerability without losing authority.",
+      "Compare strategic vulnerability (sharing personal challenges to build trust) with oversharing (disclosing too much too soon). Using social penetration theory (Altman & Taylor) and the concept of appropriate self-disclosure, define the boundary between vulnerability and oversharing. What factors determine where this boundary falls, and how does it differ across cultures, genders, and hierarchical levels?",
+      "Some leaders use vulnerability as a manipulation tactic -- sharing a calculated 'weakness' to appear authentic while maintaining control. Using the concepts of authentic leadership and interpersonal vulnerability, evaluate: can manufactured vulnerability be distinguished from genuine vulnerability? Does it matter if the audience can't tell the difference? What are the long-term consequences of each?"
+    ]
+  },
+  {
+    "skillId": "pinch-crunch-model",
+    "questions": [
+      "Map a workplace relationship through the pinch-crunch cycle: identify three specific 'pinches' (small irritations) that, if unaddressed, escalate into a 'crunch' (major crisis). For each pinch, write what addressing it immediately would sound like versus what ignoring it leads to. Explain the psychological barriers (conflict avoidance, minimization, fear of overreaction) that prevent people from addressing pinches.",
+      "Compare the pinch-crunch model with Gottman's concept of 'bids for connection' and 'turning toward vs. turning away.' Both describe how small moments accumulate into relationship health or decay. How are the mechanisms similar? What does each model capture that the other misses? Design a relationship maintenance system that integrates both frameworks.",
+      "A team leader notices increasing tension between two team members but each says 'everything is fine.' Using the pinch-crunch model, explain why people deny pinches even when asked directly. Design an intervention that surfaces pinches before they become crunches, without forcing people into confrontation they're not ready for. Address why creating the right conditions matters more than asking the right questions."
+    ]
+  },
+  {
+    "skillId": "feedback-model",
+    "questions": [
+      "Stone and Heen identify three feedback triggers that cause us to reject feedback: truth triggers ('that's wrong'), relationship triggers ('who are you to tell me?'), and identity triggers ('this threatens my self-concept'). A skilled employee becomes defensive when receiving constructive feedback despite its accuracy. Diagnose which trigger is likely activated and design a feedback conversation that addresses the trigger before delivering the content.",
+      "Compare the SBI model (Situation-Behavior-Impact) with growth-oriented feedback. What does growth-oriented feedback add beyond the structural model? Design a feedback conversation about a team member who dominates meetings, using both frameworks. Then evaluate: is structural precision (SBI) sufficient for feedback to land, or is the relational framing of growth-oriented feedback essential?",
+      "Feedback across cultures presents a challenge: direct negative feedback (valued in Dutch and Israeli cultures) can be devastating in face-saving cultures (Japanese, Thai). Using the growth-oriented feedback model and Hofstede's cultural dimensions, design a feedback protocol that a global manager could use across cultures. Address: what is universal about effective feedback, and what must be adapted?"
+    ]
+  }
+]

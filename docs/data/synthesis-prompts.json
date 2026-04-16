@@ -1,0 +1,422 @@
+[
+  {
+    "id": "synth-001",
+    "category": "cross-domain",
+    "skillIds": ["loss-aversion", "overjustification-effect", "autonomy-need"],
+    "prompt": "How does loss aversion (Thinking) explain why the overjustification effect (Drive) is so psychologically painful? If removing an extrinsic reward triggers loss aversion, predict what happens to intrinsic motivation when a bonus program is introduced and then cancelled. Design a compensation transition plan for a manager who needs to phase out quarterly bonuses without destroying team motivation, using autonomy support as the replacement scaffold.",
+    "domains": ["thinking", "drive"]
+  },
+  {
+    "id": "synth-002",
+    "category": "cross-domain",
+    "skillIds": ["framing-effects", "reciprocation", "value-creation-in-negotiation"],
+    "prompt": "You're a consultant proposing a $50K engagement. Using framing effects (Thinking), explain how presenting the same proposal as 'cost savings' vs. 'revenue growth' changes how the client evaluates it. Then layer in reciprocation (Influence) -- what should you give the client before the proposal meeting? Finally, how does value creation in negotiation reframe the entire conversation away from the $50K price tag?",
+    "domains": ["thinking", "influence"]
+  },
+  {
+    "id": "synth-003",
+    "category": "cross-domain",
+    "skillIds": ["anchoring-and-adjustment", "pre-suasion", "star-moment"],
+    "prompt": "You're presenting a budget request to executives. Using pre-suasion (Influence), what concept or image should you plant in their minds in the 60 seconds before you name your number? How does this interact with anchoring (Thinking) -- specifically, should your pre-suasion prime be consistent with or contrast against your anchor? Then design a STAR moment (Leadership) that makes your anchor feel inevitable rather than aggressive.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-004",
+    "category": "cross-domain",
+    "skillIds": ["cognitive-dissonance", "commitment-and-consistency", "internalization"],
+    "prompt": "Cognitive dissonance (Thinking) and commitment & consistency (Influence) both describe pressure to align behavior with beliefs -- but one is an internal experience and the other is an external lever. Map the exact mechanism by which a public commitment triggers cognitive dissonance. Then explain how internalization (Drive) transforms externally-induced consistency pressure into genuine belief change. When does this process fail and create resentment instead?",
+    "domains": ["thinking", "influence", "drive"]
+  },
+  {
+    "id": "synth-005",
+    "category": "cross-domain",
+    "skillIds": ["fundamental-attribution-error", "tactical-empathy", "three-conversations-framework"],
+    "prompt": "Your direct report missed a critical deadline and you're furious. The fundamental attribution error (Thinking) predicts you'll blame their character. Tactical empathy (Influence) requires you to label their emotional reality. The three conversations framework (Leadership) says there's an identity conversation underneath. Script the first two minutes of this conversation, showing how recognizing FAE changes your opening, how a tactical empathy label shifts the tone, and how surfacing the identity conversation reveals what actually happened.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-006",
+    "category": "cross-domain",
+    "skillIds": ["availability", "social-proof", "credibility-in-communication"],
+    "prompt": "A startup founder is pitching to investors. The availability heuristic (Thinking) means investors will overweight the most vivid recent startup failures or successes they've seen. Social proof (Influence) suggests the founder should name other investors already committed. Credibility (Leadership) requires demonstrating both expertise and trustworthiness. Design a 90-second pitch opening that uses all three -- but address this tension: what happens when social proof (naming big investors) undermines credibility (makes you look like you're name-dropping)?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-007",
+    "category": "cross-domain",
+    "skillIds": ["sunk-cost-fallacy", "escalation-of-commitment", "commanders-intent"],
+    "prompt": "A product team has spent 18 months building a feature that market data now shows nobody wants. The sunk cost fallacy (Thinking) and escalation of commitment (Thinking) predict the team will keep building. Commander's intent (Leadership) provides a structural antidote. Write the commander's intent statement that would have prevented this trap. Then explain: why is commander's intent specifically effective against sunk cost reasoning in ways that simply 'being aware of the bias' is not?",
+    "domains": ["thinking", "leadership"]
+  },
+  {
+    "id": "synth-008",
+    "category": "cross-domain",
+    "skillIds": ["self-efficacy", "vicarious-experience", "story-as-simulation"],
+    "prompt": "Bandura showed that vicarious experience (Drive) builds self-efficacy (Drive) -- watching someone similar succeed makes you believe you can too. The Heath brothers argue that stories work as flight simulators (Leadership) -- they let the audience mentally rehearse. Connect these two ideas: when a leader tells a story about an employee who overcame a challenge, what specific features of that story maximize the self-efficacy boost for the audience? What happens if the protagonist is too competent or too different from the audience?",
+    "domains": ["drive", "leadership"]
+  },
+  {
+    "id": "synth-009",
+    "category": "cross-domain",
+    "skillIds": ["psychological-reactance", "scarcity-principle", "tell-sell-consult-join"],
+    "prompt": "Psychological reactance (Drive) says people resist when they feel their freedom is threatened. Scarcity (Influence) works precisely by implying freedom is about to be restricted. The tell-sell-consult-join model (Leadership) offers different levels of decision-making participation. Explain when scarcity messaging will backfire by triggering reactance instead of desire. Then map each level of tell-sell-consult-join to its reactance risk and recommend which level to use when introducing an unpopular policy change.",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-010",
+    "category": "cross-domain",
+    "skillIds": ["hot-cold-empathy-gap", "emotion-regulation", "accusation-audit"],
+    "prompt": "The hot-cold empathy gap (Thinking) means you can't predict how you'll behave when emotionally activated. Emotion regulation (Drive) gives you tools to manage arousal in the moment. The accusation audit (Influence) preemptively names the other party's negative feelings. Design a pre-negotiation ritual that accounts for all three: how do you prepare for emotions you can't predict, build regulation capacity for when they hit, and use an accusation audit to defuse the counterpart's emotional state before it escalates?",
+    "domains": ["thinking", "drive", "influence"]
+  },
+  {
+    "id": "synth-011",
+    "category": "cross-domain",
+    "skillIds": ["system-1-system-2", "elaboration-likelihood-model", "what-is-what-could-be"],
+    "prompt": "System 1 and System 2 (Thinking) describe two modes of processing. The Elaboration Likelihood Model (Influence) describes two routes to persuasion -- central and peripheral. Duarte's what-is/what-could-be (Leadership) creates tension between current and future states. Map the ELM routes onto the dual-process model: which route engages System 2? Then explain how the what-is/what-could-be structure strategically toggles the audience between systems to maintain engagement. When should a presenter deliberately keep the audience in System 1?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-012",
+    "category": "cross-domain",
+    "skillIds": ["halo-effect", "liking-principle", "interpersonal-vulnerability"],
+    "prompt": "The halo effect (Thinking) means one positive trait bleeds into judgments of unrelated traits. The liking principle (Influence) says we're more persuaded by people we like. Vulnerability (Leadership) builds trust by showing imperfection. These seem contradictory: if the halo effect and liking both reward appearing polished and attractive, why does vulnerability -- which reveals weakness -- actually increase influence? Identify the boundary condition: when does vulnerability enhance the halo effect, and when does it shatter it?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-013",
+    "category": "cross-domain",
+    "skillIds": ["hyperbolic-discounting", "procrastination-and-precommitment", "positions-vs-interests"],
+    "prompt": "Hyperbolic discounting (Drive) explains why we overvalue immediate rewards. Precommitment devices (Drive) lock us into future-oriented behavior. Positions vs. interests (Influence) distinguishes what someone demands from what they actually need. Apply all three to this scenario: two business partners are negotiating equity splits. One partner wants 60% now (position). Using hyperbolic discounting, analyze why their position might not reflect their real interest. Design a precommitment mechanism that aligns both partners' present-bias tendencies with the company's long-term health.",
+    "domains": ["drive", "influence"]
+  },
+  {
+    "id": "synth-014",
+    "category": "cross-domain",
+    "skillIds": ["false-consensus-effect", "mirroring-technique", "third-story"],
+    "prompt": "The false consensus effect (Thinking) makes you assume others share your views. Mirroring (Influence) feeds back someone's words to build rapport. The third story (Leadership) offers a neutral framing that neither side would disagree with. In a heated team disagreement, explain how the false consensus effect is making both sides talk past each other. Then demonstrate how mirroring one side's language -- without agreeing -- creates enough safety to introduce the third story. Script the transition from mirror to third story for a conflict about remote vs. in-office work.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-015",
+    "category": "cross-domain",
+    "skillIds": ["endowment-effect", "reactive-devaluation", "calibrated-questions"],
+    "prompt": "The endowment effect (Thinking) means people overvalue what they already have. Reactive devaluation (Influence) means people discount proposals simply because the other side offered them. Together, these create a negotiation trap: each side overvalues their own position AND undervalues the other's offers. Explain why this combination makes integrative bargaining nearly impossible without intervention. Then design three calibrated questions (Influence) that force each side to re-examine their own valuations without triggering defensiveness.",
+    "domains": ["thinking", "influence"]
+  },
+  {
+    "id": "synth-016",
+    "category": "cross-domain",
+    "skillIds": ["overconfidence-in-calibration", "deliberate-practice", "feedback-model"],
+    "prompt": "Overconfidence in calibration (Thinking) means experts set confidence intervals far too narrow -- they don't know what they don't know. Deliberate practice (Drive) requires accurate feedback to work. Effective feedback (Leadership) must be specific, timely, and actionable. Here's the problem: if an expert is overconfident, they'll reject corrective feedback as wrong. Design a feedback system for a senior surgeon who is technically excellent but whose complication rate predictions are systematically miscalibrated. How do you deliver feedback that penetrates overconfidence without destroying the competence belief that makes them effective?",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-017",
+    "category": "cross-domain",
+    "skillIds": ["social-norms-vs-market-norms", "reciprocation", "pinch-crunch-model"],
+    "prompt": "Ariely's social vs. market norms (Drive) shows that introducing money into social relationships destroys them. Reciprocation (Influence) operates differently under each norm type. The pinch-crunch model (Leadership) predicts when small irritations become relationship crises. Map out what happens when a manager starts paying a previously-volunteer team member: how does the shift from social to market norms change the reciprocation dynamic? Use the pinch-crunch model to identify the exact moment the relationship began deteriorating and what intervention was needed.",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-018",
+    "category": "cross-domain",
+    "skillIds": ["confirmation-heuristic", "inoculation-theory", "testable-credentials"],
+    "prompt": "Confirmation bias (Thinking) means people seek evidence that supports their existing beliefs. Inoculation theory (Influence) builds resistance to persuasion by exposing people to weakened counterarguments. Testable credentials (Leadership) let the audience verify claims for themselves. You're presenting climate data to a skeptical audience. Confirmation bias means they'll dismiss your evidence. Explain why leading with inoculation -- acknowledging and refuting the strongest counterargument first -- is more effective than leading with your strongest evidence. Then design a testable credential that lets skeptics verify your claim themselves, bypassing confirmation bias entirely.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-019",
+    "category": "cross-domain",
+    "skillIds": ["competence-need", "mastery-experience", "audience-as-hero"],
+    "prompt": "Self-determination theory's competence need (Drive) says people must feel effective. Bandura's mastery experience (Drive) says the strongest source of self-efficacy is personal success. Duarte's audience-as-hero (Leadership) positions the speaker as mentor, not protagonist. Connect these: when a leader positions the audience as hero, how does this simultaneously satisfy competence needs and create conditions for mastery experience? What happens to team motivation when a leader keeps positioning themselves as the hero instead? Provide a concrete before/after example of the same project update delivered both ways.",
+    "domains": ["drive", "leadership"]
+  },
+  {
+    "id": "synth-020",
+    "category": "cross-domain",
+    "skillIds": ["keeping-doors-open", "hyperbolic-discounting", "scarcity-principle"],
+    "prompt": "Ariely's 'keeping doors open' (Thinking) shows people irrationally invest effort to preserve options they'll never use. Hyperbolic discounting (Drive) makes people overvalue the immediate ability to choose. Scarcity (Influence) makes things more desirable as they become less available. These three concepts form a psychological trap: explain how a subscription service can exploit all three simultaneously to prevent cancellation. Then flip it -- design a personal decision-making protocol that protects you from this trap when evaluating whether to keep a subscription, membership, or relationship you're not using.",
+    "domains": ["thinking", "drive", "influence"]
+  },
+  {
+    "id": "synth-021",
+    "category": "cross-domain",
+    "skillIds": ["framing-effects", "contrast-principle", "concreteness-principle"],
+    "prompt": "Framing (Thinking) determines whether a message emphasizes gains or losses. The contrast principle (Influence) changes perception by manipulating what comes before. Concreteness (Leadership) makes abstract ideas tangible. You need to convince a school board to fund a $2M after-school tutoring program. Design three different presentation openings: one that frames the cost as a loss to prevent, one that uses contrast to make $2M feel small, and one that uses concreteness to make the impact visceral. Which opening would you actually use, and why does the combination matter more than any single technique?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-022",
+    "category": "cross-domain",
+    "skillIds": ["intrinsic-motivation", "authority-principle", "commanders-intent"],
+    "prompt": "Intrinsic motivation (Drive) is fragile in the presence of controlling authority. The authority principle (Influence) says people comply with perceived authority figures. Commander's intent (Leadership) constrains the goal but frees the method. Explain the paradox: authority increases compliance but decreases intrinsic motivation. How does commander's intent resolve this by exercising authority over the 'what' while releasing authority over the 'how'? Design a commander's intent for a marketing team that maximizes both compliance with strategy and intrinsic motivation in execution.",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-023",
+    "category": "cross-domain",
+    "skillIds": ["hindsight-bias", "self-efficacy", "credibility-in-communication"],
+    "prompt": "Hindsight bias (Thinking) makes past events seem predictable. Self-efficacy (Drive) requires believing future success is possible. Credibility (Leadership) requires the audience to believe YOU can deliver. Analyze this trap: a CEO presents a post-mortem on a failed product launch. Hindsight bias means the board now believes the failure was 'obvious' and predictable, which destroys the CEO's credibility. But the CEO needs to rebuild self-efficacy in the team for the next launch. Script a post-mortem opening that acknowledges hindsight bias explicitly, preserves the CEO's credibility, and rebuilds the team's belief they can succeed next time.",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-024",
+    "category": "cross-domain",
+    "skillIds": ["zone-of-comfort-zone-of-growth", "fixed-pie-bias", "what-is-what-could-be"],
+    "prompt": "The comfort/growth zone model (Drive) says growth requires calibrated discomfort. The fixed-pie bias (Influence) assumes any gain for one side is a loss for the other. The what-is/what-could-be structure (Leadership) creates tension between present and future. Apply all three to organizational change: a company is restructuring and every department believes they'll lose headcount (fixed-pie). Using what-is/what-could-be, design a narrative that reframes restructuring as entering a collective growth zone rather than a zero-sum loss. How do you calibrate the discomfort so it's in the growth zone, not the panic zone?",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-025",
+    "category": "cross-domain",
+    "skillIds": ["anchoring-and-adjustment", "if-then-plans", "structure-in-spontaneity"],
+    "prompt": "Anchoring (Thinking) shows the first number spoken dominates negotiation. If-then plans (Drive) create automatic behavioral triggers. Structure in spontaneity (Leadership) prepares frameworks for seemingly impromptu moments. Design a system that combines all three for salary negotiation: what if-then plans should you create for different anchoring scenarios? How do you use structure in spontaneity to appear natural while executing a pre-planned anchoring strategy? What happens when the employer anchors first and your if-then plan activates?",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-026",
+    "category": "cross-domain",
+    "skillIds": ["cognitive-dissonance", "self-efficacy", "trojan-horse-stories"],
+    "prompt": "Cognitive dissonance (Thinking) creates pressure to align beliefs with behavior. Self-efficacy (Drive) determines whether someone attempts difficult tasks. Trojan horse stories (Leadership) embed a message inside an unrelated narrative. Design a training intervention for employees who believe 'I'm not a public speaker' (low self-efficacy). Explain how a small public speaking commitment creates cognitive dissonance that gradually shifts the self-belief. Then craft a trojan horse story -- ostensibly about something else -- that embeds the realization 'I already do this every day' and shifts their identity without triggering resistance.",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-027",
+    "category": "cross-domain",
+    "skillIds": ["availability", "emotion-regulation", "nonverbal-communication"],
+    "prompt": "The availability heuristic (Thinking) means vivid recent events dominate judgment. Emotion regulation (Drive) manages your internal state. Nonverbal communication (Leadership) broadcasts your emotional state whether you want it to or not. You just read a news article about a CEO who was publicly humiliated during an earnings call. Now you have to lead your own earnings call in 30 minutes. Trace the chain: how does availability bias amplify your anxiety, how does that anxiety leak through nonverbal channels, and what specific emotion regulation technique should you use in the 30-minute gap? Be precise about the mechanism at each stage.",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-028",
+    "category": "cross-domain",
+    "skillIds": ["relatedness-need", "liking-principle", "empathy"],
+    "prompt": "Relatedness (Drive) is a fundamental psychological need for connection. Liking (Influence) is a persuasion tool based on similarity and rapport. Empathy (Leadership) is the ability to understand another's perspective. These three concepts describe human connection at different levels -- need, tactic, and skill. Map the ethical boundaries: when does using liking techniques to build rapport become manipulative? How does genuine empathy differ from tactical empathy in satisfying the relatedness need? Can someone be an effective empathetic leader while also strategically using liking principles, or are these inherently in tension?",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-029",
+    "category": "cross-domain",
+    "skillIds": ["loss-aversion", "scarcity-principle", "commanders-intent"],
+    "prompt": "Loss aversion (Thinking) makes losses feel ~2x worse than equivalent gains. Scarcity (Influence) increases perceived value by limiting availability. Commander's intent (Leadership) ensures action under uncertainty. A military commander must order a retreat that will cost territory (triggering loss aversion in troops). The retreat opens a strategically superior position, but that's abstract while the loss is concrete. Draft a commander's intent statement that reframes the retreat. Then explain why scarcity framing ('this window closes in 2 hours') might be more effective than gain framing ('we'll gain higher ground') given what loss aversion predicts about how the troops will process each message.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-030",
+    "category": "cross-domain",
+    "skillIds": ["system-1-system-2", "deliberate-practice", "structure-in-spontaneity"],
+    "prompt": "System 1 operates automatically; System 2 requires effort (Thinking). Deliberate practice (Drive) eventually transfers System 2 skills into System 1 automaticity. Structure in spontaneity (Leadership) means over-preparing so delivery looks effortless. These three concepts describe the same phenomenon from different angles: the conversion of effortful processing into automatic expertise. Trace this process for a specific skill -- improvisational speaking. What does deliberate practice look like? How many hours of structured rehearsal before the 'spontaneity' becomes genuine System 1 fluency? What's the danger of stopping practice before full automaticity -- the 'uncanny valley' of semi-prepared speakers?",
+    "domains": ["thinking", "drive", "leadership"]
+  },
+  {
+    "id": "synth-031",
+    "category": "within-domain",
+    "skillIds": ["anchoring-and-adjustment", "framing-effects", "endowment-effect", "loss-aversion"],
+    "prompt": "Design a pricing page for a $200/month SaaS product that exploits anchoring, framing, the endowment effect, and loss aversion simultaneously. Specifically: what anchor price should appear first, how should you frame the value (gain vs. loss), what free trial mechanism triggers the endowment effect, and how does the cancellation flow use loss aversion? Then reverse perspective: design a 4-point debiasing checklist that a procurement officer should use before evaluating ANY SaaS pricing page to neutralize each of these effects.",
+    "domains": ["thinking"]
+  },
+  {
+    "id": "synth-032",
+    "category": "within-domain",
+    "skillIds": ["confirmation-heuristic", "availability", "overconfidence-in-calibration", "hindsight-bias"],
+    "prompt": "These four biases form a self-reinforcing cycle in expert judgment. Trace the cycle: an analyst makes a confident prediction (overconfidence) and only seeks confirming data (confirmation bias). The most vivid data feels most representative (availability). When the prediction turns out right OR wrong, the outcome feels 'obvious in retrospect' (hindsight). Map this cycle for a venture capitalist evaluating startup investments over 5 years. How does each bias feed the next? What single intervention would most effectively break the cycle?",
+    "domains": ["thinking"]
+  },
+  {
+    "id": "synth-033",
+    "category": "within-domain",
+    "skillIds": ["fundamental-attribution-error", "false-consensus-effect", "halo-effect", "cognitive-dissonance"],
+    "prompt": "You hire someone who interviews brilliantly (halo effect) and you're sure everyone agrees they're perfect (false consensus). Six months in, they're underperforming. You blame their work ethic (FAE) rather than considering the role was poorly defined. Now you face dissonance: you championed this hire publicly. Trace how each bias compounds into a cascading hiring failure. At which point in the sequence would intervention be most effective? What would that intervention look like, and which bias does it target first?",
+    "domains": ["thinking"]
+  },
+  {
+    "id": "synth-034",
+    "category": "within-domain",
+    "skillIds": ["system-1-system-2", "hot-cold-empathy-gap", "sunk-cost-fallacy", "keeping-doors-open"],
+    "prompt": "You're deep in a poker tournament. You've been playing for 8 hours (System 2 fatigue), you're emotionally activated after a bad beat (hot state), you've already invested your buy-in (sunk cost), and folding means eliminating yourself from the tournament (closing a door). Analyze how each of these four psychological forces independently pushes you toward the same bad decision -- calling an all-in with a weak hand. Rank them from most to least influential in this specific moment. Which one, if neutralized, would most likely prevent the bad call?",
+    "domains": ["thinking"]
+  },
+  {
+    "id": "synth-035",
+    "category": "within-domain",
+    "skillIds": ["intrinsic-motivation", "autonomy-need", "competence-need", "overjustification-effect", "psychological-reactance"],
+    "prompt": "A company introduces a mandatory 'innovation hour' every Friday -- employees must spend one hour on creative projects, tracked via a project management tool with required status updates. Using SDT, analyze how this policy simultaneously satisfies and undermines intrinsic motivation. Autonomy is nominally granted (choose your project) but actually constrained (it's mandatory, tracked). Competence may or may not be supported (depends on feedback). Predict when psychological reactance kicks in, and how the overjustification effect transforms a potentially motivating policy into a compliance exercise. Redesign the policy to avoid every trap you identified.",
+    "domains": ["drive"]
+  },
+  {
+    "id": "synth-036",
+    "category": "within-domain",
+    "skillIds": ["self-efficacy", "mastery-experience", "vicarious-experience", "deliberate-practice", "zone-of-comfort-zone-of-growth"],
+    "prompt": "Design a 12-week onboarding program for new sales representatives that systematically builds self-efficacy through the four sources Bandura identified, with deliberate practice as the skill-building mechanism and the comfort/growth zone model as the pacing framework. Week by week, specify: what mastery experiences are you engineering (and how you ensure success without making tasks too easy), what vicarious experiences you're providing (and who the models should be), how deliberate practice sessions are structured (with specific feedback mechanisms), and how you calibrate the growth zone -- pushing enough to develop but not enough to overwhelm.",
+    "domains": ["drive"]
+  },
+  {
+    "id": "synth-037",
+    "category": "within-domain",
+    "skillIds": ["hyperbolic-discounting", "if-then-plans", "procrastination-and-precommitment", "emotion-regulation"],
+    "prompt": "You have a research paper due in 3 weeks. Hyperbolic discounting predicts you'll procrastinate because the deadline feels distant. Design a complete anti-procrastination system using the other three tools: what specific if-then plans do you create (and what triggers are you pairing with what behaviors)? What precommitment devices do you install (and how do you make them binding)? How does emotion regulation address the anxiety that typically accompanies both procrastination and the pressure of precommitment? Map out how these three interventions interact -- do they reinforce or potentially conflict with each other?",
+    "domains": ["drive"]
+  },
+  {
+    "id": "synth-038",
+    "category": "within-domain",
+    "skillIds": ["social-norms-vs-market-norms", "relatedness-need", "internalization", "autonomy-need"],
+    "prompt": "A volunteer community organization is growing and needs to start paying some members for their work. Using the social vs. market norms framework, predict the three most dangerous moments in this transition. How does paying some but not all members affect the relatedness need across the group? Using the internalization continuum from SDT, explain what happens to the motivation of the members who remain unpaid -- does it shift from intrinsic to external, and if so, at what stage? Design a hybrid compensation model that preserves social norms where possible, introduces market norms where necessary, and protects autonomy for both paid and unpaid members.",
+    "domains": ["drive"]
+  },
+  {
+    "id": "synth-039",
+    "category": "within-domain",
+    "skillIds": ["reciprocation", "social-proof", "commitment-and-consistency", "scarcity-principle", "authority-principle"],
+    "prompt": "You're launching a premium online course. Design a launch sequence that deploys all five of Cialdini's original principles in sequence, explaining WHY you're ordering them this way. Start with: which principle should be activated first and which last? What happens if you lead with scarcity vs. leading with reciprocation? Identify the specific moment in the sequence where commitment-and-consistency converts interested browsers into buyers. Then identify the ethical line: at what point does stacking these principles cross from persuasion into manipulation?",
+    "domains": ["influence"]
+  },
+  {
+    "id": "synth-040",
+    "category": "within-domain",
+    "skillIds": ["tactical-empathy", "calibrated-questions", "accusation-audit", "mirroring-technique"],
+    "prompt": "You're a hostage negotiator and the subject is threatening to harm themselves. They're convinced nobody understands them and the system has failed them. Using all four Voss techniques in sequence: start with an accusation audit (what are the worst things they think about this situation?), then deploy a mirror to keep them talking, then use tactical empathy to label their emotions, then ask a calibrated question that gives them a sense of agency. Script this 3-minute exchange. Then explain: what happens if you deploy these in the wrong order -- specifically, what goes wrong if you start with a calibrated question before establishing empathy?",
+    "domains": ["influence"]
+  },
+  {
+    "id": "synth-041",
+    "category": "within-domain",
+    "skillIds": ["positions-vs-interests", "fixed-pie-bias", "reactive-devaluation", "value-creation-in-negotiation"],
+    "prompt": "Two co-founders are splitting equity. Founder A wants 60% (position). Founder B wants 50/50 (position). Both assume equity is a fixed pie. Any concession by either side will be reactively devalued by the other. Diagnose the four layers of dysfunction using each concept. Then design a negotiation process that: uncovers the real interests behind the positions, demonstrates the pie isn't fixed by identifying at least 3 non-equity forms of value, and structures the offer in a way that minimizes reactive devaluation. Why is the order of these steps non-negotiable?",
+    "domains": ["influence"]
+  },
+  {
+    "id": "synth-042",
+    "category": "within-domain",
+    "skillIds": ["elaboration-likelihood-model", "inoculation-theory", "pre-suasion", "contrast-principle"],
+    "prompt": "You're defending a public health campaign against anti-vaccination misinformation. Using the ELM, determine whether your target audience (concerned but persuadable parents) is processing centrally or peripherally. Then sequence these techniques: pre-suasion to prime the right mental frame before presenting evidence, inoculation to weaken the misinformation they've already been exposed to, and contrast to make the difference between evidence-based and anecdotal claims vivid. Explain why inoculation is more effective than simply presenting stronger evidence, and how pre-suasion changes WHICH evidence the audience pays attention to.",
+    "domains": ["influence"]
+  },
+  {
+    "id": "synth-043",
+    "category": "within-domain",
+    "skillIds": ["audience-as-hero", "what-is-what-could-be", "star-moment", "story-as-simulation", "commanders-intent"],
+    "prompt": "You're the CEO addressing your company after a significant layoff. Design a 10-minute address using all five techniques. The audience-as-hero framing means the remaining employees are the protagonists, not you. The what-is/what-could-be structure creates the arc from current pain to future possibility. A STAR moment makes one key message unforgettable. A story-as-simulation lets them mentally rehearse the path forward. A commander's intent gives them clarity on what to do Monday morning. Write the structural outline with specific notes on what goes in each section. What is the single most dangerous mistake a CEO makes in this situation, and which of these five techniques prevents it?",
+    "domains": ["leadership"]
+  },
+  {
+    "id": "synth-044",
+    "category": "within-domain",
+    "skillIds": ["three-conversations-framework", "third-story", "pinch-crunch-model", "feedback-model"],
+    "prompt": "Your top performer has become increasingly difficult to work with -- dismissive in meetings, missing collaborative deadlines, hoarding information. You've let small 'pinches' accumulate into a 'crunch.' Using the three conversations framework, identify the content conversation (what happened), the feelings conversation (emotions on both sides), and the identity conversation (what this says about them as a professional). Draft your opening using the third story (a framing neither of you would disagree with). Then structure the feedback using a specific feedback model. At what point in this conversation do you address the pinch-crunch pattern itself -- the fact that you let small issues accumulate?",
+    "domains": ["leadership"]
+  },
+  {
+    "id": "synth-045",
+    "category": "within-domain",
+    "skillIds": ["credibility-in-communication", "testable-credentials", "nonverbal-communication", "interpersonal-vulnerability"],
+    "prompt": "A new manager is presenting to a skeptical team that didn't want an outside hire. Credibility requires both expertise and trustworthiness -- but demonstrating expertise risks seeming arrogant, and showing vulnerability risks confirming the team's doubts. Design the manager's first team meeting: what testable credential lets them demonstrate expertise without bragging? What act of vulnerability builds trust without undermining authority? How do nonverbal signals need to be calibrated differently in this situation vs. a normal first meeting? Identify the specific nonverbal behavior that would most quickly destroy credibility with a skeptical audience.",
+    "domains": ["leadership"]
+  },
+  {
+    "id": "synth-046",
+    "category": "applied-scenario",
+    "skillIds": ["anchoring-and-adjustment", "tactical-empathy", "calibrated-questions", "loss-aversion"],
+    "prompt": "You're negotiating a raise. Your research says the market rate for your role is $140K but you're currently at $110K. Your manager genuinely likes you but believes they're already paying you fairly (anchored to your current salary). Your BATNA is weak -- you don't have another offer. Script the conversation: open with a tactical empathy label that acknowledges the difficulty of budget conversations. Ask a calibrated question that forces your manager to think about your value without you stating a number. When you do name a number, explain why you should anchor at $155K, not $140K. Address the moment your manager says 'I just can't go that high' -- what does loss aversion predict about what you should say next?",
+    "domains": ["thinking", "influence"]
+  },
+  {
+    "id": "synth-047",
+    "category": "applied-scenario",
+    "skillIds": ["social-proof", "commitment-and-consistency", "self-efficacy", "deliberate-practice"],
+    "prompt": "You're designing an onboarding flow for a fitness app. 80% of users quit within the first week. Using social proof, design the first screen they see after signup. Using commitment and consistency, design a micro-commitment in the first 60 seconds that makes quitting psychologically expensive. Using self-efficacy theory, design the first workout to guarantee a mastery experience. Using deliberate practice principles, explain why the second workout should be different from the first. Specify the exact sequence and explain what happens to retention if you swap steps 2 and 3.",
+    "domains": ["influence", "drive"]
+  },
+  {
+    "id": "synth-048",
+    "category": "applied-scenario",
+    "skillIds": ["cognitive-dissonance", "escalation-of-commitment", "commanders-intent", "what-is-what-could-be"],
+    "prompt": "You're a VP who championed a $5M digital transformation project. After 12 months, it's clear the vendor is underdelivering, the timeline has doubled, and your team is demoralized. You're experiencing cognitive dissonance (you publicly backed this) and escalation of commitment (you've already spent $3M). The board wants a decision. Write two versions of your board presentation: Version A continues the project (identify exactly which biases are driving this choice and how you'd rationalize it). Version B kills the project and pivots. For Version B, use commander's intent to define what success actually looks like and what-is/what-could-be to tell the story of why pivoting is leadership, not failure. Which version requires more courage? Which requires more intellectual honesty?",
+    "domains": ["thinking", "leadership"]
+  },
+  {
+    "id": "synth-049",
+    "category": "applied-scenario",
+    "skillIds": ["framing-effects", "reciprocation", "pre-suasion", "concreteness-principle"],
+    "prompt": "You're a nonprofit director writing a year-end fundraising email to 50,000 donors. Average donation last year was $75; you want to increase it to $100. Using pre-suasion, what should the email subject line prime? Using framing, should you frame the ask as 'give $100 to provide' (gain) or 'without $100, a child loses' (loss)? Using reciprocation, what have you given the donor earlier in the year that creates an obligation? Using concreteness, how do you make $100 feel tangible rather than abstract? Write the actual email (200 words max) deploying all four. Then write a version that uses the same four techniques to ask for $500 from a major donor segment -- what changes and what stays the same?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-050",
+    "category": "applied-scenario",
+    "skillIds": ["psychological-reactance", "autonomy-need", "tell-sell-consult-join", "accusation-audit"],
+    "prompt": "You're a school principal mandating a new standardized testing protocol. Teachers hate it. They see it as bureaucratic overreach that undermines their professional judgment (reactance, autonomy threat). You cannot make the testing optional -- it's state-mandated. Script your faculty meeting announcement. Start with an accusation audit listing every negative reaction you expect. Explain why using tell-sell-consult-join matters here -- you can't consult on WHETHER to test, but you can consult on HOW. Design three specific autonomy-preserving choices within the mandated constraint. Predict what happens if you skip the accusation audit and open with 'I know you won't like this, but...'",
+    "domains": ["drive", "influence", "leadership"]
+  },
+  {
+    "id": "synth-051",
+    "category": "applied-scenario",
+    "skillIds": ["halo-effect", "authority-principle", "elaboration-likelihood-model", "credibility-in-communication"],
+    "prompt": "A pharmaceutical company is launching a new medication. They can have it endorsed by: (A) a famous celebrity with the condition, (B) an unknown but highly published researcher who developed it, or (C) a patient with a compelling recovery story. Using the ELM, analyze which endorser works for which audience processing mode. Using the halo effect, predict which endorser creates the broadest positive impression. Using authority, determine which carries the most weight with doctors vs. patients. Using credibility theory, which endorser has the most sustainable credibility if the drug later shows side effects? Make a final recommendation -- and explain why different channels (TV ad vs. medical journal vs. patient forum) require different endorsers.",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-052",
+    "category": "applied-scenario",
+    "skillIds": ["sunk-cost-fallacy", "endowment-effect", "positions-vs-interests", "third-story"],
+    "prompt": "A couple is fighting about whether to renovate their current home ($200K renovation) or buy a new one ($500K). They've already spent $15K on architectural plans for the renovation (sunk cost). They've lived in the home for 20 years (endowment effect). One spouse's position is 'renovate' and the other's is 'move.' As their financial advisor AND mediator, first identify the sunk cost and endowment effect distortions. Then reframe using positions vs. interests: what does each spouse actually want that they think only their preferred option provides? Finally, open the conversation using the third story -- a framing that neither spouse would argue with. What's the most likely integrative solution that neither has considered?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-053",
+    "category": "applied-scenario",
+    "skillIds": ["hot-cold-empathy-gap", "if-then-plans", "mirroring-technique", "emotion-regulation"],
+    "prompt": "You're a customer service manager training new agents to handle angry callers. The hot-cold empathy gap means trainees in calm training sessions can't predict how they'll react when a customer screams at them. Design a training program that: uses emotion regulation techniques to build genuine composure (not just scripts), creates if-then plans for the 5 most common angry-caller triggers, teaches mirroring as the first response to de-escalation, and bridges the empathy gap by simulating emotional activation during training. Explain why role-playing with a polite 'pretend angry' colleague fails to bridge the empathy gap, and what you'd do instead.",
+    "domains": ["thinking", "drive", "influence"]
+  },
+  {
+    "id": "synth-054",
+    "category": "applied-scenario",
+    "skillIds": ["social-proof", "scarcity-principle", "commitment-and-consistency", "story-as-simulation", "testable-credentials"],
+    "prompt": "You're launching a cohort-based leadership course priced at $2,500. You have 3 alumni testimonials, a waitlist of 40 people, and data showing 87% of graduates were promoted within 18 months. Design the sales page: where does social proof go and in what form? How do you deploy scarcity without manufacturing fake urgency? What micro-commitment on the page triggers consistency pressure? What story-as-simulation lets a prospect mentally rehearse being a graduate? How does the '87% promoted' stat function as a testable credential vs. a mere claim? Finally: a prospect says 'I need to think about it.' Using commitment and consistency, what question do you ask that makes walking away feel inconsistent with what they just told you?",
+    "domains": ["influence", "leadership"]
+  },
+  {
+    "id": "synth-055",
+    "category": "applied-scenario",
+    "skillIds": ["confirmation-heuristic", "reactive-devaluation", "inoculation-theory", "three-conversations-framework"],
+    "prompt": "Two department heads are in a turf war over which team should own a new AI initiative. Each believes they're objectively right (confirmation bias). Any proposal from the other is automatically suspect (reactive devaluation). HR has asked you to mediate. Using inoculation theory, prepare each leader separately -- what weakened version of the other's argument do you expose them to? Using the three conversations framework, identify the identity conversation each leader is privately having (hint: it's about relevance and job security). Script the mediation opening that avoids the content conversation entirely and starts with the feelings conversation. Why does starting with content guarantee failure in this situation?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-056",
+    "category": "applied-scenario",
+    "skillIds": ["overjustification-effect", "intrinsic-motivation", "social-norms-vs-market-norms", "pinch-crunch-model"],
+    "prompt": "A thriving open-source community has 200 active contributors. A tech company wants to sponsor the project and pay the top 10 contributors a monthly stipend. Predict what happens using the overjustification effect (paid contributors lose intrinsic motivation), social vs. market norms (the community culture shifts), and the pinch-crunch model (small resentments between paid and unpaid members accumulate). Then design a sponsorship structure that avoids these traps. Is it possible to introduce money without poisoning the community? What's the evidence say? Be honest about the constraints.",
+    "domains": ["drive", "leadership"]
+  },
+  {
+    "id": "synth-057",
+    "category": "applied-scenario",
+    "skillIds": ["loss-aversion", "framing-effects", "autonomy-need", "calibrated-questions"],
+    "prompt": "You're a doctor who needs to recommend surgery to a risk-averse patient. The surgery has a 90% survival rate (equivalent to 10% mortality rate -- but framing matters enormously). The patient values feeling in control (autonomy need). You can't just tell them what to do without triggering resistance. And loss aversion means they'll overweight the mortality risk. Design the conversation: how do you frame the statistics? What calibrated questions give the patient genuine autonomy while guiding them toward the medically optimal choice? At what point does respecting autonomy conflict with your duty to recommend the best treatment, and how do you navigate that tension?",
+    "domains": ["thinking", "drive", "influence"]
+  },
+  {
+    "id": "synth-058",
+    "category": "applied-scenario",
+    "skillIds": ["availability", "false-consensus-effect", "social-proof", "commanders-intent"],
+    "prompt": "A CEO reads about three companies that went bankrupt after aggressive expansion. Availability bias makes them overweight this risk. False consensus effect makes them assume the board shares their caution. They present a conservative strategy, citing social proof ('most companies our size play it safe'). Meanwhile, the board actually wants to expand. Trace how each bias compounds: availability creates fear, false consensus prevents testing assumptions with the board, and social proof is selectively deployed to justify the predetermined conclusion. Now design the board meeting that would have prevented this: what commander's intent from the board would have constrained the CEO's analysis? What process change breaks the availability-to-false-consensus pipeline?",
+    "domains": ["thinking", "influence", "leadership"]
+  },
+  {
+    "id": "synth-059",
+    "category": "applied-scenario",
+    "skillIds": ["competence-need", "mastery-experience", "feedback-model", "interpersonal-vulnerability", "star-moment"],
+    "prompt": "You're giving the keynote at a conference for early-career professionals who feel like impostors. Your goal is to build their competence belief (SDT) by providing a vicarious mastery experience (Bandura) through your talk. Design the talk structure: open with vulnerability (your own impostor moment), use a STAR moment to make one insight unforgettable, and embed a specific, actionable feedback model they can use on themselves starting tomorrow. The key tension: how do you share your struggle (vulnerability) without undermining your credibility as someone worth listening to? What's the difference between vulnerability that inspires and vulnerability that just makes the audience uncomfortable?",
+    "domains": ["drive", "leadership"]
+  },
+  {
+    "id": "synth-060",
+    "category": "applied-scenario",
+    "skillIds": ["system-1-system-2", "pre-suasion", "anchoring-and-adjustment", "contrast-principle", "concreteness-principle"],
+    "prompt": "You're designing a product demo for enterprise software that costs $50K/year. The buyer's System 1 will react to the demo's visual polish and speed; their System 2 will evaluate ROI. Using pre-suasion, what customer success story do you tell in the 3 minutes before the demo starts? Using anchoring, what number appears on screen first (and it shouldn't be $50K)? Using contrast, what do you show immediately before your product (competitor? their current manual process?)? Using concreteness, how do you make $50K/year feel tangible ('that's $137/day' or 'less than one junior hire')? Design the first 10 minutes of this demo and identify which techniques target System 1 vs. System 2.",
+    "domains": ["thinking", "influence", "leadership"]
+  }
+]
