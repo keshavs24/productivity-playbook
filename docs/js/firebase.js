@@ -139,12 +139,20 @@ export async function getTodayLog() {
     return { id, ...snap.data() };
   }
 
-  // Create today's entry with defaults
+  // Create today's entry with dynamic sizes from user config
+  // Import here to avoid circular dependency
+  let habitCount = 7, attrCount = 6;
+  try {
+    const { getHabits, getAttributes } = await import('./user-config.js');
+    habitCount = getHabits().length;
+    attrCount = getAttributes().length;
+  } catch (e) { /* use defaults */ }
+
   const newLog = {
     date: id,
     completed: false,
-    habits: [false, false, false, false, false, false, false],
-    attributes: [0, 0, 0, 0, 0, 0],
+    habits: new Array(habitCount).fill(false),
+    attributes: new Array(attrCount).fill(0),
     mrr: 0,
     weight: 0,
     bodyFat: 0,

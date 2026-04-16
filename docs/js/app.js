@@ -5,6 +5,7 @@
 
 import { FIREBASE_CONFIG, AUTH_EMAIL, AUTH_PASSWORD } from '../config.js';
 import { initFirebase, waitForAuth, signInWithEmail, signInAnon, getCurrentUser } from './firebase.js';
+import { loadUserConfig } from './user-config.js';
 import { renderToday } from './tabs/today.js';
 import { renderTrack } from './tabs/track.js';
 import { renderLearn } from './tabs/learn.js';
@@ -96,6 +97,9 @@ async function onAuthenticated() {
   document.getElementById('login-screen').hidden = true;
   document.getElementById('app').hidden = false;
   document.getElementById('loading').hidden = false;
+
+  // Load user config (habits, meals, prayers, targets, etc.)
+  await loadUserConfig();
 
   // Load initial tab
   await switchTab('tab-today');

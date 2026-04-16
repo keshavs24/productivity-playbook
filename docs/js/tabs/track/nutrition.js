@@ -5,9 +5,7 @@
 
 import { addFoodEntry, getTodayNutrition } from '../../firebase.js';
 import { createProgressBar } from '../../components/progress-bar.js';
-import { CUT } from '../../../config.js';
-
-const MEAL_TYPES = ['Suhoor', 'Main Meal', 'Snack', 'Shake'];
+import { getMealTypes, getNutritionTargets } from '../../user-config.js';
 
 export async function renderNutritionSubTab(container) {
   const entries = await getTodayNutrition();
@@ -21,7 +19,8 @@ export async function renderNutritionSubTab(container) {
     totalF += e.fat || 0;
   });
 
-  const remaining = CUT.DAILY_CALORIES - totalCal;
+  const targets = getNutritionTargets();
+  const remaining = targets.dailyCalories - totalCal;
 
   container.textContent = '';
 
@@ -63,7 +62,7 @@ export async function renderNutritionSubTab(container) {
   calRow.appendChild(calRightCol);
   calCard.appendChild(calRow);
 
-  const pct = Math.min(100, (totalCal / CUT.DAILY_CALORIES) * 100);
+  const pct = Math.min(100, (totalCal / targets.dailyCalories) * 100);
   calCard.insertAdjacentHTML('beforeend', createProgressBar(pct));
   calCard.lastElementChild.querySelector('.progress-bar__fill').style.background =
     remaining >= 0 ? 'var(--success)' : 'var(--error)';
@@ -80,9 +79,9 @@ export async function renderNutritionSubTab(container) {
   macroCard.className = 'card stack stack--3';
 
   const macros = [
-    { name: 'Protein', current: totalP, target: CUT.PROTEIN_G, unit: 'g' },
-    { name: 'Carbs', current: totalC, target: CUT.CARBS_G, unit: 'g' },
-    { name: 'Fat', current: totalF, target: CUT.FAT_G, unit: 'g' },
+    { name: 'Protein', current: totalP, target: targets.proteinG, unit: 'g' },
+    { name: 'Carbs', current: totalC, target: targets.carbsG, unit: 'g' },
+    { name: 'Fat', current: totalF, target: targets.fatG, unit: 'g' },
   ];
 
   macros.forEach(m => {
@@ -117,8 +116,9 @@ export async function renderNutritionSubTab(container) {
   // Meal type selector
   const mealRow = document.createElement('div');
   mealRow.style.cssText = 'display: flex; flex-wrap: wrap; gap: 6px;';
-  let selectedMeal = MEAL_TYPES[0];
-  MEAL_TYPES.forEach(meal => {
+  const mealTypes = getMealTypes();
+  let selectedMeal = mealTypes[0];
+  mealTypes.forEach(meal => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'pill-tab';

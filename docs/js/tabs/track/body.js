@@ -5,7 +5,7 @@
 
 import { getTodayBodyComp, updateBodyComp, getRecentLogs } from '../../firebase.js';
 import { createProgressBar } from '../../components/progress-bar.js';
-import { CUT } from '../../../config.js';
+import { getBodyTargets } from '../../user-config.js';
 
 export async function renderBodySubTab(container) {
   const [bodyComp, recentLogs] = await Promise.all([
@@ -98,15 +98,16 @@ export async function renderBodySubTab(container) {
   const progressCard = document.createElement('div');
   progressCard.className = 'card stack stack--3';
 
+  const bt = getBodyTargets();
   const latestWeight = bodyComp && bodyComp.amWeight ? bodyComp.amWeight :
-    (recentLogs.length > 0 ? recentLogs[recentLogs.length - 1].weight : CUT.START_WEIGHT);
+    (recentLogs.length > 0 ? recentLogs[recentLogs.length - 1].weight : bt.startWeight);
   const latestBF = bodyComp && bodyComp.bodyFat ? bodyComp.bodyFat :
-    (recentLogs.length > 0 ? recentLogs[recentLogs.length - 1].bodyFat : CUT.START_BF);
+    (recentLogs.length > 0 ? recentLogs[recentLogs.length - 1].bodyFat : bt.startBF);
 
-  const weightLost = CUT.START_WEIGHT - (latestWeight || CUT.START_WEIGHT);
-  const bfDrop = CUT.START_BF - (latestBF || CUT.START_BF);
-  const targetWeightLoss = CUT.START_WEIGHT - CUT.TARGET_WEIGHT;
-  const targetBFDrop = CUT.START_BF - CUT.TARGET_BF;
+  const weightLost = bt.startWeight - (latestWeight || bt.startWeight);
+  const bfDrop = bt.startBF - (latestBF || bt.startBF);
+  const targetWeightLoss = bt.startWeight - bt.targetWeight;
+  const targetBFDrop = bt.startBF - bt.targetBF;
 
   // Weight progress
   const wpRow = document.createElement('div');
@@ -115,11 +116,11 @@ export async function renderBodySubTab(container) {
   const wpLabel = document.createElement('span');
   wpLabel.className = 'text-muted';
   wpLabel.style.fontSize = '0.875rem';
-  wpLabel.textContent = `Weight: ${(latestWeight || CUT.START_WEIGHT).toFixed(1)} lbs`;
+  wpLabel.textContent = `Weight: ${(latestWeight || bt.startWeight).toFixed(1)} lbs`;
   wpRow.appendChild(wpLabel);
   const wpTarget = document.createElement('span');
   wpTarget.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary);';
-  wpTarget.textContent = `Target: ${CUT.TARGET_WEIGHT} lbs`;
+  wpTarget.textContent = `Target: ${bt.targetWeight} lbs`;
   wpRow.appendChild(wpTarget);
   progressCard.appendChild(wpRow);
   progressCard.insertAdjacentHTML('beforeend',
@@ -132,11 +133,11 @@ export async function renderBodySubTab(container) {
   const bfpLabel = document.createElement('span');
   bfpLabel.className = 'text-muted';
   bfpLabel.style.fontSize = '0.875rem';
-  bfpLabel.textContent = `Body Fat: ${(latestBF || CUT.START_BF).toFixed(1)}%`;
+  bfpLabel.textContent = `Body Fat: ${(latestBF || bt.startBF).toFixed(1)}%`;
   bfpRow.appendChild(bfpLabel);
   const bfpTarget = document.createElement('span');
   bfpTarget.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary);';
-  bfpTarget.textContent = `Target: ${CUT.TARGET_BF}%`;
+  bfpTarget.textContent = `Target: ${bt.targetBF}%`;
   bfpRow.appendChild(bfpTarget);
   progressCard.appendChild(bfpRow);
   progressCard.insertAdjacentHTML('beforeend',

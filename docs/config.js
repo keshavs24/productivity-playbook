@@ -169,60 +169,8 @@ export const CUT = {
 };
 
 // ============================================================
-// SHEET NAMES
+// LEGACY SHEET CONSTANTS — REMOVED (now using Firebase)
 // ============================================================
-export const SHEET_NAMES = {
-  DASHBOARD: 'Dashboard',
-  DAILY_LOG: 'Daily Log',
-  WEEKLY_REVIEW: 'Weekly Review',
-  CHARTS: 'Charts',
-  ACHIEVEMENTS: 'Achievements',
-  WISDOM: 'Wisdom',
-  CONFIG: 'Config',
-  DATA: 'Data',
-  BODY_COMP: 'Body Comp',
-  MEALS: 'Meals',
-  NUTRITION: 'Nutrition',
-  LIFTS: 'Lifts',
-  PRAYERS: 'Prayers'
-};
-
-// ============================================================
-// COLUMN MAPS (1-indexed, matching Apps Script)
-// ============================================================
-export const DL = {
-  DATE: 1, COMPLETED: 2,
-  HABIT_START: 3, HABIT_END: 9,
-  ATTR_START: 10, ATTR_END: 15,
-  HABITS_SCORE: 16, ATTR_AVG: 17,
-  MRR: 18, WEIGHT: 19, BODY_FAT: 20,
-  WIN_OF_DAY: 21, XP_EARNED: 22, TOTAL_XP: 23,
-  STREAK: 24, NOTES: 25,
-  WHOOP_RECOVERY: 26, WHOOP_HRV: 27, WHOOP_RESTING_HR: 28,
-  WHOOP_SLEEP: 29, WHOOP_STRAIN: 30,
-  DIET_SCORE: 31, CALORIES_EST: 32
-};
-
-export const PRA = {
-  DATE: 1,
-  FAJR_SUNNAH: 2, FAJR_FARD: 3,
-  DHUHR_SUNNAH_BEFORE: 4, DHUHR_FARD: 5, DHUHR_SUNNAH_AFTER: 6,
-  ASR_FARD: 7,
-  MAGHRIB_FARD: 8, MAGHRIB_SUNNAH: 9,
-  ISHA_FARD: 10, ISHA_SUNNAH: 11,
-  WITR: 12, TOTAL: 13, COMPLETION: 14
-};
-
-export const NUT = {
-  DATE: 1, MEAL_LABEL: 2, FOOD_NAME: 3,
-  CALORIES: 4, PROTEIN: 5, CARBS: 6, FAT: 7, TIMESTAMP: 8
-};
-
-export const LFT = {
-  DATE: 1, SESSION_TYPE: 2, EXERCISE: 3, SET_NUM: 4,
-  TARGET_WEIGHT: 5, ACTUAL_WEIGHT: 6,
-  TARGET_REPS: 7, ACTUAL_REPS: 8, RPE: 9, NOTES: 10
-};
 
 // ============================================================
 // PRAYERS

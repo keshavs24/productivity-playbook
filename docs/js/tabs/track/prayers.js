@@ -6,32 +6,7 @@
 
 import { getTodayPrayers, updatePrayer, getRecentPrayers } from '../../firebase.js';
 import { createProgressBar } from '../../components/progress-bar.js';
-import { PRAYERS } from '../../../config.js';
-
-// Prayer field keys matching firebase.js document shape
-const PRAYER_KEYS = [
-  'fajrSunnah', 'fajrFard',
-  'dhuhrSunnahBefore', 'dhuhrFard', 'dhuhrSunnahAfter',
-  'asrFard',
-  'maghribFard', 'maghribSunnah',
-  'ishaFard', 'ishaSunnah',
-  'witr'
-];
-
-// Group prayers by time for timeline display
-const PRAYER_GROUPS = [
-  { time: 'Fajr',    prayers: [{ key: 'fajrSunnah', label: 'Sunnah', type: 'sunnah', rakahs: 2 },
-                                { key: 'fajrFard', label: 'Fard', type: 'fard', rakahs: 2 }] },
-  { time: 'Dhuhr',   prayers: [{ key: 'dhuhrSunnahBefore', label: 'Sunnah (Before)', type: 'sunnah', rakahs: 4 },
-                                { key: 'dhuhrFard', label: 'Fard', type: 'fard', rakahs: 4 },
-                                { key: 'dhuhrSunnahAfter', label: 'Sunnah (After)', type: 'sunnah', rakahs: 2 }] },
-  { time: 'Asr',     prayers: [{ key: 'asrFard', label: 'Fard', type: 'fard', rakahs: 4 }] },
-  { time: 'Maghrib', prayers: [{ key: 'maghribFard', label: 'Fard', type: 'fard', rakahs: 3 },
-                                { key: 'maghribSunnah', label: 'Sunnah', type: 'sunnah', rakahs: 2 }] },
-  { time: 'Isha',    prayers: [{ key: 'ishaFard', label: 'Fard', type: 'fard', rakahs: 4 },
-                                { key: 'ishaSunnah', label: 'Sunnah', type: 'sunnah', rakahs: 2 },
-                                { key: 'witr', label: 'Witr', type: 'wajib', rakahs: 3 }] },
-];
+import { getPrayers, getPrayerKeys, getPrayerGroups } from '../../user-config.js';
 
 export async function renderPrayersSubTab(container) {
   const [todayPrayers, recentPrayers] = await Promise.all([
@@ -41,10 +16,14 @@ export async function renderPrayersSubTab(container) {
 
   container.textContent = '';
 
+  const prayerList = getPrayers();
+  const prayerKeys = getPrayerKeys();
+  const prayerGroups = getPrayerGroups();
+
   // Completion summary
-  const fardCount = ['fajrFard', 'dhuhrFard', 'asrFard', 'maghribFard', 'ishaFard']
-    .filter(k => !!todayPrayers[k]).length;
-  const totalCount = PRAYER_KEYS.filter(k => !!todayPrayers[k]).length;
+  const fardKeys = prayerList.filter(p => p.type === 'fard').map(p => p.key);
+  const fardCount = fardKeys.filter(k => !!todayPrayers[k]).length;
+  const totalCount = prayerKeys.filter(k => !!todayPrayers[k]).length;
 
   const summaryCard = document.createElement('div');
   summaryCard.className = 'card';
@@ -53,7 +32,7 @@ export async function renderPrayersSubTab(container) {
   const totalEl = document.createElement('div');
   totalEl.className = 'data-value';
   totalEl.style.fontSize = '2rem';
-  totalEl.textContent = `${totalCount} / ${PRAYER_KEYS.length}`;
+  totalEl.textContent = `${totalCount} / ${prayerKeys.length}`;
   summaryCard.appendChild(totalEl);
 
   const summaryRow = document.createElement('div');
@@ -71,7 +50,7 @@ export async function renderPrayersSubTab(container) {
 
   summaryCard.appendChild(summaryRow);
   summaryCard.insertAdjacentHTML('beforeend',
-    '<div style="margin-top: var(--sp-3);">' + createProgressBar((totalCount / PRAYER_KEYS.length) * 100) + '</div>');
+    '<div style="margin-top: var(--sp-3);">' + createProgressBar((totalCount / prayerKeys.length) * 100) + '</div>');
   container.appendChild(summaryCard);
 
   // Prayer timeline
@@ -83,7 +62,7 @@ export async function renderPrayersSubTab(container) {
   const timeline = document.createElement('div');
   timeline.className = 'prayer-timeline';
 
-  PRAYER_GROUPS.forEach(group => {
+  prayerGroups.forEach(group => {
     // Time header
     const timeHeader = document.createElement('div');
     timeHeader.style.cssText = 'font-weight: 600; font-size: 0.875rem; padding: var(--sp-3) 0 var(--sp-1); color: var(--text-primary);';
@@ -120,14 +99,13 @@ export async function renderPrayersSubTab(container) {
         await updatePrayer(prayer.key, newState);
 
         // Update summary counts
-        const newFard = ['fajrFard', 'dhuhrFard', 'asrFard', 'maghribFard', 'ishaFard']
-          .filter(k => {
+        const newFard = fardKeys.filter(k => {
             if (k === prayer.key) return newState;
             return !!todayPrayers[k];
           }).length;
         todayPrayers[prayer.key] = newState;
-        const newTotal = PRAYER_KEYS.filter(k => !!todayPrayers[k]).length;
-        totalEl.textContent = `${newTotal} / ${PRAYER_KEYS.length}`;
+        const newTotal = prayerKeys.filter(k => !!todayPrayers[k]).length;
+        totalEl.textContent = `${newTotal} / ${prayerKeys.length}`;
         fardLabel.textContent = `${newFard}/5 Fard`;
         sunnahLabel.textContent = `${newTotal - newFard}/6 Sunnah`;
       });
@@ -170,11 +148,11 @@ export async function renderPrayersSubTab(container) {
     table.appendChild(thead);
 
     // Row per prayer
-    PRAYER_KEYS.forEach((key, i) => {
+    prayerKeys.forEach((key, i) => {
       const row = document.createElement('tr');
       const labelCell = document.createElement('td');
       labelCell.style.cssText = 'padding: var(--sp-1) var(--sp-2); color: var(--text-secondary); white-space: nowrap;';
-      const prayer = PRAYERS[i];
+      const prayer = prayerList[i];
       labelCell.textContent = prayer ? prayer.name.replace(/^(Fajr|Dhuhr|Asr|Maghrib|Isha)\s*/, '').replace('Sunnah Before', 'S.B').replace('Sunnah After', 'S.A') || prayer.name : key;
       row.appendChild(labelCell);
 

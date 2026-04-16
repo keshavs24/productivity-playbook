@@ -25,7 +25,7 @@ import { openFlashcardReview } from '../components/flashcard-review.js';
 import { createProgressBar } from '../components/progress-bar.js';
 import { createSegmentBar } from '../components/segment-bar.js';
 import { createHeatmap } from '../components/heatmap.js';
-import { HABITS, ATTRIBUTES, GOALS, CUT } from '../../config.js';
+import { getHabits, getAttributes } from '../user-config.js';
 import { WISDOM_QUOTES } from '../wisdom.js';
 
 // Debounce timer for XP recalculation
@@ -244,7 +244,8 @@ function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrit
   habitsGrid.style.cssText = 'display: flex; flex-wrap: wrap; gap: 8px;';
 
   const habits = todayLog.habits || [];
-  HABITS.forEach((h, i) => {
+  const habits = getHabits();
+  habits.forEach((h, i) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'habit-toggle';
@@ -272,7 +273,8 @@ function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrit
   attrsContainer.className = 'stack stack--4';
 
   const attrs = todayLog.attributes || [];
-  ATTRIBUTES.forEach((a, i) => {
+  const attributes = getAttributes();
+  attributes.forEach((a, i) => {
     const row = document.createElement('div');
     row.className = 'row row--between';
     const label = document.createElement('span');

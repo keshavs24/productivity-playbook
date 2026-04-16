@@ -3,15 +3,12 @@
  * Configurable sessions, set logging, PR detection, progress arrows.
  */
 
-import { addLiftEntry, getTodayLifts, getAllLifts, getProfile, updateProfile } from '../../firebase.js';
-import { WORKOUT_SPLIT, ABS_EXERCISES } from '../../../config.js';
+import { addLiftEntry, getTodayLifts, getAllLifts } from '../../firebase.js';
+import { getWorkoutSessions, getAbsExercises } from '../../user-config.js';
 import { showToast } from '../../app.js';
 
 let allLiftData = null;
 let selectedSession = null;
-
-// Default sessions from config — user can customize
-let sessions = [...WORKOUT_SPLIT];
 
 export async function renderLiftsSubTab(container) {
   // Load all lift history (cached after first load)
@@ -19,13 +16,7 @@ export async function renderLiftsSubTab(container) {
     allLiftData = await getAllLifts();
   }
 
-  // Check for custom sessions in profile
-  try {
-    const profile = await getProfile();
-    if (profile && profile.workoutSessions) {
-      sessions = profile.workoutSessions;
-    }
-  } catch (e) { /* use defaults */ }
+  const sessions = getWorkoutSessions();
 
   container.textContent = '';
 
@@ -133,7 +124,7 @@ function renderSessionView(container) {
   );
 
   // All exercises for this session + abs
-  const exercises = [...(selectedSession.exercises || []), ...ABS_EXERCISES];
+  const exercises = [...(selectedSession.exercises || []), ...getAbsExercises()];
 
   exercises.forEach(exercise => {
     const card = document.createElement('div');
