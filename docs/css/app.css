@@ -1642,6 +1642,80 @@ h3 {
 .text-center { text-align: center; }
 .text-right  { text-align: right; }
 
+/* ============================================================
+   Quick Check-in Circles
+   ============================================================ */
+.quick-checkin {
+  text-align: center;
+  padding: var(--sp-4) 0;
+}
+
+.quick-checkin__circles {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  padding: var(--sp-2) 0;
+}
+
+.quick-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-elevated);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 250ms var(--ease);
+  position: relative;
+}
+
+.quick-circle:active {
+  transform: scale(0.9);
+}
+
+.quick-circle--done {
+  border-color: var(--circle-color, var(--accent));
+  background: var(--circle-color, var(--accent));
+}
+
+.quick-circle--done .quick-circle__label {
+  color: #0F0F0F;
+}
+
+.quick-circle__label {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-tertiary);
+  pointer-events: none;
+  transition: color 200ms;
+}
+
+.quick-checkin__counter {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  margin-top: var(--sp-2);
+}
+
+.quick-checkin--complete .quick-checkin__counter {
+  color: var(--success);
+}
+
+/* Pulse animation on completion */
+@keyframes circle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.quick-circle--done {
+  animation: circle-pulse 300ms var(--ease);
+}
+
 /* Focus-visible for keyboard nav */
 :focus-visible {
   outline: 2px solid var(--accent);

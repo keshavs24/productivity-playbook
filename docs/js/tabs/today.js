@@ -27,6 +27,7 @@ import { createSegmentBar } from '../components/segment-bar.js';
 import { createHeatmap } from '../components/heatmap.js';
 import { getHabits, getAttributes } from '../user-config.js';
 import { WISDOM_QUOTES } from '../wisdom.js';
+import { createQuickCheckin } from '../components/quick-checkin.js';
 
 // Debounce timer for XP recalculation
 let xpDebounceTimer = null;
@@ -143,6 +144,12 @@ function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrit
   const progress = getLevelProgress(totalXP, level);
 
   panel.textContent = '';
+
+  // 0. Quick check-in circles (tap-tap-tap, zero friction)
+  const quickCheckin = createQuickCheckin(todayLog.habits || [], (idx, newState) => {
+    scheduleXPRecalc();
+  });
+  panel.appendChild(quickCheckin);
 
   // 1. Level display
   const levelSection = document.createElement('div');
