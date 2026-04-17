@@ -14,7 +14,7 @@
 
 import {
   getTodayLog, updateTodayLog, toggleHabit, setAttribute, getRecentLogs,
-  getFlashcardStates, getTodayPrayers, getTodayNutrition, getTodayLifts, getAllLogs
+  getFlashcardStates, getTodayPrayers, getTodayNutrition, getTodayLifts
 } from '../firebase.js';
 import {
   getLevelFromXP, getLevelTitle, getLevelProgress, calculateDailyXP,
@@ -40,15 +40,15 @@ function scheduleXPRecalc() {
   clearTimeout(xpDebounceTimer);
   xpDebounceTimer = setTimeout(async () => {
     try {
-      const [todayLog, prayers, nutrition, lifts, allLogs] = await Promise.all([
+      const [todayLog, prayers, nutrition, lifts, recentLogs] = await Promise.all([
         getTodayLog(),
-        getTodayPrayers(),
-        getTodayNutrition(),
-        getTodayLifts(),
-        getAllLogs()
+        getTodayPrayers().catch(() => null),
+        getTodayNutrition().catch(() => []),
+        getTodayLifts().catch(() => []),
+        getRecentLogs(90) // Only fetch last 90 days for streak, not all history
       ]);
 
-      const streak = calculateStreak(allLogs);
+      const streak = calculateStreak(recentLogs);
       const prayerArray = prayerDocToArray(prayers);
 
       const dayData = {
@@ -66,7 +66,7 @@ function scheduleXPRecalc() {
       const xpEarned = calculateDailyXP(dayData, streak);
 
       // Get yesterday's totalXp to compute cumulative
-      const yesterdayLog = allLogs.length >= 2 ? allLogs[allLogs.length - 2] : null;
+      const yesterdayLog = recentLogs.length >= 2 ? recentLogs[recentLogs.length - 2] : null;
       const prevTotalXp = (yesterdayLog && todayLog.date !== yesterdayLog.date)
         ? (yesterdayLog.totalXp || 0)
         : (todayLog.totalXp - (todayLog.xpEarned || 0)) || 0;
@@ -110,10 +110,9 @@ export async function renderToday(isFirstLoad) {
   if (!panel) return;
 
   // Fetch ALL data sources in parallel
-  const [todayLog, recentLogs, allLogs, prayers, nutrition, lifts] = await Promise.all([
+  const [todayLog, recentLogs, prayers, nutrition, lifts] = await Promise.all([
     getTodayLog(),
-    getRecentLogs(28),
-    getAllLogs(),
+    getRecentLogs(90),
     getTodayPrayers().catch(() => null),
     getTodayNutrition().catch(() => []),
     getTodayLifts().catch(() => [])
@@ -131,8 +130,8 @@ export async function renderToday(isFirstLoad) {
     flashcardStates = fcStates;
   } catch (e) { /* ok */ }
 
-  // Calculate streak from all logs
-  const streak = calculateStreak(allLogs);
+  // Calculate streak from recent logs
+  const streak = calculateStreak(recentLogs);
 
   renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrition, lifts, flashcardsData, flashcardStates);
 }

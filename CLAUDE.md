@@ -1,6 +1,41 @@
 # Productivity Playbook — CLAUDE.md
 
-This is the schema file for the Productivity Playbook project. It governs how the LLM operates across two domains: the **gamified productivity app** (docs/ + src/) and the **Obsidian knowledge vault** (master of psychology/). The LLM is the disciplined wiki maintainer. Kevin curates sources, directs analysis, and asks the right questions. The LLM does everything else.
+This is the governing file for the Productivity Playbook project. It covers two domains: the **gamified life OS** (docs/) and the **Obsidian knowledge vault** (master of psychology/).
+
+---
+
+## Working Principles (MUST FOLLOW)
+
+### 1. ALWAYS Research First
+Before building ANY feature:
+- Search for open source projects that solve the same problem
+- Read what engineers on HN/Reddit/forums say about similar implementations
+- Study how battle-tested apps (Habitify, Loop, MyFitnessPal, Duolingo, Khan Academy) handle the same UX
+- Learn from existing code before writing from scratch
+- If an open source solution exists, adapt it rather than reinventing
+
+### 2. Leverage the Psychology Vault
+The Obsidian vault contains 347 concepts from 26 books. USE THIS KNOWLEDGE when designing features:
+- **SDT (Phase 3)**: Support autonomy, competence, relatedness in every design decision
+- **Undermining effect**: Don't make extrinsic rewards replace intrinsic motivation
+- **CET**: External events should feel informational, not controlling
+- **Self-efficacy (Bandura)**: Build mastery experiences, show progress, use vicarious learning
+- **Loss aversion**: Be careful with streaks — breaking shouldn't feel devastating
+- **Framing effects**: How you present data changes behavior
+- **Commitment & consistency**: Small public commitments drive behavior change
+
+### 3. Never Rebuild Without Testing First
+Before any "major overhaul":
+- List every piece of working functionality
+- Test each piece to confirm it works
+- Only rebuild what's actually broken
+- Preserve working code — don't throw it away for a rewrite
+
+### 4. Build for One User (Kevin)
+- This is a personal app, not a SaaS product
+- Optimize for speed of daily use (90-second check-in)
+- Make it forgiving — if Kevin is rushing, the app should adapt
+- Beautiful design matters — it keeps engagement high
 
 ---
 
@@ -8,8 +43,7 @@ This is the schema file for the Productivity Playbook project. It governs how th
 
 ```
 productivity-playbook/
-├── docs/                        # Frontend PWA (vanilla JS, offline-capable)
-├── src/                         # Google Apps Script backend (Sheets as DB)
+├── docs/                        # Frontend PWA (vanilla JS, Firebase backend)
 ├── master of psychology/        # Obsidian vault — the LLM Wiki
 │   ├── raw/                     # Layer 1: Immutable source documents
 │   ├── wiki/                    # Layer 2: LLM-generated knowledge pages
