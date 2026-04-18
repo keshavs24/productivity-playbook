@@ -28,6 +28,8 @@ import { createHeatmap } from '../components/heatmap.js';
 import { getHabits, getAttributes } from '../user-config.js';
 import { WISDOM_QUOTES } from '../wisdom.js';
 import { createQuickCheckin } from '../components/quick-checkin.js';
+import { createActivityRings } from '../components/activity-rings.js';
+import { getPrayerKeys } from '../user-config.js';
 
 // Debounce timer for XP recalculation
 let xpDebounceTimer = null;
@@ -151,47 +153,79 @@ function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrit
   });
   panel.appendChild(quickCheckin);
 
-  // 1. Level display
-  const levelSection = document.createElement('div');
-  levelSection.className = 'level-display';
+  // 1. Activity Rings + Level Info
+  const habitsDone = (todayLog.habits || []).filter(Boolean).length;
+  const habitsTotal = getHabits().length;
+  const prayerKeys = getPrayerKeys();
+  const prayersDone = prayers ? prayerKeys.filter(k => !!prayers[k]).length : 0;
+  const xpEarned = todayLog.xpEarned || 0;
+  const xpTarget = 150; // reasonable daily target
 
-  const levelNum = document.createElement('div');
-  levelNum.className = 'level-display__number';
-  levelNum.textContent = level;
-  levelSection.appendChild(levelNum);
+  const ringsSection = document.createElement('div');
+  ringsSection.style.textAlign = 'center';
+  ringsSection.insertAdjacentHTML('beforeend', createActivityRings({
+    habits: { done: habitsDone, total: habitsTotal },
+    xp: { earned: xpEarned, target: xpTarget },
+    prayers: { done: prayersDone, total: prayerKeys.length },
+  }, 160));
 
-  const levelTitle = document.createElement('div');
-  levelTitle.className = 'level-display__title';
-  levelTitle.textContent = title;
-  levelSection.appendChild(levelTitle);
+  // Level + XP below rings
+  const levelInfo = document.createElement('div');
+  levelInfo.style.cssText = 'margin-top: var(--sp-3); text-align: center;';
+
+  const levelRow = document.createElement('div');
+  levelRow.style.cssText = 'font-family: "Space Grotesk"; font-weight: 700; font-size: 1.125rem;';
+  levelRow.textContent = `Level ${level} · ${title}`;
+  levelInfo.appendChild(levelRow);
 
   const mult = getStreakMultiplier(streak);
-  const xpText = document.createElement('div');
-  xpText.className = 'level-display__xp';
-  xpText.textContent = `${totalXP.toLocaleString()} XP${mult > 1 ? ` · ${mult}x streak` : ''}`;
-  levelSection.appendChild(xpText);
-
-  // Streak display
-  if (streak > 0) {
-    const streakEl = document.createElement('div');
-    streakEl.className = 'streak-display';
-    streakEl.style.cssText = 'font-size: 0.875rem; color: var(--accent); font-weight: 500; margin-top: var(--sp-1);';
-    streakEl.textContent = `${streak}-day streak`;
-    levelSection.appendChild(streakEl);
-  }
+  const xpRow = document.createElement('div');
+  xpRow.className = 'level-display__xp';
+  xpRow.style.marginTop = 'var(--sp-1)';
+  xpRow.textContent = `${totalXP.toLocaleString()} XP${mult > 1 ? ` · ${mult}x` : ''}${streak > 0 ? ` · ${streak}d streak` : ''}`;
+  levelInfo.appendChild(xpRow);
 
   const progressWrapper = document.createElement('div');
-  progressWrapper.style.cssText = 'max-width: 200px; margin: 0 auto;';
+  progressWrapper.style.cssText = 'max-width: 200px; margin: var(--sp-2) auto 0;';
   progressWrapper.insertAdjacentHTML('beforeend', createProgressBar(progress * 100));
-  levelSection.appendChild(progressWrapper);
+  levelInfo.appendChild(progressWrapper);
 
-  panel.appendChild(levelSection);
+  ringsSection.appendChild(levelInfo);
+  panel.appendChild(ringsSection);
+
+  // 1.5. Stat cards grid
+  const statGrid = document.createElement('div');
+  statGrid.className = 'stat-grid';
+  statGrid.style.marginTop = 'var(--sp-4)';
+
+  const statsData = [
+    { value: habitsDone + '/' + habitsTotal, label: 'Habits', color: 'var(--ring-habits)' },
+    { value: xpEarned, label: 'XP Today', color: 'var(--ring-xp)' },
+    { value: streak > 0 ? streak + 'd' : '—', label: 'Streak', color: 'var(--accent)' },
+  ];
+
+  statsData.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'stat-card';
+    const val = document.createElement('div');
+    val.className = 'stat-card__value';
+    val.style.color = s.color;
+    val.textContent = s.value;
+    card.appendChild(val);
+    const label = document.createElement('div');
+    label.className = 'stat-card__label';
+    label.textContent = s.label;
+    card.appendChild(label);
+    statGrid.appendChild(card);
+  });
+
+  panel.appendChild(statGrid);
 
   // 2. Wisdom
   const wisdom = getRandomWisdom();
   if (wisdom) {
     const wisdomCard = document.createElement('div');
-    wisdomCard.className = 'wisdom-card';
+    wisdomCard.className = 'wisdom-card card--gradient-warm';
     const wText = document.createElement('div');
     wText.className = 'wisdom-card__text';
     wText.textContent = wisdom.text;

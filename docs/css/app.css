@@ -14,11 +14,16 @@
   --bg-input:      #141414;
   --bg-subtle:     #1E1E1E;
 
-  /* Accent — warm amber, used sparingly */
-  --accent:        #E5A764;
-  --accent-muted:  #B8864D;
-  --accent-subtle: rgba(229, 167, 100, 0.08);
-  --accent-border: rgba(229, 167, 100, 0.2);
+  /* Accent — warm gradient palette */
+  --accent:        #FF9F43;
+  --accent-muted:  #E17B2F;
+  --accent-subtle: rgba(255, 159, 67, 0.08);
+  --accent-border: rgba(255, 159, 67, 0.2);
+
+  /* Fitness+ ring colors */
+  --ring-habits:  #FF6B6B;
+  --ring-xp:      #2ED573;
+  --ring-prayers: #48DBFB;
 
   /* Domain colors (skill tree) */
   --domain-thinking:   #60A5FA;
@@ -48,8 +53,8 @@
   --radius-xs:  4px;
   --radius-sm:  6px;
   --radius-md:  10px;
-  --radius-lg:  14px;
-  --radius-xl:  20px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
   --radius-pill: 9999px;
 
   /* Shadows — minimal, no glow */
@@ -1641,6 +1646,135 @@ h3 {
 
 .text-center { text-align: center; }
 .text-right  { text-align: right; }
+
+/* ============================================================
+   Quick Check-in Circles
+   ============================================================ */
+/* ============================================================
+   Activity Rings (Apple Health style)
+   ============================================================ */
+.activity-rings {
+  position: relative;
+  display: inline-block;
+}
+
+.activity-rings__labels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.activity-rings__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.activity-rings__value {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.6875rem;
+}
+
+.activity-rings__name {
+  font-size: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   Gradient Card Variants
+   ============================================================ */
+.card--gradient-warm {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A1A10 100%);
+  border-color: rgba(255, 159, 67, 0.15);
+}
+
+.card--gradient-cool {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0A1A2A 100%);
+  border-color: rgba(72, 219, 251, 0.15);
+}
+
+.card--gradient-green {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0A2A1A 100%);
+  border-color: rgba(46, 213, 115, 0.15);
+}
+
+.card--gradient-purple {
+  background: linear-gradient(135deg, #1A1A1A 0%, #1A0A2A 100%);
+  border-color: rgba(167, 139, 250, 0.15);
+}
+
+/* ============================================================
+   Celebration Animation
+   ============================================================ */
+@keyframes celebrate {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.05); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.03); }
+  60% { transform: scale(1); }
+}
+
+.card--celebrate {
+  animation: celebrate 600ms var(--ease);
+}
+
+/* Level up glow */
+@keyframes level-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 159, 67, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(255, 159, 67, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 159, 67, 0); }
+}
+
+.level-up-glow {
+  animation: level-glow 1.5s ease-out;
+}
+
+/* ============================================================
+   Stat Card (compact metric display)
+   ============================================================ */
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  text-align: center;
+}
+
+.stat-card__value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+
+.stat-card__label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Stat grid (2-3 columns) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+
+@media (max-width: 360px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ============================================================
    Quick Check-in Circles
