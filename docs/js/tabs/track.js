@@ -10,6 +10,7 @@ const SUB_TABS = [
   { id: 'lifts',     label: 'Lifts' },
   { id: 'prayers',   label: 'Prayers' },
   { id: 'body',      label: 'Body' },
+  { id: 'goals',     label: 'Goals' },
 ];
 
 let currentSubTab = 'nutrition';
@@ -65,6 +66,11 @@ async function renderSubTab(panel) {
       case 'body': {
         const { renderBodySubTab } = await import('./track/body.js');
         await renderBodySubTab(content);
+        break;
+      }
+      case 'goals': {
+        const { renderGoalsSubTab } = await import('./track/goals.js');
+        await renderGoalsSubTab(content);
         break;
       }
     }

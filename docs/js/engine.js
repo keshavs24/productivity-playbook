@@ -218,6 +218,58 @@ export function isToday(date) {
 /**
  * Format number as currency
  */
+/**
+ * Calculate monthly consistency percentage.
+ * More forgiving than streaks — shows % of days active this month.
+ * @param {Array} logs - recent logs with { date, completed }
+ * @returns {{ activeDays: number, totalDays: number, percentage: number }}
+ */
+export function getMonthlyConsistency(logs) {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const firstOfMonth = new Date(year, month, 1);
+  const today = new Date(year, month, now.getDate());
+  const totalDays = now.getDate(); // days elapsed this month
+
+  const activeDays = logs.filter(log => {
+    const d = new Date(log.date);
+    return d >= firstOfMonth && d <= today && log.completed;
+  }).length;
+
+  return {
+    activeDays,
+    totalDays,
+    percentage: totalDays > 0 ? Math.round((activeDays / totalDays) * 100) : 0
+  };
+}
+
+/**
+ * Calculate adaptive task value (Habitica-inspired).
+ * Tasks done consistently give less XP. Missed tasks give more.
+ * @param {number} currentValue - current task value (starts at 0)
+ * @param {boolean} completed - was the task done today?
+ * @returns {{ newValue: number, xpMultiplier: number }}
+ */
+export function adaptiveTaskValue(currentValue = 0, completed = true) {
+  let newValue = currentValue;
+
+  if (completed) {
+    // Completing moves toward blue (high value = easy = less XP)
+    newValue = Math.min(10, currentValue + 1);
+  } else {
+    // Missing moves toward red (low value = urgent = more XP)
+    newValue = Math.max(-5, currentValue - 1.5);
+  }
+
+  // XP multiplier: red tasks (negative value) give more XP
+  // blue tasks (high value) give less XP
+  // Formula: 1.0 at value 0, 0.5 at value 10, 2.0 at value -5
+  const xpMultiplier = Math.max(0.3, 1.0 - (currentValue * 0.07));
+
+  return { newValue, xpMultiplier };
+}
+
 export function formatCurrency(num) {
   if (!num) return '$0';
   return '$' + Number(num).toLocaleString('en-US', { maximumFractionDigits: 0 });

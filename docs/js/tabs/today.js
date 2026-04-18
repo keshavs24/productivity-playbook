@@ -393,6 +393,58 @@ function renderTodayContent(panel, todayLog, recentLogs, streak, prayers, nutrit
     scheduleXPRecalc();
   });
   winRow.appendChild(winInput);
+
+  // AI Coach button (appears when there's text in the win)
+  const aiBtn = document.createElement('button');
+  aiBtn.type = 'button';
+  aiBtn.className = 'btn btn--secondary';
+  aiBtn.style.cssText = 'margin-top: var(--sp-2); font-size: 0.8125rem;';
+  aiBtn.textContent = '✨ Ask AI Coach';
+
+  const aiResponse = document.createElement('div');
+  aiResponse.style.cssText = 'display: none; margin-top: var(--sp-3); padding: var(--sp-4); background: var(--bg-elevated); border-radius: var(--radius-md); font-size: 0.875rem; line-height: 1.7; color: var(--text-secondary);';
+
+  aiBtn.addEventListener('click', async () => {
+    const text = winInput.value.trim();
+    if (!text) return;
+
+    aiBtn.textContent = '✨ Thinking...';
+    aiBtn.disabled = true;
+
+    try {
+      const { journalCoach } = await import('../llm.js');
+      const { getApiKey, setApiKey } = await import('../llm.js');
+
+      // Load API key from profile if not set
+      if (!getApiKey()) {
+        const { getProfile } = await import('../firebase.js');
+        const profile = await getProfile();
+        if (profile && profile.openrouterApiKey) {
+          setApiKey(profile.openrouterApiKey);
+        } else {
+          aiResponse.textContent = 'Add your OpenRouter API key in Profile → Settings to use AI Coach.';
+          aiResponse.style.display = '';
+          aiBtn.textContent = '✨ Ask AI Coach';
+          aiBtn.disabled = false;
+          return;
+        }
+      }
+
+      const response = await journalCoach(text);
+      aiResponse.textContent = response;
+      aiResponse.style.display = '';
+      aiBtn.textContent = '✨ Ask Again';
+      aiBtn.disabled = false;
+    } catch (e) {
+      aiResponse.textContent = 'AI Coach error: ' + e.message;
+      aiResponse.style.display = '';
+      aiBtn.textContent = '✨ Ask AI Coach';
+      aiBtn.disabled = false;
+    }
+  });
+
+  winRow.appendChild(aiBtn);
+  winRow.appendChild(aiResponse);
   quickCard.appendChild(winRow);
 
   panel.appendChild(quickCard);

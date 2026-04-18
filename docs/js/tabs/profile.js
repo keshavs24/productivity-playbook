@@ -361,6 +361,38 @@ function renderProfileContent(panel, recentLogs, achievements) {
     await updateProfile({ nutritionTargets: values });
   }));
 
+  // OpenRouter API Key
+  const aiCard = document.createElement('div');
+  aiCard.className = 'card';
+  aiCard.style.marginBottom = 'var(--sp-3)';
+  const aiHeader = document.createElement('div');
+  aiHeader.style.cssText = 'font-weight: 600; font-size: 0.9375rem; margin-bottom: var(--sp-3);';
+  aiHeader.textContent = 'AI Coach (OpenRouter)';
+  aiCard.appendChild(aiHeader);
+  const aiDesc = document.createElement('div');
+  aiDesc.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary); margin-bottom: var(--sp-3);';
+  aiDesc.textContent = 'Free AI coaching. Get your key at openrouter.ai/keys';
+  aiCard.appendChild(aiDesc);
+  const rawProfile = getRawProfile();
+  const aiInput = document.createElement('input');
+  aiInput.type = 'password';
+  aiInput.className = 'input';
+  aiInput.placeholder = 'sk-or-...';
+  aiInput.value = rawProfile.openrouterApiKey || '';
+  aiCard.appendChild(aiInput);
+  const aiSaveBtn = document.createElement('button');
+  aiSaveBtn.type = 'button';
+  aiSaveBtn.className = 'btn btn--primary btn--full';
+  aiSaveBtn.style.marginTop = 'var(--sp-3)';
+  aiSaveBtn.textContent = 'Save API Key';
+  aiSaveBtn.addEventListener('click', async () => {
+    await updateProfile({ openrouterApiKey: aiInput.value.trim() });
+    aiSaveBtn.textContent = 'Saved!';
+    setTimeout(() => { aiSaveBtn.textContent = 'Save API Key'; }, 1500);
+  });
+  aiCard.appendChild(aiSaveBtn);
+  panel.appendChild(aiCard);
+
   // Body Targets
   const bt = getBodyTargets();
   panel.appendChild(createNumberSettings('Body Targets', [

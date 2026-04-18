@@ -458,6 +458,56 @@ function renderStudyMode(body, skill) {
   sub.textContent = skill.subtitle;
   body.appendChild(sub);
 
+  // Socratic Tutor
+  const chatSection = document.createElement('div');
+  chatSection.style.marginBottom = 'var(--sp-4)';
+  const chatToggle = document.createElement('button');
+  chatToggle.type = 'button';
+  chatToggle.className = 'btn btn--secondary btn--full';
+  chatToggle.style.fontSize = '0.875rem';
+  chatToggle.textContent = '🤖 Ask the Socratic Tutor';
+  const chatArea = document.createElement('div');
+  chatArea.style.display = 'none';
+  chatToggle.addEventListener('click', () => {
+    chatArea.style.display = chatArea.style.display === 'none' ? '' : 'none';
+  });
+  const chatInput = document.createElement('input');
+  chatInput.type = 'text';
+  chatInput.className = 'input';
+  chatInput.placeholder = 'Ask anything about this concept...';
+  chatInput.style.marginTop = 'var(--sp-3)';
+  const chatResp = document.createElement('div');
+  chatResp.style.cssText = 'margin-top: var(--sp-3); padding: var(--sp-4); background: var(--bg-elevated); border-radius: var(--radius-md); font-size: 0.875rem; line-height: 1.7; color: var(--text-secondary); display: none;';
+  chatInput.addEventListener('keydown', async (e) => {
+    if (e.key !== 'Enter') return;
+    const q = chatInput.value.trim();
+    if (!q) return;
+    chatInput.disabled = true;
+    chatInput.value = 'Thinking...';
+    try {
+      const { socraticTutor, getApiKey, setApiKey } = await import('../llm.js');
+      if (!getApiKey()) {
+        const { getProfile } = await import('../firebase.js');
+        const prof = await getProfile();
+        if (prof && prof.openrouterApiKey) setApiKey(prof.openrouterApiKey);
+        else { chatResp.textContent = 'Add your OpenRouter API key in Profile → Settings.'; chatResp.style.display = ''; chatInput.value = ''; chatInput.disabled = false; return; }
+      }
+      const resp = await socraticTutor(q, skill.content || '', skill.title);
+      chatResp.textContent = resp;
+      chatResp.style.display = '';
+    } catch (err) {
+      chatResp.textContent = 'Error: ' + err.message;
+      chatResp.style.display = '';
+    }
+    chatInput.value = '';
+    chatInput.disabled = false;
+  });
+  chatArea.appendChild(chatInput);
+  chatArea.appendChild(chatResp);
+  chatSection.appendChild(chatToggle);
+  chatSection.appendChild(chatArea);
+  body.appendChild(chatSection);
+
   // Concept content
   if (skill.content) {
     const prose = document.createElement('div');
