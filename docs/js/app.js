@@ -83,7 +83,7 @@ function setupLogin() {
         onAuthenticated();
       } catch (e) {
         console.error('Auth failed:', e);
-        loginBtn.querySelector('span').textContent = 'Failed. Try again.';
+        loginBtn.querySelector('span').textContent = e.message || 'Failed. Try again.';
         loginBtn.disabled = false;
       }
     });

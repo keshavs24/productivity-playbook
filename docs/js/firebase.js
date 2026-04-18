@@ -16,16 +16,16 @@
  *   users/{uid}/profile                  — single doc: settings, custom habits
  */
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js';
 import {
   getFirestore, enableIndexedDbPersistence,
   collection, doc, getDoc, getDocs, setDoc, updateDoc, addDoc,
   query, where, orderBy, limit, Timestamp, onSnapshot
-} from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js';
 import {
   getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   signInAnonymously, onAuthStateChanged, signOut
-} from 'https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js';
 
 // ============================================================
 // INITIALIZATION
