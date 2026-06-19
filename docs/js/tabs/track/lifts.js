@@ -28,6 +28,8 @@ export async function renderLiftsSubTab(container) {
 }
 
 function renderSessionSelector(container) {
+  const sessions = getWorkoutSessions();
+
   // Session buttons
   const label = document.createElement('h3');
   label.className = 'section-label';
@@ -225,7 +227,7 @@ function renderSessionView(container) {
       addBtn.disabled = true;
       addBtn.textContent = '...';
 
-      const setNum = todaySets.length + setList.children.length + 1;
+      const setNum = setList.children.length + 1;
       const entry = await addLiftEntry({
         sessionType: selectedSession.name,
         exercise: exercise.name,

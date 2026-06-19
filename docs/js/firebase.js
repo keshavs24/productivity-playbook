@@ -366,6 +366,17 @@ export async function updateBodyComp(fields) {
   await setDoc(ref, { date: id, ...fields, updatedAt: Timestamp.now() }, { merge: true });
 }
 
+export async function getRecentBodyComp(days = 14) {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  const cutoffId = `${cutoff.getFullYear()}-${String(cutoff.getMonth() + 1).padStart(2, '0')}-${String(cutoff.getDate()).padStart(2, '0')}`;
+
+  const ref = collection(db, userRef('bodyComp'));
+  const q = query(ref, where('date', '>=', cutoffId), orderBy('date', 'asc'));
+  const snap = await getDocs(q);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+
 // ============================================================
 // SKILLS (Skill Tree)
 // ============================================================
