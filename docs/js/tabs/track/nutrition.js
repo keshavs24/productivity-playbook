@@ -8,9 +8,10 @@ import { createProgressBar } from '../../components/progress-bar.js';
 import { getMealTypes, getNutritionTargets } from '../../user-config.js';
 
 export async function renderNutritionSubTab(container) {
+  container.textContent = '';
+
   const entries = await getTodayNutrition();
 
-  // Calculate totals
   let totalCal = 0, totalP = 0, totalC = 0, totalF = 0;
   entries.forEach(e => {
     totalCal += e.calories || 0;
@@ -22,89 +23,89 @@ export async function renderNutritionSubTab(container) {
   const targets = getNutritionTargets();
   const remaining = targets.dailyCalories - totalCal;
 
-  container.textContent = '';
+  // ----- Card 1: Daily Summary -----
+  const summaryLabel = document.createElement('h3');
+  summaryLabel.className = 'section-label';
+  summaryLabel.textContent = 'Daily Summary';
+  container.appendChild(summaryLabel);
 
-  // Calorie summary
-  const calCard = document.createElement('div');
-  calCard.className = 'card';
+  const summaryCard = document.createElement('div');
+  summaryCard.className = 'card';
 
-  const calRow = document.createElement('div');
-  calRow.className = 'row row--between';
-  calRow.style.marginBottom = 'var(--sp-3)';
+  // Calories: 2-column (eaten + bar | remaining)
+  const calGrid = document.createElement('div');
+  calGrid.style.cssText = 'display: grid; grid-template-columns: 1fr auto; gap: var(--sp-4); align-items: start;';
 
+  const calLeftCol = document.createElement('div');
   const calEaten = document.createElement('div');
   calEaten.className = 'data-value';
   calEaten.style.fontSize = '1.5rem';
   calEaten.textContent = totalCal.toLocaleString();
+  calLeftCol.appendChild(calEaten);
+
   const calLabel = document.createElement('div');
   calLabel.className = 'text-muted';
-  calLabel.style.fontSize = '0.75rem';
-  calLabel.textContent = 'calories eaten';
-  const calLeft = document.createElement('div');
-  calLeft.style.textAlign = 'right';
+  calLabel.style.cssText = 'font-size: 0.75rem; margin-bottom: var(--sp-2);';
+  calLabel.textContent = `calories eaten / ${targets.dailyCalories.toLocaleString()}`;
+  calLeftCol.appendChild(calLabel);
+
+  const calPct = Math.min(100, (totalCal / targets.dailyCalories) * 100);
+  calLeftCol.insertAdjacentHTML('beforeend', createProgressBar(calPct, { thick: true }));
+  calLeftCol.querySelector('.progress-bar__fill').style.background =
+    remaining >= 0 ? 'var(--accent)' : 'var(--error)';
+  calGrid.appendChild(calLeftCol);
+
+  const calRightCol = document.createElement('div');
+  calRightCol.style.textAlign = 'right';
   const remVal = document.createElement('div');
   remVal.className = 'data-value';
   remVal.style.cssText = `font-size: 1.5rem; color: ${remaining >= 0 ? 'var(--success)' : 'var(--error)'};`;
   remVal.textContent = remaining.toLocaleString();
+  calRightCol.appendChild(remVal);
   const remLabel = document.createElement('div');
   remLabel.className = 'text-muted';
   remLabel.style.fontSize = '0.75rem';
   remLabel.textContent = 'remaining';
-
-  const calLeftCol = document.createElement('div');
-  calLeftCol.appendChild(calEaten);
-  calLeftCol.appendChild(calLabel);
-  calRow.appendChild(calLeftCol);
-  const calRightCol = document.createElement('div');
-  calRightCol.style.textAlign = 'right';
-  calRightCol.appendChild(remVal);
   calRightCol.appendChild(remLabel);
-  calRow.appendChild(calRightCol);
-  calCard.appendChild(calRow);
+  calGrid.appendChild(calRightCol);
 
-  const pct = Math.min(100, (totalCal / targets.dailyCalories) * 100);
-  calCard.insertAdjacentHTML('beforeend', createProgressBar(pct));
-  calCard.lastElementChild.querySelector('.progress-bar__fill').style.background =
-    remaining >= 0 ? 'var(--success)' : 'var(--error)';
+  summaryCard.appendChild(calGrid);
 
-  container.appendChild(calCard);
-
-  // Macro breakdown
-  const macroLabel = document.createElement('h3');
-  macroLabel.className = 'section-label';
-  macroLabel.textContent = 'Macros';
-  container.appendChild(macroLabel);
-
-  const macroCard = document.createElement('div');
-  macroCard.className = 'card stack stack--3';
-
+  // Macros: 3-column vertical grid
   const macros = [
-    { name: 'Protein', current: totalP, target: targets.proteinG, unit: 'g' },
-    { name: 'Carbs', current: totalC, target: targets.carbsG, unit: 'g' },
-    { name: 'Fat', current: totalF, target: targets.fatG, unit: 'g' },
+    { name: 'Protein', current: totalP, target: targets.proteinG },
+    { name: 'Carbs', current: totalC, target: targets.carbsG },
+    { name: 'Fat', current: totalF, target: targets.fatG },
   ];
 
+  const macroGrid = document.createElement('div');
+  macroGrid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-5);';
+
   macros.forEach(m => {
-    const row = document.createElement('div');
-    row.className = 'macro-row';
-    const label = document.createElement('span');
-    label.className = 'macro-row__label';
-    label.textContent = m.name;
-    row.appendChild(label);
-    const barWrap = document.createElement('div');
-    barWrap.className = 'macro-row__bar';
-    barWrap.insertAdjacentHTML('beforeend', createProgressBar(Math.min(100, (m.current / m.target) * 100), { thick: true }));
-    row.appendChild(barWrap);
-    const val = document.createElement('span');
-    val.className = 'macro-row__value';
-    val.textContent = `${m.current}/${m.target}${m.unit}`;
-    row.appendChild(val);
-    macroCard.appendChild(row);
+    const col = document.createElement('div');
+
+    const name = document.createElement('div');
+    name.className = 'text-muted';
+    name.style.cssText = 'font-size: 0.75rem; margin-bottom: 2px;';
+    name.textContent = m.name;
+    col.appendChild(name);
+
+    const val = document.createElement('div');
+    val.className = 'data-value';
+    val.style.cssText = 'font-size: 0.875rem; margin-bottom: var(--sp-2);';
+    val.textContent = `${m.current}/${m.target}g`;
+    col.appendChild(val);
+
+    col.insertAdjacentHTML('beforeend',
+      createProgressBar(Math.min(100, (m.current / m.target) * 100), { thick: true }));
+
+    macroGrid.appendChild(col);
   });
 
-  container.appendChild(macroCard);
+  summaryCard.appendChild(macroGrid);
+  container.appendChild(summaryCard);
 
-  // Add food form
+  // ----- Card 2: Add Food -----
   const formLabel = document.createElement('h3');
   formLabel.className = 'section-label';
   formLabel.textContent = 'Add Food';
@@ -140,10 +141,9 @@ export async function renderNutritionSubTab(container) {
   foodInput.placeholder = 'Food name';
   formCard.appendChild(foodInput);
 
-  // Macros row
+  // Macro inputs
   const macroInputs = document.createElement('div');
   macroInputs.style.cssText = 'display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;';
-
   const calInput = createNumInput('Cal');
   const pInput = createNumInput('Protein');
   const cInput = createNumInput('Carbs');
@@ -154,14 +154,14 @@ export async function renderNutritionSubTab(container) {
   macroInputs.appendChild(fInput.wrapper);
   formCard.appendChild(macroInputs);
 
-  // Submit button
+  // Submit
   const submitBtn = document.createElement('button');
   submitBtn.type = 'button';
   submitBtn.className = 'btn btn--primary btn--full';
   submitBtn.textContent = 'Add Food';
   submitBtn.addEventListener('click', async () => {
     const cal = Number(calInput.input.value) || 0;
-    if (!cal && !foodInput.value.trim()) return;
+    if (cal <= 0) return;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Adding...';
@@ -175,17 +175,16 @@ export async function renderNutritionSubTab(container) {
       fat: Number(fInput.input.value) || 0
     });
 
-    // Re-render to show updated totals
     await renderNutritionSubTab(container);
   });
   formCard.appendChild(submitBtn);
   container.appendChild(formCard);
 
-  // Today's entries
+  // ----- Card 3: Today's Entries -----
   if (entries.length > 0) {
     const entriesLabel = document.createElement('h3');
     entriesLabel.className = 'section-label';
-    entriesLabel.textContent = `Today (${entries.length} entries)`;
+    entriesLabel.textContent = `Today (${entries.length} ${entries.length === 1 ? 'entry' : 'entries'})`;
     container.appendChild(entriesLabel);
 
     const entriesCard = document.createElement('div');
@@ -194,8 +193,7 @@ export async function renderNutritionSubTab(container) {
     entries.forEach(e => {
       const row = document.createElement('div');
       row.className = 'row row--between';
-      row.style.padding = 'var(--sp-2) 0';
-      row.style.borderBottom = '1px solid var(--bg-subtle)';
+      row.style.cssText = 'padding: var(--sp-2) 0; border-bottom: 1px solid var(--bg-subtle);';
 
       const info = document.createElement('div');
       const name = document.createElement('div');

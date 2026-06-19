@@ -1,26 +1,24 @@
 /**
  * track/lifts.js — Workout/lift tracker sub-tab
- * Configurable sessions, set logging, PR detection, progress arrows.
+ * Session selection, set logging, PR detection, progressive overload arrows.
  */
 
+import { WORKOUT_SPLIT, ABS_EXERCISES } from '../../../config.js';
 import { addLiftEntry, getTodayLifts, getAllLifts } from '../../firebase.js';
-import { getWorkoutSessions, getAbsExercises } from '../../user-config.js';
 import { showToast } from '../../app.js';
 
-let allLiftData = null;
 let selectedSession = null;
+let allLiftData = [];
+let todayEntries = [];
 
 export async function renderLiftsSubTab(container) {
-  // Load all lift history (cached after first load)
-  if (!allLiftData) {
-    allLiftData = await getAllLifts();
-  }
-
-  const sessions = getWorkoutSessions();
-
   container.textContent = '';
 
-  if (selectedSession) {
+  todayEntries = await getTodayLifts();
+  const raw = await getAllLifts();
+  allLiftData = [...raw].reverse();
+
+  if (selectedSession !== null) {
     renderSessionView(container);
   } else {
     renderSessionSelector(container);
@@ -28,18 +26,30 @@ export async function renderLiftsSubTab(container) {
 }
 
 function renderSessionSelector(container) {
-  const sessions = getWorkoutSessions();
+  // Header
+  const headerCard = document.createElement('div');
+  headerCard.className = 'card';
+  headerCard.style.textAlign = 'center';
+  const title = document.createElement('h2');
+  title.textContent = 'Lift Tracker';
+  headerCard.appendChild(title);
+  const dateEl = document.createElement('div');
+  dateEl.className = 'text-muted';
+  dateEl.style.marginTop = 'var(--sp-1)';
+  dateEl.textContent = formatDate(new Date());
+  headerCard.appendChild(dateEl);
+  container.appendChild(headerCard);
 
-  // Session buttons
-  const label = document.createElement('h3');
-  label.className = 'section-label';
-  label.textContent = 'Select Session';
-  container.appendChild(label);
+  // Session selector
+  const sessLabel = document.createElement('h3');
+  sessLabel.className = 'section-label';
+  sessLabel.textContent = 'Select Session';
+  container.appendChild(sessLabel);
 
   const grid = document.createElement('div');
-  grid.style.cssText = 'display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-3);';
+  grid.style.cssText = 'display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3);';
 
-  sessions.forEach(session => {
+  WORKOUT_SPLIT.forEach((session, i) => {
     const card = document.createElement('div');
     card.className = 'card card--interactive';
     card.style.cursor = 'pointer';
@@ -52,11 +62,12 @@ function renderSessionSelector(container) {
     const count = document.createElement('div');
     count.className = 'text-muted';
     count.style.fontSize = '0.75rem';
-    count.textContent = `${(session.exercises || []).length} exercises`;
+    const exCount = session.exercises.length;
+    count.textContent = exCount > 0 ? `${exCount} exercises + abs` : 'Freeform + abs';
     card.appendChild(count);
 
     card.addEventListener('click', () => {
-      selectedSession = session;
+      selectedSession = i;
       renderLiftsSubTab(container);
     });
 
@@ -74,130 +85,166 @@ function renderSessionSelector(container) {
   const statsCard = document.createElement('div');
   statsCard.className = 'card';
 
-  const allData = allLiftData || [];
-  const uniqueSessions = new Set(allData.map(l => `${l.date}-${l.sessionType}`)).size;
-  const totalSets = allData.length;
+  const stats = getOverallStats();
+  const statsGrid = document.createElement('div');
+  statsGrid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); text-align: center;';
 
-  const stats = [
-    { label: 'Total sessions', value: uniqueSessions },
-    { label: 'Total sets', value: totalSets },
-  ];
-
-  stats.forEach(s => {
-    const row = document.createElement('div');
-    row.className = 'row row--between';
-    row.style.padding = 'var(--sp-2) 0';
-    const l = document.createElement('span');
-    l.className = 'text-muted';
-    l.style.fontSize = '0.875rem';
-    l.textContent = s.label;
-    row.appendChild(l);
-    const v = document.createElement('span');
-    v.className = 'data-value';
-    v.textContent = s.value;
-    row.appendChild(v);
-    statsCard.appendChild(row);
+  [
+    { label: 'Sessions', value: stats.sessions, color: 'var(--accent)' },
+    { label: 'PRs', value: stats.prs, color: 'var(--success)' },
+    { label: 'Total Sets', value: stats.totalSets, color: 'var(--text-primary)' },
+  ].forEach(s => {
+    const col = document.createElement('div');
+    const val = document.createElement('div');
+    val.className = 'data-value';
+    val.style.cssText = `font-size: 1.5rem; color: ${s.color};`;
+    val.textContent = s.value;
+    col.appendChild(val);
+    const lbl = document.createElement('div');
+    lbl.className = 'text-muted';
+    lbl.style.fontSize = '0.7rem';
+    lbl.textContent = s.label;
+    col.appendChild(lbl);
+    statsGrid.appendChild(col);
   });
 
+  statsCard.appendChild(statsGrid);
   container.appendChild(statsCard);
+
+  // Today's log
+  if (todayEntries.length > 0) {
+    const logLabel = document.createElement('h3');
+    logLabel.className = 'section-label';
+    logLabel.textContent = "Today's Log";
+    container.appendChild(logLabel);
+
+    const logCard = document.createElement('div');
+    logCard.className = 'card';
+
+    const byExercise = {};
+    todayEntries.forEach(e => {
+      if (!byExercise[e.exercise]) byExercise[e.exercise] = [];
+      byExercise[e.exercise].push(e);
+    });
+
+    Object.entries(byExercise).forEach(([ex, sets]) => {
+      const row = document.createElement('div');
+      row.style.cssText = 'padding: var(--sp-2) 0; border-bottom: 1px solid var(--bg-subtle);';
+      const exName = document.createElement('div');
+      exName.style.cssText = 'font-weight: 500; font-size: 0.85rem;';
+      exName.textContent = ex;
+      row.appendChild(exName);
+      const setsStr = document.createElement('div');
+      setsStr.className = 'text-muted';
+      setsStr.style.fontSize = '0.7rem';
+      setsStr.textContent = sets.map(s => `${s.weight}x${s.reps}`).join(' | ');
+      row.appendChild(setsStr);
+      logCard.appendChild(row);
+    });
+
+    container.appendChild(logCard);
+  }
+
+  // Spacer
+  const spacer = document.createElement('div');
+  spacer.style.height = 'var(--sp-8)';
+  container.appendChild(spacer);
 }
 
 function renderSessionView(container) {
-  // Back button
-  const back = document.createElement('button');
-  back.type = 'button';
-  back.className = 'skill-detail__back';
-  back.textContent = '← Sessions';
-  back.addEventListener('click', () => {
+  const session = WORKOUT_SPLIT[selectedSession];
+  const exercises = [...session.exercises, ...ABS_EXERCISES];
+
+  // Header
+  const headerCard = document.createElement('div');
+  headerCard.className = 'card';
+  const headerRow = document.createElement('div');
+  headerRow.className = 'row row--between';
+
+  const headerLeft = document.createElement('div');
+  const sessionTitle = document.createElement('h2');
+  sessionTitle.style.fontSize = '1.1rem';
+  sessionTitle.textContent = session.name;
+  headerLeft.appendChild(sessionTitle);
+  const sessionDate = document.createElement('div');
+  sessionDate.className = 'text-muted';
+  sessionDate.style.fontSize = '0.75rem';
+  sessionDate.textContent = formatDate(new Date());
+  headerLeft.appendChild(sessionDate);
+  headerRow.appendChild(headerLeft);
+
+  const backBtn = document.createElement('button');
+  backBtn.type = 'button';
+  backBtn.className = 'btn btn--secondary';
+  backBtn.style.fontSize = '0.8rem';
+  backBtn.textContent = 'Back';
+  backBtn.addEventListener('click', () => {
     selectedSession = null;
     renderLiftsSubTab(container);
   });
-  container.appendChild(back);
+  headerRow.appendChild(backBtn);
 
-  const title = document.createElement('h2');
-  title.textContent = selectedSession.name;
-  title.style.marginBottom = 'var(--sp-4)';
-  container.appendChild(title);
+  headerCard.appendChild(headerRow);
+  container.appendChild(headerCard);
 
-  // Get today's entries for this session
-  const todayStr = new Date().toISOString().split('T')[0];
-  const todayEntries = (allLiftData || []).filter(l =>
-    l.date === todayStr && l.sessionType === selectedSession.name
-  );
-
-  // All exercises for this session + abs
-  const exercises = [...(selectedSession.exercises || []), ...getAbsExercises()];
-
+  // Per-exercise cards
   exercises.forEach(exercise => {
     const card = document.createElement('div');
     card.className = 'card';
     card.style.marginBottom = 'var(--sp-3)';
 
-    // Exercise name + PR
-    const headerRow = document.createElement('div');
-    headerRow.className = 'row row--between';
-    headerRow.style.marginBottom = 'var(--sp-3)';
+    // Exercise header
+    const exHeaderRow = document.createElement('div');
+    exHeaderRow.className = 'row row--between';
+    exHeaderRow.style.marginBottom = 'var(--sp-2)';
 
+    const exNameWrap = document.createElement('div');
     const exName = document.createElement('div');
     exName.style.cssText = 'font-weight: 600; font-size: 0.9375rem;';
     exName.textContent = exercise.name;
-    headerRow.appendChild(exName);
+    exNameWrap.appendChild(exName);
 
-    // PR badge
-    const pr = getPR(exercise.name);
+    if (exercise.targetWeight) {
+      const targetInfo = document.createElement('div');
+      targetInfo.className = 'text-muted';
+      targetInfo.style.fontSize = '0.7rem';
+      targetInfo.textContent = `Target: ${exercise.targetWeight}lb x ${exercise.targetReps}`;
+      exNameWrap.appendChild(targetInfo);
+    }
+    exHeaderRow.appendChild(exNameWrap);
+
+    const pr = getPRData(exercise.name);
     if (pr) {
       const prBadge = document.createElement('span');
       prBadge.style.cssText = 'font-size: 0.6875rem; color: var(--accent); font-weight: 600;';
-      prBadge.textContent = `PR: ${pr.weight}×${pr.reps}`;
-      headerRow.appendChild(prBadge);
+      prBadge.textContent = `PR: ${pr.weight}lb x ${pr.reps}`;
+      exHeaderRow.appendChild(prBadge);
     }
 
-    card.appendChild(headerRow);
+    card.appendChild(exHeaderRow);
 
     // Last session reference
-    const lastSets = getLastSessionSets(exercise.name, selectedSession.name);
-    if (lastSets.length > 0) {
+    const lastData = getLastSessionData(exercise.name);
+    if (lastData) {
       const lastRef = document.createElement('div');
-      lastRef.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary); margin-bottom: var(--sp-3);';
-      lastRef.textContent = 'Last: ' + lastSets.map(s => `${s.weight}×${s.reps}`).join(', ');
+      lastRef.className = 'text-muted';
+      lastRef.style.cssText = 'font-size: 0.7rem; margin-bottom: var(--sp-2);';
+      lastRef.textContent = 'Last: ' + lastData.sets.map(s => `${s.weight}x${s.reps}`).join(', ');
       card.appendChild(lastRef);
     }
 
-    // Today's logged sets
-    const todaySets = todayEntries.filter(e => e.exercise === exercise.name);
+    // Existing today's sets
+    const exTodaySets = todayEntries.filter(e => e.exercise === exercise.name);
     const setList = document.createElement('div');
-    setList.id = `sets-${exercise.name.replace(/\W/g, '')}`;
+    setList.id = 'sets-' + sanitize(exercise.name);
 
-    todaySets.forEach((s, i) => {
-      const setRow = document.createElement('div');
-      setRow.className = 'exercise-row';
-
-      const setNum = document.createElement('span');
-      setNum.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary); width: 32px;';
-      setNum.textContent = `Set ${i + 1}`;
-      setRow.appendChild(setNum);
-
-      const setLabel = document.createElement('span');
-      setLabel.className = 'exercise-row__label';
-      setLabel.textContent = `${s.weight} × ${s.reps}`;
-      setRow.appendChild(setLabel);
-
-      // Progress arrow vs last session
-      const arrow = document.createElement('span');
-      arrow.className = 'exercise-row__arrow';
-      if (lastSets[i]) {
-        if (s.weight > lastSets[i].weight) { arrow.className += ' exercise-row__arrow--up'; arrow.textContent = '↑'; }
-        else if (s.weight < lastSets[i].weight) { arrow.className += ' exercise-row__arrow--down'; arrow.textContent = '↓'; }
-        else { arrow.className += ' exercise-row__arrow--same'; arrow.textContent = '→'; }
-      }
-      setRow.appendChild(arrow);
-
-      setList.appendChild(setRow);
+    exTodaySets.forEach((s, i) => {
+      setList.appendChild(createSetRow(i + 1, s.weight, s.reps, exercise.name));
     });
 
     card.appendChild(setList);
 
-    // Add set form
+    // Add set inputs
     const addRow = document.createElement('div');
     addRow.style.cssText = 'display: flex; gap: 8px; align-items: center; margin-top: var(--sp-3);';
 
@@ -227,37 +274,25 @@ function renderSessionView(container) {
       addBtn.disabled = true;
       addBtn.textContent = '...';
 
+      const isPR = checkPR(exercise.name, weight, reps);
       const setNum = setList.children.length + 1;
+
       const entry = await addLiftEntry({
-        sessionType: selectedSession.name,
+        sessionType: session.name,
         exercise: exercise.name,
         setNum,
         weight,
         reps
       });
 
-      // Add to local data
-      if (allLiftData) allLiftData.unshift(entry);
+      todayEntries.push(entry);
+      allLiftData.push(entry);
 
-      // Check PR
-      const currentPR = getPR(exercise.name);
-      const volume = weight * reps;
-      if (!currentPR || volume > currentPR.weight * currentPR.reps) {
-        showToast(`PR! ${exercise.name}: ${weight}×${reps}`);
+      setList.appendChild(createSetRow(setNum, weight, reps, exercise.name));
+
+      if (isPR) {
+        showToast(`NEW PR: ${exercise.name} ${weight}lb x ${reps}`);
       }
-
-      // Add set row to DOM
-      const newRow = document.createElement('div');
-      newRow.className = 'exercise-row';
-      const num = document.createElement('span');
-      num.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary); width: 32px;';
-      num.textContent = `Set ${setNum}`;
-      newRow.appendChild(num);
-      const label = document.createElement('span');
-      label.className = 'exercise-row__label';
-      label.textContent = `${weight} × ${reps}`;
-      newRow.appendChild(label);
-      setList.appendChild(newRow);
 
       addBtn.disabled = false;
       addBtn.textContent = '+ Set';
@@ -271,42 +306,119 @@ function renderSessionView(container) {
     container.appendChild(card);
   });
 
-  // Spacer
-  const spacer = document.createElement('div');
-  spacer.style.height = 'var(--sp-8)';
-  container.appendChild(spacer);
+  // Finish Session button
+  const finishWrap = document.createElement('div');
+  finishWrap.style.padding = 'var(--sp-4)';
+  const finishBtn = document.createElement('button');
+  finishBtn.type = 'button';
+  finishBtn.className = 'btn btn--primary btn--full';
+  finishBtn.style.padding = 'var(--sp-4)';
+  finishBtn.textContent = 'Finish Session';
+  finishBtn.addEventListener('click', () => {
+    selectedSession = null;
+    renderLiftsSubTab(container);
+  });
+  finishWrap.appendChild(finishBtn);
+  container.appendChild(finishWrap);
 }
 
-function getPR(exerciseName) {
-  if (!allLiftData) return null;
+function createSetRow(setNum, weight, reps, exerciseName) {
+  const row = document.createElement('div');
+  row.className = 'exercise-row';
+
+  const numSpan = document.createElement('span');
+  numSpan.style.cssText = 'font-size: 0.75rem; color: var(--text-tertiary); width: 40px; flex-shrink: 0;';
+  numSpan.textContent = `Set ${setNum}`;
+  row.appendChild(numSpan);
+
+  const labelSpan = document.createElement('span');
+  labelSpan.className = 'exercise-row__label';
+  labelSpan.textContent = `${weight}lb x ${reps}`;
+  row.appendChild(labelSpan);
+
+  const arrow = getProgressArrow(exerciseName, weight);
+  const arrowSpan = document.createElement('span');
+  arrowSpan.className = 'exercise-row__arrow';
+  if (arrow.cls) arrowSpan.classList.add(arrow.cls);
+  arrowSpan.textContent = arrow.icon;
+  row.appendChild(arrowSpan);
+
+  return row;
+}
+
+function getLastSessionData(exercise) {
+  const today = todayId();
+  let lastDate = null;
+  const sets = [];
+  for (let i = allLiftData.length - 1; i >= 0; i--) {
+    const row = allLiftData[i];
+    if (row.exercise !== exercise) continue;
+    if (row.date === today) continue;
+    if (!lastDate) lastDate = row.date;
+    if (row.date === lastDate) {
+      sets.unshift({ weight: row.weight || 0, reps: row.reps || 0 });
+    } else if (lastDate) break;
+  }
+  return sets.length > 0 ? { date: lastDate, sets } : null;
+}
+
+function getPRData(exercise) {
   let best = null;
-  allLiftData.forEach(l => {
-    if (l.exercise === exerciseName && l.weight && l.reps) {
-      const vol = l.weight * l.reps;
-      if (!best || vol > best.weight * best.reps) {
-        best = { weight: l.weight, reps: l.reps };
-      }
+  let bestVol = 0;
+  for (const row of allLiftData) {
+    if (row.exercise !== exercise) continue;
+    const w = row.weight || 0;
+    const r = row.reps || 0;
+    const vol = w * r;
+    if (vol > bestVol) {
+      bestVol = vol;
+      best = { weight: w, reps: r };
     }
-  });
+  }
   return best;
 }
 
-function getLastSessionSets(exerciseName, sessionType) {
-  if (!allLiftData) return [];
-  const todayStr = new Date().toISOString().split('T')[0];
+function checkPR(exercise, weight, reps) {
+  const current = getPRData(exercise);
+  if (!current) return true;
+  return weight * reps > current.weight * current.reps;
+}
 
-  // Find most recent date for this session that isn't today
-  const pastEntries = allLiftData.filter(l =>
-    l.sessionType === sessionType && l.exercise === exerciseName && l.date !== todayStr
-  );
+function getProgressArrow(exercise, weight) {
+  const last = getLastSessionData(exercise);
+  if (!last || last.sets.length === 0) return { icon: '', cls: '' };
+  const lastWeight = last.sets[last.sets.length - 1].weight;
+  if (weight > lastWeight) return { icon: '↑', cls: 'exercise-row__arrow--up' };
+  if (weight < lastWeight) return { icon: '↓', cls: 'exercise-row__arrow--down' };
+  return { icon: '→', cls: 'exercise-row__arrow--same' };
+}
 
-  if (pastEntries.length === 0) return [];
+function getOverallStats() {
+  const sessions = new Set();
+  const bestByEx = {};
+  let prs = 0;
+  for (const row of allLiftData) {
+    if (row.date && row.sessionType) sessions.add(row.date + '_' + row.sessionType);
+    const vol = (row.weight || 0) * (row.reps || 0);
+    if (row.exercise && vol > 0) {
+      if (!bestByEx[row.exercise] || vol > bestByEx[row.exercise]) {
+        if (bestByEx[row.exercise]) prs++;
+        bestByEx[row.exercise] = vol;
+      }
+    }
+  }
+  return { sessions: sessions.size, prs, totalSets: allLiftData.length };
+}
 
-  // Sort by date desc, get the most recent date
-  pastEntries.sort((a, b) => b.date.localeCompare(a.date));
-  const lastDate = pastEntries[0].date;
+function todayId() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
 
-  return pastEntries
-    .filter(l => l.date === lastDate)
-    .sort((a, b) => (a.setNum || 0) - (b.setNum || 0));
+function sanitize(str) {
+  return str.replace(/[^a-zA-Z0-9]/g, '-');
+}
+
+function formatDate(d) {
+  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
 }
